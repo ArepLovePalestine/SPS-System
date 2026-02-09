@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { SLIDES } from '../constants';
+import { SLIDES } from '@/SLIDES.1';
 import { Language } from '../types';
 
 interface HeroProps { lang: Language; }

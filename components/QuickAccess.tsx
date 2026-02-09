@@ -9,20 +9,20 @@ interface QuickAccessProps {
 
 const QuickAccess: React.FC<QuickAccessProps> = ({ lang }) => {
   const content = {
-    sectionTitle: { EN: 'Gateways', BM: 'Gerbang Akses' },
+    sectionTitle: { EN: 'Example', BM: 'Contoh' },
     apply: {
       title: { EN: 'Apply Now', BM: 'Mohon Sekarang' },
       desc: { 
-        EN: 'Begin your postgraduate journey today. Our streamlined application process is designed for modern scholars.',
-        BM: 'Mulakan perjalanan pascasiswazah anda hari ini. Proses permohonan kami direka untuk sarjana moden.'
+        EN: 'ayat.',
+        BM: 'ayat.'
       },
       cta: { EN: 'Online Admission', BM: 'Kemasukan Dalam Talian' }
     },
     student: {
       title: { EN: 'Student Info', BM: 'Maklumat Pelajar' },
       desc: { 
-        EN: 'Access comprehensive resources, academic calendars, and personalized portals for current UTeM students.',
-        BM: 'Akses sumber komprehensif, kalendar akademik, dan portal peribadi untuk pelajar UTeM sedia ada.'
+        EN: 'ayat',
+        BM: 'ayat.'
       },
       cta: { EN: 'Student Portal', BM: 'Portal Pelajar' }
     }
@@ -33,7 +33,7 @@ const QuickAccess: React.FC<QuickAccessProps> = ({ lang }) => {
       {/* Background Image: Students sitting on the field / campus grass */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=2070&auto=format&fit=crop" 
+          src="https://picsum.photos/seed/picsum15/2070/1380" 
           alt="Students on Field"
           className="w-full h-full object-cover scale-105"
         />

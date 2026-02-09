@@ -1,5 +1,5 @@
 
-import { NavItem, SlideData, AcademicBlock, AdmissionStep, Testimonial, FeatureCard } from './types';
+import { NavItem, AcademicBlock, AdmissionStep, Testimonial, FeatureCard } from './types';
 import { 
   BookOpen, 
   UserCheck, 
@@ -15,6 +15,24 @@ import {
   ShieldCheck, 
   Library 
 } from 'lucide-react';
+
+// Define the interface first
+export interface SlideData {
+  image: string;
+  title: string;
+  subtitle: string;
+}
+
+// Now TypeScript knows what 'SlideData' is
+export const HERO_SLIDES: SlideData[] = [
+  {
+    image: '/images/my-photo-1.jpg',
+    title: 'School of Graduate Studies',
+    subtitle: 'NURTURING RESEARCH IN WORLD-CLASS FACILITIES'
+  },
+
+];
+
 
 export const NAV_ITEMS: NavItem[] = [
   { label: { EN: 'HOME', BM: 'UTAMA' }, href: '#' },
@@ -123,26 +141,26 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const SLIDES: SlideData[] = [
   {
-    url: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070&auto=format&fit=crop',
+    image: 'images/412V0170-4249ecbd.webp',
     title: 'School of Graduate Studies',
     subtitle: 'NURTURING RESEARCH IN WORLD-CLASS FACILITIES'
   },
   {
-    url: 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop',
     title: 'School of Graduate Studies',
     subtitle: 'ADVANCING KNOWLEDGE THROUGH INNOVATIVE SCHOLARSHIP'
   },
   {
-    url: 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=2070&auto=format&fit=crop',
     title: 'School of Graduate Studies',
     subtitle: 'EMPOWERING THE NEXT GENERATION OF GLOBAL LEADERS'
   },
   {
-    url: 'https://images.unsplash.com/photo-1523240715630-362a98f1f58b?q=80&w=2070&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1523240715630-362a98f1f58b?q=80&w=2070&auto=format&fit=crop',
     title: 'School of Graduate Studies',
     subtitle: 'A LEGACY OF TECHNICAL EXCELLENCE AND MASTERY'
   }
-];
+]; 
 
 export const GRADUATE_TESTIMONIALS: Testimonial[] = [
   {
@@ -211,7 +229,7 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   {
     id: 'about',
     image: 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2070&auto=format&fit=crop',
-    title: { EN: 'Academic Heritage', BM: 'Warisan Akademik' },
+    title: { EN: 'About Us', BM: 'About Us' },
     description: { 
       EN: 'Founded on the principles of technical mastery and research innovation, UTeM SPS provides an elite platform for graduate scholars to achieve international recognition.',
       BM: 'Diasaskan atas prinsip kepakaran teknikal dan inovasi penyelidikan, UTeM SPS menyediakan platform elit bagi sarjana siswazah untuk mencapai pengiktirafan antarabangsa.'
@@ -222,7 +240,7 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   {
     id: 'programs',
     image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2070&auto=format&fit=crop',
-    title: { EN: 'Advanced Programs', BM: 'Program Termaju' },
+    title: { EN: 'Programme', BM: 'Program Termaju' },
     description: { 
       EN: 'Our specialized Master and PhD programs are meticulously designed to meet the requested demands of global technical industries and academia.',
       BM: 'Program Sarjana dan PhD pengkhususan kami direka dengan teliti untuk memenuhi tuntutan industri teknikal global dan akademik.'
@@ -232,8 +250,8 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   },
   {
     id: 'scholarships',
-    image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dee3f?q=80&w=2070&auto=format&fit=crop',
-    title: { EN: 'Prestigious Funding', BM: 'Pembiayaan Berprestij' },
+    image: '/images/scholarship.jpg',
+    title: { EN: 'Financial Assistance', BM: 'Pembiayaan Berprestij' },
     description: { 
       EN: 'Empowering brilliance through comprehensive financial assistance. We offer exclusive scholarships for candidates with exceptional research potential.',
       BM: 'Memperkasakan kecemerlangan melalui bantuan kewangan yang komprehensif. Kami menawarkan biasiswa eksklusif untuk calon yang mempunyai potensi penyelidikan yang luar biasa.'
@@ -301,41 +319,4 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
   }
 ];
 
-export const FEATURE_CARDS: FeatureCard[] = [
-  {
-    id: 'research',
-    icon: BookOpen,
-    title: { EN: 'Research Excellence', BM: 'Kecemerlangan Penyelidikan' },
-    description: {
-      EN: 'Access to state-of-the-art laboratories and world-class research mentorship for all postgraduate scholars.',
-      BM: 'Akses ke makmal canggih dan bimbingan penyelidikan bertaraf dunia untuk semua sarjana siswazah.'
-    }
-  },
-  {
-    id: 'industry',
-    icon: UserPlus,
-    title: { EN: 'Industry Integration', BM: 'Integrasi Industri' },
-    description: {
-      EN: 'Programs designed in collaboration with technical leaders to ensure career readiness and high impact research.',
-      BM: 'Program yang direka dengan kerjasama pemimpin teknikal untuk memastikan kesediaan kerjaya dan penyelidikan berimpak tinggi.'
-    }
-  },
-  {
-    id: 'global',
-    icon: Users,
-    title: { EN: 'Global Network', BM: 'Rangkaian Global' },
-    description: {
-      EN: 'Join a diverse community of international researchers and alumni spanning technical sectors worldwide.',
-      BM: 'Sertai komuniti penyelidik antarabangsa dan alumni yang pelbagai merentasi sektor teknikal di seluruh dunia.'
-    }
-  },
-  {
-    id: 'support',
-    icon: Coffee,
-    title: { EN: 'Scholar Support', BM: 'Sokongan Sarjana' },
-    description: {
-      EN: 'Dedicated graduate spaces, psychological wellness support, and comprehensive academic writing resources.',
-      BM: 'Ruang siswazah khas, sokongan kesejahteraan psikologi, dan sumber penulisan akademik yang komprehensif.'
-    }
-  }
-];
+export const FEATURE_CARDS: FeatureCard[] = [];

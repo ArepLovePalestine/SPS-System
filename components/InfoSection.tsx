@@ -16,7 +16,7 @@ const InfoSection: React.FC<InfoSectionProps> = ({ lang }) => {
         <div className="text-center mb-32 flex flex-col items-center">
           <div className="h-px w-24 bg-gray-200 mb-8"></div>
           <span className="text-[11px] font-bold uppercase tracking-[0.5em] text-[#A51C30] mb-6">
-            {lang === 'EN' ? 'Global Leadership' : 'Kepimpinan Global'}
+            {lang === 'EN' ? 'Global Leaders' : 'Kepimpinan Global'}
           </span>
           <h2 className="text-5xl md:text-7xl font-serif text-gray-950 tracking-tight leading-[1.1]">
             {lang === 'EN' ? 'Cultivating Intellectual Excellence' : 'Memupuk Kecemerlangan Intelek'}
