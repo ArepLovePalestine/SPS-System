@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Search, Globe, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Language, NavItem } from '../types';
@@ -201,6 +201,9 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMegaMenu, setActiveMegaMenu] = useState<string | null>(null);
   const [expandedMobileIndices, setExpandedMobileIndices] = useState<number[]>([]);
+  const location = useLocation();
+
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 30);
@@ -224,8 +227,8 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
       />
 
       <header 
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
-          isScrolled || activeMegaMenu
+        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
+          isScrolled || activeMegaMenu || !isHome
             ? 'bg-white border-b border-gray-100 shadow-sm py-0' 
             : 'bg-transparent py-4'
         }`}
@@ -236,15 +239,15 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
           {/* Logo Section */}
           <Link to="/" className="flex items-center group cursor-pointer z-[60]">
             <div className={`w-12 h-12 transition-all duration-500 flex items-center justify-center border-t-[3px] ${
-              isScrolled || activeMegaMenu ? 'border-[#A51C30] bg-[#A51C30]' : 'border-white bg-white/10'
+              isScrolled || activeMegaMenu || !isHome ? 'border-[#A51C30] bg-[#A51C30]' : 'border-white bg-white/10'
             }`}>
               <span className="font-serif font-bold text-2xl text-white">U</span>
             </div>
             <div className="ml-4">
-              <h1 className={`text-xl font-serif font-bold tracking-tight transition-colors duration-500 ${isScrolled || activeMegaMenu ? 'text-[#A51C30]' : 'text-white'}`}>
+              <h1 className={`text-xl font-serif font-bold tracking-tight transition-colors duration-500 ${isScrolled || activeMegaMenu || !isHome ? 'text-[#A51C30]' : 'text-white'}`}>
                 UTeM
               </h1>
-              <p className={`text-[9px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ${isScrolled || activeMegaMenu ? 'text-gray-500' : 'text-white/80'}`}>
+              <p className={`text-[9px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ${isScrolled || activeMegaMenu || !isHome ? 'text-gray-500' : 'text-white/80'}`}>
                 GRADUATE STUDIES
               </p>
             </div>
@@ -261,7 +264,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
                 <Link 
                   to={item.href}
                   className={`flex items-center h-full px-6 text-[12px] font-bold uppercase tracking-[0.15em] transition-all duration-300 relative ${
-                    isScrolled || activeMegaMenu 
+                    isScrolled || activeMegaMenu || !isHome
                       ? 'text-gray-700 hover:text-[#A51C30]' 
                       : 'text-white hover:text-white/80'
                   }`}
@@ -281,7 +284,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
             <button 
               onClick={onToggleLanguage}
               className={`flex items-center space-x-2 px-4 py-2 border-l border-r transition-all duration-500 text-[10px] font-bold tracking-widest uppercase ${
-                isScrolled || activeMegaMenu
+                isScrolled || activeMegaMenu || !isHome
                   ? 'border-gray-100 text-gray-700 hover:text-[#A51C30]' 
                   : 'border-white/10 text-white hover:border-white'
               }`}
@@ -290,7 +293,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
               <span>{lang}</span>
             </button>
 
-            <button className={`${isScrolled || activeMegaMenu ? 'text-gray-700' : 'text-white'} hover:text-[#A51C30] transition-colors flex items-center space-x-2`}>
+            <button className={`${isScrolled || activeMegaMenu || !isHome ? 'text-gray-700' : 'text-white'} hover:text-[#A51C30] transition-colors flex items-center space-x-2`}>
               <Search size={20} strokeWidth={2.5} />
             </button>
 
@@ -301,7 +304,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
               {isMobileMenuOpen ? (
                 <X className="text-gray-900" />
               ) : (
-                <Menu className={isScrolled || activeMegaMenu ? 'text-gray-900' : 'text-white'} />
+                <Menu className={isScrolled || activeMegaMenu || !isHome ? 'text-gray-900' : 'text-white'} />
               )}
             </button>
           </div>

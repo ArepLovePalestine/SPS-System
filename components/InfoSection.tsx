@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ACADEMIC_BLOCKS } from '../constants';
 import { Language } from '../types';
 
@@ -65,14 +66,37 @@ const InfoSection: React.FC<InfoSectionProps> = ({ lang }) => {
                   {block.description[lang]}
                 </p>
 
-                <div className="pt-6">
-                  <a 
-                    href={`#${block.id}`} 
-                    className="relative inline-flex items-center text-[11px] font-bold uppercase tracking-[0.3em] text-gray-900 group"
-                  >
-                    <span className="mr-6 transition-all duration-300 group-hover:mr-10">{block.cta[lang]}</span>
-                    <div className="h-px w-12 bg-gray-200 group-hover:w-24 group-hover:bg-[#A51C30] transition-all duration-700"></div>
-                  </a>
+                <div className="pt-6 flex flex-wrap gap-8">
+                  {block.id === 'scholarships' ? (
+                    <>
+                      <Link 
+                        to="/apply-now"
+                        className="relative inline-flex items-center text-[11px] font-bold uppercase tracking-[0.3em] text-gray-900 group"
+                      >
+                        <span className="mr-6 transition-all duration-300 group-hover:mr-10">{lang === 'EN' ? 'Apply Now' : 'Mohon Sekarang'}</span>
+                        <div className="h-px w-12 bg-gray-200 group-hover:w-24 group-hover:bg-[#A51C30] transition-all duration-700"></div>
+                      </Link>
+                      <Link 
+                        to="/student-info"
+                        className="relative inline-flex items-center text-[11px] font-bold uppercase tracking-[0.3em] text-gray-900 group"
+                      >
+                        <span className="mr-6 transition-all duration-300 group-hover:mr-10">{lang === 'EN' ? 'Student Info' : 'Maklumat Pelajar'}</span>
+                        <div className="h-px w-12 bg-gray-200 group-hover:w-24 group-hover:bg-[#A51C30] transition-all duration-700"></div>
+                      </Link>
+                    </>
+                  ) : (
+                    <Link 
+                      to={
+                        block.id === 'about' ? '/about' :
+                        block.id === 'programs' ? '/programmes/dashboard' :
+                        '/student-info'
+                      }
+                      className="relative inline-flex items-center text-[11px] font-bold uppercase tracking-[0.3em] text-gray-900 group"
+                    >
+                      <span className="mr-6 transition-all duration-300 group-hover:mr-10">{block.cta[lang]}</span>
+                      <div className="h-px w-12 bg-gray-200 group-hover:w-24 group-hover:bg-[#A51C30] transition-all duration-700"></div>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -43,6 +43,15 @@ export const NAV_ITEMS: NavItem[] = [
     ]
   },
   { 
+    label: { EN: 'ADMISSIONS', BM: 'KEMASUKAN' }, 
+    href: '#',
+    children: [
+      { label: { EN: 'Apply Now', BM: 'Mohon Sekarang' }, href: '/apply-now' },
+      { label: { EN: 'Entry Requirements', BM: 'Syarat Kemasukan' }, href: '/apply-now' },
+      { label: { EN: 'How to Apply', BM: 'Cara Memohon' }, href: '/apply-now' },
+    ]
+  },
+  { 
     label: { EN: 'STUDENT', BM: 'PELAJAR' }, 
     href: '#',
     children: [
@@ -63,12 +72,12 @@ export const NAV_ITEMS: NavItem[] = [
           },
         ]
       },
-      { label: { EN: 'Student Info', BM: 'Maklumat Pelajar' }, href: '#' },
+      { label: { EN: 'Student Info', BM: 'Maklumat Pelajar' }, href: '/student-info' },
       { label: { EN: 'UTeM Convocation', BM: 'Konvokesyen UTeM' }, href: '#' },
       { label: { EN: 'Customer Feedback', BM: 'Maklum Balas Pelanggan' }, href: '#' },
       { 
         label: { EN: 'Download Forms', BM: 'Muat Turun Borang' }, 
-        href: '#',
+        href: '/resources',
         children: [
           { label: { EN: 'Academic Forms', BM: 'Borang Akademik' }, href: '#' },
           { label: { EN: 'Research Proposal Template', BM: 'Templat Cadangan Penyelidikan' }, href: '#' },
@@ -107,9 +116,9 @@ export const NAV_ITEMS: NavItem[] = [
         label: { EN: 'Accreditation', BM: 'Akreditasi' }, 
         href: '#',
         children: [
-          { label: { EN: 'Postgraduate Programme', BM: 'Program Pascasiswazah' }, href: '#' },
+          { label: { EN: 'Postgraduate Programme', BM: 'Program Pascasiswazah' }, href: '/programmes/dashboard' },
           { label: { EN: 'Quality Assurance Documents', BM: 'Dokumen Jaminan Kualiti' }, href: '#' },
-          { label: { EN: 'MQA Standards and Program Standards', BM: 'Standard MQA dan Standard Program' }, href: '#' },
+          { label: { EN: 'MQA Standards and Program Standards', BM: 'Standard MQA dan Standard Program' }, href: '/accreditation/mqa-standards' },
         ]
       },
       { label: { EN: 'Job Vacancies', BM: 'Jawatan Kosong' }, href: '#' },
@@ -211,7 +220,7 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   {
     id: 'about',
     image: 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2070&auto=format&fit=crop',
-    title: { EN: 'Academic Heritage', BM: 'Warisan Akademik' },
+    title: { EN: 'About Us', BM: 'Tentang Kami' },
     description: { 
       EN: 'Founded on the principles of technical mastery and research innovation, UTeM SPS provides an elite platform for graduate scholars to achieve international recognition.',
       BM: 'Diasaskan atas prinsip kepakaran teknikal dan inovasi penyelidikan, UTeM SPS menyediakan platform elit bagi sarjana siswazah untuk mencapai pengiktirafan antarabangsa.'
@@ -261,7 +270,8 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
     description: {
       EN: 'State-of-the-art technical laboratories, expansive libraries, and advanced research hubs designed for innovation.',
       BM: 'Makmal teknikal canggih, perpustakaan yang luas, dan hab penyelidikan termaju yang direka untuk inovasi.'
-    }
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=800&auto=format&fit=crop'
   },
   {
     number: '03',
@@ -270,7 +280,8 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
     description: {
       EN: 'Connect with our dedicated administrative leadership and academic support team for personalized guidance.',
       BM: 'Berhubung dengan kepimpinan pentadbiran dan pasukan sokongan akademik kami untuk bimbingan peribadi.'
-    }
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop'
   },
   {
     number: '04',
@@ -279,7 +290,8 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
     description: {
       EN: 'Stay informed with critical dates, semester schedules, and key academic milestones throughout the year.',
       BM: 'Sentiasa maklum dengan tarikh-tarikh penting, jadual semester, dan pencapaian akademik utama sepanjang tahun.'
-    }
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=800&auto=format&fit=crop'
   },
   {
     number: '05',
@@ -288,7 +300,8 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
     description: {
       EN: 'Access comprehensive guidelines, ethical standards, and governance protocols for postgraduate scholarship.',
       BM: 'Akses garis panduan komprehensif, piawaian etika, dan protokol tadbir urus untuk biasiswa pascasiswazah.'
-    }
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=800&auto=format&fit=crop'
   },
   {
     number: '06',
@@ -297,7 +310,8 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
     description: {
       EN: 'Utilize our extensive digital repositories, software licenses, and scholarly databases to fuel your research.',
       BM: 'Gunakan repositori digital kami yang luas, lesen perisian, dan pangkalan data ilmiah untuk memacu penyelidikan anda.'
-    }
+    },
+    imageUrl: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop'
   }
 ];
 

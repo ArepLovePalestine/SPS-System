@@ -17,6 +17,17 @@ import BestEmployee from './components/BestEmployee';
 import EnergySavingAward from './components/EnergySavingAward';
 import SGSBrochure from './components/SGSBrochure';
 import FacultyBrochure from './components/FacultyBrochure';
+import ProgrammesPage from './components/ProgrammesPage';
+import FacultyDashboard from './components/FacultyDashboard';
+import FacultyProgrammes from './components/FacultyProgrammes';
+import MQAStandards from './components/MQAStandards';
+import ApplyNow from './components/ApplyNow';
+import StudentInfo from './components/StudentInfo';
+import PictureGallery from './components/PictureGallery';
+import Facilities from './components/Facilities';
+import Resources from './components/Resources';
+import CalendarPage from './components/Calendar';
+import Regulations from './components/Regulations';
 import { Language } from './types';
 
 const HomePage: React.FC<{ lang: Language }> = ({ lang }) => (
@@ -59,6 +70,17 @@ const App: React.FC = () => {
             <Route path="/about/energy-award" element={<EnergySavingAward lang={lang} />} />
             <Route path="/student/brochure-sgs" element={<SGSBrochure lang={lang} />} />
             <Route path="/student/brochure-faculty" element={<FacultyBrochure lang={lang} />} />
+            <Route path="/programmes" element={<ProgrammesPage lang={lang} />} />
+            <Route path="/programmes/dashboard" element={<FacultyDashboard lang={lang} />} />
+            <Route path="/programmes/faculty" element={<FacultyProgrammes lang={lang} />} />
+            <Route path="/accreditation/mqa-standards" element={<MQAStandards lang={lang} />} />
+            <Route path="/apply-now" element={<ApplyNow lang={lang} />} />
+            <Route path="/student-info" element={<StudentInfo lang={lang} />} />
+            <Route path="/gallery" element={<PictureGallery lang={lang} />} />
+            <Route path="/facilities" element={<Facilities lang={lang} />} />
+            <Route path="/resources" element={<Resources lang={lang} />} />
+            <Route path="/calendar" element={<CalendarPage lang={lang} />} />
+            <Route path="/regulations" element={<Regulations lang={lang} />} />
           </Routes>
         </main>
         

@@ -8,6 +8,7 @@ interface Faculty {
   id: string;
   name: { EN: string; BM: string };
   image: string;
+  landscapeImage: string;
   link: string;
   pages: string[];
 }

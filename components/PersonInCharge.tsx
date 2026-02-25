@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Mail, ChevronRight, User, Briefcase, ListChecks } from 'lucide-react';
 import { Language } from '../types';
@@ -223,40 +224,43 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
   };
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-gray-50">
-      {/* Header Section */}
-      <section className="bg-white border-b border-gray-100 py-16">
-        <div className="max-w-7xl mx-auto px-8 lg:px-12">
-          <div className="space-y-4">
-            <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-              <span>{lang === 'EN' ? 'About Us' : 'Tentang Kami'}</span>
-              <ChevronRight size={10} />
-              <span>{lang === 'EN' ? 'Staff Info' : 'Maklumat Staf'}</span>
-              <ChevronRight size={10} />
-              <span className="text-[#A51C30]">{content.title[lang]}</span>
-            </nav>
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-serif text-gray-900"
-            >
-              {content.title[lang]}
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-gray-500 max-w-2xl text-lg font-light"
-            >
-              {content.subtitle[lang]}
-            </motion.p>
-          </div>
+    <div className="min-h-screen bg-white">
+      {/* Hero Banner */}
+      <section className="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2070&auto=format&fit=crop" 
+            alt="Person in Charge" 
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+          <div className="absolute inset-0 bg-maroon-900/60 mix-blend-multiply" />
+        </div>
+
+        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
+          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-6">
+            <Link to="/" className="hover:text-white transition-colors">HOME</Link>
+            <ChevronRight size={12} />
+            <Link to="/about" className="hover:text-white transition-colors">{lang === 'EN' ? 'ABOUT US' : 'TENTANG KAMI'}</Link>
+            <ChevronRight size={12} />
+            <span className="text-white">{lang === 'EN' ? 'PERSON IN CHARGE' : 'PEGAWAI BERTANGGUNGJAWAB'}</span>
+          </nav>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-serif font-bold text-white mb-4"
+          >
+            {content.title[lang]}
+          </motion.h1>
+          <p className="text-xl text-white/90 font-light max-w-2xl">
+            {content.subtitle[lang]}
+          </p>
         </div>
       </section>
 
       {/* Staff Grid Section */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-8 lg:px-12">
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {staffData.map((staff, index) => (
               <motion.div
@@ -331,6 +335,13 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
           </div>
         </div>
       </section>
+
+      {/* Back to Home */}
+      <div className="py-12 border-t border-gray-100 text-center">
+        <Link to="/" className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest transition-colors">
+          {lang === 'EN' ? 'Back to Home' : 'Kembali ke Utama'}
+        </Link>
+      </div>
     </div>
   );
 };

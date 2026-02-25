@@ -52,3 +52,33 @@ export interface Testimonial {
   quote: string;
   image: string;
 }
+
+export interface Programme {
+  id: string;
+  title: { EN: string; BM: string };
+  description: { EN: string; BM: string };
+  image: string;
+  mode: { EN: string; BM: string };
+  duration: { EN: string; BM: string };
+  faculty: string; // Faculty ID
+  category: 'taught' | 'research' | 'phd' | 'engd';
+  link?: string;
+}
+
+export interface FacultyDetail {
+  id: string;
+  shortName: string;
+  fullName: { EN: string; BM: string };
+  image: string;
+  bannerImage: string;
+}
+
+export interface MQADocument {
+  id: string;
+  title: { EN: string; BM: string };
+  edition: string;
+  year: string;
+  category: 'MQF' | 'Engineering' | 'Computing' | 'Business';
+  tag?: 'New' | 'Updated' | 'Popular';
+  fileUrl: string;
+}
