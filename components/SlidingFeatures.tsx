@@ -14,8 +14,8 @@ const SlidingFeatures: React.FC<SlidingFeaturesProps> = ({ lang }) => {
   return (
     <section className="py-24 bg-white overflow-hidden border-y border-gray-100">
       <div className="max-w-[1400px] mx-auto px-8 lg:px-12 mb-16 text-center">
-        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#A51C30] block mb-2"></span>
-        <h2 className="text-3xl md:text-4xl font-serif text-gray-900"></h2>
+        <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#A51C30] block mb-2">The Scholar Experience</span>
+        <h2 className="text-3xl md:text-4xl font-serif text-gray-900">Enriching Your Academic Life</h2>
       </div>
 
       <div className="relative">

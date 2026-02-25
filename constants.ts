@@ -1,5 +1,5 @@
 
-import { NavItem, AcademicBlock, AdmissionStep, Testimonial, FeatureCard } from './types';
+import { NavItem, SlideData, AcademicBlock, AdmissionStep, Testimonial, FeatureCard } from './types';
 import { 
   BookOpen, 
   UserCheck, 
@@ -16,42 +16,24 @@ import {
   Library 
 } from 'lucide-react';
 
-// Define the interface first
-export interface SlideData {
-  image: string;
-  title: string;
-  subtitle: string;
-}
-
-// Now TypeScript knows what 'SlideData' is
-export const HERO_SLIDES: SlideData[] = [
-  {
-    image: '/images/my-photo-1.jpg',
-    title: 'School of Graduate Studies',
-    subtitle: 'NURTURING RESEARCH IN WORLD-CLASS FACILITIES'
-  },
-
-];
-
-
 export const NAV_ITEMS: NavItem[] = [
-  { label: { EN: 'HOME', BM: 'UTAMA' }, href: '#' },
+  { label: { EN: 'HOME', BM: 'UTAMA' }, href: '/' },
   { 
     label: { EN: 'ABOUT US', BM: 'TENTANG KAMI' }, 
-    href: '#',
+    href: '/about',
     children: [
       { 
         label: { EN: 'Staff Info', BM: 'Maklumat Staf' }, 
         href: '#',
         children: [
-          { label: { EN: 'Organizational Chart', BM: 'Carta Organisasi' }, href: '#' },
-          { label: { EN: 'Person in Charge', BM: 'Pegawai Bertanggungjawab' }, href: '#' },
-          { label: { EN: 'Organization Chart by Unit', BM: 'Carta Organisasi Mengikut Unit' }, href: '#' },
-          { label: { EN: 'Staff Directory', BM: 'Direktori Staf' }, href: '#' },
+          { label: { EN: 'Organizational Chart', BM: 'Carta Organisasi' }, href: '/about/org-chart' },
+          { label: { EN: 'Person in Charge', BM: 'Pegawai Bertanggungjawab' }, href: '/about/staff' },
+          { label: { EN: 'Organization Chart by Unit', BM: 'Carta Organisasi Mengikut Unit' }, href: '/about/org-chart-unit' },
+          { label: { EN: 'Staff Directory', BM: 'Direktori Staf' }, href: '/about/directory' },
           { label: { EN: 'Staff Portal', BM: 'Portal Staf' }, href: '#' },
           { label: { EN: 'Staff Email', BM: 'Emel Staf' }, href: '#' },
-          { label: { EN: 'Best Employee (APC)', BM: 'Anugerah Perkhidmatan Cemerlang' }, href: '#' },
-          { label: { EN: 'Award', BM: 'Anugerah' }, href: '#' },
+          { label: { EN: 'Best Employee (APC)', BM: 'Anugerah Perkhidmatan Cemerlang' }, href: '/about/best-employee' },
+          { label: { EN: 'Award', BM: 'Anugerah' }, href: '/about/energy-award' },
         ]
       },
       { label: { EN: 'ISO Documents', BM: 'Dokumen ISO' }, href: '#' },
@@ -69,8 +51,8 @@ export const NAV_ITEMS: NavItem[] = [
         href: '#',
         children: [
           { label: { EN: 'Faculties', BM: 'Fakulti' }, href: '#' },
-          { label: { EN: 'SGS Brochure', BM: 'Broshur SGS' }, href: '#' },
-          { label: { EN: 'Faculty Brochure', BM: 'Broshur Fakulti' }, href: '#' },
+          { label: { EN: 'SGS Brochure', BM: 'Broshur SGS' }, href: '/student/brochure-sgs' },
+          { label: { EN: 'Faculty Brochure', BM: 'Broshur Fakulti' }, href: '/student/brochure-faculty' },
           { 
             label: { EN: 'Research', BM: 'Penyelidikan' }, 
             href: '#',
@@ -141,26 +123,26 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const SLIDES: SlideData[] = [
   {
-    image: 'images/412V0170-4249ecbd.webp',
+    url: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070&auto=format&fit=crop',
     title: 'School of Graduate Studies',
     subtitle: 'NURTURING RESEARCH IN WORLD-CLASS FACILITIES'
   },
   {
-    image: 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop',
     title: 'School of Graduate Studies',
     subtitle: 'ADVANCING KNOWLEDGE THROUGH INNOVATIVE SCHOLARSHIP'
   },
   {
-    image: 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=2070&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=2070&auto=format&fit=crop',
     title: 'School of Graduate Studies',
     subtitle: 'EMPOWERING THE NEXT GENERATION OF GLOBAL LEADERS'
   },
   {
-    image: 'https://images.unsplash.com/photo-1523240715630-362a98f1f58b?q=80&w=2070&auto=format&fit=crop',
+    url: 'https://images.unsplash.com/photo-1523240715630-362a98f1f58b?q=80&w=2070&auto=format&fit=crop',
     title: 'School of Graduate Studies',
     subtitle: 'A LEGACY OF TECHNICAL EXCELLENCE AND MASTERY'
   }
-]; 
+];
 
 export const GRADUATE_TESTIMONIALS: Testimonial[] = [
   {
@@ -229,7 +211,7 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   {
     id: 'about',
     image: 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=2070&auto=format&fit=crop',
-    title: { EN: 'About Us', BM: 'About Us' },
+    title: { EN: 'Academic Heritage', BM: 'Warisan Akademik' },
     description: { 
       EN: 'Founded on the principles of technical mastery and research innovation, UTeM SPS provides an elite platform for graduate scholars to achieve international recognition.',
       BM: 'Diasaskan atas prinsip kepakaran teknikal dan inovasi penyelidikan, UTeM SPS menyediakan platform elit bagi sarjana siswazah untuk mencapai pengiktirafan antarabangsa.'
@@ -240,7 +222,7 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   {
     id: 'programs',
     image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=2070&auto=format&fit=crop',
-    title: { EN: 'Programme', BM: 'Program Termaju' },
+    title: { EN: 'Advanced Programs', BM: 'Program Termaju' },
     description: { 
       EN: 'Our specialized Master and PhD programs are meticulously designed to meet the requested demands of global technical industries and academia.',
       BM: 'Program Sarjana dan PhD pengkhususan kami direka dengan teliti untuk memenuhi tuntutan industri teknikal global dan akademik.'
@@ -250,8 +232,8 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   },
   {
     id: 'scholarships',
-    image: '/images/scholarship.jpg',
-    title: { EN: 'Financial Assistance', BM: 'Pembiayaan Berprestij' },
+    image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dee3f?q=80&w=2070&auto=format&fit=crop',
+    title: { EN: 'Prestigious Funding', BM: 'Pembiayaan Berprestij' },
     description: { 
       EN: 'Empowering brilliance through comprehensive financial assistance. We offer exclusive scholarships for candidates with exceptional research potential.',
       BM: 'Memperkasakan kecemerlangan melalui bantuan kewangan yang komprehensif. Kami menawarkan biasiswa eksklusif untuk calon yang mempunyai potensi penyelidikan yang luar biasa.'
@@ -319,4 +301,41 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
   }
 ];
 
-export const FEATURE_CARDS: FeatureCard[] = [];
+export const FEATURE_CARDS: FeatureCard[] = [
+  {
+    id: 'research',
+    icon: BookOpen,
+    title: { EN: 'Research Excellence', BM: 'Kecemerlangan Penyelidikan' },
+    description: {
+      EN: 'Access to state-of-the-art laboratories and world-class research mentorship for all postgraduate scholars.',
+      BM: 'Akses ke makmal canggih dan bimbingan penyelidikan bertaraf dunia untuk semua sarjana siswazah.'
+    }
+  },
+  {
+    id: 'industry',
+    icon: UserPlus,
+    title: { EN: 'Industry Integration', BM: 'Integrasi Industri' },
+    description: {
+      EN: 'Programs designed in collaboration with technical leaders to ensure career readiness and high impact research.',
+      BM: 'Program yang direka dengan kerjasama pemimpin teknikal untuk memastikan kesediaan kerjaya dan penyelidikan berimpak tinggi.'
+    }
+  },
+  {
+    id: 'global',
+    icon: Users,
+    title: { EN: 'Global Network', BM: 'Rangkaian Global' },
+    description: {
+      EN: 'Join a diverse community of international researchers and alumni spanning technical sectors worldwide.',
+      BM: 'Sertai komuniti penyelidik antarabangsa dan alumni yang pelbagai merentasi sektor teknikal di seluruh dunia.'
+    }
+  },
+  {
+    id: 'support',
+    icon: Coffee,
+    title: { EN: 'Scholar Support', BM: 'Sokongan Sarjana' },
+    description: {
+      EN: 'Dedicated graduate spaces, psychological wellness support, and comprehensive academic writing resources.',
+      BM: 'Ruang siswazah khas, sokongan kesejahteraan psikologi, dan sumber penulisan akademik yang komprehensif.'
+    }
+  }
+];

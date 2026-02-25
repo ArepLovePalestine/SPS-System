@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Search, Globe, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Language, NavItem } from '../types';
@@ -165,17 +166,35 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
   );
 };
 
-const MenuLink: React.FC<{ href: string; label: string }> = ({ href, label }) => (
-  <a 
-    href={href} 
-    className="group flex items-center justify-between py-2 px-3 -mx-3 rounded-md text-[14px] text-gray-600 hover:text-[#A51C30] hover:bg-[#f7fafc] border-l-[3px] border-transparent hover:border-[#A51C30] transition-all duration-200"
-  >
-    <span className="transform group-hover:translate-x-1 transition-transform duration-200 leading-tight">
-      {label}
-    </span>
-    <ChevronRight size={14} className="text-gray-300 group-hover:text-[#A51C30] opacity-0 group-hover:opacity-100 transition-all duration-200" />
-  </a>
-);
+const MenuLink: React.FC<{ href: string; label: string }> = ({ href, label }) => {
+  const isInternal = href.startsWith('/');
+  
+  if (isInternal) {
+    return (
+      <Link 
+        to={href} 
+        className="group flex items-center justify-between py-2 px-3 -mx-3 rounded-md text-[14px] text-gray-600 hover:text-[#A51C30] hover:bg-[#f7fafc] border-l-[3px] border-transparent hover:border-[#A51C30] transition-all duration-200"
+      >
+        <span className="transform group-hover:translate-x-1 transition-transform duration-200 leading-tight">
+          {label}
+        </span>
+        <ChevronRight size={14} className="text-gray-300 group-hover:text-[#A51C30] opacity-0 group-hover:opacity-100 transition-all duration-200" />
+      </Link>
+    );
+  }
+
+  return (
+    <a 
+      href={href} 
+      className="group flex items-center justify-between py-2 px-3 -mx-3 rounded-md text-[14px] text-gray-600 hover:text-[#A51C30] hover:bg-[#f7fafc] border-l-[3px] border-transparent hover:border-[#A51C30] transition-all duration-200"
+    >
+      <span className="transform group-hover:translate-x-1 transition-transform duration-200 leading-tight">
+        {label}
+      </span>
+      <ChevronRight size={14} className="text-gray-300 group-hover:text-[#A51C30] opacity-0 group-hover:opacity-100 transition-all duration-200" />
+    </a>
+  );
+};
 
 const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -215,7 +234,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
         <div className="max-w-[1400px] mx-auto px-8 lg:px-12 flex items-center justify-between h-20 md:h-24">
           
           {/* Logo Section */}
-          <div className="flex items-center group cursor-pointer z-[60]">
+          <Link to="/" className="flex items-center group cursor-pointer z-[60]">
             <div className={`w-12 h-12 transition-all duration-500 flex items-center justify-center border-t-[3px] ${
               isScrolled || activeMegaMenu ? 'border-[#A51C30] bg-[#A51C30]' : 'border-white bg-white/10'
             }`}>
@@ -229,7 +248,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
                 GRADUATE STUDIES
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center h-full relative">
@@ -239,8 +258,8 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
                 className="h-full group/nav"
                 onMouseEnter={() => setActiveMegaMenu(item.label.EN)}
               >
-                <a 
-                  href={item.href}
+                <Link 
+                  to={item.href}
                   className={`flex items-center h-full px-6 text-[12px] font-bold uppercase tracking-[0.15em] transition-all duration-300 relative ${
                     isScrolled || activeMegaMenu 
                       ? 'text-gray-700 hover:text-[#A51C30]' 
@@ -252,7 +271,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
                   
                   {/* Underline for main nav */}
                   <span className={`absolute bottom-0 left-6 right-6 h-[2px] bg-[#A51C30] transform scale-x-0 transition-transform duration-300 ${activeMegaMenu === item.label.EN ? 'scale-x-100' : ''}`} />
-                </a>
+                </Link>
               </div>
             ))}
           </nav>
@@ -314,7 +333,13 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
                   className="flex items-center justify-between py-2 cursor-pointer"
                   onClick={() => item.children ? toggleMobileAccordion(idx) : null}
                 >
-                  <a href={item.href} className="text-[14px] font-bold tracking-widest uppercase text-gray-900">{item.label[lang]}</a>
+                  <Link 
+                    to={item.href} 
+                    className="text-[14px] font-bold tracking-widest uppercase text-gray-900"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label[lang]}
+                  </Link>
                   {item.children && (
                     <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${expandedMobileIndices.includes(idx) ? 'rotate-180' : ''}`} />
                   )}
