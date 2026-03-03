@@ -50,7 +50,7 @@ export const NAV_ITEMS: NavItem[] = [
         label: { EN: 'Future Students', BM: 'Bakal Pelajar' }, 
         href: '#',
         children: [
-          { label: { EN: 'Faculties', BM: 'Fakulti' }, href: '#' },
+          { label: { EN: 'Faculties', BM: 'Fakulti' }, href: 'https://www.utem.edu.my/en/corporate-info/faculties-department-centres.html' },
           { label: { EN: 'SGS Brochure', BM: 'Broshur SGS' }, href: '/student/brochure-sgs' },
           { label: { EN: 'Faculty Brochure', BM: 'Broshur Fakulti' }, href: '/student/brochure-faculty' },
           { 

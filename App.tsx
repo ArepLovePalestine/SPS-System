@@ -109,14 +109,14 @@ const App: React.FC = () => {
             </div>
             <div className="flex flex-col space-y-4">
               <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-2">Quick Access</h4>
-              <a href="https://utem-edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">UTeM Website</a>
+              <a href="https://www.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">UTeM Website</a>
               <a href="https://sustainability.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">SDG UTeM</a>
               <a href="/apply-now" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
               <a href="/calendar" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Academic Calendar</a>
             </div>
             <div className="flex flex-col space-y-4">
               <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-2">Other Links</h4>
-              <a href="https://www2.mqa.gov.my/qad/v2/typesofqad.cfm" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Malaysia Qualification Agency (MQA)</a>
+              <a href="https://www.mqa.gov.my/new/index.cfm#gsc.tab=0" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Malaysia Qualification Agency (MQA)</a>
               <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Majlis Perwakilan Pelajar (MPP UTeM)</a>
               <a href="/apply-now" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
               <a href="/calendar" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Academic Calendar</a>

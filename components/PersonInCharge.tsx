@@ -1,9 +1,18 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Mail, ChevronRight, User, Briefcase, ListChecks } from 'lucide-react';
+import { Mail, ChevronRight, Briefcase, ListChecks, Phone } from 'lucide-react';
 import { Language } from '../types';
+import JeefferieImg from '../images/about-pic/Jeefferie.jpeg';
+import JunaidahImg from '../images/about-pic/Junaidah.jpeg';
+import SyarinImg from '../images/about-pic/Syarin.jpeg';
+import IduraImg from '../images/about-pic/Idura.jpeg';
+import AzmanImg from '../images/about-pic/Azman.jpeg';
+import ZurianaImg from '../images/about-pic/Zuriana.jpeg';
+import AizaImg from '../images/about-pic/Aiza.jpeg';
+import AswadiImg from '../images/about-pic/Aswadi.jpeg';
+import FadhilImg from '../images/about-pic/Fadhil.jpeg';
+import AfiqahImg from '../images/about-pic/Afiqah.jpeg';
 
 interface StaffMember {
   id: number;
@@ -12,6 +21,7 @@ interface StaffMember {
   responsibilities: { EN: string[]; BM: string[] };
   email: string;
   image: string;
+  phone?: string;
 }
 
 interface PersonInChargeProps {
@@ -19,218 +29,209 @@ interface PersonInChargeProps {
 }
 
 const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
+  const content = {
+    title: { EN: 'Person in Charge', BM: 'Pegawai Bertanggungjawab' },
+    subtitle: {
+      EN: 'Meet the dedicated team powering the School of Graduate Studies.',
+      BM: 'Kenali pasukan dedikasi yang menggerakkan Pusat Pengajian Siswazah.'
+    },
+    responsibilitiesLabel: { EN: 'Responsibilities', BM: 'Tanggungjawab' },
+    emailLabel: { EN: 'Email', BM: 'Emel' }
+  };
+
   const staffData: StaffMember[] = [
     {
       id: 1,
-      name: "PROF. MADYA IR. TS. DR. JEFFERIE BIN ABD RAZAK",
-      position: { EN: "Deputy Dean", BM: "Timbalan Dekan" },
+      name: 'Prof. Madya IR. TS. Dr. Jeefferie bin Abd Razak',
+      position: { EN: 'Deputy Dean', BM: 'Deputy Dean' },
       responsibilities: {
         EN: [
-          "Accreditation of Postgraduate Programme/MQA",
-          "MoU and MoA SPS",
-          "Postgraduate Programme Promotions",
-          "Research Proposal Defend"
+          'Accreditation of Postgraduate Programme/MQA',
+          'MoU and MoA SPS',
+          'Postgraduate Programme Promotions',
+          'Postgraduate Student Activities/Postgraduate Club (UPGRADE)',
+          'Doctor of Engineering Administration',
+          'Conversion from Master (by Research) to PhD Programme',
+          'Research Proposal Defend'
         ],
         BM: [
-          "Akreditasi Program Pascasiswazah/MQA",
-          "MoU dan MoA SPS",
-          "Promosi Program Pascasiswazah",
-          "Pembelaan Cadangan Penyelidikan"
+          'Accreditation of Postgraduate Programme/MQA',
+          'MoU and MoA SPS',
+          'Postgraduate Programme Promotions',
+          'Postgraduate Student Activities/Postgraduate Club (UPGRADE)',
+          'Doctor of Engineering Administration',
+          'Conversion from Master (by Research) to PhD Programme',
+          'Research Proposal Defend'
         ]
       },
-      email: "jefferie@utem.edu.my",
-      image: "https://picsum.photos/seed/staff1/400/500"
+      email: 'jeefferie@utem.edu.my',
+      image: JeefferieImg
     },
     {
       id: 2,
-      name: "MRS. JUNAIDAH BINTI KASIM",
-      position: { EN: "Deputy Registrar", BM: "Timbalan Pendaftar" },
+      name: 'Mrs. Junaidah binti Kasim',
+      position: { EN: 'Deputy Registrar', BM: 'Deputy Registrar' },
       responsibilities: {
         EN: [
-          "ISO 9001:2015",
-          "Data/Statistics",
-          "Financial/Asset",
-          "Office Administration"
+          'ISO 9001:2015',
+          'MyRA',
+          'MyMohes',
+          'Data/Statistics',
+          'Financial/Asset',
+          'Postgraduate Offshore Programmes',
+          'Office Administration'
         ],
         BM: [
-          "ISO 9001:2015",
-          "Data/Statistik",
-          "Kewangan/Aset",
-          "Pentadbiran Pejabat"
+          'ISO 9001:2015',
+          'MyRA',
+          'MyMohes',
+          'Data/Statistics',
+          'Financial/Asset',
+          'Postgraduate Offshore Programmes',
+          'Office Administration'
         ]
       },
-      email: "junaidah@utem.edu.my",
-      image: "https://picsum.photos/seed/staff2/400/500"
+      email: 'junaidahkasim@utem.edu.my',
+      image: JunaidahImg
     },
     {
       id: 3,
-      name: "MR. MOHAMMAD SYARIN BIN SAPUAN",
-      position: { EN: "Assistant Registrar (Academic)", BM: "Penolong Pendaftar (Akademik)" },
+      name: 'Mr. Mohammad Syarin bin Sapuan',
+      position: { EN: 'Assistant Registrar (Academic)', BM: 'Assistant Registrar (Academic)' },
       responsibilities: {
         EN: [
-          "Admission and Registration",
-          "Examination Result",
-          "Conferment of Degree"
+          'Admission and Registration of Postgraduate Students',
+          'Examination Result',
+          'Conferment of Degree',
+          'Other Academic Matters'
         ],
         BM: [
-          "Kemasukan dan Pendaftaran",
-          "Keputusan Peperiksaan",
-          "Penganugerahan Ijazah"
+          'Admission and Registration of Postgraduate Students',
+          'Examination Result',
+          'Conferment of Degree',
+          'Other Academic Matters'
         ]
       },
-      email: "syarin@utem.edu.my",
-      image: "https://picsum.photos/seed/staff3/400/500"
+      email: 'syarin@utem.edu.my',
+      image: SyarinImg
     },
     {
       id: 4,
-      name: "DR. AHMAD FAIZAL BIN MOHD YUSOF",
-      position: { EN: "Senior Lecturer", BM: "Pensyarah Kanan" },
+      name: 'Ms. Idura binti Yaakup',
+      position: { EN: 'Assistant Registrar (Examination and Scholarship)', BM: 'Assistant Registrar (Examination and Scholarship)' },
       responsibilities: {
         EN: [
-          "Postgraduate Curriculum Development",
-          "Student Welfare Committee",
-          "International Student Liaison"
+          'Final Examination Management',
+          'Oral Examination (Viva-voce)',
+          'Scholarship (Kesidang Scheme/MyBrain15/PTPTN)',
+          'Graduation and Letter of Convocation',
+          'Postgraduate Student Welfare'
         ],
         BM: [
-          "Pembangunan Kurikulum Pascasiswazah",
-          "Jawatankuasa Kebajikan Pelajar",
-          "Perhubungan Pelajar Antarabangsa"
+          'Final Examination Management',
+          'Oral Examination (Viva-voce)',
+          'Scholarship (Kesidang Scheme/MyBrain15/PTPTN)',
+          'Graduation and Letter of Convocation',
+          'Postgraduate Student Welfare'
         ]
       },
-      email: "faizal.yusof@utem.edu.my",
-      image: "https://picsum.photos/seed/staff4/400/500"
+      email: 'idura@utem.edu.my',
+      image: IduraImg
     },
     {
       id: 5,
-      name: "MRS. NORAINI BINTI ABDULLAH",
-      position: { EN: "Administrative Assistant", BM: "Pembantu Tadbir" },
+      name: 'Mr. Noor Azman bin Mansor',
+      position: { EN: 'Assistant Administration Officer (Viva-Voce)', BM: 'Assistant Administration Officer (Viva-Voce)' },
       responsibilities: {
-        EN: [
-          "Student Record Management",
-          "Official Correspondence",
-          "Counter Services"
-        ],
-        BM: [
-          "Pengurusan Rekod Pelajar",
-          "Surat-menyurat Rasmi",
-          "Perkhidmatan Kaunter"
-        ]
+        EN: ['Oral Examination Process (Viva-Voce)', 'E-viva System'],
+        BM: ['Oral Examination Process (Viva-Voce)', 'E-viva System']
       },
-      email: "noraini.abd@utem.edu.my",
-      image: "https://picsum.photos/seed/staff5/400/500"
+      email: 'noorazman@utem.edu.my',
+      image: AzmanImg
     },
     {
       id: 6,
-      name: "MR. KHAIRUL ANUAR BIN ZAINAL",
-      position: { EN: "Information Technology Officer", BM: "Pegawai Teknologi Maklumat" },
-      responsibilities: {
-        EN: [
-          "SPS Website Maintenance",
-          "Online Application System",
-          "Technical Support"
-        ],
-        BM: [
-          "Penyelenggaraan Laman Web SPS",
-          "Sistem Permohonan Dalam Talian",
-          "Sokongan Teknikal"
-        ]
-      },
-      email: "khairul.anuar@utem.edu.my",
-      image: "https://picsum.photos/seed/staff6/400/500"
+      name: 'Mrs. Zuriana binti Omar',
+      position: { EN: 'Office Secretary', BM: 'Office Secretary' },
+      responsibilities: { EN: ['Secretarial Matters'], BM: ['Secretarial Matters'] },
+      email: 'zuriana@utem.edu.my',
+      phone: '06-229 2307',
+      image: ZurianaImg
     },
     {
       id: 7,
-      name: "MRS. SITI HAJAR BINTI ISMAIL",
-      position: { EN: "Financial Officer", BM: "Pegawai Kewangan" },
+      name: 'Mrs. Aiza Azwadi binti Abdul Wahab',
+      position: { EN: 'Senior Administrative Assistant (Academic)', BM: 'Senior Administrative Assistant (Academic)' },
       responsibilities: {
         EN: [
-          "Tuition Fee Management",
-          "Scholarship Disbursement",
-          "Budget Planning"
+          'Offer Letter Status',
+          'Student Confirmation Letter',
+          'Updating Postgraduate Student Personal Information in SMPS'
         ],
         BM: [
-          "Pengurusan Yuran Pengajian",
-          "Pembayaran Biasiswa",
-          "Perancangan Bajet"
+          'Offer Letter Status',
+          'Student Confirmation Letter',
+          'Updating Postgraduate Student Personal Information in SMPS'
         ]
       },
-      email: "hajar.ismail@utem.edu.my",
-      image: "https://picsum.photos/seed/staff7/400/500"
+      email: 'aznina@utem.edu.my',
+      phone: '06-229 2307',
+      image: AizaImg
     },
     {
       id: 8,
-      name: "DR. LING CHEN WEI",
-      position: { EN: "Research Coordinator", BM: "Penyelaras Penyelidikan" },
+      name: 'Mr. Aswadi',
+      position: { EN: 'Senior Administrative Assistant (Academic)', BM: 'Senior Administrative Assistant (Academic)' },
       responsibilities: {
-        EN: [
-          "Thesis Submission Monitoring",
-          "Viva-Voce Coordination",
-          "Research Grant Administration"
-        ],
-        BM: [
-          "Pemantauan Penyerahan Tesis",
-          "Penyelarasan Viva-Voce",
-          "Pentadbiran Geran Penyelidikan"
-        ]
+        EN: ['Offer Letter Status', 'Students Application Status', 'Appointment of Supervisor'],
+        BM: ['Offer Letter Status', 'Students Application Status', 'Appointment of Supervisor']
       },
-      email: "ling.cw@utem.edu.my",
-      image: "https://picsum.photos/seed/staff8/400/500"
+      email: 'aswadi@utem.edu.my',
+      image: AswadiImg
     },
     {
       id: 9,
-      name: "MRS. FARIDAH BINTI OTHMAN",
-      position: { EN: "Executive Officer", BM: "Pegawai Eksekutif" },
+      name: 'Mr. Fadhil Bin Ahmad',
+      position: { EN: 'Assistant Engineer', BM: 'Assistant Engineer' },
       responsibilities: {
-        EN: [
-          "Marketing and Branding",
-          "Event Management",
-          "Alumni Relations"
-        ],
-        BM: [
-          "Pemasaran dan Penjenamaan",
-          "Pengurusan Acara",
-          "Perhubungan Alumni"
-        ]
+        EN: ['Space/Room Reservations', 'Postgraduate Lab', 'Technical Issues', 'SPS Website and Social Media'],
+        BM: ['Space/Room Reservations', 'Postgraduate Lab', 'Technical Issues', 'SPS Website and Social Media']
       },
-      email: "faridah.o@utem.edu.my",
-      image: "https://picsum.photos/seed/staff9/400/500"
+      email: 'fadhil@utem.edu.my',
+      phone: '012-9255100',
+      image: FadhilImg
     },
     {
       id: 10,
-      name: "MR. ZULKIFLI BIN HASSAN",
-      position: { EN: "Office Assistant", BM: "Pembantu Pejabat" },
+      name: 'Ms. Nur Afiqah binti Mohd Hamdan',
+      position: { EN: 'Administrative Assistant', BM: 'Administrative Assistant' },
       responsibilities: {
         EN: [
-          "Logistics Support",
-          "Document Archiving",
-          "Facility Maintenance"
+          'Kesidang -Application/ Status/ Offer Letter/ Continuation Letter',
+          'Confirmation Letter for EPF Withdrawal',
+          'Letter of Completion Study for Research, Coursework and Mixed Mode Programme',
+          'Postgraduate Academic Transcript and Scroll'
         ],
         BM: [
-          "Sokongan Logistik",
-          "Pengarkiban Dokumen",
-          "Penyelenggaraan Kemudahan"
+          'Kesidang -Application/ Status/ Offer Letter/ Continuation Letter',
+          'Confirmation Letter for EPF Withdrawal',
+          'Letter of Completion Study for Research, Coursework and Mixed Mode Programme',
+          'Postgraduate Academic Transcript and Scroll'
         ]
       },
-      email: "zulkifli.h@utem.edu.my",
-      image: "https://picsum.photos/seed/staff10/400/500"
+      email: 'nur.afiqah@utem.edu.my',
+      image: AfiqahImg
     }
   ];
 
-  const content = {
-    title: { EN: "Person in Charge", BM: "Pegawai Bertanggungjawab" },
-    subtitle: { EN: "Meet our dedicated team at the School of Graduate Studies", BM: "Kenali pasukan kami di Pusat Pengajian Siswazah" },
-    responsibilitiesLabel: { EN: "Responsibilities", BM: "Tanggungjawab" },
-    emailLabel: { EN: "Email Address", BM: "Alamat Emel" }
-  };
-
   return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Banner */}
-      <section className="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden pt-20">
+    <div className="bg-white min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-[420px] flex items-end pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2070&auto=format&fit=crop" 
-            alt="Person in Charge" 
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2070&auto=format&fit=crop"
+            alt="Person in Charge"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
@@ -245,7 +246,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
             <ChevronRight size={12} />
             <span className="text-white">{lang === 'EN' ? 'PERSON IN CHARGE' : 'PEGAWAI BERTANGGUNGJAWAB'}</span>
           </nav>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-serif font-bold text-white mb-4"
@@ -271,18 +272,15 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
                 transition={{ delay: index * 0.05 }}
                 className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group flex flex-col"
               >
-                {/* Profile Photo */}
                 <div className="aspect-[4/5] overflow-hidden relative">
-                  <img 
-                    src={staff.image} 
-                    alt={staff.name} 
+                  <img
+                    src={staff.image}
+                    alt={staff.name}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                    referrerPolicy="no-referrer"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
-                {/* Content */}
                 <div className="p-8 flex-grow flex flex-col">
                   <div className="mb-6">
                     <div className="flex items-center space-x-2 text-[#A51C30] mb-2">
@@ -315,19 +313,27 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-gray-50">
-                    <div className="flex items-center space-x-2 text-gray-400 mb-2">
+                  <div className="mt-8 pt-6 border-t border-gray-50 space-y-2">
+                    <div className="flex items-center space-x-2 text-gray-400">
                       <Mail size={14} />
                       <span className="text-[10px] font-bold uppercase tracking-widest">
                         {content.emailLabel[lang]}
                       </span>
                     </div>
-                    <a 
+                    <a
                       href={`mailto:${staff.email}`}
                       className="text-sm text-[#A51C30] hover:underline font-medium break-all"
                     >
                       {staff.email}
                     </a>
+                    {staff.phone && (
+                      <div className="flex items-center space-x-2 text-gray-600 text-sm">
+                        <Phone size={14} className="text-gray-400" />
+                        <a href={`tel:${staff.phone.replace(/[^\\d+]/g, '')}`} className="hover:text-[#A51C30]">
+                          {staff.phone}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
@@ -336,7 +342,6 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         </div>
       </section>
 
-      {/* Back to Home */}
       <div className="py-12 border-t border-gray-100 text-center">
         <Link to="/" className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest transition-colors">
           {lang === 'EN' ? 'Back to Home' : 'Kembali ke Utama'}
