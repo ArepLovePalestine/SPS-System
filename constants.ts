@@ -30,8 +30,8 @@ export const NAV_ITEMS: NavItem[] = [
           { label: { EN: 'Person in Charge', BM: 'Pegawai Bertanggungjawab' }, href: '/about/staff' },
           { label: { EN: 'Organization Chart by Unit', BM: 'Carta Organisasi Mengikut Unit' }, href: '/about/org-chart-unit' },
           { label: { EN: 'Staff Directory', BM: 'Direktori Staf' }, href: '/about/directory' },
-          { label: { EN: 'Staff Portal', BM: 'Portal Staf' }, href: '#' },
-          { label: { EN: 'Staff Email', BM: 'Emel Staf' }, href: '#' },
+          { label: { EN: 'Staff Portal', BM: 'Portal Staf' }, href: 'https://portal.utem.edu.my/iutem/' },
+          { label: { EN: 'Staff Email', BM: 'Emel Staf' }, href: 'https://login.microsoftonline.com/?whr=utem.edu.my&sso_reload=true' },
           { label: { EN: 'Best Employee (APC)', BM: 'Anugerah Perkhidmatan Cemerlang' }, href: '/about/best-employee' },
           { label: { EN: 'Award', BM: 'Anugerah' }, href: '/about/energy-award' },
         ]
@@ -40,15 +40,6 @@ export const NAV_ITEMS: NavItem[] = [
       { label: { EN: 'Tuah Tenaga', BM: 'Tuah Tenaga' }, href: '#' },
       { label: { EN: 'MOU & MQA', BM: 'MOU & MQA' }, href: '#' },
       { label: { EN: 'Electronic Archives', BM: 'Arkib Elektronik' }, href: '#' },
-    ]
-  },
-  { 
-    label: { EN: 'ADMISSIONS', BM: 'KEMASUKAN' }, 
-    href: '#',
-    children: [
-      { label: { EN: 'Apply Now', BM: 'Mohon Sekarang' }, href: '/apply-now' },
-      { label: { EN: 'Entry Requirements', BM: 'Syarat Kemasukan' }, href: '/apply-now' },
-      { label: { EN: 'How to Apply', BM: 'Cara Memohon' }, href: '/apply-now' },
     ]
   },
   { 
@@ -66,14 +57,19 @@ export const NAV_ITEMS: NavItem[] = [
             label: { EN: 'Research', BM: 'Penyelidikan' }, 
             href: '#',
             children: [
-              { label: { EN: 'Office of Deputy Vice Chancellor (R&I)', BM: 'Pejabat TNC (P&I)' }, href: '#' },
-              { label: { EN: 'Centre for Research Innovation & Management', BM: 'Pusat Pengurusan Inovasi & Penyelidikan' }, href: '#' },
+              { label: { EN: 'Office of Deputy Vice Chancellor (R&I)', BM: 'Pejabat TNC (P&I)' }, href: 'https://pejtncpi.utem.edu.my/' },
+              { label: { EN: 'Centre for Research Innovation & Management', BM: 'Pusat Pengurusan Inovasi & Penyelidikan' }, href: 'https://crim.utem.edu.my/' },
             ]
           },
         ]
       },
-      { label: { EN: 'Student Info', BM: 'Maklumat Pelajar' }, href: '/student-info' },
-      { label: { EN: 'UTeM Convocation', BM: 'Konvokesyen UTeM' }, href: '#' },
+      { 
+        label: { EN: 'Student Info', BM: 'Maklumat Pelajar' }, 
+        href: '/student/student-info',
+        children: [
+          { label: { EN: 'UTeM Convocation', BM: 'Konvokesyen UTeM' }, href: '/student/student-info/utem-convocation' },
+        ]
+      },
       { label: { EN: 'Customer Feedback', BM: 'Maklum Balas Pelanggan' }, href: '#' },
       { 
         label: { EN: 'Download Forms', BM: 'Muat Turun Borang' }, 
@@ -117,17 +113,22 @@ export const NAV_ITEMS: NavItem[] = [
         href: '#',
         children: [
           { label: { EN: 'Postgraduate Programme', BM: 'Program Pascasiswazah' }, href: '/programmes/dashboard' },
-          { label: { EN: 'Quality Assurance Documents', BM: 'Dokumen Jaminan Kualiti' }, href: '#' },
+          { label: { EN: 'Quality Assurance Documents', BM: 'Dokumen Jaminan Kualiti' }, href: 'https://www2.mqa.gov.my/qad/v2/typesofqad.cfm' },
           { label: { EN: 'MQA Standards and Program Standards', BM: 'Standard MQA dan Standard Program' }, href: '/accreditation/mqa-standards' },
         ]
       },
-      { label: { EN: 'Job Vacancies', BM: 'Jawatan Kosong' }, href: '#' },
-      { label: { EN: 'Procurement', BM: 'Perolehan' }, href: '#' },
-      { label: { EN: 'Endowment & Wakaf', BM: 'Endowmen & Wakaf' }, href: '#' },
     ]
   },
   { label: { EN: 'FINANCIAL ASSISTANT', BM: 'BANTUAN KEWANGAN' }, href: '#' },
-  { label: { EN: 'VISITOR', BM: 'PELAWAT' }, href: '#' },
+  { 
+    label: { EN: 'VISITOR', BM: 'PELAWAT' }, 
+    href: '#',
+    children: [
+      { label: { EN: 'Job Vacancies', BM: 'Jawatan Kosong' }, href: 'https://www.utem.edu.my/en/job-vacancies.html' },
+      { label: { EN: 'Procurement', BM: 'Perolehan' }, href: 'https://perolehan.utem.edu.my/index.php?lang=ms' },
+      { label: { EN: 'Endowment & Wakaf', BM: 'Endowmen & Wakaf' }, href: 'https://sumbangan.utem.edu.my/' },
+    ]
+  },
 ];
 
 export const SLIDES: SlideData[] = [
@@ -155,14 +156,14 @@ export const SLIDES: SlideData[] = [
 
 export const GRADUATE_TESTIMONIALS: Testimonial[] = [
   {
-    name: 'Ng Lim Huat',
-    location: 'Malaysia/Singapore',
-    degree: 'Master of Mechanical Engineering (Product Design)',
-    batch: 'Batch of 2021',
-    position: 'Manufacturing Engineer',
-    company: 'Dou Yee Manufacturing Sdn Bhd',
-    quote: 'Completing a Master\'s degree at UTeM has made me a more competitive candidate which could lead to salary increases, greater job opportunities and job position. Throughout the program, I am able to emphasize both theoretical knowledge and practical application as well as the specific skills such as Critical Thinking and Analysis.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop'
+    name: 'Dr. Muhammad Akmal bin Mohd Zakaria',
+    location: 'Malaysia',
+    degree: 'PhD in Manufacturing Engineering',
+    batch: 'Batch of 2023',
+    position: 'Senior Lecturer of Mechanical Engineering Studies at College of Engineering, Universiti Teknologi MARA, Penang Branch, Permatang Pauh Campus',
+    company: '',
+    quote: 'My PhD journey at UTeM has been a rewarding yet demanding experience. Each day brought new insights and lessons that have significantly contributed to my academic and personal development. The challenges of critical thinking, engaging in thorough research, and adjusting to the dynamic academic environment have helped me grow into a more mature and open-minded person. The opportunity to engage with lecturers, supervisors, peers, and experts in my field has been a great source of inspiration and invaluable knowledge. I am grateful to Allah SWT for granting me the opportunity to pursue my studies at this prestigious university, and I hope UTeM will continue to be a source of inspiration in building a better world.',
+    image: '/images/Graduate_testimonial/Wan_Amirul.png'
   },
   {
     name: 'Siti Aminah Zahra',
@@ -172,7 +173,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Senior Data Scientist',
     company: 'TechGlobal Solutions',
     quote: 'The research culture at UTeM SPS is truly empowering. Having access to cutting-edge AI labs and mentorship from world-class professors allowed me to publish my research in top-tier international journals while completing my doctorate.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&h=400&auto=format&fit=crop'
+    image: '/images/Graduate_testimonial/Wan_Amirul.png'
   },
   {
     name: 'Rajesh Kumar',
@@ -182,7 +183,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Power Systems Consultant',
     company: 'Energy Grid Corp',
     quote: 'As an international student, the welcoming atmosphere at UTeM was exceptional. The hands-on technical approach in the laboratories gave me the practical confidence I needed to lead large-scale energy projects globally.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&h=400&auto=format&fit=crop'
+    image: '/images/Graduate_testimonial/Wan_Amirul.png'
   },
   {
     name: 'Elena Petrova',
@@ -192,7 +193,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Supply Chain Analyst',
     company: 'Global Logistics Hub',
     quote: 'UTeM provides a unique bridge between academic theory and industrial reality. My time at the School of Graduate Studies redefined how I approach complex manufacturing challenges in an international context.',
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=400&auto=format&fit=crop'
+    image: '/images/Graduate_testimonial/Wan_Amirul.png'
   },
   {
     name: 'Chen Wei Ling',
@@ -202,7 +203,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Principal Research Engineer',
     company: 'MicroChip Innovations',
     quote: 'The multidisciplinary approach at UTeM allowed me to collaborate across different faculties. This breadth of experience was vital for my current role in semiconductor research and development.',
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=400&auto=format&fit=crop'
+    image: '/images/Graduate_testimonial/Wan_Amirul.png'
   },
   {
     name: 'Ahmad Faiz',
@@ -212,7 +213,17 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Tech Entrepreneur',
     company: 'Nexus Ventures',
     quote: 'The MBA program at UTeM is uniquely technical and practical. It provided me with the perfect foundation to launch my own technology startup, combining leadership skills with deep technical understanding.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop'
+    image: '/images/Graduate_testimonial/Wan_Amirul.png'
+  },
+  {
+    name: 'Muhammad Akmal',
+    location: 'Malaysia',
+    degree: 'Master of Computer Science',
+    batch: 'Batch of 2023',
+    position: 'Software Engineer',
+    company: 'UTeM Alumni Network',
+    quote: 'UTeM sharpened my technical depth and leadership skills, helping me deliver production-grade solutions with confidence.',
+    image: '/images/Graduate_testimonial/Muhammad_Akmal.jpeg'
   }
 ];
 

@@ -114,7 +114,7 @@ const ApplyNow: React.FC<ApplyNowProps> = ({ lang }) => {
               </ul>
               <div className="pt-6">
                 <a 
-                  href="https://sps.utem.edu.my/apply" 
+                  href="https://portal.utem.edu.my/admission/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-[#A51C30] text-white px-10 py-5 rounded-full font-bold text-xs uppercase tracking-[0.2em] shadow-xl hover:bg-[#800000] transition-all inline-flex items-center space-x-3 group"

@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { Search, Globe, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Language, NavItem } from '../types';
+const KPMLogo = '/images/homepages/LOGO-JATA-KPM-BM.png';
+const UTEMLogo = '/images/homepages/Utem logo.png';
 
 interface HeaderProps {
   lang: Language;
@@ -55,31 +57,39 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
 
     if (label === 'STUDENT') {
       const future = item.children.find(c => c.label.EN === 'Future Students');
+      const studentInfo = item.children.find(c => c.label.EN === 'Student Info');
       const current = item.children.find(c => c.label.EN === 'Current Student');
       const forms = item.children.find(c => c.label.EN === 'Download Forms');
       const upgrade = item.children.find(c => c.label.EN === 'UPGRADE Association');
       
       return (
-        <div className="grid grid-cols-4 gap-x-12 divide-x divide-gray-100">
+        <div className="grid grid-cols-5 gap-x-10">
           <div className="pl-2">
-            <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Prospective</h4>
+            <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">{future?.label[lang] || 'Future Students'}</h4>
             <ul className="space-y-2">
-              <MenuLink href="#" label={future?.label[lang] || ''} />
               {future?.children?.filter(c => c.label.EN !== 'Research').map((link, idx) => (
                 <MenuLink key={idx} href={link.href} label={link.label[lang]} />
               ))}
             </ul>
           </div>
-          <div className="pl-12">
+          <div className="pl-6">
+            <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">{studentInfo?.label[lang] || 'Student Info'}</h4>
+            <ul className="space-y-2">
+              <MenuLink href={studentInfo?.href || '#'} label={studentInfo?.label[lang] || ''} />
+              {studentInfo?.children?.map((link, idx) => (
+                <MenuLink key={idx} href={link.href} label={link.label[lang]} />
+              ))}
+            </ul>
+          </div>
+          <div className="pl-6">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Current</h4>
             <ul className="space-y-2">
               {current?.children?.map((link, idx) => (
                 <MenuLink key={idx} href={link.href} label={link.label[lang]} />
               ))}
-              <MenuLink href="#" label={item.children.find(o => o.label.EN === 'UTeM Convocation')?.label[lang] || ''} />
             </ul>
           </div>
-          <div className="pl-12">
+          <div className="pl-6">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Resources</h4>
             <ul className="space-y-2">
               {forms?.children?.map((link, idx) => (
@@ -87,7 +97,7 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
               ))}
             </ul>
           </div>
-          <div className="pl-12">
+          <div className="pl-6">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Graduate</h4>
             <ul className="space-y-2">
               {upgrade?.children?.map((link, idx) => (
@@ -234,42 +244,63 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
         }`}
         onMouseLeave={() => setActiveMegaMenu(null)}
       >
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12 flex items-center justify-between h-20 md:h-24">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-5 lg:px-7 xl:px-8 flex items-center h-20 md:h-24 gap-3 sm:gap-4 lg:gap-5 xl:gap-7">
           
           {/* Logo Section */}
-          <Link to="/" className="flex items-center group cursor-pointer z-[60]">
-            <div className={`w-12 h-12 transition-all duration-500 flex items-center justify-center border-t-[3px] ${
-              isScrolled || activeMegaMenu || !isHome ? 'border-[#A51C30] bg-[#A51C30]' : 'border-white bg-white/10'
-            }`}>
-              <span className="font-serif font-bold text-2xl text-white">U</span>
-            </div>
-            <div className="ml-4">
-              <h1 className={`text-xl font-serif font-bold tracking-tight transition-colors duration-500 ${isScrolled || activeMegaMenu || !isHome ? 'text-[#A51C30]' : 'text-white'}`}>
-                UTeM
-              </h1>
-              <p className={`text-[9px] font-bold tracking-[0.25em] uppercase transition-colors duration-500 ${isScrolled || activeMegaMenu || !isHome ? 'text-gray-500' : 'text-white/80'}`}>
-                GRADUATE STUDIES
-              </p>
+          <Link to="/" className="flex-shrink-0 group cursor-pointer z-[60]">
+            <div className="flex items-center justify-between gap-4 sm:gap-5 lg:gap-6 flex-nowrap w-[220px] sm:w-[240px] lg:w-[260px]">
+              <img
+                src={KPMLogo}
+                alt="KPM logo"
+                className="h-8 sm:h-9 md:h-10 lg:h-12 w-auto object-contain drop-shadow-sm"
+                loading="lazy"
+              />
+              <img
+                src={UTEMLogo}
+                alt="UTeM logo"
+                className="h-8 sm:h-9 md:h-10 lg:h-12 w-auto object-contain drop-shadow-sm"
+                loading="lazy"
+              />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center h-full relative">
+          <nav
+            className="hidden lg:flex items-center h-full relative flex-1 min-w-0 pl-2 md:pl-3 lg:pl-4 gap-1.5 lg:gap-2 xl:gap-3 overflow-visible"
+            style={{ gap: '0.4rem' }}
+          >
             {NAV_ITEMS.map((item, idx) => (
               <div 
                 key={idx} 
-                className="h-full group/nav"
+                className="h-full group/nav px-1"
                 onMouseEnter={() => setActiveMegaMenu(item.label.EN)}
               >
                 <Link 
                   to={item.href}
-                  className={`flex items-center h-full px-6 text-[12px] font-bold uppercase tracking-[0.15em] transition-all duration-300 relative ${
+                  className={`flex items-center h-full px-2.5 md:px-3 lg:px-3.5 text-[11px] lg:text-[12px] xl:text-[12px] font-bold uppercase tracking-[0.05em] lg:tracking-[0.07em] transition-all duration-300 relative ${
+                    item.label.EN === 'FINANCIAL ASSISTANT' ? 'whitespace-normal text-center leading-tight' : 'whitespace-nowrap'
+                  } ${
                     isScrolled || activeMegaMenu || !isHome
                       ? 'text-gray-700 hover:text-[#A51C30]' 
                       : 'text-white hover:text-white/80'
                   }`}
                 >
-                  {item.label[lang]}
+                  {/* Responsive label shortening for long items */}
+                  {item.label.EN === 'FINANCIAL ASSISTANT' ? (
+                    <>
+                      <span className="block leading-tight">
+                        <span className="block">Financial</span>
+                        <span className="block">Assistant</span>
+                      </span>
+                    </>
+                  ) : item.label.EN === 'ABOUT US' ? (
+                    <>
+                      <span className="hidden xl:inline">{item.label[lang]}</span>
+                      <span className="inline xl:hidden">About</span>
+                    </>
+                  ) : (
+                    item.label[lang]
+                  )}
                   {item.children && <ChevronDown size={12} className={`ml-2 opacity-40 transition-transform duration-300 ${activeMegaMenu === item.label.EN ? 'rotate-180' : ''}`} />}
                   
                   {/* Underline for main nav */}
@@ -280,10 +311,10 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
           </nav>
 
           {/* Action Bar */}
-          <div className="flex items-center space-x-8 z-[60]">
+          <div className="flex items-center space-x-4 sm:space-x-6 z-[60] flex-shrink-0">
             <button 
               onClick={onToggleLanguage}
-              className={`flex items-center space-x-2 px-4 py-2 border-l border-r transition-all duration-500 text-[10px] font-bold tracking-widest uppercase ${
+              className={`flex items-center space-x-2 px-3 sm:px-4 py-2 border-l border-r transition-all duration-500 text-[10px] font-bold tracking-widest uppercase ${
                 isScrolled || activeMegaMenu || !isHome
                   ? 'border-gray-100 text-gray-700 hover:text-[#A51C30]' 
                   : 'border-white/10 text-white hover:border-white'
@@ -298,7 +329,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
             </button>
 
             <button 
-              className="lg:hidden p-2"
+              className="xl:hidden p-2"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
@@ -383,9 +414,12 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
           animation: accordion-down 0.4s ease-out forwards;
           overflow: hidden;
         }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
     </>
   );
 };
 
 export default Header;
+
