@@ -70,20 +70,31 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
                 </p>
 
                 <div className="mt-auto pt-6 border-t border-gray-50">
-                  <Link 
-                    to={
-                      step.number === '01' ? '/gallery' :
-                      step.number === '02' ? '/facilities' :
-                      step.number === '03' ? '/about/staff' :
-                      step.number === '04' ? '/calendar' :
-                      step.number === '05' ? '/regulations' :
-                      '/resources'
-                    }
-                    className="inline-flex items-center space-x-3 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 group-hover:text-[#A51C30] transition-all duration-500"
-                  >
-                    <span>{lang === 'EN' ? 'View More' : 'Lihat Lagi'}</span>
-                    <ArrowRight size={14} className="transform translate-x-0 group-hover:translate-x-2 transition-transform duration-500" />
-                  </Link>
+                  {step.number === '01' ? (
+                    <a
+                      href="https://www.flickr.com/photos/198669247@N05/albums/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center space-x-3 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 group-hover:text-[#A51C30] transition-all duration-500"
+                    >
+                      <span>{lang === 'EN' ? 'View More' : 'Lihat Lagi'}</span>
+                      <ArrowRight size={14} className="transform translate-x-0 group-hover:translate-x-2 transition-transform duration-500" />
+                    </a>
+                  ) : (
+                    <Link 
+                      to={
+                        step.number === '02' ? '/facilities' :
+                        step.number === '03' ? '/about/staff' :
+                        step.number === '04' ? '/calendar' :
+                        step.number === '05' ? '/regulations' :
+                        '/resources'
+                      }
+                      className="inline-flex items-center space-x-3 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 group-hover:text-[#A51C30] transition-all duration-500"
+                    >
+                      <span>{lang === 'EN' ? 'View More' : 'Lihat Lagi'}</span>
+                      <ArrowRight size={14} className="transform translate-x-0 group-hover:translate-x-2 transition-transform duration-500" />
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -91,7 +102,7 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
         </div>
 
         {/* Footer CTA Section */}
-        <div className="mt-24 py-16 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-12">
+        <div className="mt-12 py-10 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="flex items-center gap-6">
             <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center text-white">
               <span className="text-xs font-serif italic">i</span>
@@ -102,9 +113,12 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
             </div>
           </div>
           
-          <button className="px-10 py-5 bg-[#A51C30] text-white text-[10px] font-bold uppercase tracking-[0.4em] shadow-xl hover:bg-[#821626] transition-all duration-500 hover:-translate-y-1">
+          <Link 
+            to="/about/staff"
+            className="px-10 py-5 bg-[#A51C30] text-white text-[10px] font-bold uppercase tracking-[0.4em] shadow-xl hover:bg-[#821626] transition-all duration-500 hover:-translate-y-1"
+          >
             {lang === 'EN' ? 'Graduate Helpdesk' : 'Meja Bantuan Siswazah'}
-          </button>
+          </Link>
         </div>
       </div>
     </section>

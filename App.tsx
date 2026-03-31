@@ -19,6 +19,7 @@ import FacultyBrochure from './components/FacultyBrochure';
 import ProgrammesPage from './components/ProgrammesPage';
 import FacultyDashboard from './components/FacultyDashboard';
 import FacultyProgrammes from './components/FacultyProgrammes';
+import ISODocuments from './components/ISODocuments';
 import MQAStandards from './components/MQAStandards';
 import ApplyNow from './components/ApplyNow';
 import StudentInfoPage from './components/StudentInfoPage';
@@ -28,6 +29,7 @@ import Facilities from './components/Facilities';
 import Resources from './components/Resources';
 import CalendarPage from './components/Calendar';
 import Regulations from './components/Regulations';
+import AnnouncementPopup from './components/AnnouncementPopup';
 import ScrollToTop from './components/ScrollToTop';
 import { Language } from './types';
 import StudentResearchHub from './components/StudentResearchHub';
@@ -62,6 +64,7 @@ const App: React.FC = () => {
       <div className="min-h-screen bg-white">
         <ScrollToTop />
         <Header lang={lang} onToggleLanguage={toggleLanguage} />
+        <AnnouncementPopup lang={lang} />
         <main>
           <Routes>
             <Route path="/" element={<HomePage lang={lang} />} />
@@ -78,6 +81,7 @@ const App: React.FC = () => {
             <Route path="/programmes/dashboard" element={<FacultyDashboard lang={lang} />} />
             <Route path="/programmes/faculty" element={<FacultyProgrammes lang={lang} />} />
             <Route path="/accreditation/mqa-standards" element={<MQAStandards lang={lang} />} />
+            <Route path="/about/iso-documents" element={<ISODocuments lang={lang} />} />
             <Route path="/apply-now" element={<ApplyNow lang={lang} />} />
             <Route path="/student/student-info" element={<StudentInfoPage />} />
             <Route path="/student/student-info/utem-convocation" element={<UtemConvocationPage />} />
@@ -111,14 +115,14 @@ const App: React.FC = () => {
               <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-2">Quick Access</h4>
               <a href="https://www.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">UTeM Website</a>
               <a href="https://sustainability.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">SDG UTeM</a>
-              <a href="/apply-now" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
+              <a href="https://portal.utem.edu.my/admission/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
               <a href="/calendar" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Academic Calendar</a>
             </div>
             <div className="flex flex-col space-y-4">
               <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-2">Other Links</h4>
               <a href="https://www.mqa.gov.my/new/index.cfm#gsc.tab=0" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Malaysia Qualification Agency (MQA)</a>
               <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Majlis Perwakilan Pelajar (MPP UTeM)</a>
-              <a href="/apply-now" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
+              <a href="https://portal.utem.edu.my/admission/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
               <a href="/calendar" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Academic Calendar</a>
             </div>
           </div>

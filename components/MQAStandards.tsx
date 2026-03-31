@@ -27,10 +27,12 @@ const documents: MQADocument[] = [
       BM: 'Kerangka Kelayakan Malaysia (MQF) Edisi ke-2' 
     },
     edition: '2nd Edition',
-    year: '2017',
+    year: '2018',
     category: 'MQF',
     tag: 'Popular',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/mqf/2019/MQF%20Ed%202%2002102019.pdf'
+    fileUrl: 'https://www.mqa.gov.my/pv4/document/mqf/2019/MQF%20Ed%202%2002102019.pdf',
+    fileSize: '1.02 MB',
+    publishDate: '02 October 2019'
   },
   {
     id: 'ps-computing',
@@ -38,11 +40,12 @@ const documents: MQADocument[] = [
       EN: 'Programme Standards: Computing', 
       BM: 'Standard Program: Pengkomputeran' 
     },
-    edition: '2nd Edition',
-    year: '2022',
+    edition: '',
+    year: '2015',
     category: 'Computing',
     tag: 'New',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2022/PS%20Computing%202nd%20Edition.pdf'
+    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2022/PS%20Computing%202nd%20Edition.pdf',
+    publishDate: '2022'
   },
   {
     id: 'ps-engineering',
@@ -50,11 +53,12 @@ const documents: MQADocument[] = [
       EN: 'Programme Standards: Engineering and Engineering Technology', 
       BM: 'Standard Program: Kejuruteraan dan Teknologi Kejuruteraan' 
     },
-    edition: '1st Edition',
-    year: '2019',
+    edition: '',
+    year: '2011',
     category: 'Engineering',
     tag: 'Updated',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2019/PS%20Engineering%20&%20Engineering%20Technology.pdf'
+    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2019/PS%20Engineering%20&%20Engineering%20Technology.pdf',
+    publishDate: '2019'
   },
   {
     id: 'ps-business',
@@ -65,19 +69,21 @@ const documents: MQADocument[] = [
     edition: '2nd Edition',
     year: '2021',
     category: 'Business',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2021/PS%20Business%20Studies%202nd%20Edition.pdf'
+    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2021/PS%20Business%20Studies%202nd%20Edition.pdf',
+    publishDate: '2021'
   },
   {
     id: 'copa-research',
     title: { 
-      EN: 'Code of Practice for Programme Accreditation: Research Degree', 
+      EN: 'Standards: Master\'s and Doctoral Degree', 
       BM: 'Kod Amalan Akreditasi Program: Ijazah Penyelidikan' 
     },
     edition: '1st Edition',
     year: '2020',
     category: 'MQF',
     tag: 'Popular',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/copa/2020/COPA%20Research%20Degree.pdf'
+    fileUrl: 'https://www.mqa.gov.my/pv4/document/copa/2020/COPA%20Research%20Degree.pdf',
+    publishDate: '2020'
   }
 ];
 
@@ -85,6 +91,17 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [categoryFilter, setCategoryFilter] = useState<string>('All');
   const [previewDoc, setPreviewDoc] = useState<MQADocument | null>(null);
+  const [detailsDoc, setDetailsDoc] = useState<MQADocument | null>(null);
+
+  const detailsContent = {
+    title: { EN: 'Document Details', BM: 'Butiran Dokumen' },
+    fileSize: { EN: 'File Size', BM: 'Saiz Fail' },
+    publishDate: { EN: 'Date', BM: 'Tarikh' },
+    category: { EN: 'Category', BM: 'Kategori' },
+    edition: { EN: 'Edition', BM: 'Edisi' },
+    fallback: { EN: 'Refer to source document', BM: 'Rujuk dokumen sumber' },
+    close: { EN: 'Close', BM: 'Tutup' }
+  };
 
   const filteredDocs = useMemo(() => {
     return documents.filter(doc => {
@@ -215,7 +232,10 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
                       <Eye size={14} />
                       <span>{lang === 'EN' ? 'Preview' : 'Pratonton'}</span>
                     </button>
-                    <button className="flex-grow md:flex-none flex items-center justify-center space-x-2 bg-gray-50 hover:bg-gray-100 text-gray-600 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all">
+                    <button
+                      onClick={() => setDetailsDoc(doc)}
+                      className="flex-grow md:flex-none flex items-center justify-center space-x-2 bg-gray-50 hover:bg-gray-100 text-gray-600 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all"
+                    >
                       <Info size={14} />
                       <span>{lang === 'EN' ? 'Details' : 'Butiran'}</span>
                     </button>
@@ -246,6 +266,70 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
 
       {/* Preview Modal */}
       <AnimatePresence>
+        {detailsDoc && (
+          <div className="fixed inset-0 z-[210] flex items-center justify-center p-4 md:p-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDetailsDoc(null)}
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden"
+            >
+              <div className="flex items-center justify-between p-6 border-b border-gray-100">
+                <div>
+                  <p className="text-[10px] font-bold text-[#A51C30] uppercase tracking-widest mb-2">
+                    {detailsContent.title[lang]}
+                  </p>
+                  <h2 className="text-xl font-serif font-bold text-gray-900">
+                    {detailsDoc.title[lang]}
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setDetailsDoc(null)}
+                  className="p-3 bg-gray-100 text-gray-500 hover:bg-gray-200 rounded-xl transition-colors"
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{detailsContent.fileSize[lang]}</p>
+                  <p className="text-base font-semibold text-gray-900">{detailsDoc.fileSize || detailsContent.fallback[lang]}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{detailsContent.publishDate[lang]}</p>
+                  <p className="text-base font-semibold text-gray-900">{detailsDoc.publishDate || detailsDoc.year}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{detailsContent.category[lang]}</p>
+                  <p className="text-base font-semibold text-gray-900">{detailsDoc.category}</p>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">{detailsContent.edition[lang]}</p>
+                  <p className="text-base font-semibold text-gray-900">{detailsDoc.edition || detailsContent.fallback[lang]}</p>
+                </div>
+              </div>
+
+              <div className="px-6 pb-6 flex justify-end">
+                <button
+                  onClick={() => setDetailsDoc(null)}
+                  className="bg-[#A51C30] text-white px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-[#800000] transition-colors"
+                >
+                  {detailsContent.close[lang]}
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+
         {previewDoc && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8">
             <motion.div 

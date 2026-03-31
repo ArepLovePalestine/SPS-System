@@ -10,17 +10,40 @@ interface EnergySavingAwardProps {
 
 const EnergySavingAward: React.FC<EnergySavingAwardProps> = ({ lang }) => {
   const tabs = [
-    { id: 'maptep-2022', label: 'Penilaian MAPTEP 2022', image: 'https://picsum.photos/seed/award22/1200/1600' },
-    { id: 'maptep-2023', label: 'Penilaian MAPTEP 2023', image: 'https://picsum.photos/seed/award23/1200/1600' },
-    { id: 'maptep-2024', label: 'Penilaian MAPTEP 2024', image: 'https://picsum.photos/seed/award24/1200/1600' },
-    { id: 'sudut-2024', label: 'Penilaian Sudut Tenaga 2024', image: 'https://picsum.photos/seed/sudut24/1200/1600' },
-    { id: 'sudut-2025', label: 'Penilaian Sudut Tenaga 2025', image: 'https://picsum.photos/seed/sudut25/1200/1600' },
+    {
+      id: 'maptep-2022',
+      label: { EN: 'MAPTEP Assessment 2022', BM: 'Penilaian MAPTEP 2022' },
+      image: '/images/award-pic/maptep-2022.jpeg'
+    },
+    {
+      id: 'maptep-2023',
+      label: { EN: 'MAPTEP Assessment 2023', BM: 'Penilaian MAPTEP 2023' },
+      image: '/images/award-pic/maptep-2023.jpeg'
+    },
+    {
+      id: 'maptep-2024',
+      label: { EN: 'MAPTEP Assessment 2024', BM: 'Penilaian MAPTEP 2024' },
+      image: '/images/award-pic/maptep-2024.jpeg'
+    },
+    {
+      id: 'sudut-2024',
+      label: { EN: 'Energy Corner Assessment 2024', BM: 'Penilaian Sudut Tenaga 2024' },
+      image: '/images/award-pic/Sudut tenaga-2024.jpeg'
+    },
+    {
+      id: 'sudut-2025',
+      label: { EN: 'Energy Corner Assessment 2025', BM: 'Penilaian Sudut Tenaga 2025' },
+      image: '/images/award-pic/Sudut tenaga-2025.jpeg'
+    },
   ];
 
   const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const activeTabData = tabs.find(t => t.id === activeTab);
+  const isMaptepLandscape = ['maptep-2022', 'maptep-2023', 'maptep-2024'].includes(activeTab);
 
   const content = {
     title: { EN: 'Energy Saving Award', BM: 'Anugerah Penjimatan Tenaga' },
+    about: { EN: 'About Us', BM: 'Tentang Kami' },
   };
 
   return (
@@ -30,7 +53,7 @@ const EnergySavingAward: React.FC<EnergySavingAwardProps> = ({ lang }) => {
         <div className="max-w-5xl mx-auto px-6">
           <div className="space-y-4 text-center">
             <nav className="flex items-center justify-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-              <span>{lang === 'EN' ? 'About Us' : 'Tentang Kami'}</span>
+              <span>{content.about[lang]}</span>
               <ChevronRight size={10} />
               <span className="text-[#A51C30]">{content.title[lang]}</span>
             </nav>
@@ -45,7 +68,7 @@ const EnergySavingAward: React.FC<EnergySavingAwardProps> = ({ lang }) => {
       <section className="py-8">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-3">
-            {tabs.map((tab) => (
+                {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
@@ -55,7 +78,7 @@ const EnergySavingAward: React.FC<EnergySavingAwardProps> = ({ lang }) => {
                     : 'bg-white text-gray-500 border-gray-200 hover:border-[#A51C30] hover:text-[#A51C30]'
                 }`}
               >
-                {tab.label}
+                {tab.label[lang]}
               </button>
             ))}
           </div>
@@ -74,11 +97,11 @@ const EnergySavingAward: React.FC<EnergySavingAwardProps> = ({ lang }) => {
               transition={{ duration: 0.3 }}
               className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden"
             >
-              <div className="w-full">
+              <div className={`w-full ${isMaptepLandscape ? 'aspect-[16/9] bg-gray-50' : ''}`}>
                 <img 
-                  src={tabs.find(t => t.id === activeTab)?.image} 
-                  alt={tabs.find(t => t.id === activeTab)?.label} 
-                  className="w-full h-auto block"
+                  src={activeTabData?.image} 
+                  alt={activeTabData?.label[lang]} 
+                  className={`w-full ${isMaptepLandscape ? 'h-full object-contain' : 'h-auto'} block`}
                   referrerPolicy="no-referrer"
                 />
               </div>

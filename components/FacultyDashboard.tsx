@@ -4,6 +4,18 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronRight, Building2, ArrowRight } from 'lucide-react';
 import { Language, FacultyDetail } from '../types';
+import FTKMImg from '../images/programmes-dashboard-faculty/FTKM.jpeg';
+import FTKEImg from '../images/programmes-dashboard-faculty/FTKE.jpeg';
+import FTMKImg from '../images/programmes-dashboard-faculty/FTMK.jpeg';
+import FPTTImg from '../images/programmes-dashboard-faculty/FPTT.jpeg';
+import FTKEKImg from '../images/programmes-dashboard-faculty/FTKEK.jpeg';
+import FTKIPImg from '../images/programmes-dashboard-faculty/FTKIP.jpeg';
+import FTKMLogo from '../images/programmes-dashboard-faculty/FTKM-logo.png';
+import FTKELogo from '../images/programmes-dashboard-faculty/FTKE-logo.png';
+import FTMKLogo from '../images/programmes-dashboard-faculty/FTMK-logo.png';
+import FPTTLogo from '../images/programmes-dashboard-faculty/FPTT-logo.png';
+import FTKEKLogo from '../images/programmes-dashboard-faculty/FTKEK-logo.png';
+import FTKIPLogo from '../images/programmes-dashboard-faculty/FTKIP-logo.png';
 
 interface FacultyDashboardProps {
   lang: Language;
@@ -14,47 +26,64 @@ export const faculties: FacultyDetail[] = [
     id: 'fkm',
     shortName: 'FKM',
     fullName: { EN: 'Faculty of Mechanical Engineering', BM: 'Fakulti Kejuruteraan Mekanikal' },
-    image: 'https://picsum.photos/seed/fkm_b/800/450',
-    bannerImage: 'https://picsum.photos/seed/fkm_banner/1920/600'
+    image: FTKMImg,
+    bannerImage: FTKMImg
   },
   {
     id: 'fke',
     shortName: 'FKE',
     fullName: { EN: 'Faculty of Electrical Engineering', BM: 'Fakulti Kejuruteraan Elektrik' },
-    image: 'https://picsum.photos/seed/fke_b/800/450',
-    bannerImage: 'https://picsum.photos/seed/fke_banner/1920/600'
+    image: FTKEImg,
+    bannerImage: FTKEImg
   },
   {
     id: 'ftmk',
     shortName: 'FTMK',
     fullName: { EN: 'Faculty of Information & Communication Technology', BM: 'Fakulti Teknologi Maklumat & Komunikasi' },
-    image: 'https://picsum.photos/seed/ftmk_b/800/450',
-    bannerImage: 'https://picsum.photos/seed/ftmk_banner/1920/600'
+    image: FTMKImg,
+    bannerImage: FTMKImg
   },
   {
     id: 'fptt',
     shortName: 'FPTT',
     fullName: { EN: 'Faculty of Technology Management & Technopreneurship', BM: 'Fakulti Pengurusan Teknologi & Teknokeusahawanan' },
-    image: 'https://picsum.photos/seed/fptt_b/800/450',
-    bannerImage: 'https://picsum.photos/seed/fptt_banner/1920/600'
+    image: FPTTImg,
+    bannerImage: FPTTImg
   },
   {
     id: 'fkp',
     shortName: 'FKP',
     fullName: { EN: 'Faculty of Manufacturing Engineering', BM: 'Fakulti Kejuruteraan Pembuatan' },
-    image: 'https://picsum.photos/seed/fkp_b/800/450',
-    bannerImage: 'https://picsum.photos/seed/fkp_banner/1920/600'
+    image: FTKIPImg, // TODO: replace with dedicated FKP image if available
+    bannerImage: FTKIPImg
   },
   {
     id: 'fkekk',
     shortName: 'FKEKK',
     fullName: { EN: 'Faculty of Electronics & Computer Engineering', BM: 'Fakulti Kejuruteraan Elektronik & Kejuruteraan Komputer' },
-    image: 'https://picsum.photos/seed/fkekk_b/800/450',
-    bannerImage: 'https://picsum.photos/seed/fkekk_banner/1920/600'
+    image: FTKEKImg,
+    bannerImage: FTKEKImg
+  },
+  {
+    id: 'ftkip',
+    shortName: 'FTKIP',
+    fullName: { EN: 'FTKIP Faculty (update name)', BM: 'Fakulti FTKIP (kemas kini nama)' },
+    image: FTKIPImg,
+    bannerImage: FTKIPImg
   }
 ];
 
 const FacultyDashboard: React.FC<FacultyDashboardProps> = ({ lang }) => {
+  const facultyLogos: Partial<Record<string, string>> = {
+    fkm: FTKMLogo,
+    fke: FTKELogo,
+    ftmk: FTMKLogo,
+    fptt: FPTTLogo,
+    fkekk: FTKEKLogo,
+    ftkip: FTKIPLogo,
+    // TODO: add a dedicated FKP logo asset, then map it here.
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-20">
       {/* Breadcrumb & Header */}
@@ -96,8 +125,16 @@ const FacultyDashboard: React.FC<FacultyDashboardProps> = ({ lang }) => {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute top-4 left-4">
-                  <div className="bg-[#A51C30] text-white px-3 py-1 rounded-lg shadow-lg">
-                    <span className="text-xs font-bold tracking-widest">{faculty.shortName}</span>
+                  <div className="bg-white/95 rounded-lg shadow-lg px-3 py-2 min-w-[72px] min-h-[44px] flex items-center justify-center">
+                    {facultyLogos[faculty.id] ? (
+                      <img
+                        src={facultyLogos[faculty.id]}
+                        alt={`${faculty.shortName} logo`}
+                        className="w-[52px] h-[28px] object-contain"
+                      />
+                    ) : (
+                      <span className="text-xs font-bold tracking-widest text-[#A51C30]">{faculty.shortName}</span>
+                    )}
                   </div>
                 </div>
               </div>

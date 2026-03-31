@@ -20,48 +20,19 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
   const [selectedYear, setSelectedYear] = useState('All');
 
   const recipients: APCRecipient[] = [
-    {
-      id: 1,
-      year: "2014",
-      name: "MR. ZULKIFLI BIN HASSAN",
-      position: { EN: "Office Assistant", BM: "Pembantu Pejabat" },
-      image: "https://picsum.photos/seed/apc14/400/400"
-    },
-    {
-      id: 2,
-      year: "2013",
-      name: "NORERNI BINTI A. RAHMAN",
-      position: { EN: "Office Secretary", BM: "Setiausaha Pejabat" },
-      image: "https://picsum.photos/seed/apc13/400/400"
-    },
-    {
-      id: 3,
-      year: "2012",
-      name: "MOHD SUHAIRI BIN MOHD SAAD",
-      position: { EN: "Administrative Assistant", BM: "Pembantu Tadbir" },
-      image: "https://picsum.photos/seed/apc12/400/400"
-    },
-    {
-      id: 4,
-      year: "2023",
-      name: "PROF. MADYA IR. TS. DR. JEFFERIE BIN ABD RAZAK",
-      position: { EN: "Deputy Dean", BM: "Timbalan Dekan" },
-      image: "https://picsum.photos/seed/apc1/400/400"
-    },
-    {
-      id: 5,
-      year: "2023",
-      name: "MRS. JUNAIDAH BINTI KASIM",
-      position: { EN: "Deputy Registrar", BM: "Timbalan Pendaftar" },
-      image: "https://picsum.photos/seed/apc2/400/400"
-    },
-    {
-      id: 6,
-      year: "2022",
-      name: "MR. MOHAMMAD SYARIN BIN SAPUAN",
-      position: { EN: "Assistant Registrar (Academic)", BM: "Penolong Pendaftar (Akademik)" },
-      image: "https://picsum.photos/seed/apc3/400/400"
-    }
+    { id: 1, year: "2012", name: "MOHD SUHAIRI BIN MOHD SAAD", position: { EN: "Administrative Assistant", BM: "Pembantu Tadbir" }, image: "/images/about-staff/Suhairi.jpeg" },
+    { id: 2, year: "2013", name: "NORERNI BINTI A. RAHMAN", position: { EN: "Office Secretary", BM: "Setiausaha Pejabat" }, image: "/images/about-staff/Noerni.jpeg" },
+    { id: 3, year: "2014", name: "PM DR. SAJAHAN BIN MAIDIN", position: { EN: "Deputy Dean", BM: "Timbalan Dekan" }, image: "/images/about-staff/Sajahan.jpeg" },
+    { id: 4, year: "2015", name: "NORSUHADA BINTI MANSOR", position: { EN: "Assistant Registrar", BM: "Penolong Pendaftar" }, image: "/images/about-staff/Safuan.jpeg" },
+    { id: 5, year: "2016", name: "MOHD ADZNAN BIN MOHD NAYAN", position: { EN: "Assistant Registrar", BM: "Penolong Pendaftar" }, image: "/images/about-staff/Adznan.jpeg" },
+    { id: 6, year: "2017", name: "PM DR. TAY CHOO CHUAN", position: { EN: "Deputy Dean", BM: "Timbalan Dekan" }, image: "/images/about-staff/Tay.jpeg" },
+    { id: 7, year: "2018", name: "SAFUAN BIN BIDIN", position: { EN: "Senior Administrative Assistant", BM: "Pembantu Tadbir Kanan" }, image: "/images/about-staff/Safuan.jpeg" },
+    { id: 8, year: "2019", name: "FADHIL BIN AHMAD", position: { EN: "Assistant Engineer", BM: "Penolong Jurutera" }, image: "/images/about-staff/Fadhil.jpeg" },
+    { id: 9, year: "2020", name: "MOHD FUAD BIN JA'AFAR", position: { EN: "Senior Assistant Administration Office", BM: "Penolong Pegawai Tadbir Kanan" }, image: "/images/about-staff/Fuad.jpeg" },
+    { id: 10, year: "2021", name: "MUHAMAD FIRDAUS BIN MAZLI", position: { EN: "General Office Assistant", BM: "Pembantu Pejabat" }, image: "/images/about-staff/Firdaus.png" },
+    { id: 11, year: "2022", name: "NURUL SYUHADA' BINTI HARON", position: { EN: "Assistant Registrar", BM: "Penolong Pendaftar" }, image: "/images/about-staff/Syuhada.jpeg" },
+    { id: 12, year: "2023", name: "JUNAIDAH BINTI KASIM", position: { EN: "Deputy Registrar", BM: "Timbalan Pendaftar" }, image: "/images/about-staff/Junaidah.jpeg" },
+    { id: 13, year: "2024", name: "NOOR AZMAN BIN MANSOR", position: { EN: "Assistant Administration Officer", BM: "Pegawai Tadbir (Pentadbiran)" }, image: "/images/about-staff/Azman.jpeg" }
   ];
 
   const years = useMemo(() => {
@@ -165,10 +136,11 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
                     {/* SPS Logo Placeholder */}
                     <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 z-20">
                       <div className="bg-white p-2 rounded-lg shadow-md border border-gray-50">
-                        <div className="flex flex-col items-center">
-                          <span className="text-[#A51C30] font-bold text-xl tracking-tighter">SPS</span>
-                          <span className="text-[6px] font-bold text-gray-400 uppercase leading-none">Graduate Studies</span>
-                        </div>
+                        <img
+                          src="/images/homepages/SPS logo.png"
+                          alt="SPS logo"
+                          className="h-10 w-auto object-contain"
+                        />
                       </div>
                     </div>
 

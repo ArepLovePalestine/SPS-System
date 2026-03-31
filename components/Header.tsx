@@ -22,6 +22,10 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
     if (label === 'ABOUT US') {
       const staffInfo = item.children.find(c => c.label.EN === 'Staff Info');
       const others = item.children.filter(c => c.label.EN !== 'Staff Info');
+      const isoDocuments = others.find(o => o.label.EN === 'ISO Documents');
+      const electronicArchives = others.find(o => o.label.EN === 'Electronic Archives');
+      const mouAndMqa = others.find(o => o.label.EN === 'MOU & MQA');
+      const tuahTenaga = others.find(o => o.label.EN === 'Tuah Tenaga');
       
       return (
         <div className="grid grid-cols-2 gap-x-16 divide-x divide-gray-100">
@@ -39,15 +43,15 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
             <div>
               <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Documents & Resources</h4>
               <ul className="space-y-2">
-                <MenuLink href="#" label={others.find(o => o.label.EN === 'ISO Documents')?.label[lang] || ''} />
-                <MenuLink href="#" label={others.find(o => o.label.EN === 'Electronic Archives')?.label[lang] || ''} />
+                <MenuLink href={isoDocuments?.href || '#'} label={isoDocuments?.label[lang] || ''} />
+                <MenuLink href={electronicArchives?.href || '#'} label={electronicArchives?.label[lang] || ''} />
               </ul>
             </div>
             <div>
               <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Partnerships</h4>
               <ul className="space-y-2">
-                <MenuLink href="#" label={others.find(o => o.label.EN === 'MOU & MQA')?.label[lang] || ''} />
-                <MenuLink href="#" label={others.find(o => o.label.EN === 'Tuah Tenaga')?.label[lang] || ''} />
+                <MenuLink href={mouAndMqa?.href || '#'} label={mouAndMqa?.label[lang] || ''} />
+                <MenuLink href={tuahTenaga?.href || '#'} label={tuahTenaga?.label[lang] || ''} />
               </ul>
             </div>
           </div>
@@ -112,10 +116,9 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
 
     if (label === 'PROGRAM') {
       const accreditation = item.children.find(c => c.label.EN === 'Accreditation');
-      const others = item.children.filter(c => c.label.EN !== 'Accreditation');
 
       return (
-        <div className="grid grid-cols-2 gap-x-16 divide-x divide-gray-100">
+        <div className="grid grid-cols-1 gap-x-16">
           <div className="pl-2">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Academic Programmes</h4>
             <ul className="space-y-2">
@@ -124,14 +127,35 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
               ))}
             </ul>
           </div>
-          <div className="pl-16">
-            <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Opportunities</h4>
-            <ul className="space-y-2">
-              {others.map((link, idx) => (
-                <MenuLink key={idx} href={link.href} label={link.label[lang]} />
-              ))}
-            </ul>
-          </div>
+        </div>
+      );
+    }
+
+    if (label === 'FINANCIAL ASSISTANT') {
+      return (
+        <div className="grid grid-cols-3 gap-x-16">
+          {item.children.map((section, sIdx) => (
+            <div key={sIdx} className="pl-2">
+              <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">
+                {section.label[lang]}
+              </h4>
+              {section.children ? (
+                <ul className="space-y-2">
+                  {section.children.map((link, lIdx) => (
+                    <li key={lIdx}>
+                      <MenuLink href={link.href} label={link.label[lang]} />
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul className="space-y-2">
+                  <li>
+                    <MenuLink href={section.href} label={section.label[lang]} />
+                  </li>
+                </ul>
+              )}
+            </div>
+          ))}
         </div>
       );
     }
@@ -141,7 +165,13 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean }
       <div className="grid grid-cols-3 gap-12">
         {item.children.map((section, sIdx) => (
           <div key={sIdx}>
-            <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">{section.label[lang]}</h4>
+            <h4
+              className={`text-[14px] font-bold uppercase tracking-[0.8px] mb-6 ${
+                item.label.EN === 'VISITOR' ? 'text-gray-800' : 'text-[#A51C30]'
+              }`}
+            >
+              {section.label[lang]}
+            </h4>
             {section.children && (
               <ul className="space-y-2">
                 {section.children.map((link, lIdx) => (
@@ -342,7 +372,7 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
         </div>
 
         {/* The Mega Menus are now triggered from within the relative nav container's absolute positioning context */}
-        <div className="absolute top-full left-0 w-full flex justify-center pointer-events-none">
+        <div className="absolute top-full left-0 w-full flex justify-center pointer-events-auto">
           {NAV_ITEMS.map((item, idx) => (
             <div key={idx} className="pointer-events-auto">
               <MegaMenuPanel 
@@ -360,6 +390,15 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
             isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
+          <div className="flex justify-end mb-6">
+            <button
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="p-3 rounded-full border border-gray-200 text-gray-900 hover:text-[#A51C30] hover:border-[#A51C30] transition-colors"
+              aria-label="Close mobile menu"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
           <div className="flex flex-col space-y-4">
             {NAV_ITEMS.map((item, idx) => (
               <div key={idx} className="border-b border-gray-50 pb-3">

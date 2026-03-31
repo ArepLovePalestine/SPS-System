@@ -9,7 +9,7 @@ interface QuickAccessProps {
 
 const QuickAccess: React.FC<QuickAccessProps> = ({ lang }) => {
   const content = {
-    sectionTitle: { EN: 'Gateways', BM: 'Gerbang Akses' },
+    sectionTitle: { EN: 'Quick Access', BM: 'Gerbang Akses' },
     apply: {
       title: { EN: 'Apply Now', BM: 'Mohon Sekarang' },
       desc: { 
@@ -81,10 +81,15 @@ const QuickAccess: React.FC<QuickAccessProps> = ({ lang }) => {
               </p>
               
               <div className="mt-auto">
-                <button className="w-full py-5 border border-white/10 text-white text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-[#A51C30] hover:border-[#A51C30] transition-all duration-500 flex items-center justify-center space-x-4">
+                <a
+                  href="https://portal.utem.edu.my/admission/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-5 border border-white/10 text-white text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-[#A51C30] hover:border-[#A51C30] transition-all duration-500 flex items-center justify-center space-x-4"
+                >
                   <span>{content.apply.cta[lang]}</span>
                   <ArrowRight size={14} />
-                </button>
+                </a>
               </div>
             </div>
 

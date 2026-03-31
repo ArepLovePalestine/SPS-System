@@ -28,7 +28,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ lang }) => {
   const current = GRADUATE_TESTIMONIALS[activeIndex];
 
   return (
-    <section className="py-32 bg-[#F9F7F5] overflow-hidden relative group">
+    <section className="py-32 bg-[#F9F7F5] relative group overflow-visible">
       {/* Background Decorative Wavy Pattern (subtle) */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
         <svg className="w-full h-full" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +50,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ lang }) => {
                 <img 
                   src={current.image} 
                   alt={current.name}
-                  className="w-full h-full object-cover grayscale-[0.2]"
+                  className="w-full h-full object-contain grayscale-[0.2] transform translate-y-1"
                 />
               </div>
               {/* Speech bubble tail pointer */}
@@ -88,13 +88,17 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ lang }) => {
             {/* University Logos (Top Right) */}
             <div className="hidden lg:flex flex-col items-end gap-2 opacity-80">
                <div className="flex items-center gap-4">
-                 <div className="h-10 w-auto">
-                    <span className="font-serif font-bold text-navy-900 text-xl">UTeM</span>
-                 </div>
+                 <img 
+                    src="/images/homepages/Utem logo.png" 
+                    alt="UTeM logo" 
+                    className="h-10 w-auto object-contain"
+                 />
                  <div className="w-[1px] h-8 bg-gray-300"></div>
-                 <div className="h-10 w-auto">
-                    <span className="font-serif font-bold text-[#A51C30] text-xl italic">SPS</span>
-                 </div>
+                 <img 
+                    src="/images/homepages/SPS logo.png" 
+                    alt="SPS logo" 
+                    className="h-10 w-auto object-contain"
+                 />
                </div>
                <span className="text-[8px] tracking-widest text-gray-400 font-bold">SCHOOL OF GRADUATE STUDIES</span>
             </div>
@@ -105,7 +109,7 @@ const TestimonialSection: React.FC<TestimonialSectionProps> = ({ lang }) => {
         <div className={`relative bg-[#A51C30] rounded-[3rem] p-10 md:p-16 shadow-2xl transition-all duration-1000 delay-150 ease-in-out ${
           isAnimating ? 'opacity-0 scale-95 translate-y-10 blur-md' : 'opacity-100 scale-100 translate-y-0 blur-0'
         }`}>
-          <p className="text-white text-lg md:text-2xl leading-[1.6] font-light text-justify md:text-left italic">
+          <p className="text-white text-base md:text-xl leading-[1.6] font-light text-justify md:text-left italic break-words whitespace-normal overflow-visible">
              &ldquo;{current.quote}&rdquo;
           </p>
           

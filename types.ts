@@ -81,4 +81,6 @@ export interface MQADocument {
   category: 'MQF' | 'Engineering' | 'Computing' | 'Business';
   tag?: 'New' | 'Updated' | 'Popular';
   fileUrl: string;
+  fileSize?: string;
+  publishDate?: string;
 }

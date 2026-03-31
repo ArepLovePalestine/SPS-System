@@ -108,7 +108,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-[#1a1a1a]">
         <div className="absolute inset-0 opacity-40">
           <img 
-            src="https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop" 
+            src="/images/homepages/About-us.jpeg" 
             alt="Campus" 
             className="w-full h-full object-cover"
           />

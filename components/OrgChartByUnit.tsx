@@ -22,40 +22,40 @@ const OrgChartByUnit: React.FC<OrgChartByUnitProps> = ({ lang }) => {
       id: 'admin-finance',
       title: { EN: 'Administration & Finance Unit', BM: 'Unit Pentadbiran & Kewangan' },
       icon: Layout,
-      image: 'https://picsum.photos/seed/unit-admin/1200/800',
+      image: '/images/about-org-chart-unit/org-by-unit-pic-1.jpeg',
       staff: {
-        EN: ['Head of Unit', 'Senior Administrative Assistant', 'Financial Clerk', 'Office Assistant'],
-        BM: ['Ketua Unit', 'Pembantu Tadbir Kanan', 'Kerani Kewangan', 'Pembantu Operasi']
+        EN: ['Deputy Registrar', 'Senior Administrative Assistant', 'Assistant Engineer', 'General Office Assistant'],
+        BM: ['Timbalan Pendaftar', 'Pembantu Tadbir Kanan', 'Penolong Jurutera', 'Pembantu Pejabat']
       }
     },
     {
       id: 'academic',
       title: { EN: 'Academic Unit', BM: 'Unit Akademik' },
       icon: BookOpen,
-      image: 'https://picsum.photos/seed/unit-academic/1200/800',
+      image: '/images/about-org-chart-unit/org-by-unit-pic-2.jpeg',
       staff: {
-        EN: ['Head of Unit', 'Academic Registrar', 'Examination Officer', 'Admission Assistant'],
-        BM: ['Ketua Unit', 'Pendaftar Akademik', 'Pegawai Peperiksaan', 'Pembantu Kemasukan']
+        EN: ['Senior Assistant Registrar', 'Senior Administrative Assistant', 'Senior Administrative Assistant', '-'],
+        BM: ['Penolong Pendaftar Kanan', 'Pembantu Tadbir Kanan', 'Pembantu Tadbir Kanan', '-']
       }
     },
     {
       id: 'research',
-      title: { EN: 'Research Unit', BM: 'Unit Penyelidikan' },
+      title: { EN: 'Examination and Scholarship Unit', BM: 'Unit Peperiksaan dan Biasiswa' },
       icon: Microscope,
-      image: 'https://picsum.photos/seed/unit-research/1200/800',
+      image: '/images/about-org-chart-unit/org-by-unit-pic-3.jpeg',
       staff: {
-        EN: ['Head of Unit', 'Research Coordinator', 'Thesis Manager', 'Grant Administrator'],
-        BM: ['Ketua Unit', 'Penyelaras Penyelidikan', 'Pengurus Tesis', 'Pentadbir Geran']
+        EN: ['Assistant Registrar', 'Assistant Administrative Officer', 'Administrative Assistant'],
+        BM: ['Penolong Pendaftar', 'Penolong Pegawai Tadbir', 'Pembantu Tadbir']
       }
     },
     {
       id: 'student-affairs',
       title: { EN: 'Student Affairs Unit', BM: 'Unit Hal Ehwal Pelajar' },
       icon: UserCircle,
-      image: 'https://picsum.photos/seed/unit-student/1200/800',
+      image: '',
       staff: {
         EN: ['Head of Unit', 'Student Welfare Officer', 'International Student Liaison', 'Activity Coordinator'],
-        BM: ['Ketua Unit', 'Pegawai Kebajikan Pelajar', 'Perhubungan Pelajar Antarabangsa', 'Penyelaras Aktiviti']
+        BM: ['Ketua Unit', 'Pegawai Kebajikan Pelajar', 'Pegawai Perhubungan Pelajar Antarabangsa', 'Penyelaras Aktiviti']
       }
     }
   ];

@@ -3,16 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Mail, ChevronRight, Briefcase, ListChecks, Phone } from 'lucide-react';
 import { Language } from '../types';
-import JeefferieImg from '../images/about-pic/Jeefferie.jpeg';
-import JunaidahImg from '../images/about-pic/Junaidah.jpeg';
-import SyarinImg from '../images/about-pic/Syarin.jpeg';
-import IduraImg from '../images/about-pic/Idura.jpeg';
-import AzmanImg from '../images/about-pic/Azman.jpeg';
-import ZurianaImg from '../images/about-pic/Zuriana.jpeg';
-import AizaImg from '../images/about-pic/Aiza.jpeg';
-import AswadiImg from '../images/about-pic/Aswadi.jpeg';
-import FadhilImg from '../images/about-pic/Fadhil.jpeg';
-import AfiqahImg from '../images/about-pic/Afiqah.jpeg';
 
 interface StaffMember {
   id: number;
@@ -65,7 +55,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: 'jeefferie@utem.edu.my',
-      image: JeefferieImg
+      image: '/images/about-pic/Jeefferie.jpeg'
     },
     {
       id: 2,
@@ -92,7 +82,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: 'junaidahkasim@utem.edu.my',
-      image: JunaidahImg
+      image: '/images/about-pic/Junaidah.jpeg'
     },
     {
       id: 3,
@@ -113,7 +103,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: 'syarin@utem.edu.my',
-      image: SyarinImg
+      image: '/images/about-pic/Syarin.jpeg'
     },
     {
       id: 4,
@@ -136,7 +126,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: 'idura@utem.edu.my',
-      image: IduraImg
+      image: '/images/about-pic/Idura.jpeg'
     },
     {
       id: 5,
@@ -147,7 +137,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         BM: ['Oral Examination Process (Viva-Voce)', 'E-viva System']
       },
       email: 'noorazman@utem.edu.my',
-      image: AzmanImg
+      image: '/images/about-pic/Azman.jpeg'
     },
     {
       id: 6,
@@ -156,11 +146,11 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       responsibilities: { EN: ['Secretarial Matters'], BM: ['Secretarial Matters'] },
       email: 'zuriana@utem.edu.my',
       phone: '06-229 2307',
-      image: ZurianaImg
+      image: '/images/about-pic/Zuriana.jpeg'
     },
     {
       id: 7,
-      name: 'Mrs. Aiza Azwadi binti Abdul Wahab',
+      name: 'Nooraznina Irma Binti Mustafa',
       position: { EN: 'Senior Administrative Assistant (Academic)', BM: 'Senior Administrative Assistant (Academic)' },
       responsibilities: {
         EN: [
@@ -176,18 +166,18 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       },
       email: 'aznina@utem.edu.my',
       phone: '06-229 2307',
-      image: AizaImg
+      image: '/images/about-pic/Noraznina.jpeg'
     },
     {
       id: 8,
-      name: 'Mr. Aswadi',
+      name: 'Mrs. Aiza Azwadi binti Abdul Wahab',
       position: { EN: 'Senior Administrative Assistant (Academic)', BM: 'Senior Administrative Assistant (Academic)' },
       responsibilities: {
         EN: ['Offer Letter Status', 'Students Application Status', 'Appointment of Supervisor'],
         BM: ['Offer Letter Status', 'Students Application Status', 'Appointment of Supervisor']
       },
       email: 'aswadi@utem.edu.my',
-      image: AswadiImg
+      image: '/images/about-pic/Aswadi.jpeg'
     },
     {
       id: 9,
@@ -199,7 +189,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       },
       email: 'fadhil@utem.edu.my',
       phone: '012-9255100',
-      image: FadhilImg
+      image: '/images/about-pic/Fadhil.jpeg'
     },
     {
       id: 10,
@@ -220,7 +210,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: 'nur.afiqah@utem.edu.my',
-      image: AfiqahImg
+      image: '/images/about-pic/Afiqah.jpeg'
     }
   ];
 
@@ -230,7 +220,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       <section className="relative h-[420px] flex items-end pb-16 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2070&auto=format&fit=crop"
+            src="/images/homepages/PIC.jpg"
             alt="Person in Charge"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
@@ -260,9 +250,9 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       </section>
 
       {/* Staff Grid Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-stretch">
             {staffData.map((staff, index) => (
               <motion.div
                 key={staff.id}
@@ -270,31 +260,30 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group flex flex-col"
+                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group flex flex-col h-full max-w-sm w-full mx-auto"
               >
-                <div className="aspect-[4/5] overflow-hidden relative">
+                <div className="h-60 bg-white flex items-center justify-center rounded-t-2xl overflow-hidden">
                   <img
                     src={staff.image}
                     alt={staff.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                    className="max-h-full max-w-full object-contain object-center transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
 
-                <div className="p-8 flex-grow flex flex-col">
-                  <div className="mb-6">
+                <div className="p-5 flex-grow flex flex-col">
+                  <div className="mb-4">
                     <div className="flex items-center space-x-2 text-[#A51C30] mb-2">
                       <Briefcase size={14} />
                       <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
                         {staff.position[lang]}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-900 uppercase leading-tight mb-2">
+                    <h3 className="text-base md:text-lg font-bold text-gray-900 uppercase leading-tight mb-2">
                       {staff.name}
                     </h3>
                   </div>
 
-                  <div className="space-y-6 flex-grow">
+                  <div className="space-y-4 flex-grow">
                     <div>
                       <div className="flex items-center space-x-2 text-gray-400 mb-3">
                         <ListChecks size={14} />
@@ -313,7 +302,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
                     </div>
                   </div>
 
-                  <div className="mt-8 pt-6 border-t border-gray-50 space-y-2">
+                  <div className="mt-6 pt-4 border-t border-gray-50 space-y-2">
                     <div className="flex items-center space-x-2 text-gray-400">
                       <Mail size={14} />
                       <span className="text-[10px] font-bold uppercase tracking-widest">

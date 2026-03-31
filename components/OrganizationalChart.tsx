@@ -10,15 +10,25 @@ interface OrganizationalChartProps {
 
 const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
   const content = {
+    about: { EN: 'About Us', BM: 'Tentang Kami' },
     title: { EN: 'Organizational Chart', BM: 'Carta Organisasi' },
     subtitle: { 
       EN: 'School of Graduate Studies Leadership Structure', 
       BM: 'Struktur Kepimpinan Pusat Pengajian Siswazah' 
     },
     downloadBtn: { EN: 'Download PDF Chart', BM: 'Muat Turun Carta PDF' },
+    clickToEnlarge: { EN: 'Click to Enlarge', BM: 'Klik untuk Besarkan' },
     description: {
       EN: 'The organizational structure of the School of Graduate Studies (SPS) is designed to provide efficient management and support for all postgraduate academic and research activities at UTeM.',
       BM: 'Struktur organisasi Pusat Pengajian Siswazah (SPS) direka untuk menyediakan pengurusan dan sokongan yang cekap bagi semua aktiviti akademik dan penyelidikan pascasiswazah di UTeM.'
+    },
+    infoCards: {
+      formatTitle: { EN: 'Format', BM: 'Format' },
+      formatValue: { EN: 'PDF Document (High Resolution)', BM: 'Dokumen PDF (Resolusi Tinggi)' },
+      updatedTitle: { EN: 'Last Updated', BM: 'Kemas Kini Terakhir' },
+      updatedValue: { EN: 'January 2024', BM: 'Januari 2024' },
+      fileSizeTitle: { EN: 'File Size', BM: 'Saiz Fail' },
+      fileSizeValue: { EN: '2.4 MB', BM: '2.4 MB' }
     }
   };
 
@@ -35,7 +45,7 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="space-y-4">
               <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                <span>{lang === 'EN' ? 'About Us' : 'Tentang Kami'}</span>
+                <span>{content.about[lang]}</span>
                 <ChevronRight size={10} />
                 <span className="text-[#A51C30]">{content.title[lang]}</span>
               </nav>
@@ -94,7 +104,7 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
                 <div className="bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-2xl flex items-center space-x-2">
                   <Users size={16} className="text-[#A51C30]" />
                   <span className="text-xs font-bold uppercase tracking-widest text-gray-900">
-                    {lang === 'EN' ? 'Click to Enlarge' : 'Klik untuk Besarkan'}
+                    {content.clickToEnlarge[lang]}
                   </span>
                 </div>
               </div>
@@ -106,8 +116,8 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
                   <FileText size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider mb-1">Format</h4>
-                  <p className="text-gray-500 text-sm">PDF Document (High Resolution)</p>
+                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider mb-1">{content.infoCards.formatTitle[lang]}</h4>
+                  <p className="text-gray-500 text-sm">{content.infoCards.formatValue[lang]}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -115,8 +125,8 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
                   <Users size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider mb-1">Last Updated</h4>
-                  <p className="text-gray-500 text-sm">January 2024</p>
+                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider mb-1">{content.infoCards.updatedTitle[lang]}</h4>
+                  <p className="text-gray-500 text-sm">{content.infoCards.updatedValue[lang]}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4">
@@ -124,8 +134,8 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
                   <Download size={20} />
                 </div>
                 <div>
-                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider mb-1">File Size</h4>
-                  <p className="text-gray-500 text-sm">2.4 MB</p>
+                  <h4 className="font-bold text-sm text-gray-900 uppercase tracking-wider mb-1">{content.infoCards.fileSizeTitle[lang]}</h4>
+                  <p className="text-gray-500 text-sm">{content.infoCards.fileSizeValue[lang]}</p>
                 </div>
               </div>
             </div>
