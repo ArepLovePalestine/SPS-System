@@ -75,11 +75,11 @@ export const NAV_ITEMS: NavItem[] = [
         label: { EN: 'Download Forms', BM: 'Muat Turun Borang' }, 
         href: '/resources',
         children: [
-          { label: { EN: 'Academic Forms', BM: 'Borang Akademik' }, href: '#' },
-          { label: { EN: 'Research Proposal Template', BM: 'Templat Cadangan Penyelidikan' }, href: '#' },
-          { label: { EN: 'Thesis Forms & Template', BM: 'Borang & Templat Tesis' }, href: '#' },
-          { label: { EN: 'Financial Forms', BM: 'Borang Kewangan' }, href: '#' },
-          { label: { EN: 'ISO Forms & Template', BM: 'Borang & Templat ISO' }, href: '#' },
+          { label: { EN: 'Academic Forms', BM: 'Borang Akademik' }, href:'/resources/academic-forms' },
+          { label: { EN: 'Research Proposal Template', BM: 'Templat Cadangan Penyelidikan' }, href: '/resources/research-proposal' },
+          { label: { EN: 'Thesis Forms & Template', BM: 'Borang & Templat Tesis' }, href: '/resources/thesis-forms' },
+          { label: { EN: 'Financial Forms', BM: 'Borang Kewangan' }, href: '/resources/financial-forms' },
+          { label: { EN: 'ISO Forms & Template', BM: 'Borang & Templat ISO' }, href: '/resources/iso-forms' },
         ]
       },
       { 

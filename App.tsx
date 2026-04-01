@@ -29,6 +29,7 @@ import Facilities from './components/Facilities';
 import Resources from './components/Resources';
 import CalendarPage from './components/Calendar';
 import Regulations from './components/Regulations';
+import DocumentSystem from './components/DocumentSystem';
 import AnnouncementPopup from './components/AnnouncementPopup';
 import ScrollToTop from './components/ScrollToTop';
 import { Language } from './types';
@@ -91,9 +92,51 @@ const App: React.FC = () => {
             <Route path="/calendar" element={<CalendarPage lang={lang} />} />
             <Route path="/regulations" element={<Regulations lang={lang} />} />
             <Route path="/student/future/research" element={<StudentResearchHub />} />
+          
+                        {/* Document System Pages */}
+            <Route path="/resources/academic-forms" element={
+              <DocumentSystem 
+                lang={lang} 
+                title={{ EN: 'Academic Forms', BM: 'Borang Akademik' }}
+                subtitle={{ EN: 'Access official academic forms for postgraduate students.', BM: 'Akses borang akademik rasmi untuk pelajar pascasiswazah.' }}
+                initialCategory="Academic"
+              />
+            } />
+            <Route path="/resources/research-proposal" element={
+              <DocumentSystem 
+                lang={lang} 
+                title={{ EN: 'Research Proposal Templates', BM: 'Templat Cadangan Penyelidikan' }}
+                subtitle={{ EN: 'Standardized templates for research proposal submission.', BM: 'Templat standard untuk penyerahan cadangan penyelidikan.' }}
+                initialCategory="Research Proposal"
+              />
+            } />
+            <Route path="/resources/thesis-forms" element={
+              <DocumentSystem 
+                lang={lang} 
+                title={{ EN: 'Thesis Forms & Templates', BM: 'Borang & Templat Tesis' }}
+                subtitle={{ EN: 'Official forms and templates for thesis preparation and submission.', BM: 'Borang dan templat rasmi untuk penyediaan dan penyerahan tesis.' }}
+                initialCategory="Thesis"
+              />
+            } />
+            <Route path="/resources/financial-forms" element={
+              <DocumentSystem 
+                lang={lang} 
+                title={{ EN: 'Financial Forms', BM: 'Borang Kewangan' }}
+                subtitle={{ EN: 'Forms for financial assistance, claims, and funding applications.', BM: 'Borang untuk bantuan kewangan, tuntutan, dan permohonan pembiayaan.' }}
+                initialCategory="Financial"
+              />
+            } />
+            <Route path="/resources/iso-forms" element={
+              <DocumentSystem 
+                lang={lang} 
+                title={{ EN: 'ISO Forms & Templates', BM: 'Borang & Templat ISO' }}
+                subtitle={{ EN: 'Quality management system documentation and ISO compliance forms.', BM: 'Dokumen sistem pengurusan kualiti dan borang pematuhan ISO.' }}
+                initialCategory="ISO"
+              />
+            } />
           </Routes>
         </main>
-        
+
         {/* Footer */}
         <footer className="bg-[#1a1a1a] text-white py-24 px-8 border-t border-gray-800">
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">

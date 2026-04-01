@@ -30,9 +30,11 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
     {
       title: { EN: 'Forms & Templates', BM: 'Borang & Templat' },
       items: [
-        { EN: 'Registration Forms', BM: 'Borang Pendaftaran' },
-        { EN: 'Financial Aid Forms', BM: 'Borang Bantuan Kewangan' },
-        { EN: 'ISO Documents', BM: 'Dokumen ISO' }
+        { EN: 'Academic Forms', BM: 'Borang Akademik', href: '/resources/academic-forms' },
+        { EN: 'Research Proposal Templates', BM: 'Templat Cadangan Penyelidikan', href: '/resources/research-proposal' },
+        { EN: 'Thesis Forms & Templates', BM: 'Borang & Templat Tesis', href: '/resources/thesis-forms' },
+        { EN: 'Financial Forms', BM: 'Borang Kewangan', href: '/resources/financial-forms' },
+        { EN: 'ISO Forms & Templates', BM: 'Borang & Templat ISO', href: '/resources/iso-forms' }
       ]
     }
   ];
