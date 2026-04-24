@@ -23,7 +23,7 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
     { id: 1, year: "2012", name: "MOHD SUHAIRI BIN MOHD SAAD", position: { EN: "Administrative Assistant", BM: "Pembantu Tadbir" }, image: "/images/about-staff/Suhairi.jpeg" },
     { id: 2, year: "2013", name: "NORERNI BINTI A. RAHMAN", position: { EN: "Office Secretary", BM: "Setiausaha Pejabat" }, image: "/images/about-staff/Noerni.jpeg" },
     { id: 3, year: "2014", name: "PM DR. SAJAHAN BIN MAIDIN", position: { EN: "Deputy Dean", BM: "Timbalan Dekan" }, image: "/images/about-staff/Sajahan.jpeg" },
-    { id: 4, year: "2015", name: "NORSUHADA BINTI MANSOR", position: { EN: "Assistant Registrar", BM: "Penolong Pendaftar" }, image: "/images/about-staff/Safuan.jpeg" },
+    { id: 4, year: "2015", name: "NORSUHADA BINTI MANSOR", position: { EN: "Assistant Registrar", BM: "Penolong Pendaftar" }, image: "/images/about-staff/Suhada.jpeg" },
     { id: 5, year: "2016", name: "MOHD ADZNAN BIN MOHD NAYAN", position: { EN: "Assistant Registrar", BM: "Penolong Pendaftar" }, image: "/images/about-staff/Adznan.jpeg" },
     { id: 6, year: "2017", name: "PM DR. TAY CHOO CHUAN", position: { EN: "Deputy Dean", BM: "Timbalan Dekan" }, image: "/images/about-staff/Tay.jpeg" },
     { id: 7, year: "2018", name: "SAFUAN BIN BIDIN", position: { EN: "Senior Administrative Assistant", BM: "Pembantu Tadbir Kanan" }, image: "/images/about-staff/Safuan.jpeg" },
@@ -59,7 +59,8 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
   return (
     <div className="pt-24 pb-20 min-h-screen bg-white">
       {/* Header Section */}
-      <section className="py-12 px-8 lg:px-12 max-w-7xl mx-auto">
+      <section className="py-12 px-8 lg:px-12 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-gray-100 pb-8">
           <div className="space-y-2">
             <h1 className="text-2xl font-bold tracking-tight text-[#A51C30] flex items-center">
@@ -87,6 +88,7 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
               ))}
             </select>
           </div>
+        </div>
         </div>
       </section>
 
@@ -149,7 +151,7 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
                       <img 
                         src={recipient.image} 
                         alt={recipient.name} 
-                        className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                        className="w-full h-full object-cover grayscale-0 filter-none transition-all duration-700"
                         referrerPolicy="no-referrer"
                       />
                     </div>

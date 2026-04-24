@@ -1,7 +1,7 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Download, Users, ChevronRight, FileText } from 'lucide-react';
+import { Download, Users, ChevronRight, FileText, X } from 'lucide-react';
 import { Language } from '../types';
 
 interface OrganizationalChartProps {
@@ -9,6 +9,8 @@ interface OrganizationalChartProps {
 }
 
 const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
+  const [isEnlargedOpen, setIsEnlargedOpen] = useState(false);
+  const chartImageSrc = '/images/about-org-chart/Organization_Charttt.jpg';
   const content = {
     about: { EN: 'About Us', BM: 'Tentang Kami' },
     title: { EN: 'Organizational Chart', BM: 'Carta Organisasi' },
@@ -16,7 +18,6 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
       EN: 'School of Graduate Studies Leadership Structure', 
       BM: 'Struktur Kepimpinan Pusat Pengajian Siswazah' 
     },
-    downloadBtn: { EN: 'Download PDF Chart', BM: 'Muat Turun Carta PDF' },
     clickToEnlarge: { EN: 'Click to Enlarge', BM: 'Klik untuk Besarkan' },
     description: {
       EN: 'The organizational structure of the School of Graduate Studies (SPS) is designed to provide efficient management and support for all postgraduate academic and research activities at UTeM.',
@@ -26,15 +27,10 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
       formatTitle: { EN: 'Format', BM: 'Format' },
       formatValue: { EN: 'PDF Document (High Resolution)', BM: 'Dokumen PDF (Resolusi Tinggi)' },
       updatedTitle: { EN: 'Last Updated', BM: 'Kemas Kini Terakhir' },
-      updatedValue: { EN: 'January 2024', BM: 'Januari 2024' },
+      updatedValue: { EN: 'March 2026', BM: 'Mac 2026' },
       fileSizeTitle: { EN: 'File Size', BM: 'Saiz Fail' },
-      fileSizeValue: { EN: '2.4 MB', BM: '2.4 MB' }
+      fileSizeValue: { EN: '183 KB', BM: '183 KB' }
     }
-  };
-
-  const handleDownload = () => {
-    // In a real app, this would be a link to a PDF file
-    alert(lang === 'EN' ? 'Downloading Organizational Chart PDF...' : 'Memuat turun PDF Carta Organisasi...');
   };
 
   return (
@@ -66,17 +62,6 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
               </motion.p>
             </div>
             
-            <motion.button
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={handleDownload}
-              className="flex items-center space-x-3 bg-[#A51C30] text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-xs shadow-lg shadow-maroon-900/20 hover:bg-[#800000] transition-all"
-            >
-              <Download size={18} />
-              <span>{content.downloadBtn[lang]}</span>
-            </motion.button>
           </div>
         </div>
       </section>
@@ -90,13 +75,12 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
             transition={{ delay: 0.2 }}
             className="bg-white p-4 md:p-12 rounded-3xl shadow-xl border border-gray-100 overflow-hidden"
           >
-            <div className="relative group cursor-zoom-in">
+            <div className="relative group cursor-zoom-in" onClick={() => setIsEnlargedOpen(true)}>
               {/* Placeholder for the actual chart image */}
               <img 
-                src="https://picsum.photos/seed/utem-org/1600/1200" 
+                src={chartImageSrc} 
                 alt="UTeM SPS Organizational Chart" 
                 className="w-full h-auto rounded-xl shadow-sm"
-                referrerPolicy="no-referrer"
               />
               
               {/* Overlay info */}
@@ -142,6 +126,32 @@ const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
           </motion.div>
         </div>
       </section>
+
+      {isEnlargedOpen && (
+        <div className="fixed inset-0 z-[220] flex items-center justify-center p-4 md:p-8">
+          <div
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            onClick={() => setIsEnlargedOpen(false)}
+          />
+          <div className="relative z-10 w-full max-w-7xl">
+            <button
+              type="button"
+              onClick={() => setIsEnlargedOpen(false)}
+              className="absolute top-4 right-4 md:top-6 md:right-6 z-20 p-3 rounded-full bg-white/95 text-gray-900 shadow-lg hover:text-[#A51C30] transition-colors"
+              aria-label={lang === 'EN' ? 'Close enlarged image' : 'Tutup imej diperbesarkan'}
+            >
+              <X size={22} />
+            </button>
+            <div className="bg-white/5 rounded-3xl p-3 md:p-5">
+              <img
+                src={chartImageSrc}
+                alt="UTeM SPS Organizational Chart Enlarged"
+                className="w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

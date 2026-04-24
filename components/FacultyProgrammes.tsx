@@ -2,13 +2,79 @@
 import React from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ChevronRight, BookOpen, Search, GraduationCap, Settings, ArrowRight, ExternalLink, Clock, DollarSign } from 'lucide-react';
-import { Language, Programme } from '../types';
-import { faculties } from './FacultyDashboard';
+import { ChevronRight, BookOpen, Search, GraduationCap, Settings, ArrowRight, ExternalLink, Clock, DollarSign, Mail, Phone, Globe } from 'lucide-react';
+import { FacultyDetail, Language, Programme } from '../types';
+import FTKMImg from '../images/Faculty_TaughtCourse/FTKM.jpeg';
+import FTKEImg from '../images/Faculty_TaughtCourse/FTKE.jpeg';
+import FTMKImg from '../images/Faculty_TaughtCourse/FTMK.jpeg';
+import FPTTImg from '../images/Faculty_TaughtCourse/FPTT.jpeg';
+import FTKEKImg from '../images/Faculty_TaughtCourse/FTKEK.jpeg';
+import FTKIPImg from '../images/Faculty_TaughtCourse/FTKIP.jpeg';
+import IPTKImg from '../images/Faculty_TaughtCourse/IPTK.jpeg';
+import FTMKPagePic from '../images/Faculty_TaughtCourse/EachPagePic/FTMK_pic.jpg';
 
 interface FacultyProgrammesProps {
   lang: Language;
 }
+
+const faculties: FacultyDetail[] = [
+  {
+    id: 'fkm',
+    shortName: 'FTKM',
+    fullName: { EN: 'Faculty of Mechanical Technology and Engineering (FTKM)', BM: 'Fakulti Teknologi dan Kejuruteraan Mekanikal (FTKM)' },
+    image: FTKMImg,
+    bannerImage: FTKMImg
+  },
+  {
+    id: 'fke',
+    shortName: 'FTKE',
+    fullName: { EN: 'Faculty of Electrical Technology and Engineering (FTKE)', BM: 'Fakulti Teknologi dan Kejuruteraan Elektrik (FTKE)' },
+    image: FTKEImg,
+    bannerImage: FTKEImg
+  },
+  {
+    id: 'ftmk',
+    shortName: 'FTMK',
+    fullName: { EN: 'Faculty of Information and Communications Technology (FTMK)', BM: 'Fakulti Teknologi Maklumat dan Komunikasi (FTMK)' },
+    image: FTMKImg,
+    bannerImage: FTMKPagePic
+  },
+  {
+    id: 'fptt',
+    shortName: 'FPTT',
+    fullName: { EN: 'Faculty of Technology Management and Technopreneurship (FPTT)', BM: 'Fakulti Pengurusan Teknologi dan Teknokeusahawanan (FPTT)' },
+    image: FPTTImg,
+    bannerImage: FPTTImg
+  },
+  {
+    id: 'fkp',
+    shortName: 'FTKIP',
+    fullName: { EN: 'Faculty of Industrial and Manufacturing Technology and Engineering (FTKIP)', BM: 'Fakulti Teknologi dan Kejuruteraan Industri dan Pembuatan (FTKIP)' },
+    image: FTKIPImg,
+    bannerImage: FTKIPImg
+  },
+  {
+    id: 'fkekk',
+    shortName: 'FTKEK',
+    fullName: { EN: 'Faculty of Electronics and Technology Computer and Engineering (FTKEK)', BM: 'Fakulti Teknologi dan Kejuruteraan Elektronik dan Komputer (FTKEK)' },
+    image: FTKEKImg,
+    bannerImage: FTKEKImg
+  },
+  {
+    id: 'ftkip',
+    shortName: 'FTKIP',
+    fullName: { EN: 'Faculty of Industrial and Manufacturing Technology and Engineering (FTKIP)', BM: 'Fakulti Teknologi dan Kejuruteraan Industri dan Pembuatan (FTKIP)' },
+    image: FTKIPImg,
+    bannerImage: FTKIPImg
+  },
+  {
+    id: 'iptk',
+    shortName: 'IPTK',
+    fullName: { EN: 'Institute of Technology Management and Entrepreneurship (IPTK)', BM: 'Institut Pengurusan Teknologi dan Keusahawanan (IPTK)' },
+    image: IPTKImg,
+    bannerImage: IPTKImg
+  }
+];
 
 const allProgrammes: Programme[] = [
   // FTMK
@@ -77,6 +143,243 @@ const categories = [
   { id: 'engd', label: { EN: 'DOCTOR OF ENGINEERING', BM: 'DOKTOR KEJURUTERAAN' }, icon: Settings, desc: { EN: 'Professional doctorate for engineering practitioners in industry.', BM: 'Doktorat profesional untuk pengamal kejuruteraan dalam industri.' } }
 ];
 
+type CurriculumGroup = {
+  category: string;
+  selectionNote?: string;
+  entries: Array<{ course: string; credit: string }>;
+};
+
+type DetailedTaughtProgramme = {
+  id: string;
+  title: string;
+  summary: string;
+  durationFullTime: string;
+  durationPartTime: string;
+  totalCredits: string;
+  accreditation?: string;
+  modeLabel?: string;
+  mqaLevel?: string;
+  necField?: string;
+  studyMode?: string;
+  programmeType?: string;
+  fees?: {
+    malaysian: string;
+    international: string;
+  };
+  structure: CurriculumGroup[];
+};
+
+const FTKM_TAUGHT_PROGRAMMES: DetailedTaughtProgramme[] = [
+  {
+    id: 'ftkm-energy',
+    title: 'Master of Mechanical Engineering (Energy Engineering)',
+    summary: 'Specialised coursework pathway centred on energy systems, thermal engineering, and sustainable technology applications.',
+    durationFullTime: '1.5 - 2.5 years',
+    durationPartTime: '3 - 5 years',
+    totalCredits: '40',
+    accreditation: 'MQA / FA1498',
+    structure: [
+      { category: 'Compulsory Subjects', entries: [{ course: 'Research Methodology', credit: '3' }] },
+      {
+        category: 'University Elective Subjects',
+        selectionNote: 'Choose one',
+        entries: [
+          { course: 'Entrepreneurship', credit: '3' },
+          { course: 'Engineering & Technology Management', credit: '' },
+          { course: 'Project Management', credit: '' },
+          { course: 'Quality Systems Management', credit: '' }
+        ]
+      },
+      {
+        category: 'Faculty Core',
+        entries: [
+          { course: 'Mechanical System Design', credit: '3' },
+          { course: 'Numerical Analysis', credit: '3' },
+          { course: 'Master Project', credit: '10' }
+        ]
+      },
+      {
+        category: 'Programme Core',
+        entries: [
+          { course: 'Advanced Heat Transfer', credit: '3' },
+          { course: 'Monitoring & Verification', credit: '3' },
+          { course: 'Energy Management', credit: '3' },
+          { course: 'Renewable Energy Technology', credit: '3' },
+          { course: 'Computational Fluid Dynamics', credit: '3' }
+        ]
+      },
+      {
+        category: 'Programme Electives',
+        selectionNote: 'Choose one',
+        entries: [
+          { course: 'Bio-Fuel Technology', credit: '3' },
+          { course: 'Waste Heat Recovery', credit: '' },
+          { course: 'Small Scale Electric Hydro', credit: '' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ftkm-automotive',
+    title: 'Master of Mechanical Engineering (Automotive)',
+    summary: 'Advanced coursework programme focusing on intelligent vehicle systems, performance, and automotive engineering integration.',
+    durationFullTime: '1.5 - 2.5 years',
+    durationPartTime: '3 - 5 years',
+    totalCredits: '40',
+    accreditation: 'MQA / FA1499',
+    structure: [
+      { category: 'Compulsory Subjects', entries: [{ course: 'Research Methodology', credit: '3' }] },
+      {
+        category: 'University Elective Subjects',
+        selectionNote: 'Choose one',
+        entries: [
+          { course: 'Entrepreneurship', credit: '3' },
+          { course: 'Engineering & Technology Management', credit: '' },
+          { course: 'Project Management', credit: '' },
+          { course: 'Quality Systems Management', credit: '' }
+        ]
+      },
+      {
+        category: 'Faculty Core',
+        entries: [
+          { course: 'Mechanical System Design', credit: '3' },
+          { course: 'Numerical Analysis', credit: '3' },
+          { course: 'Master Project', credit: '10' }
+        ]
+      },
+      {
+        category: 'Programme Core',
+        entries: [
+          { course: 'Green Technology Vehicle', credit: '3' },
+          { course: 'Vehicle Electrical & Electronics System', credit: '3' },
+          { course: 'Intelligent Vehicle Control', credit: '3' },
+          { course: 'Noise, Vibration & Harshness', credit: '3' },
+          { course: 'Automotive Human Factor', credit: '3' }
+        ]
+      },
+      {
+        category: 'Programme Electives',
+        selectionNote: 'Choose two',
+        entries: [
+          { course: 'Emission Control Technology', credit: '3' },
+          { course: 'Vehicle Power Train and Driveline', credit: '3' },
+          { course: 'Vehicle Braking System', credit: '' },
+          { course: 'Tyre Behaviour & Performance Control', credit: '' },
+          { course: 'Advanced Vehicle Dynamics', credit: '3' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ftkm-product-design',
+    title: 'Master of Mechanical Engineering (Product Design)',
+    summary: 'Premium design-focused pathway blending product engineering, manufacturing strategy, and reliability-centred design methods.',
+    durationFullTime: '1.5 - 2.5 years',
+    durationPartTime: '3 - 5 years',
+    totalCredits: '40',
+    structure: [
+      { category: 'Compulsory Subjects', entries: [{ course: 'Research Methodology', credit: '3' }] },
+      {
+        category: 'University Elective Subjects',
+        selectionNote: 'Choose one',
+        entries: [
+          { course: 'Entrepreneurship', credit: '3' },
+          { course: 'Engineering & Technology Management', credit: '' },
+          { course: 'Project Management', credit: '' },
+          { course: 'Quality Systems Management', credit: '' }
+        ]
+      },
+      {
+        category: 'Faculty Core',
+        entries: [
+          { course: 'Mechanical System Design', credit: '3' },
+          { course: 'Numerical Analysis', credit: '3' },
+          { course: 'Master Project', credit: '10' }
+        ]
+      },
+      {
+        category: 'Programme Core',
+        entries: [
+          { course: 'Computer Aided Engineering', credit: '3' },
+          { course: 'Time Compression Technologies', credit: '3' },
+          { course: 'Fatigue & Fracture Mechanics', credit: '3' },
+          { course: 'Thermal System Design', credit: '3' }
+        ]
+      },
+      {
+        category: 'Programme Electives',
+        selectionNote: 'Choose two',
+        entries: [
+          { course: 'Industrial & Design Engineering', credit: '3' },
+          { course: 'Human Factors in Design', credit: '3' },
+          { course: 'Product Reliability & Integrity', credit: '' },
+          { course: 'Design for Manufacturing and Assembly', credit: '' }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'ftkm-mechanical',
+    title: 'Master of Mechanical Engineering',
+    summary: 'A contemporary taught-course programme introduced for advanced mechanical engineering practice with flexible registration modes.',
+    durationFullTime: '1 - 2 years',
+    durationPartTime: '2 - 3 years',
+    totalCredits: '40',
+    accreditation: 'MQA / FA10825',
+    modeLabel: 'Taught Course',
+    mqaLevel: '7',
+    necField: '521 - Mechanics and Metal Work',
+    studyMode: 'Full-Time (1-2 years) / Part-Time (2-3 years)',
+    programmeType: 'New taught course programme introduced in 2019',
+    fees: {
+      malaysian: 'RM 8,710.00',
+      international: 'RM 14,710.00'
+    },
+    structure: [
+      { category: 'Compulsory Subjects', entries: [{ course: 'Research Methodology', credit: '3' }] },
+      { category: 'University Elective', entries: [{ course: 'Project Management', credit: '3' }] },
+      {
+        category: 'Programme Core',
+        entries: [
+          { course: 'Numerical Analysis', credit: '3' },
+          { course: 'Mechanical System Design', credit: '3' },
+          { course: 'Applied Heat Transfer', credit: '10' },
+          { course: 'Applied Engineering Statistics', credit: '3' },
+          { course: 'Advanced Material Engineering', credit: '3' },
+          { course: '3D Modelling', credit: '3' },
+          { course: 'Structural Dynamic', credit: '3' }
+        ]
+      },
+      {
+        category: 'Elective',
+        selectionNote: 'Choose one only',
+        entries: [
+          { course: 'Computational Fluid Dynamics', credit: '3' },
+          { course: 'Solid Mechanics Computer Modelling', credit: '' },
+          { course: 'Intelligent Vehicle Control', credit: '' },
+          { course: 'Computer Aided Engineering', credit: '' }
+        ]
+      },
+      {
+        category: 'Master Project',
+        entries: [
+          { course: 'Master Project I', credit: '4' },
+          { course: 'Master Project II', credit: '6' }
+        ]
+      }
+    ]
+  }
+];
+
+const FTKM_CONTACT = {
+  faculty: 'Faculty of Mechanical Technology and Engineering (FTKM)',
+  university: 'Universiti Teknikal Malaysia Melaka (UTeM)',
+  address: 'Hang Tuah Jaya, 76100 Durian Tunggal, Melaka, Malaysia.',
+  phone: '+606-229 2119',
+  email: 'ftkm@utem.edu.my',
+  website: 'https://ftkm.utem.edu.my/'
+};
+
 const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
   const [searchParams] = useSearchParams();
   const facultyId = searchParams.get('faculty');
@@ -88,6 +391,13 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
   if (!faculty) return <div className="pt-40 text-center">Faculty not found</div>;
 
   const filteredProgrammes = allProgrammes.filter(p => p.faculty === facultyId && p.category === categoryId);
+  const isFtkmTaught = facultyId === 'fkm' && categoryId === 'taught';
+  const getSharedSelectionCredit = (group: CurriculumGroup) => {
+    if (!group.selectionNote) return null;
+    const credits = group.entries.map((entry) => entry.credit).filter(Boolean);
+    if (credits.length === 0) return null;
+    return credits.every((credit) => credit === credits[0]) ? credits[0] : null;
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -102,12 +412,11 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#A51C30]/90 to-[#A51C30]/40 mix-blend-multiply" />
         </div>
-
         <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
           <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-8">
             <Link to="/" className="hover:text-white transition-colors">HOME</Link>
             <ChevronRight size={12} />
-            <Link to="/programmes/dashboard" className="hover:text-white transition-colors">PROGRAMMES</Link>
+            <Link to="/programmes" className="hover:text-white transition-colors">PROGRAMMES</Link>
             <ChevronRight size={12} />
             <Link to={`/programmes/faculty?faculty=${facultyId}`} className="hover:text-white transition-colors">{faculty.shortName}</Link>
             {category && (
@@ -164,6 +473,255 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                   </Link>
                 </motion.div>
               ))}
+            </div>
+          ) : isFtkmTaught ? (
+            <div className="space-y-10">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-3xl font-serif font-bold text-gray-900">
+                  {lang === 'EN' ? 'FTKM Taught-Course Portfolio' : 'Portfolio Kerja Kursus FTKM'}
+                </h2>
+                <Link 
+                  to={`/programmes/faculty?faculty=${facultyId}`}
+                  className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
+                >
+                  <ChevronRight size={14} className="rotate-180" />
+                  <span>{lang === 'EN' ? 'Back to Categories' : 'Kembali ke Kategori'}</span>
+                </Link>
+              </div>
+
+              <div className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <div className="mb-5 flex items-center gap-3">
+                    <span className="h-px w-12 bg-[#A51C30]" />
+                    <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                      {lang === 'EN' ? 'Programmes Offered' : 'Program Ditawarkan'}
+                    </span>
+                  </div>
+                  <div className="rounded-full border border-[#A51C30]/15 bg-[#faf7f5] px-4 py-2 text-[10px] font-bold uppercase tracking-[0.22em] text-[#A51C30]">
+                    {lang === 'EN' ? '4 taught-course pathways' : '4 laluan kerja kursus'}
+                  </div>
+                </div>
+                <div className="overflow-hidden rounded-2xl border border-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-[#f4e9e3]">
+                      <tr>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                          {lang === 'EN' ? 'Programme' : 'Program'}
+                        </th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                          {lang === 'EN' ? 'Full Time' : 'Sepenuh Masa'}
+                        </th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">
+                          {lang === 'EN' ? 'Part Time' : 'Separuh Masa'}
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                      {FTKM_TAUGHT_PROGRAMMES.map((programme) => (
+                        <tr key={programme.id}>
+                          <td className="px-5 py-4 text-sm font-medium text-gray-900">{programme.title}</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">{programme.durationFullTime}</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">{programme.durationPartTime}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className="space-y-8">
+                {FTKM_TAUGHT_PROGRAMMES.map((programme, idx) => (
+                  <motion.article
+                    key={programme.id}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.06 }}
+                    className="overflow-hidden rounded-[1.75rem] border border-gray-200 bg-white shadow-sm"
+                  >
+                    <div className="border-b border-gray-200 bg-[#fcfaf8] px-7 py-7">
+                      <div className="flex flex-col gap-8 xl:flex-row xl:items-end xl:justify-between">
+                        <div className="max-w-3xl">
+                          <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                            {programme.programmeType || (lang === 'EN' ? 'Taught-Course Programme' : 'Program Kerja Kursus')}
+                          </div>
+                          <h3 className="font-serif text-3xl font-bold text-gray-900 md:text-4xl">
+                            {programme.title}
+                          </h3>
+                          <p className="mt-4 text-base leading-8 text-gray-600">
+                            {programme.summary}
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3 xl:min-w-[340px]">
+                          <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                            <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">{lang === 'EN' ? 'Full Time' : 'Sepenuh Masa'}</div>
+                            <div className="mt-2 text-sm font-semibold text-gray-900">{programme.durationFullTime}</div>
+                          </div>
+                          <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                            <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">{lang === 'EN' ? 'Part Time' : 'Separuh Masa'}</div>
+                            <div className="mt-2 text-sm font-semibold text-gray-900">{programme.durationPartTime}</div>
+                          </div>
+                          <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                            <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">{lang === 'EN' ? 'Total Credits' : 'Jumlah Kredit'}</div>
+                            <div className="mt-2 text-sm font-semibold text-gray-900">{programme.totalCredits}</div>
+                          </div>
+                          <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                            <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">Accreditation</div>
+                            <div className="mt-2 text-sm font-semibold text-gray-900">{programme.accreditation || '-'}</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {(programme.mqaLevel || programme.necField || programme.studyMode || programme.fees) && (
+                        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                          {programme.mqaLevel && (
+                            <div className="rounded-2xl bg-white px-5 py-4 border border-gray-200">
+                              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">MQA Level</div>
+                              <div className="mt-2 text-sm font-semibold text-gray-900">{programme.mqaLevel}</div>
+                            </div>
+                          )}
+                          {programme.necField && (
+                            <div className="rounded-2xl bg-white px-5 py-4 border border-gray-200">
+                              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">NEC Field</div>
+                              <div className="mt-2 text-sm font-semibold text-gray-900">{programme.necField}</div>
+                            </div>
+                          )}
+                          {programme.studyMode && (
+                            <div className="rounded-2xl bg-white px-5 py-4 border border-gray-200">
+                              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">{lang === 'EN' ? 'Mode of Study' : 'Mod Pengajian'}</div>
+                              <div className="mt-2 text-sm font-semibold text-gray-900">{programme.studyMode}</div>
+                            </div>
+                          )}
+                          {programme.fees && (
+                            <div className="rounded-2xl bg-white px-5 py-4 border border-gray-200">
+                              <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">{lang === 'EN' ? 'Academic Fee' : 'Yuran Akademik'}</div>
+                              <div className="mt-2 text-sm font-semibold text-gray-900">{programme.fees.malaysian}</div>
+                              <div className="text-xs text-gray-500">{lang === 'EN' ? 'Malaysian' : 'Malaysia'}</div>
+                              <div className="mt-3 text-sm font-semibold text-gray-900">{programme.fees.international}</div>
+                              <div className="text-xs text-gray-500">{lang === 'EN' ? 'International' : 'Antarabangsa'}</div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="px-7 py-6">
+                      <div className="mb-3 flex items-center gap-3">
+                        <span className="h-px w-10 bg-[#A51C30]/70" />
+                        <span className="text-[11px] font-bold uppercase tracking-[0.26em] text-[#A51C30]">
+                          {lang === 'EN' ? 'Programme Structure' : 'Struktur Program'}
+                        </span>
+                      </div>
+                      <div className="overflow-hidden rounded-2xl border border-gray-200">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="bg-[#fff34a]">
+                            <tr>
+                              <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.18em] text-gray-900">{lang === 'EN' ? 'Category' : 'Kategori'}</th>
+                              <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.18em] text-gray-900">{lang === 'EN' ? 'Course' : 'Kursus'}</th>
+                              <th className="px-4 py-3 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-gray-900">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-300 bg-[#c7f3f3]">
+                            {programme.structure.map((group) => {
+                              const sharedCredit = getSharedSelectionCredit(group);
+                              return group.entries.map((entry, entryIndex) => (
+                                <tr key={`${group.category}-${entry.course}`} className="align-top">
+                                  {entryIndex === 0 && (
+                                    <td rowSpan={group.entries.length} className="align-top bg-[#c7f3f3] px-4 py-3 text-[13px] font-semibold leading-5 text-gray-900 border-r border-gray-300">
+                                      <div>{group.category}</div>
+                                      {group.selectionNote && (
+                                        <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#A51C30]">
+                                          {group.selectionNote}
+                                        </div>
+                                      )}
+                                    </td>
+                                  )}
+                                  <td className="px-4 py-2.5 text-[13px] leading-5 text-gray-700">{entry.course}</td>
+                                  {sharedCredit ? (
+                                    entryIndex === 0 && (
+                                      <td rowSpan={group.entries.length} className="bg-[#c7f3f3] px-4 py-3 text-center text-[13px] font-semibold leading-5 text-gray-900 border-l border-gray-300 align-middle">
+                                        {sharedCredit}
+                                      </td>
+                                    )
+                                  ) : (
+                                    <td className="px-4 py-2.5 text-center text-[13px] font-semibold leading-5 text-gray-900">{entry.credit}</td>
+                                  )}
+                                </tr>
+                              ));
+                            })}
+                            <tr className="bg-[#98f28c]">
+                              <td colSpan={2} className="px-4 py-3 text-sm font-bold uppercase tracking-[0.16em] text-gray-800">
+                                {lang === 'EN' ? 'Total Credit Hours' : 'Jumlah Jam Kredit'}
+                              </td>
+                              <td className="px-4 py-3 text-center text-sm font-bold text-gray-900">{programme.totalCredits}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </motion.article>
+                ))}
+              </div>
+
+              <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(340px,0.72fr)]">
+                <div className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                  <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                    {lang === 'EN' ? 'Programme Fees' : 'Yuran Program'}
+                  </div>
+                  <h3 className="font-serif text-3xl font-bold text-gray-900 mb-4">Master of Mechanical Engineering</h3>
+                  <p className="text-sm leading-7 text-gray-600 mb-6">
+                    {lang === 'EN'
+                      ? 'Academic fees for the newly introduced Master of Mechanical Engineering taught-course programme.'
+                      : 'Yuran akademik untuk program kerja kursus Sarjana Kejuruteraan Mekanikal yang baharu diperkenalkan.'}
+                  </p>
+                  <div className="overflow-hidden rounded-2xl border border-gray-200">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-[#f4e9e3]">
+                        <tr>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Study Mode' : 'Mod Pengajian'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Full Time' : 'Sepenuh Masa'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Part Time' : 'Separuh Masa'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Malaysian' : 'Malaysia'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'International' : 'Antarabangsa'}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white">
+                        <tr>
+                          <td className="px-5 py-4 text-sm font-semibold text-gray-900">Taught Course</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">1 - 2</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">2 - 3</td>
+                          <td className="px-5 py-4 text-sm text-gray-900">RM 8,710.00</td>
+                          <td className="px-5 py-4 text-sm text-gray-900">RM 14,710.00</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                  <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                    {lang === 'EN' ? 'Further Information' : 'Maklumat Lanjut'}
+                  </div>
+                  <h3 className="font-serif text-3xl font-bold text-gray-900 mb-4">{FTKM_CONTACT.faculty}</h3>
+                  <p className="text-sm leading-7 text-gray-600">
+                    {FTKM_CONTACT.university}<br />
+                    {FTKM_CONTACT.address}
+                  </p>
+                  <div className="mt-8 space-y-4">
+                    <div className="flex items-center gap-4 text-sm text-gray-700">
+                      <Phone size={16} className="text-[#A51C30]" />
+                      <span>{FTKM_CONTACT.phone}</span>
+                    </div>
+                    <a href={`mailto:${FTKM_CONTACT.email}`} className="flex items-center gap-4 text-sm text-gray-700 transition-colors hover:text-[#A51C30]">
+                      <Mail size={16} className="text-[#A51C30]" />
+                      <span>{FTKM_CONTACT.email}</span>
+                    </a>
+                    <a href={FTKM_CONTACT.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-sm text-gray-700 transition-colors hover:text-[#A51C30]">
+                      <Globe size={16} className="text-[#A51C30]" />
+                      <span>{FTKM_CONTACT.website}</span>
+                    </a>
+                  </div>
+                </div>
+              </section>
             </div>
           ) : (
             /* PAGE 3 — Programme List */

@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Target, Eye, Award, BookOpen, Quote } from 'lucide-react';
 import { Language } from '../types';
@@ -9,6 +9,8 @@ interface AboutUsProps {
 }
 
 const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
+  const [isForewordExpanded, setIsForewordExpanded] = useState(false);
+
   const content = {
     hero: {
       EN: { title: 'About Us', subtitle: 'Excellence in Graduate Education' },
@@ -19,12 +21,14 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
         title: "Dean's Foreword",
         name: "Prof. Dr. Masrullizam bin Mat Ibrahim",
         role: "Dean, School of Graduate Studies",
+        summary: "Universiti Teknikal Malaysia Melaka (UTeM) is renowned as Malaysia's first Technical Public University, strategically located in a beautifully landscaped campus just 20 kilometers from the historical city of Melaka. UTeM currently operates from two campuses namely the Main Campus and the Technology Campus. UTeM has six distinct faculties which provide in-depth specialization in engineering, engineering technology, ICT and technology management disciplines along with the Institute of Technology Management and Tecnopreneurship and Centre For Language Learning.\n\nThe faculties are Faculty of Electronics and Computer Technology and Engineering, Faculty of Electrical Technology and Engineering, Faculty of Mechanical Technology and Engineering, Faculty of Industrial and Manufacturing Technology and Engineering, Faculty of Information And Communications Technology and Faculty of Technology Management And Technopreneurship....",
         text: "Universiti Teknikal Malaysia Melaka (UTeM) is renowned as Malaysia's first Technical Public University, strategically located in a beautifully landscaped campus just 20 kilometers from the historical city of Melaka. UTeM currently operates from two campuses namely the Main Campus and the Technology Campus. UTeM has six distinct faculties which provide in-depth specialization in engineering, engineering technology, ICT and technology management disciplines along with the Institute of Technology Management and Tecnopreneurship and Centre For Language Learning.\n\nThe faculties are Faculty of Electronics and Computer Technology and Engineering, Faculty of Electrical Technology and Engineering, Faculty of Mechanical Technology and Engineering, Faculty of Industrial and Manufacturing Technology and Engineering, Faculty of Information And Communications Technology and Faculty of Technology Management And Technopreneurship.\n\nUTeM’s graduate study programs present unique and challenging opportunities for both fresh graduates and professionals seeking to expand their expertise. These programs are designed to offer advanced knowledge across a range of engineering disciplines, ICT, and technology management, while also providing an in-depth focus on management, entrepreneurial skills, and the latest industry trends. The curriculum is structured in alignment with the Malaysian Qualification Agency (MQA) requirements, ensuring graduates are well-equipped with the technical, managerial, and entrepreneurial competencies needed to thrive in today’s rapidly evolving and competitive business landscape.\n\nAt UTeM, graduate students benefit from a wealth of expertise delivered by a highly trained faculty, many of whom hold PhDs and have extensive industry experience. The university is committed to fostering research and innovation, offering state-of-the-art equipment, machinery, and ICT facilities that support both academic learning and practical application. These resources create an ideal environment for students to engage in cutting-edge research and innovation within their chosen fields.\n\nThe university’s diverse student body, representing various cultural and ethnic backgrounds, creates a dynamic and inclusive learning atmosphere where collaboration and intercultural understanding flourish. The School of Graduate Studies plays an integral role in enhancing this global learning environment by organizing both educational and recreational activities that bring students together, fostering a sense of community and cooperation.\n\nWe invite you to explore our Postgraduate Prospectus, which provides detailed information on the graduate study opportunities available at UTeM, designed to cater to the ambitions of prospective students. For further details, please visit our website at www.utem.edu.my.\n\nBy joining UTeM, you will be part of a forward-thinking institution that is shaping the future of technical and professional education."
       },
       BM: {
         title: "Perutusan Dekan",
         name: "Prof. Dr. Masrullizam bin Mat Ibrahim",
         role: "Dekan, Pusat Pengajian Siswazah",
+        summary: "Selamat datang ke Pusat Pengajian Siswazah (SPS) di Universiti Teknikal Malaysia Melaka (UTeM). Kami komited menyediakan persekitaran pascasiswazah yang menyokong kecemerlangan akademik, penyelidikan dan inovasi.",
         text: "Selamat datang ke Pusat Pengajian Siswazah (SPS) di Universiti Teknikal Malaysia Melaka (UTeM). Sebagai universiti teknikal terkemuka, kami komited untuk menyediakan persekitaran yang rancak dan merangsang intelektual bagi pelajar siswazah kami. Misi kami adalah untuk melahirkan pemimpin teknikal dan inovator yang dapat menyumbang secara signifikan kepada industri dan masyarakat global. Di SPS, kami menawarkan pelbagai program Sarjana dan PhD pengkhususan yang menggabungkan latihan akademik yang ketat dengan aplikasi penyelidikan praktikal. Kami menjemput anda untuk menyertai komuniti sarjana kami dan memulakan perjalanan penemuan dan kecemerlangan."
       }
     },
@@ -145,7 +149,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
               <img 
                 src="/images/about/Dean.png"
                 alt="Dean" 
-                className="w-full h-full object-contain grayscale hover:grayscale-0 transition-all duration-700"
+                className="w-full h-full object-contain grayscale-0 filter-none transition-all duration-700"
               />
             </div>
             <div className="absolute -bottom-8 -right-8 bg-[#A51C30] p-8 rounded-xl text-white shadow-xl max-w-xs">
@@ -160,7 +164,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="space-y-7"
           >
             <div>
               <h2 className="text-sm font-bold uppercase tracking-[0.3em] text-[#A51C30] mb-4">
@@ -173,24 +177,36 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
                 {content.foreword[lang].role}
               </p>
             </div>
-            <div className="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base font-light">
-              {content.foreword[lang].text.split('\n\n').map((para, idx) => (
-                <p key={idx} className="max-w-3xl">
-                  {para}
+            <div className="max-w-3xl space-y-5 text-left">
+              <div className="space-y-4 text-gray-700 leading-relaxed text-sm md:text-base font-light">
+                {(isForewordExpanded ? content.foreword[lang].text : content.foreword[lang].summary).split('\n\n').map((para, idx) => (
+                  <p key={idx}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+              <button
+                type="button"
+                aria-expanded={isForewordExpanded}
+                onClick={() => setIsForewordExpanded((current) => !current)}
+                className="inline-flex items-center text-[10px] font-bold uppercase tracking-[0.25em] text-[#A51C30] transition-all duration-300 hover:text-[#7f1626] hover:underline underline-offset-4"
+              >
+                {isForewordExpanded
+                  ? (lang === 'EN' ? 'Read Less' : 'Ringkaskan')
+                  : (lang === 'EN' ? 'Read More' : 'Baca Lagi')}
+              </button>
+              <div className="pt-5">
+                <div className="h-px w-32 bg-gray-200 mb-6" />
+                <p className="font-serif text-base md:text-lg text-gray-400 italic leading-relaxed">
+                  Prof. Dr. Masrullizam bin Mat Ibrahim
+                  <br />
+                  Dean,
+                  <br />
+                  School Of Graduate Studies
+                  <br />
+                  Universiti Teknikal Malaysia Melaka
                 </p>
-              ))}
-            </div>
-            <div className="pt-4">
-              <div className="h-px w-24 bg-gray-200 mb-6" />
-              <p className="font-serif text-base md:text-lg text-gray-400 italic">
-                Prof. Dr. Masrullizam bin Mat Ibrahim
-                <br />
-                Dean,
-                <br />
-                School Of Graduate Studies
-                <br />
-                Universiti Teknikal Malaysia Melaka
-              </p>
+              </div>
             </div>
           </motion.div>
         </section>

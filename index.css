@@ -1,0 +1,54 @@
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --sps-page-bg: #eceae7;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--sps-page-bg);
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  background-color: var(--sps-page-bg);
+}
+
+main > div[class*="bg-white"],
+main > div[class*="bg-[#FDFDFD]"],
+main > div[class*="bg-gray-50"],
+main > section[class*="bg-white"],
+main > section[class*="bg-gray-50"],
+main > div > section[class*="bg-white"],
+main > div > section[class*="bg-[#FDFDFD]"],
+main > div > section[class*="bg-gray-50"] {
+  background-color: var(--sps-page-bg) !important;
+}
+
+main > section:first-child[class*="bg-white"],
+main > div > section:first-child[class*="bg-white"] {
+  background-color: #ffffff !important;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+::selection {
+  background-color: #800000;
+  color: #ffffff;
+}

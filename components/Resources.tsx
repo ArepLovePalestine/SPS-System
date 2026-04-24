@@ -50,7 +50,6 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-indigo-900/60 mix-blend-multiply" />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
@@ -75,7 +74,7 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
       </section>
 
       {/* Resources Grid */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             {categories.map((cat, idx) => (
@@ -89,13 +88,23 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
                 <ul className="space-y-4">
                   {cat.items.map((item, i) => (
                     <li key={i} className="group">
-                      <a href="#" className="flex items-center justify-between p-4 rounded-xl hover:bg-gray-50 transition-colors">
-                        <div className="flex items-center space-x-4">
-                          <FileText size={18} className="text-gray-400 group-hover:text-indigo-600 transition-colors" />
-                          <span className="text-gray-600 font-light group-hover:text-gray-900 transition-colors">{item[lang]}</span>
-                        </div>
-                        <Download size={16} className="text-gray-300 group-hover:text-indigo-600 transition-all transform group-hover:translate-y-0.5" />
-                      </a>
+                      {item.href ? (
+                        <Link to={item.href} className="flex items-center justify-between p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center space-x-4">
+                            <FileText size={18} className="text-gray-400 group-hover:text-indigo-600 transition-colors" />
+                            <span className="text-gray-600 font-light group-hover:text-gray-900 transition-colors">{item[lang]}</span>
+                          </div>
+                          <Download size={16} className="text-gray-300 group-hover:text-indigo-600 transition-all transform group-hover:translate-y-0.5" />
+                        </Link>
+                      ) : (
+                        <a href="#" className="flex items-center justify-between p-4 rounded-xl hover:bg-gray-50 transition-colors">
+                          <div className="flex items-center space-x-4">
+                            <FileText size={18} className="text-gray-400 group-hover:text-indigo-600 transition-colors" />
+                            <span className="text-gray-600 font-light group-hover:text-gray-900 transition-colors">{item[lang]}</span>
+                          </div>
+                          <Download size={16} className="text-gray-300 group-hover:text-indigo-600 transition-all transform group-hover:translate-y-0.5" />
+                        </a>
+                      )}
                     </li>
                   ))}
                 </ul>

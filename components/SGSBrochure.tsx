@@ -1,34 +1,46 @@
-
 import React from 'react';
 import { motion } from 'motion/react';
-import { Download, Eye, FileText, ChevronRight } from 'lucide-react';
+import { ChevronRight, Download, FileText } from 'lucide-react';
 import { Language } from '../types';
 
 interface SGSBrochureProps {
   lang: Language;
 }
 
+type BrochureItem = {
+  id: string;
+  title: { EN: string; BM: string };
+  description: { EN: string; BM: string };
+  pages: string[];
+  pdf: string;
+};
+
 const SGSBrochure: React.FC<SGSBrochureProps> = ({ lang }) => {
-  const brochures = [
-    { id: 1, title: 'Postgraduate Prospectus 2024', image: 'https://picsum.photos/seed/sgs1/800/1100' },
-    { id: 2, title: 'Research Programs Guide', image: 'https://picsum.photos/seed/sgs2/800/1100' },
-    { id: 3, title: 'Coursework Programs Guide', image: 'https://picsum.photos/seed/sgs3/800/1100' },
-    { id: 4, title: 'International Student Handbook', image: 'https://picsum.photos/seed/sgs4/800/1100' },
-  ];
+  const brochure: BrochureItem = {
+    id: 'sgs-brochure',
+    title: { EN: 'Postgraduate Prospectus', BM: 'Prospektus Pascasiswazah' },
+    description: {
+      EN: 'The official postgraduate prospectus outlining academic programmes and study opportunities at UTeM.',
+      BM: 'Prospektus pascasiswazah rasmi yang menggariskan program akademik dan peluang pengajian di UTeM.',
+    },
+    pages: [
+      '/images/SGS-Brochure/Brochure1.png',
+      '/images/SGS-Brochure/Brochure2.png',
+    ],
+    pdf: '/images/SGS-Brochure/PROGRAMME FEES POST GRADUATE SPS.pdf',
+  };
 
   const content = {
     title: { EN: 'SGS Brochure', BM: 'Broshur SGS' },
-    subtitle: { 
-      EN: 'Official publications and guides for postgraduate studies at UTeM', 
-      BM: 'Penerbitan rasmi dan panduan untuk pengajian pascasiswazah di UTeM' 
+    subtitle: {
+      EN: 'Official publications and guides for postgraduate studies at UTeM',
+      BM: 'Penerbitan rasmi dan panduan untuk pengajian pascasiswazah di UTeM',
     },
-    viewBtn: { EN: 'View Full', BM: 'Lihat Penuh' },
-    downloadBtn: { EN: 'Download PDF', BM: 'Muat Turun PDF' }
+    downloadBtn: { EN: 'Download PDF', BM: 'Muat Turun PDF' },
   };
 
   return (
-    <div className="pt-24 pb-20 min-h-screen bg-gray-50">
-      {/* Header Section */}
+    <div className="min-h-screen bg-[#eceae7] pt-24 pb-24">
       <section className="bg-white border-b border-gray-100 py-16">
         <div className="max-w-7xl mx-auto px-8 lg:px-12">
           <div className="space-y-4">
@@ -39,18 +51,18 @@ const SGSBrochure: React.FC<SGSBrochureProps> = ({ lang }) => {
               <ChevronRight size={10} />
               <span className="text-[#A51C30]">{content.title[lang]}</span>
             </nav>
-            <motion.h1 
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-serif text-gray-900"
+              className="text-4xl md:text-6xl font-serif text-gray-900"
             >
               {content.title[lang]}
             </motion.h1>
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-gray-500 max-w-2xl text-lg font-light"
+              className="max-w-2xl text-lg font-light leading-relaxed text-gray-500"
             >
               {content.subtitle[lang]}
             </motion.p>
@@ -58,54 +70,51 @@ const SGSBrochure: React.FC<SGSBrochureProps> = ({ lang }) => {
         </div>
       </section>
 
-      {/* Brochures Grid */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-8 lg:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {brochures.map((brochure, index) => (
-              <motion.div
-                key={brochure.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 group"
+      <section className="py-14 md:py-18">
+        <div className="mx-auto max-w-5xl px-5 sm:px-8">
+          <motion.article
+            initial={{ opacity: 0, y: 28 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+            className="mx-auto max-w-[900px]"
+          >
+            <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <div className="mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                  <FileText size={14} />
+                  Official Document
+                </div>
+                <h2 className="font-serif text-2xl md:text-3xl text-[#550000]">
+                  {brochure.title[lang]}
+                </h2>
+                <p className="mt-2 max-w-2xl text-sm leading-7 text-gray-500">
+                  {brochure.description[lang]}
+                </p>
+              </div>
+              <a
+                href={brochure.pdf}
+                download
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-[#A51C30] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.22em] text-white shadow-sm transition-colors hover:bg-[#670E10]"
               >
-                {/* Brochure Image */}
-                <div className="aspect-[3/4] overflow-hidden relative">
-                  <img 
-                    src={brochure.image} 
-                    alt={brochure.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                    <div className="flex flex-col space-y-3 px-6 w-full">
-                      <button className="flex items-center justify-center space-x-2 bg-white text-gray-900 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-gray-100 transition-colors">
-                        <Eye size={16} />
-                        <span>{content.viewBtn[lang]}</span>
-                      </button>
-                      <button className="flex items-center justify-center space-x-2 bg-[#A51C30] text-white py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-[#800000] transition-colors">
-                        <Download size={16} />
-                        <span>{content.downloadBtn[lang]}</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                <Download size={15} />
+                {content.downloadBtn[lang]}
+              </a>
+            </div>
 
-                {/* Info */}
-                <div className="p-6">
-                  <div className="flex items-center space-x-2 text-[#A51C30] mb-2">
-                    <FileText size={14} />
-                    <span className="text-[10px] font-bold uppercase tracking-widest">Publication</span>
-                  </div>
-                  <h3 className="text-sm font-bold text-gray-900 uppercase leading-tight">
-                    {brochure.title}
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            <div className="rounded-[24px] border border-gray-200/80 bg-white p-3 shadow-[0_24px_80px_rgba(15,23,42,0.12)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_34px_100px_rgba(15,23,42,0.18)] md:p-5">
+              <div className="overflow-hidden rounded-[18px] border border-gray-100 bg-white transition-transform duration-700 hover:scale-[1.006]">
+                {brochure.pages.map((page, pageIndex) => (
+                  <img
+                    key={page}
+                    src={page}
+                    alt={`${brochure.title[lang]} page ${pageIndex + 1}`}
+                    className="block h-auto w-full object-contain"
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.article>
         </div>
       </section>
     </div>

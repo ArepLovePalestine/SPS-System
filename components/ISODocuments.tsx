@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { 
   FileText, 
-  Download, 
   Eye, 
-  ShieldCheck, 
   ChevronRight, 
   Info,
   FileCheck,
@@ -28,7 +26,7 @@ const ISODocuments: React.FC<ISODocumentsProps> = ({ lang }) => {
         EN: 'Comprehensive quality manual outlining the standards and procedures for the School of Graduate Studies.',
         BM: 'Manual kualiti komprehensif yang menggariskan piawaian dan prosedur untuk Sekolah Pengajian Siswazah.'
       },
-      href: 'https://dev.utem.edu.my/sps/administrator/index.php?option=com_ajax&p=customizer&templateStyle=13&section=builder&format=html&site=https%3A%2F%2Fdev.utem.edu.my%2Fsps%2Fabout-us%2Fiso-documents.html&return=https%3A%2F%2Fdev.utem.edu.my%2Fsps%2Fadministrator%2Findex.php%3Foption%3Dcom_content%26view%3Darticle%26return%3Dfeatured%26layout%3Dedit%26id%3D197%26return%3Dfeatured',
+      href: 'https://iso.utem.edu.my/index.php/a-manual-kualiti',
       icon: BookOpen,
       color: 'text-blue-600',
       bgColor: 'bg-blue-50'
@@ -37,8 +35,8 @@ const ISODocuments: React.FC<ISODocumentsProps> = ({ lang }) => {
       id: 2,
       title: { EN: 'Prosedur Kerja', BM: 'Prosedur Kerja' },
       description: { 
-        EN: 'Standard operating procedures for administrative and academic processes within the graduate school.',
-        BM: 'Prosedur operasi standard untuk proses pentadbiran dan akademik dalam sekolah siswazah.'
+        EN: 'Standard operating procedures for administrative and academic processes within the School of Graduate Studies.',
+        BM: 'Prosedur operasi standard untuk proses pentadbiran dan akademik di Sekolah Pengajian Siswazah.'
       },
       href: 'https://iso.utem.edu.my/index.php/b-prosedur-kerja/a-proses-pengurusan-pengajaran-pembelajaran-dan-penyelidikan/2-pengurusan-perkhidmatan-akademik-pascasiswazah',
       icon: ClipboardList,
@@ -49,10 +47,10 @@ const ISODocuments: React.FC<ISODocumentsProps> = ({ lang }) => {
       id: 3,
       title: { EN: 'Borang Kualiti', BM: 'Borang Kualiti' },
       description: { 
-        EN: 'Official quality forms required for various applications and documentation processes.',
-        BM: 'Borang kualiti rasmi yang diperlukan untuk pelbagai permohonan dan proses dokumentasi.'
+        EN: 'Official quality forms required for academic and administrative processes.',
+        BM: 'Borang kualiti rasmi yang diperlukan untuk proses akademik dan pentadbiran.'
       },
-      href: 'https://dev.utem.edu.my/sps/administrator/index.php?option=com_ajax&p=customizer&templateStyle=13&section=builder&format=html&site=https%3A%2F%2Fdev.utem.edu.my%2Fsps%2Fabout-us%2Fiso-documents.html&return=https%3A%2F%2Fdev.utem.edu.my%2Fsps%2Fadministrator%2Findex.php%3Foption%3Dcom_content%26view%3Darticle%26return%3Dfeatured%26layout%3Dedit%26id%3D197%26return%3Dfeatured',
+      href: 'https://iso.utem.edu.my/index.php/c-borang-kualiti/a-proses-pengurusan-pengajaran-pembelajaran-dan-penyelidikan-1/2-pengurusan-perkhidmatan-akademik-pascasiswazah-1',
       icon: FileCheck,
       color: 'text-emerald-600',
       bgColor: 'bg-emerald-50'
@@ -70,7 +68,6 @@ const ISODocuments: React.FC<ISODocumentsProps> = ({ lang }) => {
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gray-950/70 backdrop-blur-[2px]" />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full text-center">
@@ -79,7 +76,7 @@ const ISODocuments: React.FC<ISODocumentsProps> = ({ lang }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <nav className="flex items-center justify-center space-x-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-8">
+            <nav className="flex items-center justify-start space-x-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-8">
               <Link to="/" className="hover:text-white transition-colors">HOME</Link>
               <ChevronRight size={12} />
               <Link to="/about" className="hover:text-white transition-colors">ABOUT US</Link>
@@ -151,47 +148,11 @@ const ISODocuments: React.FC<ISODocumentsProps> = ({ lang }) => {
                     className="w-full bg-gray-50 hover:bg-gray-100 text-gray-700 py-4 rounded-xl text-[11px] font-bold uppercase tracking-widest transition-all flex items-center justify-center space-x-2 border border-gray-100"
                   >
                     <Eye size={14} />
-                    <span>{lang === 'EN' ? 'View Document' : 'Lihat Dokumen'}</span>
-                  </a>
-                  <a
-                    href={doc.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full bg-[#A51C30] hover:bg-[#800000] text-white py-4 rounded-xl text-[11px] font-bold uppercase tracking-widest transition-all shadow-lg shadow-red-900/10 flex items-center justify-center space-x-2"
-                  >
-                    <Download size={14} />
-                    <span>{lang === 'EN' ? 'Download' : 'Muat Turun'}</span>
+                    <span>{lang === 'EN' ? 'View Details' : 'Lihat Butiran'}</span>
                   </a>
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer Info */}
-      <section className="py-24 bg-gray-50 border-t border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <div className="bg-gray-900 rounded-[2.5rem] p-12 md:p-20 text-white flex flex-col md:flex-row items-center justify-between gap-12 overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-            <div className="relative z-10 max-w-xl">
-              <div className="flex items-center space-x-4 mb-6">
-                <ShieldCheck size={32} className="text-[#A51C30]" />
-                <h2 className="text-3xl font-serif font-bold">
-                  {lang === 'EN' ? 'Quality Assurance' : 'Jaminan Kualiti'}
-                </h2>
-              </div>
-              <p className="text-white/60 text-lg font-light">
-                {lang === 'EN' 
-                  ? 'We are committed to maintaining the highest standards of academic and administrative excellence through rigorous ISO compliance.' 
-                  : 'Kami komited untuk mengekalkan piawaian kecemerlangan akademik dan pentadbiran tertinggi melalui pematuhan ISO yang ketat.'}
-              </p>
-            </div>
-            <div className="relative z-10">
-              <button className="bg-white text-gray-900 px-10 py-5 rounded-full font-bold text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-gray-100 transition-all">
-                {lang === 'EN' ? 'Contact Quality Unit' : 'Hubungi Unit Kualiti'}
-              </button>
-            </div>
           </div>
         </div>
       </section>

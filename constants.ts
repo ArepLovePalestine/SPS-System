@@ -1,5 +1,5 @@
 ﻿
-import { NavItem, SlideData, AcademicBlock, AdmissionStep, Testimonial, FeatureCard } from './types';
+import { NavItem, SlideData, AcademicBlock, AdmissionStep, Testimonial, FeatureCard, FacultyDetail } from './types';
 import { 
   BookOpen, 
   UserCheck, 
@@ -15,6 +15,13 @@ import {
   ShieldCheck, 
   Library 
 } from 'lucide-react';
+import FKMImage from './images/Faculty_TaughtCourse/FTKM.jpeg';
+import FKEImage from './images/Faculty_TaughtCourse/FTKE.jpeg';
+import FTMKImage from './images/Faculty_TaughtCourse/FTMK.jpeg';
+import FPTTImage from './images/Faculty_TaughtCourse/FPTT.jpeg';
+import FKPImage from './images/Faculty_TaughtCourse/FTKIP.jpeg';
+import FKEKKImage from './images/Faculty_TaughtCourse/FTKEK.jpeg';
+import IPTKImage from './images/Faculty_TaughtCourse/IPTK.jpeg';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: { EN: 'HOME', BM: 'UTAMA' }, href: '/' },
@@ -33,12 +40,14 @@ export const NAV_ITEMS: NavItem[] = [
           { label: { EN: 'Staff Portal', BM: 'Portal Staf' }, href: 'https://portal.utem.edu.my/iutem/' },
           { label: { EN: 'Staff Email', BM: 'Emel Staf' }, href: 'https://login.microsoftonline.com/?whr=utem.edu.my&sso_reload=true' },
           { label: { EN: 'Best Employee (APC)', BM: 'Anugerah Perkhidmatan Cemerlang' }, href: '/about/best-employee' },
-          { label: { EN: 'Award', BM: 'Anugerah' }, href: '/about/energy-award' },
+          { label: { EN: 'Awards', BM: 'Anugerah' }, href: '/about/awards' },
         ]
       },
       { label: { EN: 'ISO Documents', BM: 'Dokumen ISO' }, href: '/about/iso-documents' },
+      { label: { EN: 'Facilities', BM: 'Kemudahan' }, href: '/facilities' },
+      { label: { EN: 'Room Reservation', BM: 'Tempahan Ruang' }, href: '/facilities/reservation' },
       { label: { EN: 'Tuah Tenaga', BM: 'Tuah Tenaga' }, href: '#' },
-      { label: { EN: 'MOU & MQA', BM: 'MOU & MQA' }, href: '#' },
+      { label: { EN: 'MOU & MOA', BM: 'MOU & MOA' }, href: 'https://pejtncaa.utem.edu.my/en/mou-moa-list/' },
       { label: { EN: 'Electronic Archives', BM: 'Arkib Elektronik' }, href: '#' },
     ]
   },
@@ -87,9 +96,9 @@ export const NAV_ITEMS: NavItem[] = [
         href: '#',
         children: [
           { label: { EN: 'Compulsory Course', BM: 'Kursus Wajib' }, href: 'https://www.flipbookpdf.net/web/site/0ba3678afc469c6679f54f4e54af94080a225463202112.pdf.html#page/4' },
-          { label: { EN: 'Final Examination Info', BM: 'Maklumat Peperiksaan Akhir' }, href: '#' },
+          { label: { EN: 'Final Examination Info', BM: 'Maklumat Peperiksaan Akhir' }, href: '/student/examination-info' },
           { label: { EN: 'Class Timetable', BM: 'Jadual Waktu Kelas' }, href: '#' },
-          { label: { EN: 'Academic Award', BM: 'Anugerah Akademik' }, href: '#' },
+          { label: { EN: 'Academic Award', BM: 'Anugerah Akademik' }, href: '/student/academic-awards' },
           { label: { EN: 'Alumni', BM: 'Alumni' }, href: 'https://alumniapp.utem.edu.my/' },
         ]
       },
@@ -97,24 +106,43 @@ export const NAV_ITEMS: NavItem[] = [
         label: { EN: 'UPGRADE Association', BM: 'Persatuan UPGRADE' }, 
         href: '#',
         children: [
-          { label: { EN: 'About UPGRADE', BM: 'Mengenai UPGRADE' }, href: '#' },
-          { label: { EN: 'UPGRADE Organizational Chart', BM: 'Carta Organisasi UPGRADE' }, href: '#' },
-          { label: { EN: 'UPGRADE Profession', BM: 'Profesion UPGRADE' }, href: '#' },
+          { label: { EN: 'About UPGRADE', BM: 'Mengenai UPGRADE' }, href: '/upgrade' },
+          { label: { EN: 'UPGRADE Organizational Chart', BM: 'Carta Organisasi UPGRADE' }, href: '/upgrade' },
+          { label: { EN: 'UPGRADE Profession', BM: 'Profesion UPGRADE' }, href: '/upgrade/profession' },
         ]
       },
     ]
   },
   { 
     label: { EN: 'PROGRAM', BM: 'PROGRAM' }, 
-    href: '#',
+    href: '/programmes',
     children: [
       { 
-        label: { EN: 'Accreditation', BM: 'Akreditasi' }, 
+        label: { EN: 'Academic Programmes', BM: 'Program Akademik' }, 
         href: '#',
         children: [
-          { label: { EN: 'Postgraduate Programme', BM: 'Program Pascasiswazah' }, href: '/programmes/dashboard' },
-          { label: { EN: 'Quality Assurance Documents', BM: 'Dokumen Jaminan Kualiti' }, href: 'https://www2.mqa.gov.my/qad/v2/typesofqad.cfm' },
-          { label: { EN: 'MQA Standards and Program Standards', BM: 'Standard MQA dan Standard Program' }, href: '/accreditation/mqa-standards' },
+          { label: { EN: 'Postgraduate Programme', BM: 'Program Pascasiswazah' }, href: '/programmes/postgraduate' },
+          { label: { EN: 'Master by Taught Course', BM: 'Sarjana Kerja Kursus' }, href: '/programmes/master-taught' },
+          { label: { EN: 'Master by Research', BM: 'Sarjana Penyelidikan' }, href: '/programmes/master-research' },
+          { label: { EN: 'Master by Mixed Mode', BM: 'Sarjana Mod Campuran' }, href: '/programmes/master-mixed' },
+          { label: { EN: 'Doctoral Programmes', BM: 'Program Doktoral' }, href: '/programmes/doctoral' },
+        ]
+      },
+      {
+        label: { EN: 'Administration / Services', BM: 'Pentadbiran / Perkhidmatan' },
+        href: '#',
+        children: [
+          { label: { EN: 'Programme Fees', BM: 'Yuran Program' }, href: '#' },
+          { label: { EN: 'Payment Hub Procedure', BM: 'Prosedur Hab Pembayaran' }, href: '/programmes/payment-hub' },
+          { label: { EN: 'Offshore Programme', BM: 'Program Luar Pesisir' }, href: 'https://uhe.utem.edu.my/offshore-academic-programme/' },
+        ]
+      },
+      { 
+        label: { EN: 'Standards & Quality', BM: 'Standard & Kualiti' }, 
+        href: '#',
+        children: [
+          { label: { EN: 'Quality Assurance', BM: 'Jaminan Kualiti' }, href: 'https://www2.mqa.gov.my/qad/v2/typesofqad.cfm' },
+          { label: { EN: 'MQA & Programme Standards', BM: 'Standard MQA & Program' }, href: '/accreditation/mqa-standards' },
         ]
       }
     ]
@@ -163,17 +191,17 @@ export const NAV_ITEMS: NavItem[] = [
 
 export const SLIDES: SlideData[] = [
   {
-    url: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070&auto=format&fit=crop',
+    url: '/images/homepages/Pic2.jpeg',
     title: 'School of Graduate Studies',
     subtitle: 'NURTURING RESEARCH IN WORLD-CLASS FACILITIES'
   },
   {
-    url: 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?q=80&w=2070&auto=format&fit=crop',
+    url: '/images/homepages/Pic1.png',
     title: 'School of Graduate Studies',
     subtitle: 'ADVANCING KNOWLEDGE THROUGH INNOVATIVE SCHOLARSHIP'
   },
   {
-    url: 'https://images.unsplash.com/photo-1491841573634-28140fc7ced7?q=80&w=2070&auto=format&fit=crop',
+    url: '/images/homepages/Pic3.jpeg',
     title: 'School of Graduate Studies',
     subtitle: 'EMPOWERING THE NEXT GENERATION OF GLOBAL LEADERS'
   },
@@ -302,7 +330,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     batch: '2021',
     position: 'Assistant Professor',
     company: 'Department of Mechanical and Production Engineering (MPE), Islamic University of Technology (IUT), Bangladesh',
-    quote: 'I am deeply honored to have completed my academic journey from degree to master\'s and PhD at Universiti Teknikal Malaysia Melaka (UTeM). he years I spent at UTeM provided me with invaluable knowledge, skills, and experiences that have shaped both my personal and professional growth. Currently, as an assistant professor at the Islamic University of Technology in Bangladesh, I carry with me the values and principles instilled in me throughout my time at UTeM. This institution has not only prepared me for the academic world but has also inspired me to contribute to the global academic community.',
+    quote: 'I am deeply honored to have completed my academic journey from degree to master\'s and PhD at Universiti Teknikal Malaysia Melaka (UTeM). The years I spent at UTeM provided me with invaluable knowledge, skills, and experiences that have shaped both my personal and professional growth. Currently, as an assistant professor at the Islamic University of Technology in Bangladesh, I carry with me the values and principles instilled in me throughout my time at UTeM. This institution has not only prepared me for the academic world but has also inspired me to contribute to the global academic community.',
     image: '/images/Graduate_testimonial/Dr. Madihah.png'
   },
   {
@@ -344,12 +372,13 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
     image: '/images/homepages/Programs.png',
     title: { EN: 'Our Programmes', BM: 'Program Termaju' },
     description: { 
-      EN: 'Our specialized Master and PhD programs are meticulously designed to meet the requested demands of global technical industries and academia.',
+      EN: 'Our specialized Master and Doctorer programs are meticulously designed to meet the requested demands of global technical industries and academia.',
       BM: 'Program Sarjana dan PhD pengkhususan kami direka dengan teliti untuk memenuhi tuntutan industri teknikal global dan akademik.'
     },
     cta: { EN: 'Explore Curricula', BM: 'Terokai Kurikulum' },
     layout: 'right'
   },
+  /*
   {
     id: 'scholarships',
     image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dee3f?q=80&w=2070&auto=format&fit=crop',
@@ -361,6 +390,7 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
     cta: { EN: 'Apply for Aid', BM: 'Mohon Bantuan' },
     layout: 'left'
   }
+    */
 ];
 
 export const ADMISSION_STEPS: AdmissionStep[] = [
@@ -382,7 +412,7 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
       EN: 'State-of-the-art technical laboratories, expansive libraries, and advanced research hubs designed for innovation.',
       BM: 'Makmal teknikal canggih, perpustakaan yang luas, dan hab penyelidikan termaju yang direka untuk inovasi.'
     },
-    imageUrl: 'https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=800&auto=format&fit=crop'
+    imageUrl: '/images/homepages/OurFacilities.png'
   },
   {
     number: '03',
@@ -392,7 +422,7 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
       EN: 'Connect with our dedicated administrative leadership and academic support team for personalized guidance.',
       BM: 'Berhubung dengan kepimpinan pentadbiran dan pasukan sokongan akademik kami untuk bimbingan peribadi.'
     },
-    imageUrl: '/images/homepages/PIC.jpg'
+    imageUrl: '/images/homepages/PIC.jpeg'
   },
   {
     number: '04',
@@ -464,3 +494,56 @@ export const FEATURE_CARDS: FeatureCard[] = [
     }
   }
 ];
+
+export const FACULTIES: FacultyDetail[] = [
+  {
+    id: 'fkm',
+    shortName: 'FTKM',
+    fullName: { EN: 'Faculty of Mechanical Technology and Engineering (FTKM)', BM: 'Fakulti Teknologi dan Kejuruteraan Mekanikal (FTKM)' },
+    image: FKMImage,
+    bannerImage: FKMImage
+  },
+  {
+    id: 'fke',
+    shortName: 'FTKE',
+    fullName: { EN: 'Faculty of Electrical Technology and Engineering (FTKE)', BM: 'Fakulti Teknologi dan Kejuruteraan Elektrik (FTKE)' },
+    image: FKEImage,
+    bannerImage: FKEImage
+  },
+  {
+    id: 'ftmk',
+    shortName: 'FTMK',
+    fullName: { EN: 'Faculty of Information and Communications Technology (FTMK)', BM: 'Fakulti Teknologi Maklumat dan Komunikasi (FTMK)' },
+    image: FTMKImage,
+    bannerImage: FTMKImage
+  },
+  {
+    id: 'fptt',
+    shortName: 'FPTT',
+    fullName: { EN: 'Faculty of Technology Management and Technopreneurship (FPTT)', BM: 'Fakulti Pengurusan Teknologi dan Teknokeusahawanan (FPTT)' },
+    image: FPTTImage,
+    bannerImage: FPTTImage
+  },
+  {
+    id: 'fkp',
+    shortName: 'FTKIP',
+    fullName: { EN: 'Faculty of Industrial and Manufacturing Technology and Engineering (FTKIP)', BM: 'Fakulti Teknologi dan Kejuruteraan Industri dan Pembuatan (FTKIP)' },
+    image: FKPImage,
+    bannerImage: FKPImage
+  },
+  {
+    id: 'fkekk',
+    shortName: 'FTKEK',
+    fullName: { EN: 'Faculty of Electronics and Technology Computer and Engineering (FTKEK)', BM: 'Fakulti Teknologi dan Kejuruteraan Elektronik dan Komputer (FTKEK)' },
+    image: FKEKKImage,
+    bannerImage: FKEKKImage
+  },
+  {
+    id: 'iptk',
+    shortName: 'IPTK',
+    fullName: { EN: 'Institute of Technology Management and Entrepreneurship (IPTK)', BM: 'Institut Pengurusan Teknologi dan Keusahawanan (IPTK)' },
+    image: IPTKImage,
+    bannerImage: IPTKImage
+  }
+];
+

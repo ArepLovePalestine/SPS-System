@@ -11,22 +11,30 @@ interface AdmissionJourneyProps {
 
 const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
   return (
-    <section className="py-32 bg-white overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+      <section className="relative z-40 -mt-px min-h-screen rounded-none bg-[#550000] pt-32 pb-16 overflow-hidden">
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-35"
+        style={{
+          backgroundImage: "url('/images/homepages/Bg-maroon.jpeg')"
+        }}
+        aria-hidden="true"
+      />
+      <div className="absolute inset-0 z-0 bg-[#550000]/60" aria-hidden="true" />
+      <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12">
         
         {/* Header Block with Symmetrical Branding */}
         <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
           <div className="max-w-2xl">
-            <span className="text-[10px] font-bold uppercase tracking-[0.6em] text-[#A51C30] block mb-4">
+            <span className="text-[10px] font-bold uppercase tracking-[0.6em] text-white/70 block mb-4">
               {lang === 'EN' ? 'Gateway to Excellence' : 'Gerbang Kecemerlangan'}
             </span>
-            <h2 className="text-5xl md:text-6xl font-serif text-gray-950 tracking-tight leading-tight">
+            <h2 className="text-5xl md:text-6xl font-serif text-white tracking-tight leading-tight drop-shadow-sm">
               {lang === 'EN' ? 'Postgraduate Experience' : 'Pengalaman Pascasiswazah'}
             </h2>
           </div>
           <div className="hidden md:block">
-            <div className="h-px w-32 bg-gray-200 mb-4"></div>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400">
+            <div className="h-px w-32 bg-white/30 mb-4"></div>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/55">
               UTeM SPS HUB
             </p>
           </div>
@@ -37,14 +45,14 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
           {ADMISSION_STEPS.map((step) => (
             <div 
               key={step.number}
-              className="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border border-gray-100 flex flex-col"
+              className="group bg-white hover:bg-[#670E10] rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-700 border-0 flex flex-col"
             >
               {/* Thumbnail Image */}
-              <div className="aspect-[16/10] overflow-hidden relative">
+              <div className="-mx-1 -mt-1 aspect-[16/10] overflow-hidden relative bg-[#670E10]">
                 <img 
                   src={step.imageUrl || 'https://picsum.photos/seed/utem/800/500'} 
                   alt={step.title[lang]} 
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2000ms]"
+                  className="absolute -inset-1 h-[calc(100%+0.5rem)] w-[calc(100%+0.5rem)] object-cover object-center group-hover:scale-110 transition-transform duration-[2000ms]"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-700" />
@@ -58,24 +66,24 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
               {/* Content Area */}
               <div className="p-10 flex-grow flex flex-col">
                 <div className="flex items-center space-x-4 mb-4">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#A51C30]">{step.number}</span>
-                  <div className="h-px w-8 bg-gray-100"></div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#550000] group-hover:text-white/80 transition-colors duration-300">{step.number}</span>
+                  <div className="h-px w-8 bg-gray-100 group-hover:bg-white/20 transition-colors duration-300"></div>
                 </div>
                 
-                <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4 tracking-tight group-hover:text-[#A51C30] transition-colors duration-300">
+                <h3 className="text-2xl font-serif font-bold text-[#550000] mb-4 tracking-tight group-hover:text-white transition-colors duration-300">
                   {step.title[lang]}
                 </h3>
-                <p className="text-gray-500 text-sm font-light leading-relaxed mb-10 line-clamp-3">
+                <p className="text-gray-500 group-hover:text-white/80 text-sm font-light leading-relaxed mb-10 line-clamp-3 transition-colors duration-300">
                   {step.description[lang]}
                 </p>
 
-                <div className="mt-auto pt-6 border-t border-gray-50">
+                <div className="mt-auto pt-6">
                   {step.number === '01' ? (
                     <a
                       href="https://www.flickr.com/photos/198669247@N05/albums/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center space-x-3 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 group-hover:text-[#A51C30] transition-all duration-500"
+                      className="inline-flex items-center space-x-3 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 group-hover:text-white transition-all duration-500"
                     >
                       <span>{lang === 'EN' ? 'View More' : 'Lihat Lagi'}</span>
                       <ArrowRight size={14} className="transform translate-x-0 group-hover:translate-x-2 transition-transform duration-500" />
@@ -89,7 +97,7 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
                         step.number === '05' ? '/regulations' :
                         '/resources'
                       }
-                      className="inline-flex items-center space-x-3 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 group-hover:text-[#A51C30] transition-all duration-500"
+                      className="inline-flex items-center space-x-3 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 group-hover:text-white transition-all duration-500"
                     >
                       <span>{lang === 'EN' ? 'View More' : 'Lihat Lagi'}</span>
                       <ArrowRight size={14} className="transform translate-x-0 group-hover:translate-x-2 transition-transform duration-500" />
@@ -101,25 +109,6 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
           ))}
         </div>
 
-        {/* Footer CTA Section */}
-        <div className="mt-12 py-10 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-12">
-          <div className="flex items-center gap-6">
-            <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center text-white">
-              <span className="text-xs font-serif italic">i</span>
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-gray-900">Need immediate assistance?</p>
-              <p className="text-sm text-gray-400 font-light">Contact our Graduate Helpdesk for scholarship inquiries.</p>
-            </div>
-          </div>
-          
-          <Link 
-            to="/about/staff"
-            className="px-10 py-5 bg-[#A51C30] text-white text-[10px] font-bold uppercase tracking-[0.4em] shadow-xl hover:bg-[#821626] transition-all duration-500 hover:-translate-y-1"
-          >
-            {lang === 'EN' ? 'Graduate Helpdesk' : 'Meja Bantuan Siswazah'}
-          </Link>
-        </div>
       </div>
     </section>
   );

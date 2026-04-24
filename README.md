@@ -1,20 +1,53 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+<p align="center">
+  <img src="./images/homepages/SPS%20logo.png" alt="SPS UTeM Logo" width="140" />
+</p>
 
-# Run and deploy your AI Studio app
+# SPS UTeM Website Redesign
 
-This contains everything you need to run your app locally.
+## Project Overview
 
-View your app in AI Studio: https://ai.studio/apps/00582f33-212c-481a-8b46-798cbf8c08ab
+This project is a redesign and frontend development effort for the School of Graduate Studies (SPS), Universiti Teknikal Malaysia Melaka (UTeM) website.
 
-## Run Locally
+The work focuses on improving the overall user interface, user experience, navigation flow, and content presentation across the site. It includes redesigning the UI layout, refining document and information pages, and improving how users move through academic, programme, and support-related content.
 
-**Prerequisites:**  Node.js
+## Key Features
 
+- Responsive website layout for desktop and mobile views
+- Programme and faculty information pages
+- Examination and academic information pages
+- Brochure and document display pages
+- Structured navigation and improved UI layout
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Technologies Used
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Motion
+
+## Project Structure
+
+- `components/` - reusable UI components and page-level sections
+- `src/` - supporting frontend source files
+- `src/assets/` - static frontend assets
+- `images/` - project images and content visuals
+
+## Installation
+
+```bash
+npm install
+npm run dev
+```
+
+Development server:
+
+```text
+http://localhost:5173
+```
+
+## Notes
+
+- Developed as part of an SPS UTeM website redesign project
+- Content is based on SPS UTeM materials and working references
+- Main focus is improving layout, clarity, and user experience

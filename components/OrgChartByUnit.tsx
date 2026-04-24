@@ -48,16 +48,6 @@ const OrgChartByUnit: React.FC<OrgChartByUnitProps> = ({ lang }) => {
         BM: ['Penolong Pendaftar', 'Penolong Pegawai Tadbir', 'Pembantu Tadbir']
       }
     },
-    {
-      id: 'student-affairs',
-      title: { EN: 'Student Affairs Unit', BM: 'Unit Hal Ehwal Pelajar' },
-      icon: UserCircle,
-      image: '',
-      staff: {
-        EN: ['Head of Unit', 'Student Welfare Officer', 'International Student Liaison', 'Activity Coordinator'],
-        BM: ['Ketua Unit', 'Pegawai Kebajikan Pelajar', 'Pegawai Perhubungan Pelajar Antarabangsa', 'Penyelaras Aktiviti']
-      }
-    }
   ];
 
   const content = {

@@ -1,5 +1,6 @@
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   FileText, 
@@ -23,6 +24,7 @@ interface Document {
   category: string;
   updatedAt: string;
   fileSize: string;
+  format: string;
   fileUrl: string;
 }
 
@@ -33,67 +35,96 @@ interface DocumentSystemProps {
   initialCategory?: string;
 }
 
-const MOCK_DOCUMENTS: Document[] = [
-  // Academic
-  {
-    id: 'acad-01',
-    title: { EN: 'Course Registration Form', BM: 'Borang Pendaftaran Kursus' },
-    description: { EN: 'Official form for manual course registration and amendments.', BM: 'Borang rasmi untuk pendaftaran kursus secara manual dan pindaan.' },
-    category: 'Academic',
-    updatedAt: '2024-03-15',
-    fileSize: '245 KB',
-    fileUrl: '#'
+const pdfModules = import.meta.glob('../Document file/**/*.pdf', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>;
+
+const CATEGORY_META = {
+  Academic: {
+    EN: 'Official academic form for postgraduate administration and student matters.',
+    BM: 'Borang akademik rasmi untuk urusan pentadbiran dan hal ehwal pelajar pascasiswazah.'
   },
-  {
-    id: 'acad-02',
-    title: { EN: 'Deferment of Study Application', BM: 'Permohonan Penangguhan Pengajian' },
-    description: { EN: 'Form to apply for temporary leave or deferment of semester.', BM: 'Borang untuk memohon cuti sementara atau penangguhan semester.' },
-    category: 'Academic',
-    updatedAt: '2024-01-10',
-    fileSize: '180 KB',
-    fileUrl: '#'
+  'Research Proposal': {
+    EN: 'Research proposal document and template for postgraduate submission.',
+    BM: 'Dokumen dan templat cadangan penyelidikan untuk penyerahan pascasiswazah.'
   },
-  // Research Proposal
-  {
-    id: 'res-01',
-    title: { EN: 'Research Proposal Template (PhD)', BM: 'Templat Cadangan Penyelidikan (PhD)' },
-    description: { EN: 'Standardized template for PhD research proposal submission.', BM: 'Templat standard untuk penyerahan cadangan penyelidikan PhD.' },
-    category: 'Research Proposal',
-    updatedAt: '2023-11-20',
-    fileSize: '1.2 MB',
-    fileUrl: '#'
+  Thesis: {
+    EN: 'Official thesis form, checklist, or guideline for submission and examination.',
+    BM: 'Borang, senarai semak, atau garis panduan tesis rasmi untuk penyerahan dan peperiksaan.'
   },
-  // Thesis
-  {
-    id: 'the-01',
-    title: { EN: 'Thesis Formatting Guidelines', BM: 'Garis Panduan Format Tesis' },
-    description: { EN: 'Comprehensive guide for UTeM thesis formatting and submission.', BM: 'Panduan komprehensif untuk format dan penyerahan tesis UTeM.' },
-    category: 'Thesis',
-    updatedAt: '2024-02-05',
-    fileSize: '3.5 MB',
-    fileUrl: '#'
+  Financial: {
+    EN: 'Financial form for payment, deferment, claim, or fee reduction matters.',
+    BM: 'Borang kewangan untuk urusan bayaran, penangguhan, tuntutan, atau pengurangan yuran.'
   },
-  // Financial
-  {
-    id: 'fin-01',
-    title: { EN: 'Zakat Assistance Application', BM: 'Permohonan Bantuan Zakat' },
-    description: { EN: 'Application form for financial assistance through Zakat funds.', BM: 'Borang permohonan bantuan kewangan melalui dana Zakat.' },
-    category: 'Financial',
-    updatedAt: '2024-03-01',
-    fileSize: '320 KB',
-    fileUrl: '#'
-  },
-  // ISO
-  {
-    id: 'iso-01',
-    title: { EN: 'Quality Management Manual', BM: 'Manual Pengurusan Kualiti' },
-    description: { EN: 'Internal ISO documentation for quality assurance processes.', BM: 'Dokumen ISO dalaman untuk proses jaminan kualiti.' },
-    category: 'ISO',
-    updatedAt: '2023-12-15',
-    fileSize: '2.1 MB',
-    fileUrl: '#'
+  ISO: {
+    EN: 'ISO form or template related to quality management processes.',
+    BM: 'Borang atau templat ISO berkaitan proses pengurusan kualiti.'
   }
-];
+} as const;
+
+const RAW_DOCUMENTS = [
+  { id: 'acad-01', folder: 'Academic Forms file', filename: 'Add Subject Form Penambahan Matapelajaran 2024.pdf', category: 'Academic', bytes: 199893 },
+  { id: 'acad-02', folder: 'Academic Forms file', filename: 'Additional or Change Of Supervisor Perubahan atau Pertukaran Penyelia 2024 (1).pdf', category: 'Academic', bytes: 194409 },
+  { id: 'acad-03', folder: 'Academic Forms file', filename: 'Additional or Change Of Supervisor Perubahan atau Pertukaran Penyelia 2024.pdf', category: 'Academic', bytes: 194409 },
+  { id: 'acad-04', folder: 'Academic Forms file', filename: 'BORANG PERMOHONAN PENUKARAN PERINGKAT PENGAJIAN SARJANA PENYELIDIKAN KE PERINGKAT DOKTOR FALSAFAH PhD 2024(!).pdf', category: 'Academic', bytes: 455769 },
+  { id: 'acad-05', folder: 'Academic Forms file', filename: 'BORANG PERMOHONAN PENUKARAN PERINGKAT PENGAJIAN SARJANA PENYELIDIKAN KE PERINGKAT DOKTOR FALSAFAH PhD 2024.pdf', category: 'Academic', bytes: 455769 },
+  { id: 'acad-06', folder: 'Academic Forms file', filename: 'Candidate Particulars  Borang Maklumat Pelajar Siswazah 2024.pdf', category: 'Academic', bytes: 232028 },
+  { id: 'acad-07', folder: 'Academic Forms file', filename: 'Change Of Programme Pertukaran Program 2024.pdf', category: 'Academic', bytes: 229320 },
+  { id: 'acad-08', folder: 'Academic Forms file', filename: 'Deferment Of Study Tangguh Pengajian 2024.pdf', category: 'Academic', bytes: 188875 },
+  { id: 'acad-09', folder: 'Academic Forms file', filename: 'Extension Of Candidature Perlanjutan Tempoh Pengajian 2024.pdf', category: 'Academic', bytes: 350430 },
+  { id: 'acad-10', folder: 'Academic Forms file', filename: 'Letter Application Form Borang Permohonan Surat 2024.pdf', category: 'Academic', bytes: 205113 },
+  { id: 'acad-11', folder: 'Academic Forms file', filename: 'Personal Particular Form International Student 2024.pdf', category: 'Academic', bytes: 89609 },
+  { id: 'acad-12', folder: 'Academic Forms file', filename: 'Pertukaran Mod Pendaftaran.pdf', category: 'Academic', bytes: 219097 },
+  { id: 'acad-13', folder: 'Academic Forms file', filename: 'Referee Form Borang Penyokong 2024.pdf', category: 'Academic', bytes: 168931 },
+  { id: 'acad-14', folder: 'Academic Forms file', filename: 'Transfer or Exemption Of Credits Pemindahanm atau Pengecualian Kredit 2024.pdf', category: 'Academic', bytes: 224792 },
+  { id: 'acad-15', folder: 'Academic Forms file', filename: 'Withdrawal From Studies Form Borang Tarik Diri Pengajian new 2.pdf', category: 'Academic', bytes: 153696 },
+  { id: 'acad-16', folder: 'Academic Forms file', filename: 'Withdrawal From Subject Form  Borang Tarik Diri Matapelajaran 2024.pdf', category: 'Academic', bytes: 235049 },
+  { id: 'fin-01', folder: 'Financial Forms file', filename: 'Borang Permohonan Penangguhan Yuran Pengajian.pdf', category: 'Financial', bytes: 1175289 },
+  { id: 'fin-02', folder: 'Financial Forms file', filename: 'borang TUNTUTAN khairat Kematian.pdf', category: 'Financial', bytes: 612641 },
+  { id: 'fin-03', folder: 'Financial Forms file', filename: 'Fee Reduction Form for staff Borang Pengurangan Yuran Pengajian untuk Staff 2024.pdf', category: 'Financial', bytes: 119781 },
+  { id: 'fin-04', folder: 'Financial Forms file', filename: 'Payment Form Borang Pembayaran 2024.pdf', category: 'Financial', bytes: 116192 },
+  { id: 'iso-01', folder: 'ISO Form & Template', filename: 'Borang Bayaran Saguhati Penceramah Fasilitator Sambilan 2024.pdf', category: 'ISO', bytes: 70130 },
+  { id: 'iso-02', folder: 'ISO Form & Template', filename: 'Borang Jawapan Pemeriksa 2024.pdf', category: 'ISO', bytes: 218583 },
+  { id: 'iso-03', folder: 'ISO Form & Template', filename: 'Borang Penghantaran Soalan Final Exam 2024.pdf', category: 'ISO', bytes: 110343 },
+  { id: 'iso-04', folder: 'ISO Form & Template', filename: 'Template Jadual Peperiksaan Akhir Pasca Siswazah.pdf', category: 'ISO', bytes: 96514 },
+  { id: 'iso-05', folder: 'ISO Form & Template', filename: 'Template Penawaran Mata Pelajaran 2024.pdf', category: 'ISO', bytes: 40123 },
+  { id: 'the-01', folder: 'Thesis Forms file', filename: 'Borang Pembetulan Tesis 2024.pdf', category: 'Thesis', bytes: 417643 },
+  { id: 'the-02', folder: 'Thesis Forms file', filename: 'Borang Pembetulan Tesis Resubmit o Reviva 2024.pdf', category: 'Thesis', bytes: 419451 },
+  { id: 'the-03', folder: 'Thesis Forms file', filename: 'Checklist For Hardbound Thesis Submission New 2024.pdf', category: 'Thesis', bytes: 538555 },
+  { id: 'the-04', folder: 'Thesis Forms file', filename: 'DECLARATION OF MASTER AND DOCTORAL THESIS 2024.pdf', category: 'Thesis', bytes: 144370 },
+  { id: 'the-05', folder: 'Thesis Forms file', filename: 'FINAL THESIS SUBMISSION FORM  julai 2024.pdf', category: 'Thesis', bytes: 181322 },
+  { id: 'the-06', folder: 'Thesis Forms file', filename: 'Guidelines for Thesis Dissertation  Report.pdf', category: 'Thesis', bytes: 1521521 },
+  { id: 'the-07', folder: 'Thesis Forms file', filename: 'Laporan Kemajuan Penyelidikan 2024.pdf', category: 'Thesis', bytes: 348342 }
+] as const;
+
+const formatFileSize = (bytes: number) => {
+  if (bytes >= 1024 * 1024) return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+  return `${Math.round(bytes / 1024)} KB`;
+};
+
+const extractYear = (filename: string) => {
+  const match = filename.match(/\b(20\d{2})\b/);
+  return match ? match[1] : 'N/A';
+};
+
+const cleanTitle = (filename: string) => filename.replace(/\.pdf$/i, '').replace(/\s+/g, ' ').trim();
+
+const resolvePdfUrl = (folder: string, filename: string) => {
+  const key = `../Document file/${folder}/${filename}`;
+  return pdfModules[key] || '#';
+};
+
+const REAL_DOCUMENTS: Document[] = RAW_DOCUMENTS.map((doc) => ({
+  id: doc.id,
+  title: { EN: cleanTitle(doc.filename), BM: cleanTitle(doc.filename) },
+  description: { EN: CATEGORY_META[doc.category].EN, BM: CATEGORY_META[doc.category].BM },
+  category: doc.category,
+  updatedAt: extractYear(doc.filename),
+  fileSize: formatFileSize(doc.bytes),
+  format: 'PDF',
+  fileUrl: resolvePdfUrl(doc.folder, doc.filename)
+}));
 
 const CATEGORIES = ['Academic', 'Research Proposal', 'Thesis', 'Financial', 'ISO'];
 
@@ -104,6 +135,14 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [selectedDoc, setSelectedDoc] = useState<Document | null>(null);
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+  useEffect(() => {
+    setSelectedCategory(initialCategory || 'All');
+    setSearchQuery('');
+    setCurrentPage(1);
+    setSelectedDoc(null);
+    setIsPreviewOpen(false);
+  }, [initialCategory]);
 
   // Dynamic Title Logic
   const dynamicTitle = useMemo(() => {
@@ -126,7 +165,7 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
   }, [selectedCategory, lang, title]);
 
   const filteredDocs = useMemo(() => {
-    return MOCK_DOCUMENTS.filter(doc => {
+    return REAL_DOCUMENTS.filter(doc => {
       const matchesSearch = doc.title[lang].toLowerCase().includes(searchQuery.toLowerCase()) ||
                           doc.description[lang].toLowerCase().includes(searchQuery.toLowerCase());
       const matchesCategory = selectedCategory === 'All' || doc.category === selectedCategory;
@@ -136,22 +175,33 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
 
   const totalPages = Math.ceil(filteredDocs.length / itemsPerPage);
   const paginatedDocs = filteredDocs.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  const pageStart = filteredDocs.length === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
+  const pageEnd = Math.min(currentPage * itemsPerPage, filteredDocs.length);
 
   const handleDocClick = (doc: Document) => {
     setSelectedDoc(doc);
   };
 
+  const hasPreview = selectedDoc?.fileUrl && selectedDoc.fileUrl !== '#';
+
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
       {/* Page Header */}
-      <section className="py-16 bg-gray-50 border-b border-gray-100 mb-12">
-        <div className="max-w-[900px] mx-auto px-8 text-center">
+      <section className="py-16 bg-white border-b border-gray-100 mb-12">
+        <div className="max-w-[900px] mx-auto px-8">
+          <nav className="mb-8 flex items-center justify-start space-x-2 text-[10px] font-bold uppercase tracking-[0.28em] text-gray-400">
+            <Link to="/resources" className="transition-colors hover:text-[#A51C30]">
+              Resources
+            </Link>
+            <ChevronRight size={10} className="text-gray-300" />
+            <span className="text-[#A51C30]">{dynamicTitle}</span>
+          </nav>
           <motion.h1 
             id="pageTitle"
             key={dynamicTitle}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4 tracking-tight"
+            className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4 tracking-tight text-center"
           >
             {dynamicTitle}
           </motion.h1>
@@ -159,7 +209,7 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-gray-600 font-light"
+            className="text-lg text-gray-600 font-light text-center"
           >
             {subtitle[lang]}
           </motion.p>
@@ -174,7 +224,7 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
             <input 
               type="text"
               placeholder={lang === 'EN' ? "Search forms..." : "Cari borang..."}
-              className="w-full pl-12 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A51C30]/20 focus:border-[#A51C30] transition-all text-sm"
+              className="w-full pl-12 pr-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A51C30]/20 focus:border-[#A51C30] transition-all text-sm"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -182,7 +232,7 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
           <div className="relative min-w-[200px]">
             <select 
               id="categoryFilter"
-              className="w-full appearance-none pl-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A51C30]/20 focus:border-[#A51C30] transition-all text-sm cursor-pointer"
+              className="w-full appearance-none pl-4 pr-10 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#A51C30]/20 focus:border-[#A51C30] transition-all text-sm cursor-pointer"
               value={selectedCategory}
               onChange={(e) => {
                 setSelectedCategory(e.target.value);
@@ -237,7 +287,13 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
             ))
           ) : (
             <div className="py-20 text-center text-gray-400 font-light">
-              {lang === 'EN' ? 'No documents found matching your search.' : 'Tiada dokumen dijumpai yang sepadan dengan carian anda.'}
+              {selectedCategory === 'Research Proposal'
+                ? (lang === 'EN'
+                    ? 'No PDF documents are available yet for Research Proposal.'
+                    : 'Tiada dokumen PDF tersedia lagi untuk Cadangan Penyelidikan.')
+                : (lang === 'EN'
+                    ? 'No documents found matching your search.'
+                    : 'Tiada dokumen dijumpai yang sepadan dengan carian anda.')}
             </div>
           )}
         </div>
@@ -250,13 +306,22 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
               <select 
                 className="bg-gray-50 border border-gray-200 rounded-lg px-2 py-1 text-sm focus:outline-none focus:ring-1 focus:ring-[#A51C30]"
                 value={itemsPerPage}
-                onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                onChange={(e) => {
+                  setItemsPerPage(Number(e.target.value));
+                  setCurrentPage(1);
+                }}
               >
                 <option value={10}>10</option>
                 <option value={20}>20</option>
                 <option value={50}>50</option>
               </select>
               <span className="text-sm text-gray-500">{lang === 'EN' ? 'per page' : 'setiap halaman'}</span>
+            </div>
+
+            <div className="text-sm text-gray-500">
+              {lang === 'EN'
+                ? `Showing ${pageStart}-${pageEnd} of ${filteredDocs.length}`
+                : `Memaparkan ${pageStart}-${pageEnd} daripada ${filteredDocs.length}`}
             </div>
 
             <div className="flex items-center space-x-2">
@@ -330,29 +395,39 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
                   {selectedDoc.description[lang]}
                 </p>
 
-                <div className="grid grid-cols-2 gap-6 mb-10 p-6 bg-gray-50 rounded-2xl">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10 p-6 bg-gray-50 rounded-2xl">
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">Last Updated</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">{lang === 'EN' ? 'Date' : 'Tarikh'}</span>
                     <span className="text-sm font-medium text-gray-900">{selectedDoc.updatedAt}</span>
                   </div>
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">File Size</span>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">{lang === 'EN' ? 'File Size' : 'Saiz Fail'}</span>
                     <span className="text-sm font-medium text-gray-900">{selectedDoc.fileSize}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">{lang === 'EN' ? 'Category' : 'Kategori'}</span>
+                    <span className="text-sm font-medium text-gray-900">{selectedDoc.category}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">{lang === 'EN' ? 'Format' : 'Format'}</span>
+                    <span className="text-sm font-medium text-gray-900">{selectedDoc.format}</span>
                   </div>
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button 
-                    onClick={() => setIsPreviewOpen(true)}
-                    className="flex-1 flex items-center justify-center space-x-2 py-4 bg-gray-900 text-white rounded-xl font-bold tracking-widest uppercase text-xs hover:bg-gray-800 transition-all"
+                    onClick={() => hasPreview && setIsPreviewOpen(true)}
+                    disabled={!hasPreview}
+                    className="flex-1 flex items-center justify-center space-x-2 py-4 bg-gray-900 text-white rounded-xl font-bold tracking-widest uppercase text-xs hover:bg-gray-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     <Eye size={16} />
                     <span>{lang === 'EN' ? 'Preview' : 'Pratonton'}</span>
                   </button>
                   <a 
                     href={selectedDoc.fileUrl}
-                    download
-                    className="flex-1 flex items-center justify-center space-x-2 py-4 bg-[#A51C30] text-white rounded-xl font-bold tracking-widest uppercase text-xs hover:bg-[#8a1728] transition-all shadow-lg shadow-[#A51C30]/20"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex-1 flex items-center justify-center space-x-2 py-4 bg-[#A51C30] text-white rounded-xl font-bold tracking-widest uppercase text-xs transition-all shadow-lg shadow-[#A51C30]/20 ${hasPreview ? 'hover:bg-[#8a1728]' : 'pointer-events-none opacity-40'}`}
                   >
                     <Download size={16} />
                     <span>{lang === 'EN' ? 'Download' : 'Muat Turun'}</span>
@@ -392,11 +467,13 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
                 </button>
               </div>
               <div className="flex-grow bg-gray-200 flex items-center justify-center">
-                <div className="text-center space-y-4">
-                  <FileText size={64} className="mx-auto text-gray-400" />
-                  <p className="text-gray-500 font-light">PDF Preview Placeholder</p>
-                  <p className="text-xs text-gray-400 uppercase tracking-widest">In a real app, this would be an iframe or PDF viewer</p>
-                </div>
+                {selectedDoc ? (
+                  <iframe
+                    src={selectedDoc.fileUrl}
+                    className="w-full h-full border-none bg-white"
+                    title={selectedDoc.title[lang]}
+                  />
+                ) : null}
               </div>
             </motion.div>
           </div>

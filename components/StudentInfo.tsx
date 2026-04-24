@@ -48,7 +48,6 @@ const StudentInfo: React.FC<StudentInfoProps> = ({ lang }) => {
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gray-900/80 mix-blend-multiply" />
         </div>
 
         <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">

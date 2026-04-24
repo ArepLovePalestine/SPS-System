@@ -37,12 +37,11 @@ const ApplyNow: React.FC<ApplyNowProps> = ({ lang }) => {
           <img 
             src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop" 
             alt="Apply Now" 
-            className="w-full h-full object-cover"
+              className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-[#A51C30]/80 mix-blend-multiply" />
         </div>
-
         <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
           <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-6">
             <Link to="/" className="hover:text-white transition-colors">HOME</Link>

@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { Mail, ChevronRight, Briefcase, ListChecks, Phone } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Mail, ListChecks, ShieldCheck, Square, ArrowRight, Hash, Phone, ChevronRight } from 'lucide-react';
 import { Language } from '../types';
 
 interface StaffMember {
-  id: number;
+  id: string;
   name: string;
   position: { EN: string; BM: string };
   responsibilities: { EN: string[]; BM: string[] };
   email: string;
   image: string;
+  department: { EN: string; BM: string };
   phone?: string;
 }
 
@@ -19,325 +20,441 @@ interface PersonInChargeProps {
 }
 
 const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
-  const content = {
-    title: { EN: 'Person in Charge', BM: 'Pegawai Bertanggungjawab' },
-    subtitle: {
-      EN: 'Meet the dedicated team powering the School of Graduate Studies.',
-      BM: 'Kenali pasukan dedikasi yang menggerakkan Pusat Pengajian Siswazah.'
-    },
-    responsibilitiesLabel: { EN: 'Responsibilities', BM: 'Tanggungjawab' },
-    emailLabel: { EN: 'Email', BM: 'Emel' }
-  };
-
   const staffData: StaffMember[] = [
     {
-      id: 1,
-      name: 'Prof. Madya IR. TS. Dr. Jeefferie bin Abd Razak',
-      position: { EN: 'Deputy Dean', BM: 'Deputy Dean' },
+      id: "PIC-01",
+      name: "Prof. Madya IR. TS. Dr. Jeefferie bin Abd Razak",
+      position: { EN: "Deputy Dean", BM: "Timbalan Dekan" },
+      department: { EN: "Management & Strategy", BM: "Pengurusan & Strategi" },
       responsibilities: {
         EN: [
-          'Accreditation of Postgraduate Programme/MQA',
-          'MoU and MoA SPS',
-          'Postgraduate Programme Promotions',
-          'Postgraduate Student Activities/Postgraduate Club (UPGRADE)',
-          'Doctor of Engineering Administration',
-          'Conversion from Master (by Research) to PhD Programme',
-          'Research Proposal Defend'
+          "Accreditation of Postgraduate Programme/MQA",
+          "MoU and MoA SPS",
+          "Postgraduate Programme Promotions",
+          "Postgraduate Student Activities/Postgraduate Club (UPGRADE)",
+          "Doctor of Engineering Administration",
+          "Conversion from Master (by Research) to PhD Programme",
+          "Research Proposal Defend"
         ],
         BM: [
-          'Accreditation of Postgraduate Programme/MQA',
-          'MoU and MoA SPS',
-          'Postgraduate Programme Promotions',
-          'Postgraduate Student Activities/Postgraduate Club (UPGRADE)',
-          'Doctor of Engineering Administration',
-          'Conversion from Master (by Research) to PhD Programme',
-          'Research Proposal Defend'
+          "Akreditasi Program Pascasiswazah/MQA",
+          "MoU dan MoA SPS",
+          "Promosi Program Pascasiswazah",
+          "Aktiviti Pelajar Pascasiswazah/Kelab Pascasiswazah (UPGRADE)",
+          "Pentadbiran Doktor Kejuruteraan",
+          "Pertukaran daripada Sarjana (Penyelidikan) ke Program PhD",
+          "Pembelaan Cadangan Penyelidikan"
         ]
       },
-      email: 'jeefferie@utem.edu.my',
-      image: '/images/about-pic/Jeefferie.jpeg'
+      email: "jeefferie@utem.edu.my",
+      image: "/images/about-pic/Jeefferie.jpeg"
     },
     {
-      id: 2,
-      name: 'Mrs. Junaidah binti Kasim',
-      position: { EN: 'Deputy Registrar', BM: 'Deputy Registrar' },
+      id: "PIC-02",
+      name: "Mrs. Junaidah binti Kasim",
+      position: { EN: "Deputy Registrar", BM: "Timbalan Pendaftar" },
+      department: { EN: "Administrative Division", BM: "Bahagian Pentadbiran" },
       responsibilities: {
         EN: [
-          'ISO 9001:2015',
-          'MyRA',
-          'MyMohes',
-          'Data/Statistics',
-          'Financial/Asset',
-          'Postgraduate Offshore Programmes',
-          'Office Administration'
+          "ISO 9001:2015",
+          "MyRA",
+          "MyMohes",
+          "Data/Statistics",
+          "Financial/Asset",
+          "Postgraduate Offshore Programmes",
+          "Office Administration"
         ],
         BM: [
-          'ISO 9001:2015',
-          'MyRA',
-          'MyMohes',
-          'Data/Statistics',
-          'Financial/Asset',
-          'Postgraduate Offshore Programmes',
-          'Office Administration'
+          "ISO 9001:2015",
+          "MyRA",
+          "MyMohes",
+          "Data/Statistik",
+          "Kewangan/Aset",
+          "Program Pascasiswazah Luar Kampus",
+          "Pentadbiran Pejabat"
         ]
       },
-      email: 'junaidahkasim@utem.edu.my',
-      image: '/images/about-pic/Junaidah.jpeg'
+      email: "junaidahkasim@utem.edu.my",
+      image: "/images/about-pic/Junaidah.jpeg"
     },
     {
-      id: 3,
-      name: 'Mr. Mohammad Syarin bin Sapuan',
-      position: { EN: 'Assistant Registrar (Academic)', BM: 'Assistant Registrar (Academic)' },
+      id: "PIC-03",
+      name: "Mr. Mohammad Syarin bin Sapuan",
+      position: { EN: "Assistant Registrar (Academic)", BM: "Penolong Pendaftar (Akademik)" },
+      department: { EN: "Academic Affairs", BM: "Hal Ehwal Akademik" },
       responsibilities: {
         EN: [
-          'Admission and Registration of Postgraduate Students',
-          'Examination Result',
-          'Conferment of Degree',
-          'Other Academic Matters'
+          "Admission and Registration of Postgraduate Students",
+          "Examination Result",
+          "Conferment of Degree",
+          "Other Academic Matters"
         ],
         BM: [
-          'Admission and Registration of Postgraduate Students',
-          'Examination Result',
-          'Conferment of Degree',
-          'Other Academic Matters'
+          "Kemasukan dan Pendaftaran Pelajar Pascasiswazah",
+          "Keputusan Peperiksaan",
+          "Penganugerahan Ijazah",
+          "Perkara Akademik Lain"
         ]
       },
-      email: 'syarin@utem.edu.my',
-      image: '/images/about-pic/Syarin.jpeg'
+      email: "syarin@utem.edu.my",
+      image: "/images/about-pic/Syarin.jpeg"
     },
     {
-      id: 4,
-      name: 'Ms. Idura binti Yaakup',
-      position: { EN: 'Assistant Registrar (Examination and Scholarship)', BM: 'Assistant Registrar (Examination and Scholarship)' },
+      id: "PIC-04",
+      name: "Ms. Idura binti Yaakup",
+      position: { EN: "Assistant Registrar (Examination and Scholarship)", BM: "Penolong Pendaftar (Peperiksaan dan Biasiswa)" },
+      department: { EN: "Evaluation Unit", BM: "Unit Penilaian" },
       responsibilities: {
         EN: [
-          'Final Examination Management',
-          'Oral Examination (Viva-voce)',
-          'Scholarship (Kesidang Scheme/MyBrain15/PTPTN)',
-          'Graduation and Letter of Convocation',
-          'Postgraduate Student Welfare'
+          "Final Examination Management",
+          "Oral Examination (Viva-voce)",
+          "Scholarship (Kesidang Scheme/MyBrain15/PTPTN)",
+          "Graduation and Letter of Convocation",
+          "Postgraduate Student Welfare"
         ],
         BM: [
-          'Final Examination Management',
-          'Oral Examination (Viva-voce)',
-          'Scholarship (Kesidang Scheme/MyBrain15/PTPTN)',
-          'Graduation and Letter of Convocation',
-          'Postgraduate Student Welfare'
+          "Pengurusan Peperiksaan Akhir",
+          "Peperiksaan Lisan (Viva-voce)",
+          "Biasiswa (Skim Kesidang/MyBrain15/PTPTN)",
+          "Graduasi dan Surat Konvokesyen",
+          "Kebajikan Pelajar Pascasiswazah"
         ]
       },
-      email: 'idura@utem.edu.my',
-      image: '/images/about-pic/Idura.jpeg'
+      email: "idura@utem.edu.my",
+      image: "/images/about-pic/Idura.jpeg"
     },
     {
-      id: 5,
-      name: 'Mr. Noor Azman bin Mansor',
-      position: { EN: 'Assistant Administration Officer (Viva-Voce)', BM: 'Assistant Administration Officer (Viva-Voce)' },
+      id: "PIC-05",
+      name: "Mr. Noor Azman bin Mansor",
+      position: { EN: "Assistant Administration Officer (Viva-Voce)", BM: "Penolong Pegawai Pentadbiran (Viva-Voce)" },
+      department: { EN: "Examination Unit", BM: "Unit Peperiksaan" },
       responsibilities: {
-        EN: ['Oral Examination Process (Viva-Voce)', 'E-viva System'],
-        BM: ['Oral Examination Process (Viva-Voce)', 'E-viva System']
+        EN: ["Oral Examination Process (Viva-Voce)", "E-viva System"],
+        BM: ["Proses Peperiksaan Lisan (Viva-Voce)", "Sistem E-viva"]
       },
-      email: 'noorazman@utem.edu.my',
-      image: '/images/about-pic/Azman.jpeg'
+      email: "noorazman@utem.edu.my",
+      image: "/images/about-pic/Azman.jpeg"
     },
     {
-      id: 6,
-      name: 'Mrs. Zuriana binti Omar',
-      position: { EN: 'Office Secretary', BM: 'Office Secretary' },
-      responsibilities: { EN: ['Secretarial Matters'], BM: ['Secretarial Matters'] },
-      email: 'zuriana@utem.edu.my',
-      phone: '06-229 2307',
-      image: '/images/about-pic/Zuriana.jpeg'
+      id: "PIC-06",
+      name: "Mrs. Zuriana binti Omar",
+      position: { EN: "Office Secretary", BM: "Setiausaha Pejabat" },
+      department: { EN: "Dean's Office", BM: "Pejabat Dekan" },
+      responsibilities: { 
+        EN: ["Secretarial Matters"], 
+        BM: ["Urusan Kesetiausahaan"] 
+      },
+      email: "zuriana@utem.edu.my",
+      phone: "06-229 2307",
+      image: "/images/about-pic/Zuriana.jpeg"
     },
     {
-      id: 7,
-      name: 'Nooraznina Irma Binti Mustafa',
-      position: { EN: 'Senior Administrative Assistant (Academic)', BM: 'Senior Administrative Assistant (Academic)' },
+      id: "PIC-07",
+      name: "Nooraznina Irma Binti Mustafa",
+      position: { EN: "Senior Administrative Assistant (Academic)", BM: "Pembantu Tadbir Kanan (Akademik)" },
+      department: { EN: "Academic Support", BM: "Sokongan Akademik" },
       responsibilities: {
         EN: [
-          'Offer Letter Status',
-          'Student Confirmation Letter',
-          'Updating Postgraduate Student Personal Information in SMPS'
+          "Offer Letter Status",
+          "Student Confirmation Letter",
+          "Updating Postgraduate Student Personal Information in SMPS"
         ],
         BM: [
-          'Offer Letter Status',
-          'Student Confirmation Letter',
-          'Updating Postgraduate Student Personal Information in SMPS'
+          "Status Surat Tawaran",
+          "Surat Pengesahan Pelajar",
+          "Mengemaskini Maklumat Peribadi Pelajar Pascasiswazah dalam SMPS"
         ]
       },
-      email: 'aznina@utem.edu.my',
-      phone: '06-229 2307',
-      image: '/images/about-pic/Noraznina.jpeg'
+      email: "aznina@utem.edu.my",
+      phone: "06-229 2307",
+      image: "/images/about-pic/Noraznina.jpeg"
     },
     {
-      id: 8,
-      name: 'Mrs. Aiza Azwadi binti Abdul Wahab',
-      position: { EN: 'Senior Administrative Assistant (Academic)', BM: 'Senior Administrative Assistant (Academic)' },
+      id: "PIC-08",
+      name: "Mrs. Aiza Azwadi binti Abdul Wahab",
+      position: { EN: "Senior Administrative Assistant (Academic)", BM: "Pembantu Tadbir Kanan (Akademik)" },
+      department: { EN: "Academic Support", BM: "Sokongan Akademik" },
       responsibilities: {
-        EN: ['Offer Letter Status', 'Students Application Status', 'Appointment of Supervisor'],
-        BM: ['Offer Letter Status', 'Students Application Status', 'Appointment of Supervisor']
+        EN: ["Offer Letter Status", "Students Application Status", "Appointment of Supervisor"],
+        BM: ["Status Surat Tawaran", "Status Permohonan Pelajar", "Pelantikan Penyelia"]
       },
-      email: 'aswadi@utem.edu.my',
-      image: '/images/about-pic/Aswadi.jpeg'
+      email: "aswadi@utem.edu.my",
+      image: "/images/about-pic/Aswadi.jpeg"
     },
     {
-      id: 9,
-      name: 'Mr. Fadhil Bin Ahmad',
-      position: { EN: 'Assistant Engineer', BM: 'Assistant Engineer' },
+      id: "PIC-09",
+      name: "Mr. Fadhil Bin Ahmad",
+      position: { EN: "Assistant Engineer", BM: "Penolong Jurutera" },
+      department: { EN: "Facility & Infrastructure", BM: "Kemudahan & Infrastruktur" },
       responsibilities: {
-        EN: ['Space/Room Reservations', 'Postgraduate Lab', 'Technical Issues', 'SPS Website and Social Media'],
-        BM: ['Space/Room Reservations', 'Postgraduate Lab', 'Technical Issues', 'SPS Website and Social Media']
+        EN: ["Space/Room Reservations", "Postgraduate Lab", "Technical Issues", "SPS Website and Social Media"],
+        BM: ["Tempahan Ruang/Bilik", "Makmal Pascasiswazah", "Isu Teknika", "Laman Web dan Media Sosial SPS"]
       },
-      email: 'fadhil@utem.edu.my',
-      phone: '012-9255100',
-      image: '/images/about-pic/Fadhil.jpeg'
+      email: "fadhil@utem.edu.my",
+      phone: "012-9255100",
+      image: "/images/about-pic/Fadhil.jpeg"
     },
     {
-      id: 10,
-      name: 'Ms. Nur Afiqah binti Mohd Hamdan',
-      position: { EN: 'Administrative Assistant', BM: 'Administrative Assistant' },
+      id: "PIC-10",
+      name: "Ms. Nur Afiqah binti Mohd Hamdan",
+      position: { EN: "Administrative Assistant", BM: "Pembantu Tadbir" },
+      department: { EN: "Front Desk Operations", BM: "Operasi Pentadbiran" },
       responsibilities: {
         EN: [
-          'Kesidang -Application/ Status/ Offer Letter/ Continuation Letter',
-          'Confirmation Letter for EPF Withdrawal',
-          'Letter of Completion Study for Research, Coursework and Mixed Mode Programme',
-          'Postgraduate Academic Transcript and Scroll'
+          "Kesidang - Application/ Status/ Offer Letter/ Continuation Letter",
+          "Confirmation Letter for EPF Withdrawal",
+          "Letter of Completion Study for Research, Coursework and Mixed Mode Programme",
+          "Postgraduate Academic Transcript and Scroll"
         ],
         BM: [
-          'Kesidang -Application/ Status/ Offer Letter/ Continuation Letter',
-          'Confirmation Letter for EPF Withdrawal',
-          'Letter of Completion Study for Research, Coursework and Mixed Mode Programme',
-          'Postgraduate Academic Transcript and Scroll'
+          "Kesidang - Permohonan/ Status/ Surat Tawaran/ Surat Sambungan",
+          "Surat Pengesahan untuk Pengeluaran KWSP",
+          "Surat Tamat Pengajian untuk Program Penyelidikan, Kerja Kursus dan Mod Campuran",
+          "Transkrip Akademik Pascasiswazah dan Skrol"
         ]
       },
-      email: 'nur.afiqah@utem.edu.my',
-      image: '/images/about-pic/Afiqah.jpeg'
+      email: "nur.afiqah@utem.edu.my",
+      image: "/images/about-pic/Afiqah.jpeg"
     }
   ];
 
-  return (
-    <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[420px] flex items-end pb-16 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/homepages/PIC.jpg"
-            alt="Person in Charge"
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-maroon-900/60 mix-blend-multiply" />
-        </div>
+  const [activeStaffId, setActiveStaffId] = React.useState(staffData[0].id);
+  const activeStaff = staffData.find(s => s.id === activeStaffId) || staffData[0];
 
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
-          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-6">
-            <Link to="/" className="hover:text-white transition-colors">HOME</Link>
-            <ChevronRight size={12} />
-            <Link to="/about" className="hover:text-white transition-colors">{lang === 'EN' ? 'ABOUT US' : 'TENTANG KAMI'}</Link>
-            <ChevronRight size={12} />
-            <span className="text-white">{lang === 'EN' ? 'PERSON IN CHARGE' : 'PEGAWAI BERTANGGUNGJAWAB'}</span>
-          </nav>
-          <motion.h1
+  return (
+    <div className="min-h-screen bg-[#FDFDFD] pb-32 selection:bg-[#A51C30]/10 selection:text-[#A51C30]">
+      {/* Global Academic Typography Alignment */}
+      <style>{`
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .content-panel {
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+        }
+        
+        .custom-scrollbar::-webkit-scrollbar {
+          height: 1px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #E5E7EB;
+        }
+      `}</style>
+
+      {/* Section 1: Image Hero */}
+      <section
+        className="relative mb-24 overflow-hidden bg-cover bg-center pt-32 pb-28"
+        style={{ backgroundImage: "url('/images/homepages/Pic2.JPG')" }}
+      >
+        <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" aria-hidden="true" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[10px] font-bold uppercase tracking-[0.24em] mb-8"
+          >
+            <Link to="/about" className="text-white/65 transition-colors hover:text-white">
+              {lang === 'EN' ? 'About Us' : 'Tentang Kami'}
+            </Link>
+            <ChevronRight size={12} className="text-white/35" />
+            <span className="text-white/65">
+              {lang === 'EN' ? 'Staff Info' : 'Maklumat Staf'}
+            </span>
+            <ChevronRight size={12} className="text-white/35" />
+            <span className="text-white">
+              {lang === 'EN' ? 'Person in Charge' : 'Pegawai Bertanggungjawab'}
+            </span>
+          </motion.div>
+          
+          <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-serif font-bold text-white mb-4"
+            transition={{ delay: 0.1 }}
+            className="text-6xl md:text-7xl font-serif text-white mb-8 tracking-tight font-medium drop-shadow-[0_12px_35px_rgba(0,0,0,0.35)]"
           >
-            {content.title[lang]}
+            {lang === 'EN' ? 'Person in Charge' : 'Pegawai Bertanggungjawab'}
           </motion.h1>
-          <p className="text-xl text-white/90 font-light max-w-2xl">
-            {content.subtitle[lang]}
-          </p>
+          
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="max-w-xl text-lg font-sans text-white/75 font-light leading-relaxed"
+          >
+            {lang === 'EN' 
+              ? 'Meet the executive team coordinating postgraduate excellence at UTeM.' 
+              : 'Kenali pasukan eksekutif yang menyelaras kecemerlangan pascasiswazah di UTeM.'}
+          </motion.p>
         </div>
       </section>
 
-      {/* Staff Grid Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 items-stretch">
-            {staffData.map((staff, index) => (
-              <motion.div
-                key={staff.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 group flex flex-col h-full max-w-sm w-full mx-auto"
-              >
-                <div className="h-60 bg-white flex items-center justify-center rounded-t-2xl overflow-hidden">
-                  <img
-                    src={staff.image}
-                    alt={staff.name}
-                    className="max-h-full max-w-full object-contain object-center transition-all duration-700"
-                  />
-                </div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-                <div className="p-5 flex-grow flex flex-col">
-                  <div className="mb-4">
-                    <div className="flex items-center space-x-2 text-[#A51C30] mb-2">
-                      <Briefcase size={14} />
-                      <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
-                        {staff.position[lang]}
-                      </span>
-                    </div>
-                    <h3 className="text-base md:text-lg font-bold text-gray-900 uppercase leading-tight mb-2">
-                      {staff.name}
-                    </h3>
-                  </div>
-
-                  <div className="space-y-4 flex-grow">
-                    <div>
-                      <div className="flex items-center space-x-2 text-gray-400 mb-3">
-                        <ListChecks size={14} />
-                        <span className="text-[10px] font-bold uppercase tracking-widest">
-                          {content.responsibilitiesLabel[lang]}
-                        </span>
-                      </div>
-                      <ul className="space-y-2">
-                        {staff.responsibilities[lang].map((item, i) => (
-                          <li key={i} className="flex items-start space-x-2 text-sm text-gray-600 font-light">
-                            <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-300 flex-shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div className="mt-6 pt-4 border-t border-gray-50 space-y-2">
-                    <div className="flex items-center space-x-2 text-gray-400">
-                      <Mail size={14} />
-                      <span className="text-[10px] font-bold uppercase tracking-widest">
-                        {content.emailLabel[lang]}
-                      </span>
-                    </div>
-                    <a
-                      href={`mailto:${staff.email}`}
-                      className="text-sm text-[#A51C30] hover:underline font-medium break-all"
-                    >
-                      {staff.email}
-                    </a>
-                    {staff.phone && (
-                      <div className="flex items-center space-x-2 text-gray-600 text-sm">
-                        <Phone size={14} className="text-gray-400" />
-                        <a href={`tel:${staff.phone.replace(/[^\\d+]/g, '')}`} className="hover:text-[#A51C30]">
-                          {staff.phone}
-                        </a>
-                      </div>
+        {/* Section 2: Split Layout (Sidebar + Content) */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+          
+          {/* Left Sidebar: Role Navigation */}
+          <aside className="w-full lg:w-80 shrink-0">
+            <header className="mb-8 hidden lg:block">
+              <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
+                Staff Directory
+              </h3>
+            </header>
+            
+            <nav className="flex lg:flex-col overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 custom-scrollbar gap-1 lg:gap-1">
+              {staffData.map((staff) => (
+                <button
+                  key={staff.id}
+                  onClick={() => setActiveStaffId(staff.id)}
+                  className={`
+                    relative px-4 py-4 rounded-lg text-left transition-all duration-300 whitespace-nowrap lg:whitespace-normal group
+                    ${activeStaffId === staff.id 
+                      ? 'bg-[#A51C30]/5 text-[#A51C30]' 
+                      : 'text-gray-500 hover:text-gray-900 hover:bg-gray-50'}
+                  `}
+                >
+                  <div className="flex items-center space-x-4">
+                    {activeStaffId === staff.id && (
+                      <motion.div 
+                        layoutId="sidebarIndicator"
+                        className="absolute left-0 w-1 h-6 bg-[#A51C30] rounded-full hidden lg:block"
+                        transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+                      />
                     )}
+                    <span className={`text-sm font-medium leading-snug ${activeStaffId === staff.id ? 'font-semibold' : ''}`}>
+                      {staff.position[lang]}
+                    </span>
+                  </div>
+                  
+                  {/* Bottom indicator for mobile */}
+                  {activeStaffId === staff.id && (
+                    <motion.div 
+                      layoutId="mobileIndicator"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#A51C30] lg:hidden"
+                    />
+                  )}
+                </button>
+              ))}
+            </nav>
+          </aside>
+
+          {/* Right Area: Selected Profile Details */}
+          <main className="flex-grow">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeStaffId}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
+                className="bg-white rounded-2xl border border-gray-100 content-panel"
+              >
+                <div className="flex flex-col xl:flex-row">
+                  
+                  {/* Visual & Basic Info */}
+                  <div className="w-full xl:w-[400px] p-10 lg:p-14 border-b xl:border-b-0 xl:border-r border-gray-50">
+                     <div className="relative mb-10 w-full max-w-[240px] aspect-[3/4] overflow-hidden rounded-xl bg-gray-50 mx-auto xl:mx-0">
+                       <img 
+                         src={activeStaff.image} 
+                         alt={activeStaff.name} 
+                         className="w-full h-full object-cover transition-all duration-700"
+                         referrerPolicy="no-referrer"
+                       />
+                     </div>
+                     
+                     <div className="space-y-6">
+                        <div className="space-y-1">
+                          <h2 className="text-[1.35rem] lg:text-[1.7rem] font-serif text-gray-900 leading-snug font-semibold">
+                            {activeStaff.name}
+                          </h2>
+                          <p className="text-xs font-bold text-[#A51C30] uppercase tracking-widest mt-2">
+                            {activeStaff.position[lang]}
+                          </p>
+                        </div>
+
+                        <div className="pt-8 border-t border-gray-100 space-y-4">
+                          <a 
+                            href={`mailto:${activeStaff.email}`}
+                            className="flex items-center space-x-4 text-gray-600 hover:text-[#A51C30] transition-colors group"
+                          >
+                            <Mail size={16} className="text-gray-300 group-hover:text-[#A51C30]" />
+                            <span className="text-sm font-medium">{activeStaff.email}</span>
+                          </a>
+
+                          {activeStaff.phone && (
+                            <div className="flex items-center space-x-4 text-gray-600">
+                              <Phone size={16} className="text-gray-300" />
+                              <span className="text-sm font-medium">{activeStaff.phone}</span>
+                            </div>
+                          )}
+                          
+                          <div className="flex items-center space-x-4 text-gray-400">
+                            <ShieldCheck size={16} className="text-gray-200" />
+                            <span className="text-xs font-medium tracking-wide">
+                              {activeStaff.department[lang]}
+                            </span>
+                          </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  {/* Detail Panel: Mandates */}
+                  <div className="flex-grow p-10 lg:p-14 bg-[#FAFAFA]/40">
+                    <div className="max-w-xl">
+                      <header className="mb-12">
+                        <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">
+                           Professional Responsibilities
+                        </h3>
+                      </header>
+                      
+                      <div className="space-y-8">
+                        {activeStaff.responsibilities[lang].map((res, i) => (
+                          <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 + (i * 0.05) }}
+                            key={i} 
+                            className="flex items-start group"
+                          >
+                             <div className="mt-2.5 w-1.5 h-[1.5px] bg-gray-200 group-hover:bg-[#A51C30] group-hover:w-4 transition-all mr-6 shrink-0" />
+                             <p className="text-base font-sans text-gray-600 leading-relaxed group-hover:text-gray-950 transition-colors">
+                               {res}
+                             </p>
+                          </motion.div>
+                        ))}
+                      </div>
+
+                      <div className="mt-20 pt-10 border-t border-gray-50 flex justify-between items-center opacity-30">
+                         <span className="text-[8px] font-bold uppercase tracking-widest text-gray-400">Personnel Key: {activeStaff.id}</span>
+                         <span className="text-[8px] font-bold uppercase tracking-widest text-gray-400">UTeM-SPS Official Directory</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
-            ))}
-          </div>
+            </AnimatePresence>
+          </main>
         </div>
-      </section>
 
-      <div className="py-12 border-t border-gray-100 text-center">
-        <Link to="/" className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest transition-colors">
-          {lang === 'EN' ? 'Back to Home' : 'Kembali ke Utama'}
-        </Link>
+        {/* Home Navigation */}
+        <div className="mt-32 flex justify-center">
+           <Link 
+             to="/" 
+             className="text-[9px] font-bold tracking-[0.6em] text-gray-300 hover:text-[#A51C30] transition-all uppercase flex items-center group"
+           >
+             <span>BACK TO HUB</span>
+             <div className="w-4 h-px bg-gray-100 ml-4 group-hover:w-8 group-hover:bg-[#A51C30] transition-all" />
+           </Link>
+        </div>
       </div>
     </div>
   );
 };
+
+
 
 export default PersonInCharge;

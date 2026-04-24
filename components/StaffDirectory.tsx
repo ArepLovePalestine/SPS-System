@@ -52,6 +52,24 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
     },
     {
       id: 3,
+      name: "MOHAMMAD SYARIN BIN SAPUAN",
+      position: { EN: "Assistant Registrar (Academic)", BM: "Penolong Pendaftar (Akademik)" },
+      unit: { EN: "Academic", BM: "Akademik" },
+      email: "syarin@utem.edu.my",
+      phone: "-",
+      image: "/images/about-staff/Syarin.jpeg"
+    },
+    {
+      id: 4,
+      name: "IDURA BINTI YAAKUP",
+      position: { EN: "Assistant Registrar (Examination and Scholarship)", BM: "Penolong Pendaftar (Peperiksaan dan Biasiswa)" },
+      unit: { EN: "Student Affairs", BM: "Hal Ehwal Pelajar" },
+      email: "idura@utem.edu.my",
+      phone: "-",
+      image: "/images/about-staff/Idura.jpeg"
+    },
+    {
+      id: 5,
       name: "NOOR AZMAN BIN MANSOR",
       position: { EN: "Assistant Administration Officer (Viva -Voice)", BM: "Penolong Pendaftar (Akademik)" },
       unit: { EN: "Academic", BM: "Akademik" },
@@ -60,7 +78,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       image: "/images/about-staff/Azman.jpeg"
     },
     {
-      id: 4,
+      id: 6,
       name: "SITI ZURIANA BINTI OMAR",
       position: { EN: "Office Secretary", BM: "Pensyarah Kanan" },
       unit: { EN: "Research", BM: "Penyelidikan" },
@@ -69,7 +87,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       image: "/images/about-staff/Zuriana.jpeg"
     },
     {
-      id: 5,
+      id: 7,
       name: "FADHIL BIN AHMAD",
       position: { EN: "Assistant Engineer", BM: "Pembantu Tadbir" },
       unit: { EN: "Administration & Finance", BM: "Pentadbiran & Kewangan" },
@@ -78,7 +96,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       image: "/images/about-staff/Fadhil.jpeg"
     },
     {
-      id: 6,
+      id: 8,
       name: "SITI SUHAILAH BINTI ZAINI",
       position: { EN: "SENIOR ADMINISTRATIVE ASSISTANT (ADMINISTRATION AND FINANCIAL)", BM: "Pegawai TM" },
       unit: { EN: "Management", BM: "Pengurusan" },
@@ -87,7 +105,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       image: "/images/about-staff/Suhailah.jpeg"
     },
     {
-      id: 7,
+      id: 9,
       name: "AIZA AZWADI BIN ABDUL WAHAB",
       position: { EN: "Senior Administrative Assistant(Academic)", BM: "Pegawai Kewangan" },
       unit: { EN: "Administration & Finance", BM: "Pentadbiran & Kewangan" },
@@ -96,7 +114,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       image: "/images/about-staff/Aswadi.jpeg"
     },
     {
-      id: 8,
+      id: 10,
       name: "NOORAZNINA IRMA BINTI MUSTAFA",
       position: { EN: "Senior Administrative Asisstant(Academic)", BM: "Penyelaras Penyelidikan" },
       unit: { EN: "Research", BM: "Penyelidikan" },
@@ -105,7 +123,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       image: "/images/about-staff/Noraznina.jpeg"
     },
     {
-      id: 9,
+      id: 11,
       name: "NUR AFIQAH BINTI MOHD HAMDAN",
       position: { EN: "Administrative Assistant (Examination And Scholarship)", BM: "Pegawai Eksekutif" },
       unit: { EN: "Student Affairs", BM: "Hal Ehwal Pelajar" },
@@ -114,8 +132,8 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       image: "/images/about-staff/Afiqah.jpeg"
     },
     {
-      id: 10,
-      name: "MUAHAMMAD FIRDAUS BIN MAZLI",
+      id: 12,
+      name: "MUHAMMAD FIRDAUS BIN MAZLI",
       position: { EN: "General Officer Assistant", BM: "Pembantu Pejabat" },
       unit: { EN: "Administration & Finance", BM: "Pentadbiran & Kewangan" },
       email: "Muhammad.firdaus@utem.edu.my",
@@ -163,7 +181,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
     "AIZA AZWADI BIN ABDUL WAHAB": "https://portal.utem.edu.my/iuris/frm_e-cv.asp?search=25E4$2C79$2D8E$24C1$2580$26F7$BC0$BA0$B80$B60$B40$B20$B00$AE0$AC0$AA0$A80$A60$A40$A20$A00$9E0$9C0$9A0$980$960$940$920$900$8E0$8C0$8A0$880$860$840$820$800$7E0$7C0$7A0$780$760$740$720$700$6E0$6C0$6A0$680$660$640$620$600$5E0$5C0$5A0$580$560$540$520$500$4E0$4C0$4A0$480$460$440$420$400$3E0$3C0$3A0$380$360$340$320$300$2E0$2C0$2A0$280$260$240$220$200$1E0$1C0$1A0$180$160$140$120$100$E0$C0$A0$80$60$40$20",
     "NOORAZNINA IRMA BINTI MUSTAFA": "https://portal.utem.edu.my/iuris/frm_e-cv.asp?search=25E4$2F2E$2A1C$27C9$2940$23FF$BC0$BA0$B80$B60$B40$B20$B00$AE0$AC0$AA0$A80$A60$A40$A20$A00$9E0$9C0$9A0$980$960$940$920$900$8E0$8C0$8A0$880$860$840$820$800$7E0$7C0$7A0$780$760$740$720$700$6E0$6C0$6A0$680$660$640$620$600$5E0$5C0$5A0$580$560$540$520$500$4E0$4C0$4A0$480$460$440$420$400$3E0$3C0$3A0$380$360$340$320$300$2E0$2C0$2A0$280$260$240$220$200$1E0$1C0$1A0$180$160$140$120$100$E0$C0$A0$80$60$40$20",
     "NUR AFIQAH BINTI MOHD HAMDAN": "https://portal.utem.edu.my/iuris/frm_e-cv.asp?search=2AF8$2D3F$2BA4$116E$2460$25DA$268E$290D$22DC$24F8$B40$B20$B00$AE0$AC0$AA0$A80$A60$A40$A20$A00$9E0$9C0$9A0$980$960$940$920$900$8E0$8C0$8A0$880$860$840$820$800$7E0$7C0$7A0$780$760$740$720$700$6E0$6C0$6A0$680$660$640$620$600$5E0$5C0$5A0$580$560$540$520$500$4E0$4C0$4A0$480$460$440$420$400$3E0$3C0$3A0$380$360$340$320$300$2E0$2C0$2A0$280$260$240$220$200$1E0$1C0$1A0$180$160$140$120$100$E0$C0$A0$80$60$40$20",
-    "MUAHAMMAD FIRDAUS BIN MAZLI": "https://portal.utem.edu.my/iuris/frm_e-cv.asp?search=2A94$2D3F$27D0$24C1$28E0$23FF$24B8$10B6$24A8$2553$2814$22C4$2158$27C3$26A2$AA0$A80$A60$A40$A20$A00$9E0$9C0$9A0$980$960$940$920$900$8E0$8C0$8A0$880$860$840$820$800$7E0$7C0$7A0$780$760$740$720$700$6E0$6C0$6A0$680$660$640$620$600$5E0$5C0$5A0$580$560$540$520$500$4E0$4C0$4A0$480$460$440$420$400$3E0$3C0$3A0$380$360$340$320$300$2E0$2C0$2A0$280$260$240$220$200$1E0$1C0$1A0$180$160$140$120$100$E0$C0$A0$80$60$40$20"
+    "MUHAMMAD FIRDAUS BIN MAZLI": "https://portal.utem.edu.my/iuris/frm_e-cv.asp?search=2A94$2D3F$27D0$24C1$28E0$23FF$24B8$10B6$24A8$2553$2814$22C4$2158$27C3$26A2$AA0$A80$A60$A40$A20$A00$9E0$9C0$9A0$980$960$940$920$900$8E0$8C0$8A0$880$860$840$820$800$7E0$7C0$7A0$780$760$740$720$700$6E0$6C0$6A0$680$660$640$620$600$5E0$5C0$5A0$580$560$540$520$500$4E0$4C0$4A0$480$460$440$420$400$3E0$3C0$3A0$380$360$340$320$300$2E0$2C0$2A0$280$260$240$220$200$1E0$1C0$1A0$180$160$140$120$100$E0$C0$A0$80$60$40$20"
   };
   return (
     <div className="pt-24 pb-20 min-h-screen bg-gray-50">
@@ -263,30 +281,30 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
                   >
                     <div className="flex flex-col items-center text-center space-y-4">
                       <div className="relative">
-                        <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-50 group-hover:border-[#A51C30]/20 transition-colors">
+                        <div className="w-24 h-24 rounded-full overflow-hidden shadow-md">
                           {profileLinks[staff.name] ? (
                             <a
                               href={profileLinks[staff.name]}
                               target="_blank"
                               rel="noopener noreferrer"
-                              aria-label={`View profile of ${staff.name}`}
+                              className="block w-full h-full"
                             >
-                              <img 
-                                src={staff.image} 
-                                alt={staff.name} 
-                                className="w-full h-full object-cover transition-all duration-500 transform translate-y-1 object-center"
+                              <img
+                                  src={staff.image}
+                                  alt={staff.name}
+                                  className="w-full h-full object-cover object-center scale-105"
+                                  referrerPolicy="no-referrer"
+                                />
+                              </a>
+                            ) : (
+                              <img
+                                src={staff.image}
+                                alt={staff.name}
+                                className="w-full h-full object-cover object-center scale-105"
                                 referrerPolicy="no-referrer"
                               />
-                            </a>
-                          ) : (
-                            <img 
-                              src={staff.image} 
-                              alt={staff.name} 
-                              className="w-full h-full object-cover transition-all duration-500 transform translate-y-1 object-center"
-                              referrerPolicy="no-referrer"
-                            />
-                          )}
-                        </div>
+                            )}
+                          </div>
                         <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center text-[#A51C30]">
                           <User size={14} />
                         </div>
