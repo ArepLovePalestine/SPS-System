@@ -198,9 +198,9 @@ const MasterMixed: React.FC<MasterMixedProps> = ({ lang }) => {
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
       {/* Header */}
-      <section className="bg-gray-50 py-16 mb-16 border-b border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
+      <section className="bg-white py-16 mb-16 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12">
+          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-8">
             <Link to="/" className="hover:text-[#A51C30] transition-colors">HOME</Link>
             <ChevronRight size={10} />
             <Link to="/programmes" className="hover:text-[#A51C30] transition-colors">PROGRAMMES</Link>
@@ -209,10 +209,10 @@ const MasterMixed: React.FC<MasterMixedProps> = ({ lang }) => {
           </nav>
 
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-8 leading-tight">
+            <h1 className="text-4xl md:text-5xl font-serif text-gray-900">
               {lang === 'EN' ? 'Master by Mixed Mode' : 'Sarjana secara Mod Campuran'}
             </h1>
-            <p className="text-gray-600 text-xl font-light leading-relaxed">
+            <p className="mt-4 text-gray-500 max-w-2xl text-lg font-light">
               {lang === 'EN'
                 ? 'Explore mixed-mode postgraduate programmes combining taught courses with supervised research and dissertation work.'
                 : 'Terokai program pascasiswazah mod campuran yang menggabungkan kursus pengajaran dengan penyelidikan dan disertasi terselia.'}

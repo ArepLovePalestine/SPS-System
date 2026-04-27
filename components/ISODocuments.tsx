@@ -12,6 +12,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { Language } from '../types';
+import PageHeader from './PageHeader';
 
 interface ISODocumentsProps {
   lang: Language;
@@ -59,41 +60,21 @@ const ISODocuments: React.FC<ISODocumentsProps> = ({ lang }) => {
 
   return (
     <div className="min-h-screen bg-white font-sans">
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
-            alt="Office Environment" 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <nav className="flex items-center justify-start space-x-2 text-[10px] font-bold uppercase tracking-[0.3em] text-white/60 mb-8">
-              <Link to="/" className="hover:text-white transition-colors">HOME</Link>
-              <ChevronRight size={12} />
-              <Link to="/about" className="hover:text-white transition-colors">ABOUT US</Link>
-              <ChevronRight size={12} />
-              <span className="text-white">ISO DOCUMENTS</span>
-            </nav>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
-              ISO DOCUMENTS
-            </h1>
-            <p className="text-xl md:text-2xl text-white/80 font-light leading-relaxed max-w-3xl mx-auto">
-              {lang === 'EN' 
-                ? 'Access official quality management and ISO documentation for the School of Graduate Studies.' 
-                : 'Akses pengurusan kualiti rasmi dan dokumentasi ISO untuk Sekolah Pengajian Siswazah.'}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <div className="pt-24">
+        <PageHeader
+          breadcrumbs={[
+            { label: 'HOME', to: '/' },
+            { label: 'ABOUT US', to: '/about' },
+            { label: 'ISO DOCUMENTS' },
+          ]}
+          title="ISO DOCUMENTS"
+          subtitle={
+            lang === 'EN'
+              ? 'Access official quality management and ISO documentation for the School of Graduate Studies.'
+              : 'Akses pengurusan kualiti rasmi dan dokumentasi ISO untuk Sekolah Pengajian Siswazah.'
+          }
+        />
+      </div>
 
       {/* Access Notice */}
       <section className="pt-16">

@@ -48,7 +48,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: { EN: 'Room Reservation', BM: 'Tempahan Ruang' }, href: '/facilities/reservation' },
       { label: { EN: 'Tuah Tenaga', BM: 'Tuah Tenaga' }, href: '#' },
       { label: { EN: 'MOU & MOA', BM: 'MOU & MOA' }, href: 'https://pejtncaa.utem.edu.my/en/mou-moa-list/' },
-      { label: { EN: 'Electronic Archives', BM: 'Arkib Elektronik' }, href: '#' },
+      { label: { EN: 'Electronic Archives', BM: 'Arkib Elektronik' }, href: '/about/electronic-archives' },
     ]
   },
   { 
@@ -132,7 +132,7 @@ export const NAV_ITEMS: NavItem[] = [
         label: { EN: 'Administration / Services', BM: 'Pentadbiran / Perkhidmatan' },
         href: '#',
         children: [
-          { label: { EN: 'Programme Fees', BM: 'Yuran Program' }, href: '#' },
+          { label: { EN: 'Programme Fees', BM: 'Yuran Program' }, href: '/programmes/fees' },
           { label: { EN: 'Payment Hub Procedure', BM: 'Prosedur Hab Pembayaran' }, href: '/programmes/payment-hub' },
           { label: { EN: 'Offshore Programme', BM: 'Program Luar Pesisir' }, href: 'https://uhe.utem.edu.my/offshore-academic-programme/' },
         ]
@@ -155,7 +155,7 @@ export const NAV_ITEMS: NavItem[] = [
         label: { EN: 'Scholarship', BM: 'Biasiswa' }, 
         href: '#',
         children: [
-          { label: { EN: 'KESIDANG', BM: 'KESIDANG' }, href: '#' },
+          { label: { EN: 'KESIDANG', BM: 'KESIDANG' }, href: '/kesidang-scholarship' },
           { label: { EN: 'KESIDANG Form', BM: 'Borang KESIDANG' }, href: '#' },
           { label: { EN: 'Yayasan Bank Rakyat', BM: 'Yayasan Bank Rakyat' }, href: 'https://yayasanbankrakyat.com.my/' },
         ]
@@ -188,7 +188,7 @@ export const NAV_ITEMS: NavItem[] = [
     ]
   },
 ];
-
+/*
 export const SLIDES: SlideData[] = [
   {
     url: '/images/homepages/Pic2.jpeg',
@@ -211,7 +211,7 @@ export const SLIDES: SlideData[] = [
     subtitle: 'A LEGACY OF TECHNICAL EXCELLENCE AND MASTERY'
   }
 ];
-
+*/
 export const GRADUATE_TESTIMONIALS: Testimonial[] = [
   {
     name: 'Dr. Muhammad Akmal bin Mohd Zakaria',
@@ -372,10 +372,10 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
     image: '/images/homepages/Programs.png',
     title: { EN: 'Our Programmes', BM: 'Program Termaju' },
     description: { 
-      EN: 'Our specialized Master and Doctorer programs are meticulously designed to meet the requested demands of global technical industries and academia.',
+      EN: 'Our specialized Master and Doctorate programs are meticulously designed to meet the requested demands of global technical industries and academia.',
       BM: 'Program Sarjana dan PhD pengkhususan kami direka dengan teliti untuk memenuhi tuntutan industri teknikal global dan akademik.'
     },
-    cta: { EN: 'Explore Curricula', BM: 'Terokai Kurikulum' },
+    cta: { EN: 'Explore Programme', BM: 'Terokai Program' },
     layout: 'right'
   },
   /*

@@ -12,6 +12,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 import { Language } from '../types';
+import PageHeader from './PageHeader';
 
 interface RoomReservationProps {
   lang: Language;
@@ -124,34 +125,19 @@ const RoomReservation: React.FC<RoomReservationProps> = ({ lang }) => {
 
   return (
     <div className="pt-24 min-h-screen bg-gray-50/50">
-      {/* Header Section */}
-      <section className="bg-white border-b border-gray-100 py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#A51C30]/5 skew-x-12 transform translate-x-1/2"></div>
-        <div className="max-w-7xl mx-auto px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-[#A51C30] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-900/20">
-                <Calendar size={24} />
-              </div>
-              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
-                {lang === 'EN' ? 'Facilities Management' : 'Pengurusan Kemudahan'}
-              </span>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6 tracking-tight">
-              {lang === 'EN' ? 'Room Reservation' : 'Tempahan Ruang'}
-            </h1>
-            <p className="text-lg md:text-xl text-gray-500 font-light max-w-2xl leading-relaxed">
-              {lang === 'EN' 
-                ? 'Browse guidelines and forms for booking lecture rooms, auditoriums, meeting rooms, and related facilities.' 
-                : 'Layari garis panduan dan borang untuk tempahan bilik kuliah, auditorium, bilik mesyuarat, dan kemudahan berkaitan.'}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[
+          { label: 'HOME', to: '/' },
+          { label: lang === 'EN' ? 'FACILITIES MANAGEMENT' : 'PENGURUSAN KEMUDAHAN', to: '/facilities' },
+          { label: lang === 'EN' ? 'ROOM RESERVATION' : 'TEMPAHAN RUANG' },
+        ]}
+        title={lang === 'EN' ? 'Room Reservation' : 'Tempahan Ruang'}
+        subtitle={
+          lang === 'EN'
+            ? 'Browse guidelines and forms for booking lecture rooms, auditoriums, meeting rooms, and related facilities.'
+            : 'Layari garis panduan dan borang untuk tempahan bilik kuliah, auditorium, bilik mesyuarat, dan kemudahan berkaitan.'
+        }
+      />
 
       {/* Main Content */}
       <section className="py-16 max-w-7xl mx-auto px-8">

@@ -164,8 +164,8 @@ const PostgraduateProgrammes: React.FC<PostgraduateProgrammesProps> = ({ lang })
     <div className="min-h-screen bg-gray-50 pt-24 pb-20">
       {/* Breadcrumbs & Header */}
       <section className="bg-white border-b border-gray-100 py-16 mb-12">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
+        <div className="max-w-7xl mx-auto px-8 lg:px-12">
+          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-8">
             <Link to="/" className="hover:text-[#A51C30] transition-colors">HOME</Link>
             <ChevronRight size={10} />
             <Link to="/programmes" className="hover:text-[#A51C30] transition-colors">PROGRAMMES</Link>
@@ -183,10 +183,10 @@ const PostgraduateProgrammes: React.FC<PostgraduateProgrammesProps> = ({ lang })
                 <FileText size={14} />
                 <span>Formal Accreditation</span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-8 leading-tight">
+              <h1 className="text-4xl md:text-5xl font-serif text-gray-900">
                 {lang === 'EN' ? 'Postgraduate Programmes' : 'Program Pascasiswazah'}
               </h1>
-              <p className="text-gray-500 text-lg md:text-xl font-light leading-relaxed mb-8">
+              <p className="mt-4 text-gray-500 max-w-2xl text-lg font-light mb-8">
                 {lang === 'EN' 
                   ? 'UTeM is proud to announce that all its postgraduate programs are approved by the Ministry of Education (MOE) and recognized by Malaysian Qualifications Agency (MQA). The table below shows the comprehensive list of all postgraduate programs offered.' 
                   : 'UTeM dengan bangganya mengumumkan bahawa semua program pascasiswazahnya diluluskan oleh Kementerian Pendidikan Tinggi (KPT) dan diiktiraf oleh Agensi Kelayakan Malaysia (MQA). Jadual di bawah menunjukkan senarai komprehensif semua program pascasiswazah yang ditawarkan.'}

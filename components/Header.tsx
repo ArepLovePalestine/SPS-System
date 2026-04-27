@@ -428,15 +428,15 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
         onMouseLeave={() => setActiveMegaMenu(null)}
       >
         <div className="absolute left-0 top-0 h-[5px] w-full bg-[#A51C30]" />
-        <div className="mx-auto grid h-20 max-w-[1440px] grid-cols-[auto_auto] items-center gap-x-3 px-4 sm:h-24 sm:gap-x-4 sm:px-5 lg:grid-cols-[minmax(250px,300px)_minmax(0,1fr)_auto] lg:gap-x-6 lg:px-7 xl:max-w-[1520px] xl:grid-cols-[minmax(280px,330px)_minmax(0,1fr)_auto] xl:gap-x-8 xl:px-8">
+        <div className="mx-auto grid h-20 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 px-3 sm:h-24 sm:gap-x-4 sm:px-5 lg:grid-cols-[minmax(250px,300px)_minmax(0,1fr)_auto] lg:gap-x-6 lg:px-7 xl:max-w-[1520px] xl:grid-cols-[minmax(280px,330px)_minmax(0,1fr)_auto] xl:gap-x-8 xl:px-8">
           
           {/* Logo Section */}
-          <Link to="/" className="group z-[60] cursor-pointer flex-shrink-0">
-            <div className="flex w-[210px] flex-nowrap items-center justify-start pl-3 sm:w-[240px] sm:pl-4 lg:w-full lg:max-w-[300px] xl:max-w-[330px]">
+          <Link to="/" className="group z-[60] min-w-0 cursor-pointer flex-shrink">
+            <div className="flex w-[160px] max-w-full flex-nowrap items-center justify-start pl-1 sm:w-[240px] sm:pl-4 lg:w-full lg:max-w-[300px] xl:max-w-[330px]">
               <img
                 src={SPSLogo}
                 alt="School of Graduate Studies logo"
-                className="h-12 w-auto object-contain drop-shadow-sm sm:h-14 lg:h-[72px] xl:h-20"
+                className="h-10 w-auto max-w-full object-contain drop-shadow-sm sm:h-14 lg:h-[72px] xl:h-20"
                 loading="lazy"
               />
             </div>
@@ -494,10 +494,10 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
           </nav>
 
           {/* Action Bar */}
-          <div className="z-[60] col-start-2 flex items-center justify-end gap-3 sm:gap-4 lg:col-start-3 lg:min-w-[160px] lg:gap-4 lg:justify-self-end xl:min-w-[176px] xl:gap-5">
+          <div className="z-[60] col-start-2 flex min-w-0 items-center justify-end gap-1.5 sm:gap-3 lg:col-start-3 lg:min-w-[160px] lg:gap-4 lg:justify-self-end xl:min-w-[176px] xl:gap-5">
             <button 
               onClick={onToggleLanguage}
-              className={`flex min-w-[82px] items-center justify-center gap-2.5 px-3 py-2 sm:px-4 lg:min-w-[88px] border-l border-r transition-all duration-500 text-[10px] font-bold tracking-widest uppercase ${
+              className={`hidden min-w-[74px] items-center justify-center gap-2 px-2.5 py-2 sm:flex sm:px-3 lg:min-w-[88px] lg:px-4 border-l border-r transition-all duration-500 text-[10px] font-bold tracking-widest uppercase ${
                 isScrolled || activeMegaMenu || !isHome
                   ? 'border-gray-100 text-gray-700 hover:text-[#A51C30]' 
                   : 'border-white/10 text-white hover:border-white'
@@ -514,15 +514,20 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
                 setIsMobileMenuOpen(false);
                 navigate('/search');
               }}
-              className={`${isScrolled || activeMegaMenu || !isHome ? 'text-gray-700' : 'text-white'} hover:text-[#A51C30] transition-colors flex h-10 w-10 items-center justify-center`}
+              className={`${isScrolled || activeMegaMenu || !isHome ? 'text-gray-700' : 'text-white'} hover:text-[#A51C30] hidden h-10 w-10 flex-shrink-0 items-center justify-center transition-colors min-[390px]:flex`}
               aria-label="Search"
             >
               <Search size={20} strokeWidth={2.5} />
             </button>
 
             <button 
-              className="xl:hidden p-2"
+              className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border transition-colors lg:hidden ${
+                isScrolled || activeMegaMenu || !isHome
+                  ? 'border-gray-200 text-gray-900'
+                  : 'border-white/25 text-white'
+              }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Open mobile menu"
             >
               {isMobileMenuOpen ? (
                 <X className="text-gray-900" />

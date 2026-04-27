@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { FileText, Download, ExternalLink, Mail, Info, ShieldCheck } from 'lucide-react';
 import { Language } from '../types';
+import PageHeader from './PageHeader';
 
 interface PaymentProcedureProps {
   lang: Language;
@@ -41,38 +42,17 @@ const PaymentProcedure: React.FC<PaymentProcedureProps> = ({ lang }) => {
   const pdfUrl = "/images/resources/Payment%20Hub%20-%20Application%20Procedure.pdf";
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-32 pb-24 px-6 md:px-12">
-      <div className="max-w-[1200px] mx-auto">
-        
-        {/* Header Section */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-12 gap-8">
-          <div className="max-w-3xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="flex items-center space-x-3 mb-4">
-                <div className="w-12 h-12 bg-[#A51C30]/10 rounded-xl flex items-center justify-center text-[#A51C30]">
-                  <FileText size={24} />
-                </div>
-                <span className="text-[11px] font-bold tracking-[0.2em] text-[#A51C30] uppercase">Official Document</span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-serif text-gray-900 tracking-tight mb-6 capitalize">
-                {content.title[lang]}
-              </h1>
-              <p className="text-xl text-gray-600 font-light leading-relaxed">
-                {content.intro[lang]}
-              </p>
-            </motion.div>
-          </div>
-
-          <motion.div 
-            className="flex flex-wrap gap-4"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+    <div className="min-h-screen bg-gray-50 pt-24 pb-24">
+      <PageHeader
+        breadcrumbs={[
+          { label: 'HOME', to: '/' },
+          { label: 'PROGRAMMES', to: '/programmes' },
+          { label: content.title[lang] },
+        ]}
+        title={content.title[lang]}
+        subtitle={content.intro[lang]}
+        actions={
+          <>
             <a 
               href={pdfUrl} 
               target="_blank" 
@@ -90,8 +70,11 @@ const PaymentProcedure: React.FC<PaymentProcedureProps> = ({ lang }) => {
               <Download size={18} />
               <span>{content.actions.download[lang]}</span>
             </a>
-          </motion.div>
-        </div>
+          </>
+        }
+      />
+
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 pt-12">
 
         {/* Native PDF Viewer */}
         <motion.div 

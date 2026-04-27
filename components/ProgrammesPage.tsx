@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Search, Layers, GraduationCap, ChevronRight, ArrowRight } from 'lucide-react';
 import { Language } from '../types';
+import PageHeader from './PageHeader';
 
 interface ProgrammesPageProps {
   lang: Language;
@@ -60,49 +61,24 @@ const ProgrammesPage: React.FC<ProgrammesPageProps> = ({ lang }) => {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-center overflow-hidden pt-20">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="...................." 
-            alt="University Hall" 
-            className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#A51C30]/95 to-[#A51C30]/40 mix-blend-multiply" />
-        </div>
-
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
-          <div className="max-w-3xl">
-            <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-8">
-              <Link to="/" className="hover:text-white transition-colors">HOME</Link>
-              <ChevronRight size={12} />
-              <span className="text-white">OUR PROGRAMMES</span>
-            </nav>
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight"
-            >
-              {lang === 'EN' ? 'Programmes Overview' : 'Gambaran Keseluruhan Program'}
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl md:text-2xl text-white/90 font-light max-w-2xl leading-relaxed"
-            >
-              {lang === 'EN' 
-                ? 'Explore our postgraduate programmes designed to support advanced academic and research development across multiple disciplines.' 
-                : 'Terokai program pascasiswazah kami yang direka untuk menyokong pembangunan akademik dan penyelidikan lanjutan merentasi pelbagai disiplin.'}
-            </motion.p>
-          </div>
-        </div>
-      </section>
+      <div className="pt-24">
+        <PageHeader
+          breadcrumbs={[
+            { label: 'HOME', to: '/' },
+            { label: 'OUR PROGRAMMES' },
+          ]}
+          title={lang === 'EN' ? 'Programmes Overview' : 'Gambaran Keseluruhan Program'}
+          subtitle={
+            lang === 'EN'
+              ? 'Explore our postgraduate programmes designed to support advanced academic and research development across multiple disciplines.'
+              : 'Terokai program pascasiswazah kami yang direka untuk menyokong pembangunan akademik dan penyelidikan lanjutan merentasi pelbagai disiplin.'
+          }
+        />
+      </div>
 
       {/* Master's Programmes Section */}
       <section className="py-24 bg-gray-50 border-b border-gray-100">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+        <div className="mx-auto max-w-[1180px] px-[clamp(16px,4vw,48px)]">
           <div className="flex items-center space-x-4 mb-12">
             <div className="h-[2px] w-12 bg-[#A51C30]" />
             <h2 className="text-3xl font-serif font-bold text-gray-900 uppercase tracking-tight">
@@ -145,7 +121,7 @@ const ProgrammesPage: React.FC<ProgrammesPageProps> = ({ lang }) => {
 
       {/* Doctoral Programmes Section */}
       <section className="py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
+        <div className="mx-auto max-w-[1180px] px-[clamp(16px,4vw,48px)]">
           <div className="flex items-center space-x-4 mb-12">
             <div className="h-[2px] w-12 bg-[#A51C30]" />
             <h2 className="text-3xl font-serif font-bold text-gray-900 uppercase tracking-tight">

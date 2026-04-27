@@ -41,6 +41,9 @@ import AnnouncementPopup from './components/AnnouncementPopup';
 import RoomReservation from './components/RoomReservation';
 import ScrollToTop from './components/ScrollToTop';
 import PaymentProcedure from './components/PaymentProcedure';
+import ProgrammeFees from './components/ProgrammeFees';
+import KesidangScholarship from './components/KesidangScholarship';
+import ElectronicArchives from './components/ElectronicArchives';
 import { Language } from './types';
 import StudentResearchHub from './components/StudentResearchHub';
 import ExaminationInfo from './components/ExaminationInfo';
@@ -78,17 +81,30 @@ const socialLinks = [
 
 const HomePage: React.FC<{ lang: Language }> = ({ lang }) => (
   <>
-    {/* Page 01 */}
-    <Hero lang={lang} />
+    <div className="relative z-0 h-screen bg-[#0a0a0a]">
+      <Hero lang={lang} />
+    </div>
 
-    {/* Page 02 */}
-    <InfoSection lang={lang} />
-    
-    {/* Page 03 - Moved here as requested */}
-    <QuickAccess lang={lang} />
-    
-    <AdmissionJourney lang={lang} />
-    <TestimonialSection lang={lang} />
+    <div className="relative z-30 -mt-px bg-[#eceae7] shadow-[0_24px_80px_rgba(0,0,0,0.14)]">
+      <InfoSection lang={lang} />
+    </div>
+
+    <div className="relative bg-[#050505]" style={{ zIndex: 20 }}>
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <QuickAccess lang={lang} />
+      </div>
+
+      <div
+        className="relative bg-[#550000] shadow-[0_-24px_80px_rgba(0,0,0,0.22)]"
+        style={{ zIndex: 80 }}
+      >
+        <AdmissionJourney lang={lang} />
+      </div>
+    </div>
+
+    <div className="relative bg-white" style={{ zIndex: 90 }}>
+      <TestimonialSection lang={lang} />
+    </div>
   </>
 );
 
@@ -118,7 +134,7 @@ const App: React.FC = () => {
             <Route path="/student/brochure-sgs" element={<SGSBrochure lang={lang} />} />
             <Route path="/student/brochure-faculty" element={<FacultyBrochure lang={lang} />} />
             <Route path="/programmes" element={<ProgrammesPage lang={lang} />} />
-             <Route path="/programmes/master-taught" element={<MasterTaught lang={lang} />} />
+            <Route path="/programmes/master-taught" element={<MasterTaught lang={lang} />} />
             <Route path="/programmes/master-research" element={<MasterResearch lang={lang} />} />
             <Route path="/programmes/master-mixed" element={<MasterMixed lang={lang} />} />
             <Route path="/programmes/doctoral" element={<DoctoralProgrammes lang={lang} />} />
@@ -126,6 +142,7 @@ const App: React.FC = () => {
             <Route path="/programmes/faculty" element={<FacultyProgrammes lang={lang} />} />
             <Route path="/accreditation/mqa-standards" element={<MQAStandards lang={lang} />} />
             <Route path="/about/iso-documents" element={<ISODocuments lang={lang} />} />
+            <Route path="/about/electronic-archives" element={<ElectronicArchives lang={lang} />} />
             <Route path="/apply-now" element={<ApplyNow lang={lang} />} />
             <Route path="/student/student-info" element={<StudentInfoPage />} />
             <Route path="/student/examination-info" element={<ExaminationInfo lang={lang} />} />
@@ -142,6 +159,8 @@ const App: React.FC = () => {
             <Route path="/upgrade" element={<AboutUPgrade lang={lang} />} />
             <Route path="/upgrade/profession" element={<UPgradeProfession lang={lang} />} />
             <Route path="/programmes/payment-hub" element={<PaymentProcedure lang={lang} />} />
+            <Route path="/programmes/fees" element={<ProgrammeFees lang={lang} />} />
+            <Route path="/kesidang-scholarship" element={<KesidangScholarship lang={lang} />} />
           
                         {/* Document System Pages */}
             <Route path="/resources/academic-forms" element={
@@ -253,7 +272,7 @@ const App: React.FC = () => {
           <div className="relative z-10 max-w-7xl mx-auto border-t border-gray-800/50 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest uppercase font-bold text-gray-600">
             <div className="flex flex-col items-center md:items-start gap-2">
               <span>© 2026 School Of Graduate Studies, Universiti Teknikal Malaysia Melaka.</span>
-              <span className="font-serif text-[10px] normal-case tracking-[0.2em] text-gray-500">Haziq Nazim</span>
+              <span className="font-serif text-[10px] normal-case tracking-[0.2em] text-gray-500">Yo</span>
             </div>
             <span className="mt-4 md:mt-0">Legacy of Technical Excellence</span>
           </div>

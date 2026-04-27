@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import { ChevronRight, Building2, ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 import { FACULTIES } from '../constants';
+import PageHeader from './PageHeader';
 import FPTTLogo from '../images/Faculty_TaughtCourse/FPTT-logo.png';
 import FTKELogo from '../images/Faculty_TaughtCourse/FTKE-logo.png';
 import FTKEKLogo from '../images/Faculty_TaughtCourse/FTKEK-logo.png';
@@ -31,27 +32,20 @@ const MasterTaught: React.FC<MasterTaughtProps> = ({ lang }) => {
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-20">
       {/* Header */}
-      <section className="bg-white border-b border-gray-100 py-16 mb-12">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
-            <Link to="/" className="hover:text-[#A51C30] transition-colors">HOME</Link>
-            <ChevronRight size={10} />
-            <Link to="/programmes" className="hover:text-[#A51C30] transition-colors">PROGRAMMES</Link>
-            <ChevronRight size={10} />
-            <span className="text-[#A51C30]">{lang === 'EN' ? 'MASTER BY TAUGHT COURSE' : 'SARJANA KERJA KURSUS'}</span>
-          </nav>
-
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-6">
-                {lang === 'EN' ? 'Master by Taught Course' : 'Sarjana secara Kerja Kursus'}
-              </h1>
-              <p className="text-gray-500 text-xl font-light leading-relaxed">
-                {lang === 'EN' 
-                  ? 'Expand your professional expertise through our industry-aligned coursework programmes. Choose a faculty below to view available courses.' 
-                  : 'Kembangkan kepakaran profesional anda melalui program kerja kursus kami yang selaras dengan industri. Pilih fakulti di bawah untuk melihat kursus yang tersedia.'}
-              </p>
-            </div>
+      <div className="mb-12">
+        <PageHeader
+          breadcrumbs={[
+            { label: 'HOME', to: '/' },
+            { label: 'PROGRAMMES', to: '/programmes' },
+            { label: lang === 'EN' ? 'MASTER BY TAUGHT COURSE' : 'SARJANA KERJA KURSUS' },
+          ]}
+          title={lang === 'EN' ? 'Master by Taught Course' : 'Sarjana secara Kerja Kursus'}
+          subtitle={
+            lang === 'EN'
+              ? 'Expand your professional expertise through our industry-aligned coursework programmes. Choose a faculty below to view available courses.'
+              : 'Kembangkan kepakaran profesional anda melalui program kerja kursus kami yang selaras dengan industri. Pilih fakulti di bawah untuk melihat kursus yang tersedia.'
+          }
+          actions={
             <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100 flex items-center space-x-4">
               <div className="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-[#A51C30]">
                 <Building2 size={24} />
@@ -61,12 +55,12 @@ const MasterTaught: React.FC<MasterTaughtProps> = ({ lang }) => {
                 <div className="text-xl font-serif font-bold text-gray-900">{FACULTIES.length} Faculties</div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          }
+        />
+      </div>
 
       {/* Faculty Selection Grid */}
-      <section className="max-w-[1400px] mx-auto px-8 lg:px-12">
+      <section className="mx-auto max-w-[1180px] px-[clamp(16px,4vw,48px)]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {FACULTIES.map((faculty, idx) => (
             <motion.div

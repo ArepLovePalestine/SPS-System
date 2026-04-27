@@ -21,6 +21,7 @@ import {
   UserCircle
 } from 'lucide-react';
 import { Language } from '../types';
+import PageHeader from './PageHeader';
 
 interface FacilitiesProps {
   lang: Language;
@@ -102,7 +103,7 @@ const Facilities: React.FC<FacilitiesProps> = ({ lang }) => {
         title: "Facilities Rental",
         lecture: {
           title: "Lecture Room",
-          capacity: "40-50 Pax",
+          capacity: "-",
           desc: "Modern executive lecture rooms equipped with advanced audio-visual systems and ergonomic seating.",
           images: [
             rentalImages.lecture
@@ -114,7 +115,7 @@ const Facilities: React.FC<FacilitiesProps> = ({ lang }) => {
         },
         auditorium: {
           title: "Auditorium",
-          capacity: "200-250 Pax",
+          capacity: "120 Pax",
           desc: "Spacious grand auditorium suitable for large-scale academic events and international conferences.",
           images: [
             rentalImages.auditorium
@@ -298,32 +299,14 @@ const Facilities: React.FC<FacilitiesProps> = ({ lang }) => {
 
   return (
     <div className="pt-24 min-h-screen bg-white">
-      {/* Page Header */}
-      <section className="bg-white py-20 border-b border-gray-100 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#A51C30]/5 skew-x-12 transform translate-x-1/2"></div>
-        <div className="max-w-[1000px] mx-auto px-8 text-center relative z-10">
-          <nav className="mb-8 flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-gray-400">
-            <Link to="/" className="transition-colors hover:text-[#A51C30]">
-              {lang === 'EN' ? 'Home' : 'Utama'}
-            </Link>
-            <ChevronRight size={11} />
-            <span className="text-[#A51C30]">{content.header.title}</span>
-          </nav>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <h1 className="text-6xl md:text-7xl font-serif font-bold text-gray-900 mb-6 tracking-tighter">
-              {content.header.title}
-            </h1>
-            <div className="w-20 h-1.5 bg-[#A51C30] mx-auto rounded-full mb-6"></div>
-            <p className="text-lg md:text-xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-              {content.header.subtitle}
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[
+          { label: lang === 'EN' ? 'Home' : 'Utama', to: '/' },
+          { label: content.header.title },
+        ]}
+        title={content.header.title}
+        subtitle={content.header.subtitle}
+      />
 
       {/* Group A: Overview (Location + SGS Office) */}
       <section className="py-20 bg-white">

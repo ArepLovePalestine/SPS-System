@@ -60,16 +60,15 @@ const DoctoralProgrammes: React.FC<DoctoralProgrammesProps> = ({ lang }) => {
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
       {/* Header Section */}
-      <section className="bg-[#1a1a1a] py-24 mb-20 text-white relative overflow-hidden">
+      <section className="bg-white py-16 mb-20 border-b border-gray-100 relative overflow-hidden">
         {/* Background Decor */}
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-[#A51C30]/20 skew-x-12 transform translate-x-1/2" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#A51C30]/10 rounded-full blur-[120px]" />
+        <div className="hidden" />
 
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12 relative z-10">
-          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 mb-10">
-            <Link to="/" className="hover:text-white transition-colors">HOME</Link>
+        <div className="max-w-7xl mx-auto px-8 lg:px-12 relative z-10">
+          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-8">
+            <Link to="/" className="hover:text-[#A51C30] transition-colors">HOME</Link>
             <ChevronRight size={10} />
-            <Link to="/programmes" className="hover:text-white transition-colors">PROGRAMMES</Link>
+            <Link to="/programmes" className="hover:text-[#A51C30] transition-colors">PROGRAMMES</Link>
             <ChevronRight size={10} />
             <span className="text-[#A51C30] font-bold">DOCTORAL PROGRAMMES</span>
           </nav>
@@ -78,11 +77,11 @@ const DoctoralProgrammes: React.FC<DoctoralProgrammesProps> = ({ lang }) => {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-serif font-bold mb-8 leading-tight"
+              className="text-4xl md:text-5xl font-serif text-gray-900"
             >
-              Higher Degrees <span className="text-[#A51C30]">by Research</span>
+              Doctorer Programmes
             </motion.h1>
-            <p className="text-gray-400 text-xl font-light leading-relaxed max-w-2xl">
+            <p className="mt-4 text-gray-500 max-w-2xl text-lg font-light">
               {lang === 'EN'
                 ? 'Join a community of global thinkers. Our doctoral offerings provide the foundation for significant contributions to your field of expertise.'
                 : 'Sertai komuniti pemikir global. Tawaran doktoral kami menyediakan asas untuk sumbangan penting kepada bidang kepakaran anda.'}

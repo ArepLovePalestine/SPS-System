@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, FileText, Users, Clock, Mail, Phone, MapPin, CheckCircle2 } from 'lucide-react';
 import { Language } from '../types';
+import PageHeader from './PageHeader';
 
 interface MasterResearchProps {
   lang: Language;
@@ -32,7 +33,22 @@ const MasterResearch: React.FC<MasterResearchProps> = ({ lang }) => {
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
       {/* Header Section */}
-      <section className="bg-gray-50 py-16 mb-20 border-b border-gray-100">
+      <div className="mb-20">
+        <PageHeader
+          breadcrumbs={[
+            { label: 'HOME', to: '/' },
+            { label: 'PROGRAMMES', to: '/programmes' },
+            { label: lang === 'EN' ? 'MASTER BY RESEARCH' : 'SARJANA PENYELIDIKAN' },
+          ]}
+          title={lang === 'EN' ? 'Master of Science (By Research)' : 'Sarjana Sains (Secara Penyelidikan)'}
+          subtitle={
+            lang === 'EN'
+              ? 'Our research-based Masterâ€™s programmes empower students to dive deep into a specific technical or management domain, contributing original knowledge through a supervised thesis.'
+              : 'Program Sarjana berasaskan penyelidikan kami membolehkan pelajar mendalami domain teknikal atau pengurusan tertentu, menyumbang pengetahuan asal melalui tesis yang diselia.'
+          }
+        />
+      </div>
+      <section className="hidden">
         <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
           <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-8">
             <Link to="/" className="hover:text-[#A51C30] transition-colors">HOME</Link>

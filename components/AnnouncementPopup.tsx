@@ -45,10 +45,18 @@ const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ lang }) => {
   }, [location.pathname]);
 
   const posters = [
-    "/images/homepages/Note/ImportantNote.jpg",
-    "/images/homepages/Announcement/poster.jpeg",
-    "/images/homepages/Announcement/poster-3.jpeg"
+    "/images/homepages/Note/ImportantNote-optimized.jpg",
+    "/images/homepages/Announcement/poster-optimized.jpg",
+    "/images/homepages/Announcement/poster-3-optimized.jpg"
   ];
+
+  useEffect(() => {
+    posters.forEach((poster) => {
+      const image = new Image();
+      image.src = poster;
+      image.decode?.().catch(() => undefined);
+    });
+  }, []);
 
   const goToPreviousPoster = () => {
     setCurrentPoster((current) => (current - 1 + posters.length) % posters.length);
@@ -145,18 +153,20 @@ const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ lang }) => {
                 className="relative w-full h-full overflow-hidden bg-gray-100 flex items-center justify-center p-4 pt-14 pb-20 md:p-6 md:pt-16 md:pb-24"
                 style={{ maxWidth: '82vw', maxHeight: '84vh' }}
               >
-                <AnimatePresence mode="wait">
+                <AnimatePresence initial={false}>
                   <motion.img
                     key={posters[currentPoster]}
                     src={posters[currentPoster]}
                     alt={`SGS announcement and important notice ${currentPoster + 1}`}
-                    className="block object-contain"
+                    className="block object-contain will-change-transform"
                     style={{ maxWidth: '78vw', maxHeight: '62vh' }}
                     referrerPolicy="no-referrer"
-                    initial={{ opacity: 0, x: 18 }}
+                    loading="eager"
+                    decoding="async"
+                    initial={{ opacity: 0, x: 14 }}
                     animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -18 }}
-                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    exit={{ opacity: 0, x: -14 }}
+                    transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </AnimatePresence>
 

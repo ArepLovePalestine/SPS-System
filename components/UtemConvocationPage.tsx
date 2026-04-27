@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { Globe, ClipboardCheck, CreditCard, ChevronRight, GraduationCap, ArrowRight, ExternalLink, Sparkles } from 'lucide-react';
 import { Language } from '../types';
+import PageHeader from './PageHeader';
 
 interface ConvocationProps {
   lang: Language;
@@ -45,43 +46,18 @@ const Convocation: React.FC<ConvocationProps> = ({ lang }) => {
 
   return (
     <div className="pt-24 pb-32 min-h-screen bg-[#fcfcfc]">
-      {/* Hero Section - Left Aligned */}
-      <section className="relative py-24 overflow-hidden border-b border-gray-100 bg-white">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#A51C30]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-8 lg:px-12 relative z-10">
-          <motion.nav
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-8"
-          >
-            <span>{lang === 'EN' ? 'Student' : 'Pelajar'}</span>
-            <ChevronRight size={10} />
-            <span className="text-[#A51C30]">{lang === 'EN' ? 'UTeM Convocation' : 'Konvokesyen UTeM'}</span>
-          </motion.nav>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-5xl md:text-7xl font-serif font-bold text-gray-900 mb-8 tracking-tight"
-          >
-            {lang === 'EN' ? 'UTeM Convocation' : 'Konvokesyen UTeM'}
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-gray-500 text-xl font-light max-w-3xl leading-relaxed"
-          >
-            {lang === 'EN' 
-              ? 'Access the official convocation resources, checklist, and payment portals for your graduation journey at Universiti Teknikal Malaysia Melaka.' 
-              : 'Akses sumber rasmi konvokesyen, senarai semak, dan portal pembayaran untuk perjalanan konvokesyen anda di Universiti Teknikal Malaysia Melaka.'}
-          </motion.p>
-        </div>
-      </section>
+      <PageHeader
+        breadcrumbs={[
+          { label: lang === 'EN' ? 'Student' : 'Pelajar' },
+          { label: lang === 'EN' ? 'UTeM Convocation' : 'Konvokesyen UTeM' },
+        ]}
+        title={lang === 'EN' ? 'UTeM Convocation' : 'Konvokesyen UTeM'}
+        subtitle={
+          lang === 'EN'
+            ? 'Access the official convocation resources, checklist, and payment portals for your graduation journey at Universiti Teknikal Malaysia Melaka.'
+            : 'Akses sumber rasmi konvokesyen, senarai semak, dan portal pembayaran untuk perjalanan konvokesyen anda di Universiti Teknikal Malaysia Melaka.'
+        }
+      />
 
       {/* Main Content Area */}
       <section className="max-w-7xl mx-auto px-8 lg:px-12 py-24">
