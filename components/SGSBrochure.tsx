@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { motion } from 'motion/react';
 import { ChevronRight, Download, FileText } from 'lucide-react';
 import { Language } from '../types';
@@ -24,10 +24,10 @@ const SGSBrochure: React.FC<SGSBrochureProps> = ({ lang }) => {
       BM: 'Prospektus pascasiswazah rasmi yang menggariskan program akademik dan peluang pengajian di UTeM.',
     },
     pages: [
-      '/images/SGS-Brochure/Brochure1.png',
-      '/images/SGS-Brochure/Brochure2.png',
+      '/images/pages/SGS-Brochure/Brochure1.png',
+      '/images/pages/SGS-Brochure/Brochure2.png',
     ],
-    pdf: '/images/SGS-Brochure/PROGRAMME FEES POST GRADUATE SPS.pdf',
+    pdf: '/images/pages/SGS-Brochure/PROGRAMME FEES POST GRADUATE SPS.pdf',
   };
 
   const content = {

@@ -1,7 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+﻿import React from 'react';
 import { motion } from 'motion/react';
-import { ChevronRight } from 'lucide-react';
 import { Language } from '../types';
 import PageHeader from './PageHeader';
 
@@ -9,22 +7,15 @@ interface ProgrammeFeesProps {
   lang: Language;
 }
 
-const feeImageModules = import.meta.glob('../images/ProgrammeFees/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}', {
-  eager: true,
-  import: 'default',
-}) as Record<string, string>;
+const BASE = import.meta.env.BASE_URL;
 
-const feeImages = Object.entries(feeImageModules)
-  .map(([path, src]) => ({
-    src,
-    filename: path.split('/').pop() || path,
-  }))
-  .sort((a, b) =>
-    a.filename.localeCompare(b.filename, undefined, {
-      numeric: true,
-      sensitivity: 'base',
-    }),
-  );
+// Untuk tambah gambar baru: tambah file di folder public/images/pages/ProgrammeFees/ dengan nama sama dengan nama fail dalam array ni
+const FEE_FILES = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg'];
+
+const feeImages = FEE_FILES.map((filename) => ({
+  src: `${BASE}images/pages/ProgrammeFees/${filename}`,
+  filename,
+}));
 
 const ProgrammeFees: React.FC<ProgrammeFeesProps> = ({ lang }) => {
   const content = {
@@ -34,7 +25,6 @@ const ProgrammeFees: React.FC<ProgrammeFeesProps> = ({ lang }) => {
       EN: 'Fee structure for postgraduate programmes at Universiti Teknikal Malaysia Melaka (UTeM)',
       BM: 'Struktur yuran bagi program pascasiswazah di Universiti Teknikal Malaysia Melaka (UTeM)',
     },
-    frameLabel: { EN: 'Official Fee Schedule', BM: 'Jadual Yuran Rasmi' },
     note: {
       EN: 'For the latest fee information and payment-related enquiries, please contact the School of Graduate Studies.',
       BM: 'Untuk maklumat yuran terkini dan pertanyaan berkaitan pembayaran, sila hubungi Sekolah Pengajian Siswazah.',
@@ -76,7 +66,6 @@ const ProgrammeFees: React.FC<ProgrammeFeesProps> = ({ lang }) => {
                         src={image.src}
                         alt={`${content.title[lang]} ${index + 1}`}
                         className="w-full object-contain"
-                        referrerPolicy="no-referrer"
                       />
                     </div>
                   </div>

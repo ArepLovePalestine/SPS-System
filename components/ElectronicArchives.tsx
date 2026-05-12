@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+﻿import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Archive, ChevronRight, FileImage, LibraryBig } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -8,7 +8,7 @@ interface ElectronicArchivesProps {
   lang: Language;
 }
 
-type ArchiveYear = '2021' | '2022' | '2024' | '2025';
+type ArchiveYear = '2021' | '2022' | '2023' | '2024' | '2025' | '2026';
 
 interface ArchiveImage {
   year: ArchiveYear;
@@ -16,12 +16,16 @@ interface ArchiveImage {
   filename: string;
 }
 
-const archiveYears: ArchiveYear[] = ['2021', '2022', '2024', '2025'];
+const archiveYears: ArchiveYear[] = ['2021', '2022', '2023', '2024', '2025', '2026'];
 
-const archiveModules = import.meta.glob('../images/ElecArc/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}', {
-  eager: true,
-  import: 'default',
-}) as Record<string, string>;
+
+const archiveModules = import.meta.glob(
+  '/images/pages/ElecArc/**/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  {
+    eager: true,
+    import: 'default',
+  }
+) as Record<string, string>;
 
 const filenameFromPath = (path: string) => path.split('/').pop() || path;
 
@@ -39,7 +43,7 @@ const ElectronicArchives: React.FC<ElectronicArchivesProps> = ({ lang }) => {
         }))
         .sort((a, b) => a.filename.localeCompare(b.filename, undefined, { numeric: true }));
       return acc;
-    }, { 2021: [], 2022: [], 2024: [], 2025: [] });
+    }, { 2021: [], 2022: [], 2023: [],2024: [], 2025: [], 2026: [] });
   }, []);
 
   const activeImages = archiveImages[activeYear];
@@ -70,14 +74,7 @@ const ElectronicArchives: React.FC<ElectronicArchivesProps> = ({ lang }) => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="max-w-4xl"
             >
-              <div className="mb-5 flex items-center gap-3">
-                <span className="flex h-12 w-12 items-center justify-center bg-[#A51C30] text-white shadow-lg shadow-[#A51C30]/20">
-                  <Archive size={22} strokeWidth={1.7} />
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.45em] text-[#A51C30]">
-                  School of Graduate Studies
-                </span>
-              </div>
+            
               <h1 className="font-serif text-5xl leading-tight tracking-tight text-gray-950 md:text-7xl">
                 {lang === 'EN' ? 'Electronic Archives' : 'Arkib Elektronik'}
               </h1>
@@ -88,17 +85,6 @@ const ElectronicArchives: React.FC<ElectronicArchivesProps> = ({ lang }) => {
               </p>
             </motion.div>
 
-            <div className="border-l border-[#A51C30]/20 pl-6">
-              <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-gray-400">
-                {lang === 'EN' ? 'Available Collections' : 'Koleksi Tersedia'}
-              </p>
-              <p className="mt-3 font-serif text-4xl text-[#A51C30]">{archiveYears.length}</p>
-              <p className="mt-2 text-sm font-light leading-relaxed text-gray-500">
-                {lang === 'EN'
-                  ? 'Browse by archive year using the collection tabs below.'
-                  : 'Lihat mengikut tahun arkib melalui tab koleksi di bawah.'}
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -138,7 +124,7 @@ const ElectronicArchives: React.FC<ElectronicArchivesProps> = ({ lang }) => {
         </div>
       </section>
 
-      <section className="px-6 pb-24 sm:px-8 lg:px-12">
+      <section className="px-6 pb-20 sm:px-8 lg:px-12">
         <div className="mx-auto max-w-[1400px]">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
@@ -160,16 +146,16 @@ const ElectronicArchives: React.FC<ElectronicArchivesProps> = ({ lang }) => {
             </div>
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-7 md:space-y-8">
             {activeImages.map((image, index) => (
               <motion.article
                 key={`${image.year}-${image.filename}`}
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, delay: index * 0.04 }}
-                className="mx-auto max-w-[1100px] border border-gray-200 bg-white p-3 shadow-[0_20px_70px_-45px_rgba(15,23,42,0.55)] sm:p-5 md:p-7"
+                className="mx-auto max-w-[980px]"
               >
-                <div className="mb-4 flex items-center justify-between border-b border-gray-100 pb-4">
+                <div className="mb-3 flex items-center justify-between border-b border-gray-100 pb-3">
                   <span className="text-[10px] font-bold uppercase tracking-[0.32em] text-[#A51C30]">
                     {activeYear}
                   </span>
@@ -177,13 +163,15 @@ const ElectronicArchives: React.FC<ElectronicArchivesProps> = ({ lang }) => {
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
-                <div className="flex justify-center bg-gray-50/70 p-2 sm:p-4">
-                  <img
-                    src={image.src}
-                    alt={`Electronic archive document ${activeYear}-${index + 1}`}
-                    className="h-auto max-h-none w-full max-w-[1000px] object-contain"
-                    loading={index < 2 ? 'eager' : 'lazy'}
-                  />
+                <div className="flex justify-center">
+                  <div className="inline-block max-w-full rounded-[16px] bg-white p-3 shadow-[0_10px_25px_rgba(0,0,0,0.08)]">
+                    <img
+                      src={image.src}
+                      alt={`Electronic archive document ${activeYear}-${index + 1}`}
+                      className="block h-auto max-h-[70vh] w-auto max-w-full rounded-[12px] object-contain md:max-h-[75vh]"
+                      loading={index < 2 ? 'eager' : 'lazy'}
+                    />
+                  </div>
                 </div>
               </motion.article>
             ))}

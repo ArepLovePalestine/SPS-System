@@ -1,11 +1,7 @@
-import React, { useMemo, useRef, useState } from 'react';
+﻿import React, { useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight, Building2, ChevronLeft, X } from 'lucide-react';
 import { Language } from '../types';
-
-type BrochureModule = {
-  default: string;
-};
 
 type FacultyCardData = {
   id: string;
@@ -21,15 +17,25 @@ type FacultyBrochureCardProps = {
   onOpenPreview: (facultyName: string, images: string[], initialIndex: number) => void;
 };
 
-const brochureModules = import.meta.glob<BrochureModule>(
-  '../images/Faculty-Brochure/**/*.{png,jpg,jpeg,JPG,JPEG,PNG}',
-  { eager: true }
-);
+const BASE = import.meta.env.BASE_URL;
 
-const brochureEntries = Object.entries(brochureModules).map(([path, mod]) => ({
-  path,
-  src: mod.default,
-}));
+const BROCHURE_FILES: Record<string, string[]> = {
+  'Ftke brochure': ['FTKE01.jpeg','FTKE02.jpeg','FTKE03.jpeg','FTKE04.jpeg','FTKE05.jpeg','FTKE06.jpeg','FTKE07.jpeg'],
+  'Ftkek brochure': ['FTKEK01.jpeg','FTKEK02.jpeg','FTKEK03.jpeg','FTKEK04.jpeg'],
+  'Ftkm brochure': ['ftkm_01.jpeg','ftkm_02.jpeg','ftkm_03.jpeg','ftkm_04.jpeg'],
+  'Ftkip brohure': ['FTKM01.jpeg','FTKM02.jpeg','FTKM03.jpeg','FTKM04.jpeg','FTKM05.jpeg','FTKM06.jpeg','FTKM07.jpeg','FTKM08.jpeg'],
+  'Ftmk brochure': ['FTMK01.jpeg','FTMK02.jpeg'],
+  'Fptt brochure': ['FPTT01.jpeg','FPTT02.jpeg','FPTT03.jpeg','FPTT04.jpeg','FPTT05.jpeg'],
+  'Iptk brochure': ['IPTK01.jpeg','IPTK02.jpeg','IPTK03.jpeg','IPTK04.jpeg'],
+  'Faix brochure': ['FAIX01.jpeg','FAIX02.jpeg'],
+};
+
+const brochureEntries = Object.entries(BROCHURE_FILES).flatMap(([folder, files]) =>
+  files.map((file) => ({
+    path: `/images/pages/Faculty-Brochure/${folder}/${file}`,
+    src: `${BASE}images/pages/Faculty-Brochure/${folder}/${file}`,
+  }))
+);
 
 const FACULTY_CARDS: FacultyCardData[] = [
   {

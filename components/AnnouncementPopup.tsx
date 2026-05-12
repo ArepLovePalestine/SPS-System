@@ -1,9 +1,12 @@
-
+﻿
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useLocation } from 'react-router-dom';
 import { X, Megaphone, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Language } from '../types';
+import ImportantNotePoster from '/images/pages/homepages/Note/ImportantNote-optimized.jpg';
+import AnnouncementPosterOne from '/images/pages/homepages/Announcement/poster-optimized.jpg';
+import AnnouncementPosterTwo from '/images/pages/homepages/Announcement/poster-3-optimized.jpg';
 
 interface AnnouncementPopupProps {
   lang: Language;
@@ -18,36 +21,24 @@ const AnnouncementPopup: React.FC<AnnouncementPopupProps> = ({ lang }) => {
 
   useEffect(() => {
     const isHomePage = location.pathname === '/';
-    const cameFromAnotherPage = previousPath.current !== '/' && isHomePage;
 
     previousPath.current = location.pathname;
 
     if (!isHomePage) {
       setIsOpen(false);
+      setShowHint(false);
       return;
     }
 
     setCurrentPoster(0);
-    setShowHint(true);
-
-    const popupTimer = setTimeout(() => {
-      setIsOpen(true);
-    }, cameFromAnotherPage ? 500 : 1000);
-
-    const hintTimer = setTimeout(() => {
-      setShowHint(false);
-    }, 4500);
-
-    return () => {
-      clearTimeout(popupTimer);
-      clearTimeout(hintTimer);
-    };
+    setIsOpen(false);
+    setShowHint(false);
   }, [location.pathname]);
 
   const posters = [
-    "/images/homepages/Note/ImportantNote-optimized.jpg",
-    "/images/homepages/Announcement/poster-optimized.jpg",
-    "/images/homepages/Announcement/poster-3-optimized.jpg"
+    ImportantNotePoster,
+    AnnouncementPosterOne,
+    AnnouncementPosterTwo
   ];
 
   useEffect(() => {

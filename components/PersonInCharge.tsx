@@ -47,7 +47,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: "jeefferie@utem.edu.my",
-      image: "/images/about-pic/Jeefferie.jpeg"
+      image: "/images/pages/about-pic/Jeefferie.jpeg"
     },
     {
       id: "PIC-02",
@@ -75,7 +75,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: "junaidahkasim@utem.edu.my",
-      image: "/images/about-pic/Junaidah.jpeg"
+      image: "/images/pages/about-pic/Junaidah.jpeg"
     },
     {
       id: "PIC-03",
@@ -97,7 +97,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: "syarin@utem.edu.my",
-      image: "/images/about-pic/Syarin.jpeg"
+      image: "/images/pages/about-pic/Syarin.jpeg"
     },
     {
       id: "PIC-04",
@@ -121,7 +121,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: "idura@utem.edu.my",
-      image: "/images/about-pic/Idura.jpeg"
+      image: "/images/pages/about-pic/Idura.jpeg"
     },
     {
       id: "PIC-05",
@@ -133,7 +133,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         BM: ["Proses Peperiksaan Lisan (Viva-Voce)", "Sistem E-viva"]
       },
       email: "noorazman@utem.edu.my",
-      image: "/images/about-pic/Azman.jpeg"
+      image: "/images/pages/about-pic/Azman.jpeg"
     },
     {
       id: "PIC-06",
@@ -146,7 +146,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       },
       email: "zuriana@utem.edu.my",
       phone: "06-229 2307",
-      image: "/images/about-pic/Zuriana.jpeg"
+      image: "/images/pages/about-pic/Zuriana.jpeg"
     },
     {
       id: "PIC-07",
@@ -167,7 +167,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       },
       email: "aznina@utem.edu.my",
       phone: "06-229 2307",
-      image: "/images/about-pic/Noraznina.jpeg"
+      image: "/images/pages/about-pic/Noraznina.jpeg"
     },
     {
       id: "PIC-08",
@@ -179,7 +179,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         BM: ["Status Surat Tawaran", "Status Permohonan Pelajar", "Pelantikan Penyelia"]
       },
       email: "aswadi@utem.edu.my",
-      image: "/images/about-pic/Aswadi.jpeg"
+      image: "/images/pages/about-pic/Aswadi.jpeg"
     },
     {
       id: "PIC-09",
@@ -192,7 +192,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       },
       email: "fadhil@utem.edu.my",
       phone: "012-9255100",
-      image: "/images/about-pic/Fadhil.jpeg"
+      image: "/images/pages/about-pic/Fadhil.jpeg"
     },
     {
       id: "PIC-10",
@@ -214,7 +214,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
         ]
       },
       email: "nur.afiqah@utem.edu.my",
-      image: "/images/about-pic/Afiqah.jpeg"
+      image: "/images/pages/about-pic/Afiqah.jpeg"
     }
   ];
 
@@ -246,7 +246,7 @@ const PersonInCharge: React.FC<PersonInChargeProps> = ({ lang }) => {
       {/* Section 1: Image Hero */}
       <section
         className="relative mb-24 overflow-hidden bg-cover bg-center pt-32 pb-28"
-        style={{ backgroundImage: "url('/images/homepages/Pic2.JPG')" }}
+        style={{ backgroundImage: "url('/images/pages/homepages/Pic2.JPG')" }}
       >
         <div className="absolute inset-0 bg-black/45" aria-hidden="true" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" aria-hidden="true" />

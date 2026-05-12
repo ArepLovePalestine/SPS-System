@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Target, Eye, Award, BookOpen, Quote } from 'lucide-react';
@@ -112,7 +112,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-[#1a1a1a]">
         <div className="absolute inset-0 opacity-40">
           <img 
-            src="/images/homepages/About-us.jpeg" 
+            src="/images/pages/homepages/About-us.jpeg" 
             alt="Campus" 
             className="w-full h-full object-cover"
           />
@@ -147,7 +147,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
           >
             <div className="rounded-2xl shadow-2xl bg-white/60 min-h-[620px] w-full max-w-[520px] flex items-center justify-center p-6">
               <img 
-                src="/images/about/Dean.png"
+                src="/images/pages/about/Dean.png"
                 alt="Dean" 
                 className="w-full h-full object-contain grayscale-0 filter-none transition-all duration-700"
               />
@@ -221,7 +221,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ lang }) => {
             <div className="flex justify-center">
               <div className="max-w-4xl w-full rounded-2xl shadow-xl bg-white overflow-hidden border border-gray-100 flex items-center justify-center p-4">
                 <img 
-                  src="/images/about/Overview/Overview_pict.jpeg" 
+                  src="/images/pages/about/Overview/Overview_pict.jpeg" 
                   alt="SGS overview" 
                   className="w-full h-auto object-contain bg-white"
                 />

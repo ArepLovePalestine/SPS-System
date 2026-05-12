@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronRight, Download, ExternalLink, FileText, AlertCircle } from 'lucide-react';
@@ -9,7 +9,7 @@ interface RegulationsProps {
 }
 
 const Regulations: React.FC<RegulationsProps> = ({ lang }) => {
-  const academicRegulationsPdf = '/images/homepages/Regulations/e-POSTGRADUATE%20ACADEMIC%20REGULATIONS.pdf';
+  const academicRegulationsPdf = '/images/pages/homepages/Regulations/e-POSTGRADUATE%20ACADEMIC%20REGULATIONS.pdf';
   const hasDocument = academicRegulationsPdf.length > 0;
 
   const content = {

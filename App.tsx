@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -13,10 +13,12 @@ import OrgChartByUnit from './components/OrgChartByUnit';
 import StaffDirectory from './components/StaffDirectory';
 import BestEmployee from './components/BestEmployee';
 import Awards from './components/Awards';
+import AcademicAwards from './components/AcademicAwards';
 import SGSBrochure from './components/SGSBrochure';
 import FacultyBrochure from './components/FacultyBrochure';
 import ProgrammesPage from './components/ProgrammesPage';
 import FacultyProgrammes from './components/FacultyProgrammes';
+import ProgrammeFees from './components/ProgrammeFees';
 import MasterTaught from './components/MasterTaught';
 import MasterResearch from './components/MasterResearch';
 import MasterMixed from './components/MasterMixed';
@@ -25,28 +27,31 @@ import PostgraduateProgrammes from './components/PostgraduateProgrammes';
 import ISODocuments from './components/ISODocuments';
 import MQAStandards from './components/MQAStandards';
 import ApplyNow from './components/ApplyNow';
-import StudentInfoPage from './components/StudentInfoPage';
-import UtemConvocationPage from './components/UtemConvocationPage';
+import StudentInfo from './components/StudentInfo';
+import Convocation from './components/UtemConvocationPage';
+import AboutUPgrade from './components/AboutUPgrade';
+import UpgradeProfession from './components/UPgradeProfession';
+import AnnouncementPopup from './components/AnnouncementPopup';
+import NewsAnnouncements from './components/NewsAnnouncements';
+import RoomReservation from './components/RoomReservation';
+import PaymentProcedure from './components/PaymentProcedure';
+import KesidangScholarship from './components/KesidangScholarship';
+import KesidangFormPage from './components/KesidangFormPage';
 import PictureGallery from './components/PictureGallery';
 import Facilities from './components/Facilities';
 import Resources from './components/Resources';
 import CalendarPage from './components/Calendar';
-import AcademicAwards from './components/AcademicAwards';
 import Regulations from './components/Regulations';
 import DocumentSystem from './components/DocumentSystem';
-import AboutUPgrade from './components/AboutUPgrade';
-import UPgradeProfession from './components/UPgradeProfession';
-import SearchPage from './components/SearchPage';
-import AnnouncementPopup from './components/AnnouncementPopup';
-import RoomReservation from './components/RoomReservation';
-import ScrollToTop from './components/ScrollToTop';
-import PaymentProcedure from './components/PaymentProcedure';
-import ProgrammeFees from './components/ProgrammeFees';
-import KesidangScholarship from './components/KesidangScholarship';
 import ElectronicArchives from './components/ElectronicArchives';
+import TuahTenaga from './components/TuahTenaga';
 import { Language } from './types';
-import StudentResearchHub from './components/StudentResearchHub';
 import ExaminationInfo from './components/ExaminationInfo';
+import SearchPage from './components/SearchPage';
+import AdmissionRequirements from './components/AdmissionRequirements';
+import ResourcePlaceholderPage from './components/ResourcePlaceholderPage';
+import ResourceDocumentPage from './components/ResourceDocumentPage';
+import ScrollToTop from './components/ScrollToTop';
 import { Facebook, Instagram, Youtube } from 'lucide-react';
 
 const TikTokIcon: React.FC<{ className?: string }> = ({ className }) => (
@@ -72,11 +77,11 @@ const XIcon: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 const socialLinks = [
-  { label: 'Facebook', href: 'https://www.facebook.com/MyUTeM/', Icon: Facebook },
-  { label: 'Instagram', href: 'https://www.instagram.com/utemofficial/', Icon: Instagram },
+  { label: 'Facebook', href: 'https://web.facebook.com/people/Sekolah-Pengajian-Siswazah-UTeM/100062949018889/#', Icon: Facebook },
+  { label: 'Instagram', href: 'https://www.instagram.com/pps.utem/', Icon: Instagram },
   { label: 'YouTube', href: 'https://www.youtube.com/@UTeMOfficial', Icon: Youtube },
-  { label: 'Twitter (X)', href: 'https://twitter.com/vcutem', Icon: XIcon },
-  { label: 'TikTok', href: 'https://www.tiktok.com/@utemofficial', Icon: TikTokIcon },
+  { label: 'Twitter (X)', href: 'https://x.com/PusatUtem', Icon: XIcon },
+  { label: 'TikTok', href: 'https://www.tiktok.com/@spsutem', Icon: TikTokIcon },
 ];
 
 const HomePage: React.FC<{ lang: Language }> = ({ lang }) => (
@@ -89,8 +94,12 @@ const HomePage: React.FC<{ lang: Language }> = ({ lang }) => (
       <InfoSection lang={lang} />
     </div>
 
+    <div className="relative z-20 bg-[#f7f5f0]">
+      <NewsAnnouncements lang={lang} />
+    </div>
+
     <div className="relative bg-[#050505]" style={{ zIndex: 20 }}>
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <div className="overflow-hidden lg:sticky lg:top-0 lg:h-screen">
         <QuickAccess lang={lang} />
       </div>
 
@@ -116,9 +125,10 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router>
+
+    <Router basename={import.meta.env.PROD ? '/sps.utem/' : '/'}>
+      <ScrollToTop />
       <div className="min-h-screen bg-[#eceae7]">
-        <ScrollToTop />
         <Header lang={lang} onToggleLanguage={toggleLanguage} />
         <AnnouncementPopup lang={lang} />
         <main>
@@ -134,6 +144,7 @@ const App: React.FC = () => {
             <Route path="/student/brochure-sgs" element={<SGSBrochure lang={lang} />} />
             <Route path="/student/brochure-faculty" element={<FacultyBrochure lang={lang} />} />
             <Route path="/programmes" element={<ProgrammesPage lang={lang} />} />
+            <Route path="/programmes/fees" element={<ProgrammeFees lang={lang} />} />
             <Route path="/programmes/master-taught" element={<MasterTaught lang={lang} />} />
             <Route path="/programmes/master-research" element={<MasterResearch lang={lang} />} />
             <Route path="/programmes/master-mixed" element={<MasterMixed lang={lang} />} />
@@ -143,10 +154,12 @@ const App: React.FC = () => {
             <Route path="/accreditation/mqa-standards" element={<MQAStandards lang={lang} />} />
             <Route path="/about/iso-documents" element={<ISODocuments lang={lang} />} />
             <Route path="/about/electronic-archives" element={<ElectronicArchives lang={lang} />} />
+            <Route path="/about/tuah-tenaga" element={<TuahTenaga lang={lang} />} />
             <Route path="/apply-now" element={<ApplyNow lang={lang} />} />
-            <Route path="/student/student-info" element={<StudentInfoPage />} />
+            <Route path="/student/student-info" element={<StudentInfo lang={lang} />} />
+            <Route path="/student/admission-requirements" element={<AdmissionRequirements lang={lang} />} />
             <Route path="/student/examination-info" element={<ExaminationInfo lang={lang} />} />
-            <Route path="/student/student-info/utem-convocation" element={<UtemConvocationPage lang={lang} />} />
+            <Route path="/student/student-info/utem-convocation" element={<Convocation lang={lang} />} />
             <Route path="/gallery" element={<PictureGallery lang={lang} />} />
             <Route path="/facilities" element={<Facilities lang={lang} />} />
             <Route path="/facilities/reservation" element={<RoomReservation lang={lang} />} />
@@ -154,13 +167,13 @@ const App: React.FC = () => {
             <Route path="/calendar" element={<CalendarPage lang={lang} />} />
             <Route path="/student/academic-awards" element={<AcademicAwards lang={lang} />} />
             <Route path="/regulations" element={<Regulations lang={lang} />} />
-            <Route path="/search" element={<SearchPage lang={lang} />} />
-            <Route path="/student/future/research" element={<StudentResearchHub />} />
             <Route path="/upgrade" element={<AboutUPgrade lang={lang} />} />
-            <Route path="/upgrade/profession" element={<UPgradeProfession lang={lang} />} />
+            <Route path="/upgrade/profession" element={<UpgradeProfession lang={lang} />} />
             <Route path="/programmes/payment-hub" element={<PaymentProcedure lang={lang} />} />
-            <Route path="/programmes/fees" element={<ProgrammeFees lang={lang} />} />
+            <Route path="/kesidang-form" element={<KesidangFormPage lang={lang} />} />
             <Route path="/kesidang-scholarship" element={<KesidangScholarship lang={lang} />} />
+            
+            <Route path="/search" element={<SearchPage lang={lang} />} />
           
                         {/* Document System Pages */}
             <Route path="/resources/academic-forms" element={
@@ -203,6 +216,163 @@ const App: React.FC = () => {
                 initialCategory="ISO"
               />
             } />
+            
+            {/* Programme Structure Placeholder Pages */}
+            <Route path="/resources/postgraduate-prospectus" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Postgraduate Prospectus', BM: 'Prospektus Pascasiswazah' }}
+                description={{ EN: 'Comprehensive postgraduate programme information and prospectus.', BM: 'Maklumat program pascasiswazah komprehensif dan prospektus.' }}
+              />
+            } />
+            <Route path="/resources/new-programmes-2019" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'New Programmes (2019)', BM: 'Program Baru (2019)' }}
+                description={{ EN: 'Information on new academic programmes introduced in 2019.', BM: 'Maklumat tentang program akademik baru yang diperkenalkan pada 2019.' }}
+              />
+            } />
+            
+            {/* User Manual - Research Student Thesis/Viva */}
+            <Route path="/resources/user-manual-thesis-viva" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'User Manual - Research Student Thesis/Viva', BM: 'Manual Pengguna - Pelajar Penyelidikan Tesis/Viva' }}
+                description={{ EN: 'Comprehensive guide for research students on thesis submission and viva preparation.', BM: 'Panduan komprehensif untuk pelajar penyelidikan tentang penyerahan tesis dan persediaan viva.' }}
+              />
+            } />
+            
+            {/* Facilities Placeholder Pages */}
+            <Route path="/facilities/lecture-room" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Lecture Room', BM: 'Bilik Kuliah' }}
+                description={{ EN: 'Information about lecture room facilities and availability.', BM: 'Maklumat tentang kemudahan bilik kuliah dan ketersediaan.' }}
+              />
+            } />
+            <Route path="/facilities/auditorium" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Auditorium', BM: 'Auditorium' }}
+                description={{ EN: 'Details about the auditorium facility and booking information.', BM: 'Butiran tentang kemudahan auditorium dan maklumat tempahan.' }}
+              />
+            } />
+            <Route path="/facilities/viva-room-1" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'VIVA Room 1', BM: 'Bilik VIVA 1' }}
+                description={{ EN: 'Information about Viva Room 1 for postgraduate examinations.', BM: 'Maklumat tentang Bilik Viva 1 untuk peperiksaan pascasiswazah.' }}
+              />
+            } />
+            <Route path="/facilities/viva-room-2" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'VIVA Room 2', BM: 'Bilik VIVA 2' }}
+                description={{ EN: 'Information about Viva Room 2 for postgraduate examinations.', BM: 'Maklumat tentang Bilik Viva 2 untuk peperiksaan pascasiswazah.' }}
+              />
+            } />
+            <Route path="/facilities/meeting-room" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Meeting Room', BM: 'Bilik Mesyuarat' }}
+                description={{ EN: 'Details about meeting room facilities and reservation process.', BM: 'Butiran tentang kemudahan bilik mesyuarat dan proses tempahan.' }}
+              />
+            } />
+            <Route path="/facilities/banquet-room" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Banquet Room', BM: 'Bilik Jamuan' }}
+                description={{ EN: 'Information about banquet room facility and event arrangements.', BM: 'Maklumat tentang kemudahan bilik jamuan dan pengaturan acara.' }}
+              />
+            } />
+            <Route path="/facilities/postgraduate-lab" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Postgraduate Lab', BM: 'Makmal Pascasiswazah' }}
+                description={{ EN: 'Details about postgraduate research laboratory facilities.', BM: 'Butiran tentang kemudahan makmal penyelidikan pascasiswazah.' }}
+              />
+            } />
+            
+            {/* Student Information Placeholder Pages */}
+            <Route path="/student/journal-index-guide" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Journal Index Guide', BM: 'Panduan Indeks Jurnal' }}
+                description={{ EN: 'Guide to checking and identifying indexed journals for publication.', BM: 'Panduan untuk memeriksa dan mengenal pasti jurnal berindeks untuk penerbitan.' }}
+              />
+            } />
+            <Route path="/student/academic-regulation" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Academic Regulation', BM: 'Peraturan Akademik' }}
+                description={{ EN: 'Comprehensive academic regulations for postgraduate students.', BM: 'Peraturan akademik komprehensif untuk pelajar pascasiswazah.' }}
+              />
+            } />
+            <Route path="/student/postgraduate-regulation-slide" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Postgraduate Regulations Slide', BM: 'Slaid Peraturan Pascasiswazah' }}
+                description={{ EN: 'Presentation slides on postgraduate academic regulations and policies.', BM: 'Slaid persembahan tentang peraturan dan dasar akademik pascasiswazah.' }}
+              />
+            } />
+            <Route path="/student/istilah-kejuruteraan" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Istilah Kejuruteraan', BM: 'Istilah Kejuruteraan' }}
+                description={{ EN: 'Glossary of engineering terminology in Malay.', BM: 'Glosari istilah kejuruteraan dalam Bahasa Melayu.' }}
+              />
+            } />
+            <Route path="/student/grade-classification" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Grade Classification', BM: 'Klasifikasi Gred' }}
+                description={{ EN: 'Information on grade classification and academic assessment criteria.', BM: 'Maklumat tentang klasifikasi gred dan kriteria penilaian akademik.' }}
+              />
+            } />
+            <Route path="/student/indexed-journal-guide" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Indexed Journal Guide', BM: 'Panduan Jurnal Berindeks' }}
+                description={{ EN: 'Guide on how to identify and publish in indexed journals.', BM: 'Panduan tentang cara mengenal pasti dan menerbitkan di jurnal berindeks.' }}
+              />
+            } />
+            <Route path="/student/student-vaccination-manual" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Student Vaccination Manual', BM: 'Manual Vaksinasi Pelajar' }}
+                description={{ EN: 'User manual for student vaccination registration and tracking.', BM: 'Manual pengguna untuk pendaftaran dan penjejakan vaksinasi pelajar.' }}
+              />
+            } />
+            
+            {/* Academic Information Placeholder Pages */}
+            <Route path="/academics/mqa-letter" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'MQA Letter', BM: 'Surat MQA' }}
+                description={{ EN: 'Official communications and letters from Malaysia Qualification Agency.', BM: 'Komunikasi dan surat rasmi daripada Agensi Kelayakan Malaysia.' }}
+              />
+            } />
+            <Route path="/academics/final-exam-briefing" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Final Examination Briefing', BM: 'Taklimat Peperiksaan Akhir' }}
+                description={{ EN: 'Briefing and guidelines for final examination procedures.', BM: 'Taklimat dan panduan untuk prosedur peperiksaan akhir.' }}
+              />
+            } />
+            <Route path="/academics/program-guidelines" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'Programme Guidelines', BM: 'Panduan Program' }}
+                description={{ EN: 'Guidelines for academic programme development and management.', BM: 'Panduan untuk pembangunan dan pengurusan program akademik.' }}
+              />
+            } />
+            <Route path="/academics/mqa-standards" element={
+              <ResourcePlaceholderPage 
+                lang={lang} 
+                title={{ EN: 'MQA Standards', BM: 'Piawaian MQA' }}
+                description={{ EN: 'MQA standards and programme standards documentation.', BM: 'Piawaian MQA dan dokumentasi piawaian program.' }}
+              />
+            } />
           </Routes>
         </main>
 
@@ -211,7 +381,7 @@ const App: React.FC = () => {
           <div
             className="pointer-events-none absolute inset-0 bg-bottom bg-no-repeat opacity-[0.1]"
             style={{
-              backgroundImage: "url('/images/homepages/bangunan_design.png')",
+              backgroundImage: "url('/images/pages/homepages/bangunan_design.png')",
               backgroundSize: '68% auto',
             }}
             aria-hidden="true"
@@ -219,9 +389,9 @@ const App: React.FC = () => {
           <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1.35fr)_minmax(260px,0.85fr)_minmax(170px,0.7fr)_minmax(220px,0.85fr)] lg:gap-12 xl:gap-14">
             <div className="space-y-4">
               <img
-                src="/images/homepages/SPS logo.png"
+                src="/images/pages/homepages/SPS logo.png"
                 alt="School of Graduate Studies logo"
-                className="h-14 w-auto object-contain sm:h-16"
+                className="h-36 w-auto object-contain sm:h-40"
               />
               <h3 className="font-serif text-3xl mb-3 text-[#A51C30]">CONTACT US</h3>
               <p className="text-gray-400 font-light leading-relaxed max-w-md">
@@ -237,20 +407,19 @@ const App: React.FC = () => {
               </p>
             </div>
             <div className="hidden md:block" aria-hidden="true" />
-            <div className="flex flex-col space-y-3">
-              <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-1">Quick Access</h4>
-              <a href="https://www.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">UTeM Website</a>
-              <a href="https://sustainability.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">SDG UTeM</a>
-              <a href="https://portal.utem.edu.my/admission/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
-              <a href="/calendar" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Academic Calendar</a>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-1">Other Links</h4>
-              <a href="https://www.mqa.gov.my/new/index.cfm#gsc.tab=0" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Malaysia Qualification Agency (MQA)</a>
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Majlis Perwakilan Pelajar (MPP UTeM)</a>
-              <a href="https://portal.utem.edu.my/admission/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
-              <a href="/calendar" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Academic Calendar</a>
-            </div>
+              <div className="flex flex-col space-y-3">
+                <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-1">Quick Access</h4>
+                <a href="https://www.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">UTeM Website</a>
+                <a href="https://sustainability.utem.edu.my/en/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">SDG UTeM</a>
+                <a href="https://portal.utem.edu.my/admission/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Online Application</a>
+                <a href="/calendar" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Academic Calendar</a>
+              </div>
+              <div className="flex flex-col space-y-3">
+                <h4 className="font-bold uppercase tracking-[0.2em] text-[10px] text-gray-500 mb-1">Other Links</h4>
+                <a href="https://www.mqa.gov.my/new/index.cfm#gsc.tab=0" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Malaysia Qualification Agency (MQA)</a>
+                <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Majlis Perwakilan Pelajar (MPP UTeM)</a>
+                <a href="https://help.utem.edu.my/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#A51C30] transition-colors text-sm font-light">Customer Feedback</a>
+              </div>
           </div>
           <div className="relative z-10 max-w-7xl mx-auto border-t border-gray-800/50 mt-10 pt-8 text-center">
             <h4 className="font-bold uppercase tracking-[0.25em] text-[11px] text-gray-400 mb-4">Connect with Us</h4>

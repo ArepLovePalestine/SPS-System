@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./images/homepages/SPS%20logo.png" alt="SPS UTeM Logo" width="140" />
+  <img src=".src/assets/images/pages/homepages/SPS%20logo.png" alt="SPS UTeM Logo" width="140" />
 </p>
 
 # SPS UTeM Website Redesign

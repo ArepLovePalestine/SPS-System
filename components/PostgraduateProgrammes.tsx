@@ -18,7 +18,7 @@ interface FacultyGroup {
   nameEN: string;
   programmes: ProgrammeRow[];
 }
-
+   {/* kalau nk delete row delete satu line terus di bawah */}
 const PROGRAMME_DATA: FacultyGroup[] = [
   {
     nameBM: 'Fakulti Teknologi dan Kejuruteraan Elektrik',
@@ -179,10 +179,6 @@ const PostgraduateProgrammes: React.FC<PostgraduateProgrammesProps> = ({ lang })
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="inline-flex items-center space-x-2 bg-[#A51C30]/5 text-[#A51C30] px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-[#A51C30]/10">
-                <FileText size={14} />
-                <span>Formal Accreditation</span>
-              </div>
               <h1 className="text-4xl md:text-5xl font-serif text-gray-900">
                 {lang === 'EN' ? 'Postgraduate Programmes' : 'Program Pascasiswazah'}
               </h1>
@@ -252,7 +248,7 @@ const PostgraduateProgrammes: React.FC<PostgraduateProgrammesProps> = ({ lang })
             </div>
           </div>
 
-          {/* Table Container with Horizontal Scroll */}
+          {/* tajuk ii table */}
           <div className="overflow-x-auto custom-scrollbar">
             <table className="w-full border-collapse border-spacing-0 min-w-[1000px]">
               <thead className="bg-[#D9EAD3]">
@@ -297,6 +293,7 @@ const PostgraduateProgrammes: React.FC<PostgraduateProgrammesProps> = ({ lang })
                               </div>
                             </td>
                           )}
+                             {/* delete collumn */}
                           <td className="p-5 border-r-2 border-gray-800 text-sm font-medium text-gray-900 leading-snug">
                             {prog.bmName}
                           </td>

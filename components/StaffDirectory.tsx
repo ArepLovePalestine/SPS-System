@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Search, Filter, Mail, Phone, Building2, ChevronRight, User, X } from 'lucide-react';
@@ -30,7 +30,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Management", BM: "Pengurusan" },
       email: "masrullizam@utem.edu.my",
       phone: "+606-229 2307",
-      image: "/images/about-staff/Masrulizam.png"
+      image: "/images/pages/about-staff/Masrulizam.png"
     },
     {
       id: 1,
@@ -39,7 +39,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Management", BM: "Pengurusan" },
       email: "jefferie@utem.edu.my",
       phone: "+606-270 1000",
-      image: "/images/about-staff/Jeefferie.jpeg"
+      image: "/images/pages/about-staff/Jeefferie.jpeg"
     },
     {
       id: 2,
@@ -48,7 +48,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Administration & Finance", BM: "Pentadbiran & Kewangan" },
       email: "junaidah@utem.edu.my",
       phone: "+606-270 1001",
-      image: "/images/about-staff/Junaidah.jpeg"
+      image: "/images/pages/about-staff/Junaidah.jpeg"
     },
     {
       id: 3,
@@ -57,7 +57,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Academic", BM: "Akademik" },
       email: "syarin@utem.edu.my",
       phone: "-",
-      image: "/images/about-staff/Syarin.jpeg"
+      image: "/images/pages/about-staff/Syarin.jpeg"
     },
     {
       id: 4,
@@ -66,7 +66,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Student Affairs", BM: "Hal Ehwal Pelajar" },
       email: "idura@utem.edu.my",
       phone: "-",
-      image: "/images/about-staff/Idura.jpeg"
+      image: "/images/pages/about-staff/Idura.jpeg"
     },
     {
       id: 5,
@@ -75,7 +75,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Academic", BM: "Akademik" },
       email: "noorazman@utem.edu.my",
       phone: "+606-270 2484",
-      image: "/images/about-staff/Azman.jpeg"
+      image: "/images/pages/about-staff/Azman.jpeg"
     },
     {
       id: 6,
@@ -84,7 +84,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Research", BM: "Penyelidikan" },
       email: "zuriana@utem.edu.my",
       phone: "+606-270 2791/2268",
-      image: "/images/about-staff/Zuriana.jpeg"
+      image: "/images/pages/about-staff/Zuriana.jpeg"
     },
     {
       id: 7,
@@ -93,7 +93,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Administration & Finance", BM: "Pentadbiran & Kewangan" },
       email: "fadhil@utem.edu.my",
       phone: "+606-270 2795 / 012 -9255100",
-      image: "/images/about-staff/Fadhil.jpeg"
+      image: "/images/pages/about-staff/Fadhil.jpeg"
     },
     {
       id: 8,
@@ -102,7 +102,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Management", BM: "Pengurusan" },
       email: "suhailah@utem.edu.my",
       phone: "+606-270 8012",
-      image: "/images/about-staff/Suhailah.jpeg"
+      image: "/images/pages/about-staff/Suhailah.jpeg"
     },
     {
       id: 9,
@@ -111,7 +111,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Administration & Finance", BM: "Pentadbiran & Kewangan" },
       email: "aswadi@utem.edu.my",
       phone: "+606-270 1677",
-      image: "/images/about-staff/Aswadi.jpeg"
+      image: "/images/pages/about-staff/Aswadi.jpeg"
     },
     {
       id: 10,
@@ -120,7 +120,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Research", BM: "Penyelidikan" },
       email: "aznina@utem.edu.my",
       phone: "+606-270 8012",
-      image: "/images/about-staff/Noraznina.jpeg"
+      image: "/images/pages/about-staff/Noraznina.jpeg"
     },
     {
       id: 11,
@@ -129,7 +129,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Student Affairs", BM: "Hal Ehwal Pelajar" },
       email: "nur.afiqah@utem.edu.my",
       phone: "+606-270 2801",
-      image: "/images/about-staff/Afiqah.jpeg"
+      image: "/images/pages/about-staff/Afiqah.jpeg"
     },
     {
       id: 12,
@@ -138,7 +138,7 @@ const StaffDirectory: React.FC<StaffDirectoryProps> = ({ lang }) => {
       unit: { EN: "Administration & Finance", BM: "Pentadbiran & Kewangan" },
       email: "Muhammad.firdaus@utem.edu.my",
       phone: "+606-270 2798",
-      image: "/images/about-staff/Firdaus.png"
+      image: "/images/pages/about-staff/Firdaus.png"
     }
   ];
 

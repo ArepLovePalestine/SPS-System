@@ -1,17 +1,17 @@
 
 import React from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, Navigate } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ChevronRight, BookOpen, Search, GraduationCap, Settings, ArrowRight, ExternalLink, Clock, DollarSign, Mail, Phone, Globe } from 'lucide-react';
 import { FacultyDetail, Language, Programme } from '../types';
-import FTKMImg from '../images/Faculty_TaughtCourse/FTKM.jpeg';
-import FTKEImg from '../images/Faculty_TaughtCourse/FTKE.jpeg';
-import FTMKImg from '../images/Faculty_TaughtCourse/FTMK.jpeg';
-import FPTTImg from '../images/Faculty_TaughtCourse/FPTT.jpeg';
-import FTKEKImg from '../images/Faculty_TaughtCourse/FTKEK.jpeg';
-import FTKIPImg from '../images/Faculty_TaughtCourse/FTKIP.jpeg';
-import IPTKImg from '../images/Faculty_TaughtCourse/IPTK.jpeg';
-import FTMKPagePic from '../images/Faculty_TaughtCourse/EachPagePic/FTMK_pic.jpg';
+import FTKMImg from '/images/pages/Faculty_TaughtCourse/FTKM.jpeg';
+import FTKEImg from '/images/pages/Faculty_TaughtCourse/FTKE.jpeg';
+import FTMKImg from '/images/pages/Faculty_TaughtCourse/FTMK.jpeg';
+import FPTTImg from '/images/pages/Faculty_TaughtCourse/FPTT.jpeg';
+import FTKEKImg from '/images/pages/Faculty_TaughtCourse/FTKEK.jpeg';
+import FTKIPImg from '/images/pages/Faculty_TaughtCourse/FTKIP.jpeg';
+import IPTKImg from '/images/pages/Faculty_TaughtCourse/IPTK.jpeg';
+import FTMKPagePic from '/images/pages/Faculty_TaughtCourse/EachPagePic/FTMK_pic.jpg';
 import PageHeader from './PageHeader';
 
 interface FacultyProgrammesProps {
@@ -470,6 +470,176 @@ const FTKIP_CONTACT = {
   website: 'https://ftkip.utem.edu.my/'
 };
 
+const FTKE_PROGRAMMES_OFFERED = [
+  { programme: 'Master of Electrical Engineering (MEKG)', fullTime: '1-2 years', partTime: '2-4 years' },
+  { programme: 'Master of Mechatronics Engineering (MEKH)', fullTime: '1-2 years', partTime: '2-4 years' }
+];
+
+const FTKE_ELECTRICAL_ENGINEERING_STRUCTURE = [
+  { section: 'Compulsory', course: 'Research Methodology', field: '', credit: '3' },
+  { section: 'University Elective', course: 'Engineering & Technology Management', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Electrical Power System', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Modern Control Design', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Electrical Machines & Drives', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Insulation Coordination & Diagnostic Testing', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Sustainable Energy & Distribution Generation', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Energy Conversion', field: '', credit: '3' },
+  { section: 'Elective', course: 'Advanced Drive Systems', field: 'Power Electronics & Drives', credit: '3' },
+  { section: 'Elective', course: 'Electrical Machine Design', field: 'Power Electronics & Drives', credit: '3' },
+  { section: 'Elective', course: 'Power Electronics for Renewable Energy', field: 'Power Electronics & Drives', credit: '3' },
+  { section: 'Elective', course: 'Nonlinear Control Systems', field: 'Control System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Intelligent Control', field: 'Control System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Control Technology & Applications', field: 'Control System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Power Systems Operation & Control', field: 'Power System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Power Systems Protection & Stability', field: 'Power System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Power Quality & Energy Efficiency', field: 'Power System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Lightning Protection & Grounding System', field: 'Power System Engineering', credit: '3' },
+  { section: 'Master Project I & II', course: 'Master Project I & II', field: '', credit: '10' }
+];
+
+const FTKE_MECHATRONICS_ENGINEERING_STRUCTURE = [
+  { section: 'Compulsory', course: 'Research Methodology', field: '', credit: '3' },
+  { section: 'University Elective', course: 'Engineering & Technology Management', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Advanced Mechatronics System Design', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Modern Control Design', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Applied System Modelling & Simulation', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'System Dynamics', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Industrial Machine Vision or Industrial Robotics', field: '', credit: '3' },
+  { section: 'Programme Core', course: 'Electrical Machines & Drives', field: '', credit: '3' },
+  { section: 'Elective', course: 'Industrial Robotics', field: 'Mechanical Engineering', credit: '3' },
+  { section: 'Elective', course: 'Engineering Standards', field: 'Mechanical Engineering', credit: '3' },
+  { section: 'Elective', course: 'System Identification', field: 'Control System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Intelligent Control', field: 'Control System Engineering', credit: '3' },
+  { section: 'Elective', course: 'Advanced Industrial Automation', field: 'Mechatronic System', credit: '3' },
+  { section: 'Elective', course: 'Bilateral Motion Control', field: 'Mechatronic System', credit: '3' },
+  { section: 'Elective', course: 'Advanced Embedded Systems', field: 'Internet of Things (IOT)', credit: '3' },
+  { section: 'Elective', course: 'Industrial Machine Vision', field: 'Internet of Things (IOT)', credit: '3' },
+  { section: 'Master Project I & II', course: 'Master Project I & II', field: '', credit: '10' }
+];
+
+const FTKE_PROGRAMME_FEES = [
+  {
+    programme: 'Master of Electrical Engineering',
+    mode: 'Taught Course',
+    fullTime: '1-2',
+    partTime: '2-4',
+    malaysian: '8,710.00',
+    international: '14,710.00'
+  },
+  {
+    programme: 'Master of Mechatronic Engineering',
+    mode: 'Taught Course',
+    fullTime: '1-2',
+    partTime: '2-4',
+    malaysian: '8,710.00',
+    international: '14,710.00'
+  }
+];
+
+const FTKE_CONTACT = {
+  faculty: 'Faculty of Electrical Technology Engineering (FTKE)',
+  university: 'Universiti Teknikal Malaysia Melaka (UTeM)',
+  address: 'Hang Tuah Jaya, 76100 Durian Tunggal, Melaka, Malaysia.',
+  phone: '+606-229 2117',
+  email: 'ftke@utem.edu.my',
+  website: 'https://ftke.utem.edu.my/index.php/en/'
+};
+
+const FTKEK_PROGRAMMES_OFFERED = [
+  { programme: 'Master of Electronic Engineering (Telecommunication Systems)', fullTime: '1-2 years', partTime: '2-4 years' },
+  { programme: 'Master of Electronic Engineering (Electronic Systems)', fullTime: '1-2 years', partTime: '2-4 years' },
+  { programme: 'Master of Electronic Engineering (Computer Engineering)', fullTime: '1-2 years', partTime: '2-4 years' }
+];
+
+const FTKEK_PROGRAMME_CORE_SPECIALISATIONS = [
+  {
+    title: 'TELECOMMUNICATION SYSTEM',
+    subjects: [
+      { subject: 'Research Methodology', credit: '3' },
+      { subject: 'Engineering and Technology Management', credit: '3' },
+      { subject: 'Advanced Digital Signal Processing', credit: '3' },
+      { subject: 'Advanced Electronic Design', credit: '3' },
+      { subject: 'Advanced TCP/IP Network', credit: '3' },
+      { subject: 'Wave Propagation', credit: '3' },
+      { subject: 'Antenna Design', credit: '3' },
+      { subject: 'Microwave and RF Circuit Design', credit: '3' },
+      { subject: 'Project I', credit: '4' },
+      { subject: 'Project II', credit: '6' }
+    ],
+    totalCredits: '34'
+  },
+  {
+    title: 'ELECTRONIC SYSTEM',
+    subjects: [
+      { subject: 'Research Methodology', credit: '3' },
+      { subject: 'Engineering and Technology Management', credit: '3' },
+      { subject: 'Advanced Digital Signal Processing', credit: '3' },
+      { subject: 'Advanced Electronic Design', credit: '3' },
+      { subject: 'Advanced TCP/IP Network', credit: '3' },
+      { subject: 'Digital Control', credit: '3' },
+      { subject: 'Artificial Intelligence', credit: '3' },
+      { subject: 'Advanced Power Electronics', credit: '3' },
+      { subject: 'Project I', credit: '4' },
+      { subject: 'Project II', credit: '6' }
+    ],
+    totalCredits: '34'
+  },
+  {
+    title: 'COMPUTER ENGINEERING',
+    subjects: [
+      { subject: 'Research Methodology', credit: '3' },
+      { subject: 'Engineering and Technology Management', credit: '3' },
+      { subject: 'Advanced Digital Signal Processing', credit: '3' },
+      { subject: 'Advanced Electronic Design', credit: '3' },
+      { subject: 'Advanced TCP/IP Network', credit: '3' },
+      { subject: 'Computer Architecture', credit: '3' },
+      { subject: 'Embedded Software Design', credit: '3' },
+      { subject: 'Digital VLSI Design', credit: '3' },
+      { subject: 'Project I', credit: '4' },
+      { subject: 'Project II', credit: '6' }
+    ],
+    totalCredits: '34'
+  }
+];
+
+const FTKEK_CORE_COURSE_SPECIALISATIONS = [
+  {
+    title: 'TELECOMMUNICATION SYSTEM',
+    subjects: [
+      { subject: 'Advanced Digital Communication', credit: '3' },
+      { subject: 'Satellite Communication', credit: '3' },
+      { subject: 'Broadband Wireless Communication', credit: '3' },
+      { subject: 'Optical Communication', credit: '3' }
+    ]
+  },
+  {
+    title: 'ELECTRONIC SYSTEM',
+    subjects: [
+      { subject: 'Advanced Control', credit: '3' },
+      { subject: 'Discrete Event System', credit: '3' },
+      { subject: 'Sensor Technology', credit: '3' },
+      { subject: 'Embedded System Design', credit: '3' }
+    ]
+  },
+  {
+    title: 'COMPUTER ENGINEERING',
+    subjects: [
+      { subject: 'Mixed Analog Signal VLSI Design', credit: '3' },
+      { subject: 'IC Testing', credit: '3' },
+      { subject: 'Embedded System Design', credit: '3' }
+    ]
+  }
+];
+
+const FTKEK_CONTACT = {
+  faculty: 'Faculty of Electronics and Computer Technology and Engineering (FTKEK)',
+  university: 'Universiti Teknikal Malaysia Melaka (UTeM)',
+  address: 'Hang Tuah Jaya, 76100 Durian Tunggal, Melaka, Malaysia.',
+  phone: '+606-229 2118',
+  email: 'ftkek@utem.edu.my',
+  website: 'https://ftkek.utem.edu.my/'
+};
+
 const FPTT_PROGRAMMES_OFFERED = [
   { programme: 'Master of Business Administration (Advanced Operations Management)', fullTime: '2-4 years', partTime: '2-6 years' },
   { programme: 'Master of Business Administration (Technology and Innovation Management)', fullTime: '2-4 years', partTime: '2-6 years' }
@@ -733,12 +903,15 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
   const category = categories.find(c => c.id === categoryId);
 
   if (!faculty) return <div className="pt-40 text-center">Faculty not found</div>;
+  if (!categoryId) return <Navigate to="/programmes/master-taught" replace />;
 
   const filteredProgrammes = allProgrammes.filter(p => p.faculty === facultyId && p.category === categoryId);
   const isFtkmTaught = facultyId === 'fkm' && categoryId === 'taught';
+  const isFtkeTaught = facultyId === 'fke' && categoryId === 'taught';
   const isFtkipTaught = (facultyId === 'ftkip' || facultyId === 'fkp') && categoryId === 'taught';
   const isFpttTaught = facultyId === 'fptt' && categoryId === 'taught';
   const isFtmkTaught = facultyId === 'ftmk' && categoryId === 'taught';
+  const isFtkekTaught = facultyId === 'fkekk' && categoryId === 'taught';
   const isIptkTaught = facultyId === 'iptk' && categoryId === 'taught';
   const getSharedSelectionCredit = (group: CurriculumGroup) => {
     if (!group.selectionNote) return null;
@@ -771,7 +944,30 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
           word-break: normal;
           overflow-wrap: break-word;
         }
-        @media (max-width: 768px) {
+        .taught-table-theme table thead tr {
+          background: #0F4C81 !important;
+        }
+        .taught-table-theme table thead th {
+          color: #ffffff !important;
+          border-color: #d7e4ee !important;
+        }
+        .taught-table-theme table tbody tr {
+          background: #FFFFFF !important;
+        }
+        .taught-table-theme table tbody tr:nth-child(even) {
+          background: #F5F9FC !important;
+        }
+        .taught-table-theme table tbody td {
+          color: #1E293B !important;
+          border-color: #d7e4ee !important;
+        }
+        .taught-table-theme table tbody tr.table-total {
+          background: #DCEEF8 !important;
+        }
+        .taught-table-theme table tbody tr.table-total td {
+          font-weight: 700;
+        }
+          @media (max-width: 768px) {
           .ftkm-typography .ftkm-h1 {
             font-size: clamp(24px, 6vw, 32px);
           }
@@ -839,7 +1035,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
 
       {/* Main Content */}
       <section className="min-h-[60vh] bg-gray-50 py-12 sm:py-16 lg:py-20">
-        <div className={`mx-auto w-full px-[clamp(16px,4vw,48px)] ${isFtkmTaught ? 'max-w-[1180px] ftkm-typography' : 'max-w-[1180px]'}`}>
+        <div className={`mx-auto w-full px-[clamp(16px,4vw,48px)] ${isFtkmTaught ? 'max-w-[1180px] ftkm-typography' : 'max-w-[1180px]'} ${categoryId === 'taught' ? 'taught-table-theme' : ''}`}>
           {!categoryId ? (
             /* PAGE 2 — Category Selection */
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -869,6 +1065,368 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                 </motion.div>
               ))}
             </div>
+          ) : isFtkeTaught ? (
+            <div className="space-y-10">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-3xl font-serif font-bold text-gray-900">
+                  {lang === 'EN' ? 'FTKE Taught-Course Portfolio' : 'Portfolio Kerja Kursus FTKE'}
+                </h2>
+                <Link
+                  to="/programmes/master-taught"
+                  className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
+                >
+                  <ChevronRight size={14} className="rotate-180" />
+                  <span>{lang === 'EN' ? 'Back to Categories' : 'Kembali ke Kategori'}</span>
+                </Link>
+              </div>
+
+              <section className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="h-px w-12 bg-[#A51C30]" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                    {lang === 'EN' ? 'Programmes Offered' : 'Program Ditawarkan'}
+                  </span>
+                </div>
+                <p className="mb-6 text-sm leading-7 text-gray-600">
+                  {lang === 'EN'
+                    ? 'Faculty of Electrical Engineering offers two taught course programmes:'
+                    : 'Fakulti Kejuruteraan Elektrik menawarkan dua program kerja kursus:'}
+                </p>
+                <div className="overflow-x-auto rounded-2xl border border-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-[#f4e9e3]">
+                      <tr>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Programme' : 'Program'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Full Time' : 'Sepenuh Masa'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Part Time' : 'Separuh Masa'}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                      {FTKE_PROGRAMMES_OFFERED.map((programme) => (
+                        <tr key={programme.programme}>
+                          <td className="px-5 py-4 text-sm font-medium text-gray-900">{programme.programme}</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">{programme.fullTime}</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">{programme.partTime}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                  {lang === 'EN' ? 'Programme Structure' : 'Struktur Program'}
+                </div>
+                <h3 className="font-serif text-3xl font-bold text-gray-900 mb-2">Master of Electrical Engineering (MEKG)</h3>
+                <div className="grid gap-4 md:grid-cols-3 mb-6">
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">MQF Level</div>
+                    <div className="mt-2 text-sm font-semibold text-gray-900">7</div>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">NEC Field</div>
+                    <div className="mt-2 text-sm font-semibold text-gray-900">522 - Electricity and Energy</div>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">{lang === 'EN' ? 'Mode of Study' : 'Mod Pengajian'}</div>
+                    <div className="mt-2 text-sm font-semibold text-gray-900">Full-Time (1-2 years) / Part-Time (2-4 years)</div>
+                  </div>
+                </div>
+                <p className="mb-6 text-sm leading-7 text-gray-600">
+                  Master of Electrical Engineering (Taught Course) is developed to instill a strong engineering foundation, to produce graduates that are proficient in solving electrical engineering problems. The programme blends the fundamental elements of advanced electrical and mechatronics with industrial and manufacturing related studies, provide the opportunity for student to speciallize in areas related with advanced industrial power, power electronics & drives and control engineering.
+                </p>
+                <div className="overflow-x-auto rounded-2xl border border-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-[#fff34a]">
+                      <tr>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-700">{lang === 'EN' ? 'Section' : 'Bahagian'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-700">{lang === 'EN' ? 'Course' : 'Kursus'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-700">{lang === 'EN' ? 'Field' : 'Bidang'}</th>
+                        <th className="px-5 py-4 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-700">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                      {FTKE_ELECTRICAL_ENGINEERING_STRUCTURE.map((row, idx) => (
+                        <tr key={`${row.section}-${row.course}-${idx}`}>
+                          <td className="px-5 py-4 text-sm font-medium text-gray-900">{row.section}</td>
+                          <td className="px-5 py-4 text-sm text-gray-800">{row.course}</td>
+                          <td className="px-5 py-4 text-sm text-gray-700">{row.field || '-'}</td>
+                          <td className="px-5 py-4 text-center text-sm font-semibold text-gray-900">{row.credit}</td>
+                        </tr>
+                      ))}
+                      <tr className="table-total">
+                        <td colSpan={3} className="px-5 py-4 text-sm font-bold uppercase tracking-[0.16em] text-gray-800">Total Credit Hours</td>
+                        <td className="px-5 py-4 text-center text-sm font-bold text-gray-900">40</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                  {lang === 'EN' ? 'Programme Structure' : 'Struktur Program'}
+                </div>
+                <h3 className="font-serif text-3xl font-bold text-gray-900 mb-2">Master of Mechatronics Engineering (MEKH)</h3>
+                <div className="grid gap-4 md:grid-cols-3 mb-6">
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">MQF Level</div>
+                    <div className="mt-2 text-sm font-semibold text-gray-900">7</div>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">NEC Field</div>
+                    <div className="mt-2 text-sm font-semibold text-gray-900">523 - Electronics and Automation</div>
+                  </div>
+                  <div className="rounded-2xl border border-gray-200 bg-white p-4">
+                    <div className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">{lang === 'EN' ? 'Mode of Study' : 'Mod Pengajian'}</div>
+                    <div className="mt-2 text-sm font-semibold text-gray-900">Full-Time (1-2 years) / Part-Time (2-4 years)</div>
+                  </div>
+                </div>
+                <p className="mb-6 text-sm leading-7 text-gray-600">
+                  Master of Mechatronics Engineering (Taught Course) is developed to instil a strong engineering foundation, to produce graduates that are proficient in solving mechatronic engineering problems. The programme covers courses such as industrial robotics, Internet of Things-related controllers, mechatronics and control systems.
+                </p>
+                <p className="mb-4 text-sm leading-7 text-gray-600">
+                  Elective: choose only one field, and select any two from the field list.
+                </p>
+                <div className="overflow-x-auto rounded-2xl border border-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-[#f4e9e3]">
+                      <tr>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Section' : 'Bahagian'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Course' : 'Kursus'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Field' : 'Bidang'}</th>
+                        <th className="px-5 py-4 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                      {FTKE_MECHATRONICS_ENGINEERING_STRUCTURE.map((row, idx) => (
+                        <tr key={`${row.section}-${row.course}-${idx}`}>
+                          <td className="px-5 py-4 text-sm font-medium text-gray-900">{row.section}</td>
+                          <td className="px-5 py-4 text-sm text-gray-800">{row.course}</td>
+                          <td className="px-5 py-4 text-sm text-gray-700">{row.field || '-'}</td>
+                          <td className="px-5 py-4 text-center text-sm font-medium text-gray-900">{row.credit}</td>
+                        </tr>
+                      ))}
+                      <tr className="table-total">
+                        <td colSpan={3} className="px-5 py-4 text-sm font-bold uppercase tracking-[0.16em] text-gray-800">Total Credit Hours</td>
+                        <td className="px-5 py-4 text-center text-sm font-bold text-gray-900">40</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(340px,0.72fr)]">
+                <div className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                  <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                    {lang === 'EN' ? 'Programme Fee' : 'Yuran Program'}
+                  </div>
+                  <div className="overflow-x-auto rounded-2xl border border-gray-200">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-[#f4e9e3]">
+                        <tr>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">No.</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Postgraduate Programme' : 'Program Pascasiswazah'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Study Mode' : 'Mod Pengajian'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Full Time' : 'Sepenuh Masa'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Part Time' : 'Separuh Masa'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Malaysian (RM)' : 'Malaysia (RM)'}</th>
+                          <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'International (RM)' : 'Antarabangsa (RM)'}</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white">
+                        {FTKE_PROGRAMME_FEES.map((fee, idx) => (
+                          <tr key={fee.programme} className="border-t border-gray-200">
+                            <td className="px-5 py-4 text-sm font-medium text-gray-900">{idx + 1}.</td>
+                            <td className="px-5 py-4 text-sm font-medium text-gray-900">{fee.programme}</td>
+                            <td className="px-5 py-4 text-sm text-gray-600">{fee.mode}</td>
+                            <td className="px-5 py-4 text-sm text-gray-600">{fee.fullTime}</td>
+                            <td className="px-5 py-4 text-sm text-gray-600">{fee.partTime}</td>
+                            <td className="px-5 py-4 text-sm text-gray-900">{fee.malaysian}</td>
+                            <td className="px-5 py-4 text-sm text-gray-900">{fee.international}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                  <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                    {lang === 'EN' ? 'Further Information' : 'Maklumat Lanjut'}
+                  </div>
+                  <h3 className="font-serif text-3xl font-bold text-gray-900 mb-4">{FTKE_CONTACT.faculty}</h3>
+                  <p className="text-sm leading-7 text-gray-600">
+                    {FTKE_CONTACT.university}<br />
+                    {FTKE_CONTACT.address}
+                  </p>
+                  <div className="mt-8 space-y-4">
+                    <div className="flex items-center gap-4 text-sm text-gray-700">
+                      <Phone size={16} className="text-[#A51C30]" />
+                      <span>{FTKE_CONTACT.phone}</span>
+                    </div>
+                    <a href={`mailto:${FTKE_CONTACT.email}`} className="flex items-center gap-4 text-sm text-gray-700 transition-colors hover:text-[#A51C30]">
+                      <Mail size={16} className="text-[#A51C30]" />
+                      <span>{FTKE_CONTACT.email}</span>
+                    </a>
+                    <a href={FTKE_CONTACT.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-sm text-gray-700 transition-colors hover:text-[#A51C30]">
+                      <Globe size={16} className="text-[#A51C30]" />
+                      <span>{FTKE_CONTACT.website}</span>
+                    </a>
+                  </div>
+                </div>
+              </section>
+            </div>
+          ) : isFtkekTaught ? (
+            <div className="space-y-10">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-3xl font-serif font-bold text-gray-900">
+                  {lang === 'EN' ? 'FTKEK Taught-Course Portfolio' : 'Portfolio Kerja Kursus FTKEK'}
+                </h2>
+                <Link
+                  to="/programmes/master-taught"
+                  className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
+                >
+                  <ChevronRight size={14} className="rotate-180" />
+                  <span>{lang === 'EN' ? 'Back to Categories' : 'Kembali ke Kategori'}</span>
+                </Link>
+              </div>
+
+              <section className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="h-px w-12 bg-[#A51C30]" />
+                  <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                    {lang === 'EN' ? 'Programmes Offered' : 'Program Ditawarkan'}
+                  </span>
+                </div>
+                <div className="overflow-x-auto rounded-2xl border border-gray-200">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-[#f4e9e3]">
+                      <tr>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Programme' : 'Program'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Full Time' : 'Sepenuh Masa'}</th>
+                        <th className="px-5 py-4 text-left text-[11px] font-bold uppercase tracking-[0.2em] text-gray-500">{lang === 'EN' ? 'Part Time' : 'Separuh Masa'}</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 bg-white">
+                      {FTKEK_PROGRAMMES_OFFERED.map((programme) => (
+                        <tr key={programme.programme}>
+                          <td className="px-5 py-4 text-sm font-medium text-gray-900">{programme.programme}</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">{programme.fullTime}</td>
+                          <td className="px-5 py-4 text-sm text-gray-600">{programme.partTime}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                  {lang === 'EN' ? 'Programme Structure' : 'Struktur Program'}
+                </div>
+                <h3 className="font-serif text-3xl font-bold text-gray-900 mb-4">(i) Master of Electronic Engineering (Programme Core)</h3>
+                <div className="grid gap-6 xl:grid-cols-3">
+                  {FTKEK_PROGRAMME_CORE_SPECIALISATIONS.map((specialisation) => (
+                    <article key={specialisation.title} className="rounded-[1.5rem] border border-gray-200 bg-white shadow-sm overflow-hidden">
+                      <div className="border-b border-gray-200 bg-[#fcfaf8] px-5 py-4">
+                        <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A51C30]">
+                          {specialisation.title}
+                        </div>
+                      </div>
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="bg-[#fff34a]">
+                            <tr>
+                              <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.18em] text-gray-700">{lang === 'EN' ? 'Subject' : 'Subjek'}</th>
+                              <th className="px-4 py-3 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-gray-700">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            {specialisation.subjects.map((subject) => (
+                              <tr key={`${specialisation.title}-${subject.subject}`}>
+                                <td className="px-4 py-3 text-sm text-gray-800">{subject.subject}</td>
+                                <td className="px-4 py-3 text-center text-sm font-semibold text-gray-900">{subject.credit}</td>
+                              </tr>
+                            ))}
+                            <tr className="table-total">
+                              <td className="px-4 py-3 text-sm font-bold uppercase tracking-[0.14em] text-gray-800">Programme Core Credit Hours</td>
+                              <td className="px-4 py-3 text-center text-sm font-bold text-gray-900">{specialisation.totalCredits}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+
+              <section className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                  {lang === 'EN' ? 'Core Course' : 'Kursus Teras'}
+                </div>
+                <p className="mb-6 text-sm leading-7 text-gray-600">
+                  {lang === 'EN'
+                    ? 'Student has to choose core course subjects only for each specialization.'
+                    : 'Pelajar perlu memilih subjek kursus teras sahaja bagi setiap pengkhususan.'}
+                </p>
+                <div className="grid gap-6 xl:grid-cols-3">
+                  {FTKEK_CORE_COURSE_SPECIALISATIONS.map((specialisation) => (
+                    <article key={specialisation.title} className="rounded-[1.5rem] border border-gray-200 bg-white shadow-sm overflow-hidden">
+                      <div className="border-b border-gray-200 bg-[#fcfaf8] px-5 py-4">
+                        <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#A51C30]">
+                          {specialisation.title}
+                        </div>
+                      </div>
+                      <div className="overflow-x-auto">
+                        <table className="min-w-full divide-y divide-gray-200">
+                          <thead className="bg-[#f4e9e3]">
+                            <tr>
+                              <th className="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500">{lang === 'EN' ? 'Subject' : 'Subjek'}</th>
+                              <th className="px-4 py-3 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-gray-200 bg-white">
+                            {specialisation.subjects.map((subject) => (
+                              <tr key={`${specialisation.title}-${subject.subject}`}>
+                                <td className="px-4 py-3 text-sm text-gray-800">{subject.subject}</td>
+                                <td className="px-4 py-3 text-center text-sm font-medium text-gray-900">{subject.credit}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+
+              <section className="rounded-[1.75rem] border border-gray-200 bg-white p-7 shadow-sm">
+                <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.28em] text-[#A51C30]">
+                  {lang === 'EN' ? 'Further Information' : 'Maklumat Lanjut'}
+                </div>
+                <h3 className="font-serif text-3xl font-bold text-gray-900 mb-4">{FTKEK_CONTACT.faculty}</h3>
+                <p className="text-sm leading-7 text-gray-600">
+                  {FTKEK_CONTACT.university}<br />
+                  {FTKEK_CONTACT.address}
+                </p>
+                <div className="mt-8 space-y-4">
+                  <div className="flex items-center gap-4 text-sm text-gray-700">
+                    <Phone size={16} className="text-[#A51C30]" />
+                    <span>{FTKEK_CONTACT.phone}</span>
+                  </div>
+                  <a href={`mailto:${FTKEK_CONTACT.email}`} className="flex items-center gap-4 text-sm text-gray-700 transition-colors hover:text-[#A51C30]">
+                    <Mail size={16} className="text-[#A51C30]" />
+                    <span>{FTKEK_CONTACT.email}</span>
+                  </a>
+                  <a href={FTKEK_CONTACT.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 text-sm text-gray-700 transition-colors hover:text-[#A51C30]">
+                    <Globe size={16} className="text-[#A51C30]" />
+                    <span>{FTKEK_CONTACT.website}</span>
+                  </a>
+                </div>
+              </section>
+            </div>
           ) : isIptkTaught ? (
             <div className="space-y-10">
               <div className="flex items-center justify-between mb-4">
@@ -876,7 +1434,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                   {lang === 'EN' ? 'IPTK Taught-Course Portfolio' : 'Portfolio Kerja Kursus IPTK'}
                 </h2>
                 <Link
-                  to={`/programmes/faculty?faculty=${facultyId}`}
+                  to="/programmes/master-taught"
                   className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
                 >
                   <ChevronRight size={14} className="rotate-180" />
@@ -1231,7 +1789,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                   {lang === 'EN' ? 'FTMK Taught-Course Portfolio' : 'Portfolio Kerja Kursus FTMK'}
                 </h2>
                 <Link
-                  to={`/programmes/faculty?faculty=${facultyId}`}
+                  to="/programmes/master-taught"
                   className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
                 >
                   <ChevronRight size={14} className="rotate-180" />
@@ -1281,14 +1839,14 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                         <th className="px-5 py-4 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-700">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-300 bg-[#c7f3f3]">
+                    <tbody className="divide-y divide-gray-200 bg-white">
                       {FTMK_PROGRAMME_CORE.map((subject) => (
                         <tr key={subject.subject}>
                           <td className="px-5 py-4 text-sm text-gray-800">{subject.subject}</td>
                           <td className="px-5 py-4 text-center text-sm font-semibold text-gray-900">{subject.credit}</td>
                         </tr>
                       ))}
-                      <tr className="bg-[#98f28c]">
+                      <tr className="table-total">
                         <td className="px-5 py-4 text-sm font-bold uppercase tracking-[0.16em] text-gray-800">Programme Core Credit Hours</td>
                         <td className="px-5 py-4 text-center text-sm font-bold text-gray-900">24</td>
                       </tr>
@@ -1624,7 +2182,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                   {lang === 'EN' ? 'FPTT Taught-Course Portfolio' : 'Portfolio Kerja Kursus FPTT'}
                 </h2>
                 <Link
-                  to={`/programmes/faculty?faculty=${facultyId}`}
+                  to="/programmes/master-taught"
                   className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
                 >
                   <ChevronRight size={14} className="rotate-180" />
@@ -1674,14 +2232,14 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                         <th className="px-5 py-4 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-700">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-300 bg-[#c7f3f3]">
+                    <tbody className="divide-y divide-gray-200 bg-white">
                       {FPTT_MBA_CORE.map((subject) => (
                         <tr key={`${subject.subject}-${subject.credit}`}>
                           <td className="px-5 py-4 text-sm text-gray-800">{subject.subject}</td>
                           <td className="px-5 py-4 text-center text-sm font-semibold text-gray-900">{subject.credit}</td>
                         </tr>
                       ))}
-                      <tr className="bg-[#98f28c]">
+                      <tr className="table-total">
                         <td className="px-5 py-4 text-sm font-bold uppercase tracking-[0.16em] text-gray-800">Programme Core Credit Hours</td>
                         <td className="px-5 py-4 text-center text-sm font-bold text-gray-900">36</td>
                       </tr>
@@ -1841,7 +2399,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                   {lang === 'EN' ? 'FTKIP Taught-Course Portfolio' : 'Portfolio Kerja Kursus FTKIP'}
                 </h2>
                 <Link
-                  to={`/programmes/faculty?faculty=${facultyId}`}
+                  to="/programmes/master-taught"
                   className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
                 >
                   <ChevronRight size={14} className="rotate-180" />
@@ -1892,14 +2450,14 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                           <th className="px-5 py-4 text-center text-[11px] font-bold uppercase tracking-[0.2em] text-gray-700">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-gray-300 bg-[#c7f3f3]">
+                      <tbody className="divide-y divide-gray-200 bg-white">
                         {FTKIP_PROGRAMME_CORE_SUBJECTS.map((subject) => (
                           <tr key={subject.subject}>
                             <td className="px-5 py-4 text-sm text-gray-800">{subject.subject}</td>
                             <td className="px-5 py-4 text-center text-sm font-semibold text-gray-900">{subject.credit}</td>
                           </tr>
                         ))}
-                        <tr className="bg-[#98f28c]">
+                        <tr className="table-total">
                           <td className="px-5 py-4 text-sm font-bold uppercase tracking-[0.16em] text-gray-800">
                             Programme Core Credit Hours
                           </td>
@@ -2012,7 +2570,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                   {lang === 'EN' ? 'FTKM Taught-Course Portfolio' : 'Portfolio Kerja Kursus FTKM'}
                 </h2>
                 <Link 
-                  to={`/programmes/faculty?faculty=${facultyId}`}
+                  to="/programmes/master-taught"
                   className="inline-flex items-center space-x-2 self-start text-[9px] font-bold uppercase tracking-[0.18em] text-gray-400 hover:text-[#A51C30] sm:self-auto sm:text-[10px] sm:tracking-widest"
                 >
                   <ChevronRight size={14} className="rotate-180" />
@@ -2151,13 +2709,13 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                               <th className="px-4 py-3 text-center text-[10px] font-bold uppercase tracking-[0.18em] text-gray-900">{lang === 'EN' ? 'Credit' : 'Kredit'}</th>
                             </tr>
                           </thead>
-                          <tbody className="divide-y divide-gray-300 bg-[#c7f3f3]">
+                          <tbody className="divide-y divide-gray-200 bg-white">
                             {programme.structure.map((group) => {
                               const sharedCredit = getSharedSelectionCredit(group);
                               return group.entries.map((entry, entryIndex) => (
                                 <tr key={`${group.category}-${entry.course}`} className="align-top">
                                   {entryIndex === 0 && (
-                                    <td rowSpan={group.entries.length} className="align-top bg-[#c7f3f3] px-4 py-3 text-[13px] font-semibold leading-5 text-gray-900 border-r border-gray-300">
+                                    <td rowSpan={group.entries.length} className="align-top px-4 py-3 text-[13px] font-semibold leading-5 text-gray-900 border-r border-gray-200">
                                       <div>{group.category}</div>
                                       {group.selectionNote && (
                                         <div className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-[#A51C30]">
@@ -2169,7 +2727,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                                   <td className="px-4 py-2.5 text-[13px] leading-5 text-gray-700">{entry.course}</td>
                                   {sharedCredit ? (
                                     entryIndex === 0 && (
-                                      <td rowSpan={group.entries.length} className="bg-[#c7f3f3] px-4 py-3 text-center text-[13px] font-semibold leading-5 text-gray-900 border-l border-gray-300 align-middle">
+                                      <td rowSpan={group.entries.length} className="px-4 py-3 text-center text-[13px] font-semibold leading-5 text-gray-900 border-l border-gray-200 align-middle">
                                         {sharedCredit}
                                       </td>
                                     )
@@ -2179,7 +2737,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                                 </tr>
                               ));
                             })}
-                            <tr className="bg-[#98f28c]">
+                            <tr className="table-total">
                               <td colSpan={2} className="px-4 py-3 text-sm font-bold uppercase tracking-[0.16em] text-gray-800">
                                 {lang === 'EN' ? 'Total Credit Hours' : 'Jumlah Jam Kredit'}
                               </td>
@@ -2262,7 +2820,7 @@ const FacultyProgrammes: React.FC<FacultyProgrammesProps> = ({ lang }) => {
                   {category?.label[lang]}
                 </h2>
                 <Link 
-                  to={`/programmes/faculty?faculty=${facultyId}`}
+                  to="/programmes/master-taught"
                   className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest flex items-center space-x-2"
                 >
                   <ChevronRight size={14} className="rotate-180" />

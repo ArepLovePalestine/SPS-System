@@ -1,4 +1,4 @@
-
+﻿
 import React from 'react';
 import { motion } from 'motion/react';
 import { FileText, Download, ExternalLink, Mail, Info, ShieldCheck } from 'lucide-react';
@@ -38,8 +38,8 @@ const PaymentProcedure: React.FC<PaymentProcedureProps> = ({ lang }) => {
       BM: 'Untuk arahan lengkap dan butiran polisi, sila rujuk dokumen penuh yang dipautkan di atas.'
     }
   };
-
-  const pdfUrl = "/images/resources/Payment%20Hub%20-%20Application%20Procedure.pdf";
+/*upload file pdf payment hub*/
+  const pdfUrl = "/images/pages/resources/Payment%20Hub%20-%20Application%20Procedure.pdf";
 
   return (
     <div className="min-h-screen bg-gray-50 pt-24 pb-24">
@@ -47,7 +47,6 @@ const PaymentProcedure: React.FC<PaymentProcedureProps> = ({ lang }) => {
         breadcrumbs={[
           { label: 'HOME', to: '/' },
           { label: 'PROGRAMMES', to: '/programmes' },
-          { label: content.title[lang] },
         ]}
         title={content.title[lang]}
         subtitle={content.intro[lang]}

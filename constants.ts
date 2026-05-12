@@ -1,5 +1,4 @@
-﻿
-import { NavItem, SlideData, AcademicBlock, AdmissionStep, Testimonial, FeatureCard, FacultyDetail } from './types';
+﻿import { NavItem, SlideData, AcademicBlock, AdmissionStep, Testimonial, FeatureCard, FacultyDetail } from './types';
 import { 
   BookOpen, 
   UserCheck, 
@@ -15,13 +14,15 @@ import {
   ShieldCheck, 
   Library 
 } from 'lucide-react';
-import FKMImage from './images/Faculty_TaughtCourse/FTKM.jpeg';
-import FKEImage from './images/Faculty_TaughtCourse/FTKE.jpeg';
-import FTMKImage from './images/Faculty_TaughtCourse/FTMK.jpeg';
-import FPTTImage from './images/Faculty_TaughtCourse/FPTT.jpeg';
-import FKPImage from './images/Faculty_TaughtCourse/FTKIP.jpeg';
-import FKEKKImage from './images/Faculty_TaughtCourse/FTKEK.jpeg';
-import IPTKImage from './images/Faculty_TaughtCourse/IPTK.jpeg';
+
+// Faculty images — served from /public/images/
+const FKMImage = '/images/pages/Faculty_TaughtCourse/FTKM.jpeg';
+const FKEImage = '/images/pages/Faculty_TaughtCourse/FTKE.jpeg';
+const FTMKImage = '/images/pages/Faculty_TaughtCourse/FTMK.jpeg';
+const FPTTImage = '/images/pages/Faculty_TaughtCourse/FPTT.jpeg';
+const FKPImage = '/images/pages/Faculty_TaughtCourse/FTKIP.jpeg';
+const FKEKKImage = '/images/pages/Faculty_TaughtCourse/FTKEK.jpeg';
+const IPTKImage = '/images/pages/Faculty_TaughtCourse/IPTK.jpeg';
 
 export const NAV_ITEMS: NavItem[] = [
   { label: { EN: 'HOME', BM: 'UTAMA' }, href: '/' },
@@ -46,7 +47,7 @@ export const NAV_ITEMS: NavItem[] = [
       { label: { EN: 'ISO Documents', BM: 'Dokumen ISO' }, href: '/about/iso-documents' },
       { label: { EN: 'Facilities', BM: 'Kemudahan' }, href: '/facilities' },
       { label: { EN: 'Room Reservation', BM: 'Tempahan Ruang' }, href: '/facilities/reservation' },
-      { label: { EN: 'Tuah Tenaga', BM: 'Tuah Tenaga' }, href: '#' },
+      { label: { EN: 'Tuah Tenaga', BM: 'Tuah Tenaga' }, href: '/about/tuah-tenaga' },
       { label: { EN: 'MOU & MOA', BM: 'MOU & MOA' }, href: 'https://pejtncaa.utem.edu.my/en/mou-moa-list/' },
       { label: { EN: 'Electronic Archives', BM: 'Arkib Elektronik' }, href: '/about/electronic-archives' },
     ]
@@ -60,6 +61,8 @@ export const NAV_ITEMS: NavItem[] = [
         href: '#',
         children: [
           { label: { EN: 'Faculties', BM: 'Fakulti' }, href: 'https://www.utem.edu.my/en/corporate-info/faculties-department-centres.html' },
+          { label: { EN: 'Admission Requirements', BM: 'Syarat Kemasukan' }, href: '/student/admission-requirements' },
+          { label: { EN: 'How to Apply', BM: 'Cara Memohon' }, href: '/apply-now' },
           { label: { EN: 'SGS Brochure', BM: 'Broshur SGS' }, href: '/student/brochure-sgs' },
           { label: { EN: 'Faculty Brochure', BM: 'Broshur Fakulti' }, href: '/student/brochure-faculty' },
           { 
@@ -74,12 +77,13 @@ export const NAV_ITEMS: NavItem[] = [
       },
       { 
         label: { EN: 'Student Info', BM: 'Maklumat Pelajar' }, 
-        href: '/student/student-info',
+        href: '#',
         children: [
+          { label: { EN: 'Student Information', BM: 'Maklumat Pelajar' }, href: '/student/student-info' },
           { label: { EN: 'UTeM Convocation', BM: 'Konvokesyen UTeM' }, href: '/student/student-info/utem-convocation' },
         ]
       },
-      { label: { EN: 'Customer Feedback', BM: 'Maklum Balas Pelanggan' }, href: '#' },
+      { label: { EN: 'Customer Feedback', BM: 'Maklum Balas Pelanggan' }, href: 'https://help.utem.edu.my/' },
       { 
         label: { EN: 'Download Forms', BM: 'Muat Turun Borang' }, 
         href: '/resources',
@@ -156,7 +160,7 @@ export const NAV_ITEMS: NavItem[] = [
         href: '#',
         children: [
           { label: { EN: 'KESIDANG', BM: 'KESIDANG' }, href: '/kesidang-scholarship' },
-          { label: { EN: 'KESIDANG Form', BM: 'Borang KESIDANG' }, href: '#' },
+          { label: { EN: 'KESIDANG Form', BM: 'Borang KESIDANG' }, href: '/kesidang-form' },
           { label: { EN: 'Yayasan Bank Rakyat', BM: 'Yayasan Bank Rakyat' }, href: 'https://yayasanbankrakyat.com.my/' },
         ]
       },
@@ -191,17 +195,17 @@ export const NAV_ITEMS: NavItem[] = [
 /*
 export const SLIDES: SlideData[] = [
   {
-    url: '/images/homepages/Pic2.jpeg',
+    url: '/images/pages/homepages/Pic2.jpeg',
     title: 'School of Graduate Studies',
     subtitle: 'NURTURING RESEARCH IN WORLD-CLASS FACILITIES'
   },
   {
-    url: '/images/homepages/Pic1.png',
+    url: '/images/pages/homepages/Pic1.png',
     title: 'School of Graduate Studies',
     subtitle: 'ADVANCING KNOWLEDGE THROUGH INNOVATIVE SCHOLARSHIP'
   },
   {
-    url: '/images/homepages/Pic3.jpeg',
+    url: '/images/pages/homepages/Pic3.jpeg',
     title: 'School of Graduate Studies',
     subtitle: 'EMPOWERING THE NEXT GENERATION OF GLOBAL LEADERS'
   },
@@ -221,7 +225,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Senior Lecturer of Mechanical Engineering Studies at College of Engineering, Universiti Teknologi MARA, Penang Branch, Permatang Pauh Campus',
     company: 'College of Engineering, Universiti Teknologi MARA, Penang Branch, Permatang Pauh Campus',
     quote: 'My PhD journey at UTeM has been a rewarding yet demanding experience. Each day brought new insights and lessons that have significantly contributed to my academic and personal development. The challenges of critical thinking, engaging in thorough research, and adjusting to the dynamic academic environment have helped me grow into a more mature and open-minded person. The opportunity to engage with lecturers, supervisors, peers, and experts in my field has been a great source of inspiration and invaluable knowledge. I am grateful to Allah SWT for granting me the opportunity to pursue my studies at this prestigious university, and I hope UTeM will continue to be a source of inspiration in buuilding a better world.',
-    image: '/images/Graduate_testimonial/Muhammad_Akmal.png'
+    image: '/images/pages/Graduate_testimonial/Muhammad_Akmal.png'
   },
   {
     name: 'Mohd Khairul Nizam bin Ab Ghani',
@@ -231,7 +235,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Vocational Training Officer',
     company: 'ILP Tangkak',
     quote: 'UTeM gave me a lot of support to complete my taught course programme. All of the lecturers are very helpful and always help me to understand the subjects.',
-    image: '/images/Graduate_testimonial/Mohd Khairul Nizam.png'
+    image: '/images/pages/Graduate_testimonial/Mohd Khairul Nizam.png'
   },
   {
     name: 'Ts. Dr. Mohd Fairuz Bin Jaafar',
@@ -241,7 +245,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Head of Department of External Relations and Agencies',
     company: 'Kolej Vokasional Datuk Seri Mohd Zin, Melaka',
     quote: 'As a proud alumnus of Universiti Teknikal Malaysia Melaka (UTeM), I am grateful for the transformative experience I had during my PhD journey. The rigorous academic environment and the support of esteemed faculty not only honed my research skills but also ignited my passion for innovation. Throughout my studies, I was encouraged to explore Advancing Machining, which culminated in my research titled Customized Drill Reamer Geometry for Carbon Fibre Reinforced Plastics Application. This work was not just an academic exercise; it provided valuable insights that i have since applied in my professional career. The university fostered a collaborative atmosphere that allowed me to engage with brilliant minds from diverse backgrounds. The opportunities to participate in seminars, workshops, and conferences were instrumental in developing my networking skills and gaining exposure to cutting-edge research. I am proud to say that my time at UTeM laid a strong foundation for my life and carrier. The knowledge and experiences I gained continue to influence my work and drive my passion for advancing technology and research. I highly recommend UTeM to aspiring researchers and professionals. It is a place where you can cultivate your potential and make meaningful contributions to your field.',
-    image: '/images/Graduate_testimonial/Ts. Dr. Mohd Fairuz.png'
+    image: '/images/pages/Graduate_testimonial/Ts. Dr. Mohd Fairuz.png'
   },
   {
     name: 'Dr. Bong Cheng Siong',
@@ -251,7 +255,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'General Manager',
     company: 'Micro-Nano Precision Sdn Bhd',
     quote: 'I had the privilege of earning my Doctorate of Engineering (EngD) Degree from Universiti Teknikal Malaysia Melaka (UTeM) in 2019. Looking back, at the beginning l often questioned if i made the right decision to pursue the postgraduate degree. But it was the supportive community-my peers and supervisors-that encouraged me to push through the doubts. Its an honor to share here a journey that has profoundly shaped who I am today. There were moments of intense struggle-long nights, research hurdles, journal and conference papers, not to forget the ever-daunting thesis. Yet, each challenge was a stepping stone. They taught me resilience, critical thinking, and the importance of perseverance. I learned that failure is not the end; its an essential part of the learning process. Since graduating, Ive had the opportunity to go extra miles of holding a senior management position in a technology driven company. Holding a doctoral qualification has also boosted my confidence to pave a new path into the world of consultancy based on my expertise. Each step Ive taken is rooted in the foundation laid during my time at UTeM. Now 1 have my own company set up to provide training and consultancy in various fields such as Quality Management, Performance Management, Project Management and Operations Improvement. I had like to take this opportunity to express my deepest gratitude to my mentors and supervisor who guided me with their wisdom and passion. Your encouragement and dedication made all the difference. To the current students, embrace the journey, both the highs and the lows. Dont shy away from asking for help, and remember that you are not alone. Your perseverance will lead to growth and discovery beyond your expectations. Thank you for allowing me to share my thoughts here. I am excited to see how we, as alumni, can shape the future of UTeM and continue to make a positive impact in our communities.',
-    image: '/images/Graduate_testimonial/Dr. Bong Cheng Siong.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Bong Cheng Siong.png'
   },
   {
     name: 'Dr. Fitrah Rumaisa',
@@ -261,7 +265,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Lecturer',
     company: 'Universitas Widyatama',
     quote: 'Studying at UTeM has been an enjoyable experience. Complete facilities, especially the library. In the UTeM Laman Hikmah Library, there is a special PhD room where we can concentrate better on reading literature or writing our thesis. In addition, my supervisor, Dr. Halijah Basiron, was very helpful in discussing the issues I faced during my research. I hope UTeM can develop further and improve its world university ranking.',
-    image: '/images/Graduate_testimonial/Dr. Fitrah Rumaisa.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Fitrah Rumaisa.png'
   },
   {
     name: 'Dr. Eko Haryadi Badri',
@@ -271,7 +275,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Lecturer',
     company: 'BSI, Indonesia',
     quote: 'A very pleasant experience to be able to gain knowledge and complete studies in Malaysia. Get to know more about Malay culture and get closer to Malaysian citizens.',
-    image: '/images/Graduate_testimonial/Dr. Eko Haryadi.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Eko Haryadi.png'
   },
   {
     name: 'Wan Zulaikha Binti Wan Yaacob',
@@ -281,7 +285,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'IT Executive',
     company: 'AFA Group (AFA Systems and Services)',
     quote: 'In my MSc in Information and Communication Technology, I have gained an in-depth understanding of both theoretical foundations and practical applications of ICT including networking, cloud computing, data analytics, cybersecurity, and software engineering. I was able to enhance my technical skills, especially in data management, information systems, and ICT infrastructures, while also learning about emerging technologies like Al and loT. Throughout the course, I worked on multiple hands-on projects that involved problem-solving, critical thinking, and collaboration with peers. These projects allowed me to apply my knowledge to real-world scenarios, such as designing ICT solutions for businesses and optimizing system performance. The program not only strengthened my technical expertise but also helped me develop project management and communication skills essential for working in multidisciplinary environments.',
-    image: '/images/Graduate_testimonial/Wan Zulaikha.png'
+    image: '/images/pages/Graduate_testimonial/Wan Zulaikha.png'
   },
   {
     name: 'Nurul Izzati Akmal binti Muhamed Rafaizul',
@@ -290,8 +294,8 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     batch: '2024',
     position: 'Graduate',
     company: 'Universiti Teknikal Malaysia Melaka',
-    quote: 'Completing my Master’s degree at UTeM has been a highly rewarding journey. The program not only deepened my expertise in mechanical engineering but but also allowed me to stay focused and dedicated to my goals. My experience was further enriched by participating in a mobility program, which expanded my global perspective and gave me invaluable exposure to international research collaborations. The strong foundation I have gained from UTeM is essential as I prepare for future roles in the industry. The unwavering support from my supervisor and peers has made this journey invaluable, shaping my aspirations and contributing to my readiness for the professional world.  ',
-    image: '/images/Graduate_testimonial/Nurul Izzati.png'
+    quote: 'Completing my Master\'s degree at UTeM has been a highly rewarding journey. The program not only deepened my expertise in mechanical engineering but but also allowed me to stay focused and dedicated to my goals. My experience was further enriched by participating in a mobility program, which expanded my global perspective and gave me invaluable exposure to international research collaborations. The strong foundation I have gained from UTeM is essential as I prepare for future roles in the industry. The unwavering support from my supervisor and peers has made this journey invaluable, shaping my aspirations and contributing to my readiness for the professional world.  ',
+    image: '/images/pages/Graduate_testimonial/Nurul Izzati.png'
   },
   {
     name: 'Ng Lim Huat',
@@ -301,7 +305,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Manufacturing Engineer',
     company: 'Dou Yee Manufacturing Sdn Bhd',
     quote: 'Completing a Master\'s degree at UTeM has made me a more competitive candidate which could lead to salary increases, greater job opportunities and job position. Throughout the program, I am able to emphasize both theoretical knowledge and practical application as well as the specific skills such as Critical Thinking and Analysis, Research Skills, Communication Skills, Leadership and Decision Making.',
-    image: '/images/Graduate_testimonial/Ng Lim Huat.png'
+    image: '/images/pages/Graduate_testimonial/Ng Lim Huat.png'
   },
   {
     name: 'Dr. Fadhil Abdulameer Sachit',
@@ -311,7 +315,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Head of Solar Substation Department',
     company: 'Centre of Renewable Energy, Ministry of Electricity, Iraq',
     quote: 'My journey to obtain a PhD at UTeM has been challenging and rewarding. It required dedication, hard work, and perseverance. I faced numerous academic hurdles, but the support of my supervisors, professors, staff of UTeM, and colleagues helped me push through. The research opportunities expanded my knowledge and the experience has shaped me profesionally and personally.',
-    image: '/images/Graduate_testimonial/Dr. Fadhil.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Fadhil.png'
   },
   {
     name: 'Dr. Mohammad Hamdan bin Mohd Sanusi',
@@ -321,7 +325,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Head of Business Development',
     company: 'CTRM Aero Composites Sdn Bhd',
     quote: 'My PhD journey at UTeM has been a transformative experience filled with challenges and rewards. Every day has presented new knowledge and opportunities for growth, enriching my academic abilities and shaping my character. The demands of conducting thorough research, developing critical thinking skills, and adapting to the fast-paced academic environment have fostered my development into a more thoughtful, resilient, and open-minded individual. The interactions with esteemed lecturers, dedicated supervisors, and fellow scholars have not only expanded my understanding but also served as a continuous source of motivation. ',
-    image: '/images/Graduate_testimonial/Dr. Mohammad Hamdan.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Mohammad Hamdan.png'
   },
   {
     name: 'Dr. Madihah Binti Haji Maharof',
@@ -331,7 +335,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Assistant Professor',
     company: 'Department of Mechanical and Production Engineering (MPE), Islamic University of Technology (IUT), Bangladesh',
     quote: 'I am deeply honored to have completed my academic journey from degree to master\'s and PhD at Universiti Teknikal Malaysia Melaka (UTeM). The years I spent at UTeM provided me with invaluable knowledge, skills, and experiences that have shaped both my personal and professional growth. Currently, as an assistant professor at the Islamic University of Technology in Bangladesh, I carry with me the values and principles instilled in me throughout my time at UTeM. This institution has not only prepared me for the academic world but has also inspired me to contribute to the global academic community.',
-    image: '/images/Graduate_testimonial/Dr. Madihah.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Madihah.png'
   },
   {
     name: 'Dr. Nashrullah Setiawan',
@@ -341,7 +345,7 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Lecturer of Industrial Engineering Department',
     company: 'Faculty of Industrial Technology at Universitas Islam Indonesia',
     quote: 'My PhD journey at UTeM has been a rewarding yet demanding experience. Each day brought new insights and lessons that have significantly contributed to my academic and personal development. The challenges of critical thinking, engaging in thorough research, and adjusting to the dynamic academic environment have helped me grow into a more mature and open-minded person. The opportunity to engage with lecturers, supervisors, peers, and experts in my field has been a great source of inspiration and invaluable knowledge. I am grateful to Allah SWT for granting me the opportunity to pursue my studies at this prestigious university, and I hope UTeM will continue to be a source of inspiration in building a better world.',
-    image: '/images/Graduate_testimonial/Dr. Nashrullah.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Nashrullah.png'
   },
   {
     name: 'Dr. Azlan bin Ramli',
@@ -351,14 +355,14 @@ export const GRADUATE_TESTIMONIALS: Testimonial[] = [
     position: 'Senior Lecturer',
     company: 'Mechanical Engineering Department, Polytechnic Muadzam Shah, Pahang',
     quote: 'Studying at UTeM was a valuable and enriching experience. Throughout my studies, I had the opportunity to utilize advanced laboratory facilities and receive guidance from experienced lecturers and supervisors. Moreover, I was involved in research projects that had a significant impact on the manufacturing engineering industry. Collaborating with classmates also enriched my experience, helping me build a professional network in research that continues to be beneficial to this day. I am deeply thankful to all the faculty members and the university for their continuous support throughout my academic journey. Achievements in carrying out research in this advanced manufacturing process field can be an inspiration to me and other students to continue to strive to achieve success in the latest and advanced manufacturing fields. ',
-    image: '/images/Graduate_testimonial/Dr. Azlan.png'
+    image: '/images/pages/Graduate_testimonial/Dr. Azlan.png'
   }
 ];
 
 export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   {
     id: 'about',
-    image: '/images/homepages/About-us.jpeg',
+    image: '/images/pages/homepages/About-us.jpeg',
     title: { EN: 'About Us', BM: 'Tentang Kami' },
     description: { 
       EN: 'The School of Graduate Studies (SPS), Universiti Teknikal Malaysia Melaka (UTeM) oversees the administration and development of postgraduate programmes across the university. SPS is dedicated to promoting academic excellence, research innovation, and a supportive environment for postgraduate scholars.\n\nThrough strong collaboration with faculties and industry partners, SPS prepares graduates to become competent researchers, professionals, and leaders who contribute to technological and societal advancement.',
@@ -369,8 +373,8 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
   },
   {
     id: 'programs',
-    image: '/images/homepages/Programs.png',
-    title: { EN: 'Our Programmes', BM: 'Program Termaju' },
+    image: '/images/pages/homepages/Programs.png',
+    title: { EN: 'Our Programmes', BM: 'Program-program Kami' },
     description: { 
       EN: 'Our specialized Master and Doctorate programs are meticulously designed to meet the requested demands of global technical industries and academia.',
       BM: 'Program Sarjana dan PhD pengkhususan kami direka dengan teliti untuk memenuhi tuntutan industri teknikal global dan akademik.'
@@ -378,19 +382,6 @@ export const ACADEMIC_BLOCKS: AcademicBlock[] = [
     cta: { EN: 'Explore Programme', BM: 'Terokai Program' },
     layout: 'right'
   },
-  /*
-  {
-    id: 'scholarships',
-    image: 'https://images.unsplash.com/photo-1541829070764-84a7d30dee3f?q=80&w=2070&auto=format&fit=crop',
-    title: { EN: 'Prestigious Funding', BM: 'Pembiayaan Berprestij' },
-    description: { 
-      EN: 'Empowering brilliance through comprehensive financial assistance. We offer exclusive scholarships for candidates with exceptional research potential.',
-      BM: 'Memperkasakan kecemerlangan melalui bantuan kewangan yang komprehensif. Kami menawarkan biasiswa eksklusif untuk calon yang mempunyai potensi penyelidikan yang luar biasa.'
-    },
-    cta: { EN: 'Apply for Aid', BM: 'Mohon Bantuan' },
-    layout: 'left'
-  }
-    */
 ];
 
 export const ADMISSION_STEPS: AdmissionStep[] = [
@@ -402,7 +393,7 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
       EN: 'Explore the vibrant campus life and historical architectural legacy of UTeM through our curated visual collection.',
       BM: 'Terokai kehidupan kampus yang ceria dan warisan seni bina bersejarah UTeM melalui koleksi visual terpilih kami.'
     },
-    imageUrl: '/images/homepages/Pic-gallery.png'
+    imageUrl: '/images/pages/homepages/Pic-gallery.png'
   },
   {
     number: '02',
@@ -412,7 +403,7 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
       EN: 'State-of-the-art technical laboratories, expansive libraries, and advanced research hubs designed for innovation.',
       BM: 'Makmal teknikal canggih, perpustakaan yang luas, dan hab penyelidikan termaju yang direka untuk inovasi.'
     },
-    imageUrl: '/images/homepages/OurFacilities.png'
+    imageUrl: '/images/pages/homepages/OurFacilities.png'
   },
   {
     number: '03',
@@ -422,7 +413,7 @@ export const ADMISSION_STEPS: AdmissionStep[] = [
       EN: 'Connect with our dedicated administrative leadership and academic support team for personalized guidance.',
       BM: 'Berhubung dengan kepimpinan pentadbiran dan pasukan sokongan akademik kami untuk bimbingan peribadi.'
     },
-    imageUrl: '/images/homepages/PIC.jpeg'
+    imageUrl: '/images/pages/homepages/PIC.jpeg'
   },
   {
     number: '04',
@@ -546,4 +537,3 @@ export const FACULTIES: FacultyDetail[] = [
     bannerImage: IPTKImage
   }
 ];
-

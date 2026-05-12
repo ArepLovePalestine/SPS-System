@@ -6,13 +6,13 @@ import { ChevronRight, Building2, ArrowRight } from 'lucide-react';
 import { Language } from '../types';
 import { FACULTIES } from '../constants';
 import PageHeader from './PageHeader';
-import FPTTLogo from '../images/Faculty_TaughtCourse/FPTT-logo.png';
-import FTKELogo from '../images/Faculty_TaughtCourse/FTKE-logo.png';
-import FTKEKLogo from '../images/Faculty_TaughtCourse/FTKEK-logo.png';
-import FTKIPLogo from '../images/Faculty_TaughtCourse/FTKIP-logo.png';
-import FTKMLogo from '../images/Faculty_TaughtCourse/FTKM-logo.png';
-import FTMKLogo from '../images/Faculty_TaughtCourse/FTMK-logo.png';
-import IPTKLogo from '../images/Faculty_TaughtCourse/IPTK-logo.png';
+import FPTTLogo from '/images/pages/Faculty_TaughtCourse/FPTT-logo.png';
+import FTKELogo from '/images/pages/Faculty_TaughtCourse/FTKE-logo.png';
+import FTKEKLogo from '/images/pages/Faculty_TaughtCourse/FTKEK-logo.png';
+import FTKIPLogo from '/images/pages/Faculty_TaughtCourse/FTKIP-logo.png';
+import FTKMLogo from '/images/pages/Faculty_TaughtCourse/FTKM-logo.png';
+import FTMKLogo from '/images/pages/Faculty_TaughtCourse/FTMK-logo.png';
+import IPTKLogo from '/images/pages/Faculty_TaughtCourse/IPTK-logo.png';
 
 interface MasterTaughtProps {
   lang: Language;

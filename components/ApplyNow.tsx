@@ -1,161 +1,154 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'motion/react';
-import { ChevronRight, CheckCircle2, ArrowRight, HelpCircle, Mail, Phone } from 'lucide-react';
+import { ChevronRight, ExternalLink } from 'lucide-react';
 import { Language } from '../types';
 
 interface ApplyNowProps {
   lang: Language;
 }
 
-const ApplyNow: React.FC<ApplyNowProps> = ({ lang }) => {
-  const steps = [
-    {
-      title: { EN: 'Check Eligibility', BM: 'Semak Kelayakan' },
-      desc: { EN: 'Ensure you meet the academic and English language requirements for your chosen programme.', BM: 'Pastikan anda memenuhi syarat akademik dan bahasa Inggeris untuk program pilihan anda.' }
-    },
-    {
-      title: { EN: 'Prepare Documents', BM: 'Sediakan Dokumen' },
-      desc: { EN: 'Gather certified copies of transcripts, certificates, research proposal, and identification.', BM: 'Kumpulkan salinan transkrip, sijil, cadangan penyelidikan, dan pengenalan diri yang disahkan.' }
-    },
-    {
-      title: { EN: 'Online Application', BM: 'Permohonan Dalam Talian' },
-      desc: { EN: 'Submit your application through our official UTeM Postgraduate Portal.', BM: 'Hantar permohonan anda melalui Portal Pascasiswazah rasmi UTeM.' }
-    },
-    {
-      title: { EN: 'Payment & Submission', BM: 'Pembayaran & Penghantaran' },
-      desc: { EN: 'Pay the processing fee and submit your application for review.', BM: 'Bayar yuran pemprosesan dan hantar permohonan anda untuk semakan.' }
-    }
-  ];
+const portalUrl = 'https://portal.utem.edu.my/admission/default';
 
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Banner */}
-      <section className="relative h-[40vh] min-h-[300px] flex items-center overflow-hidden pt-20">
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop" 
-            alt="Apply Now" 
-              className="w-full h-full object-cover"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-[#A51C30]/80 mix-blend-multiply" />
-        </div>
-        <div className="relative z-10 max-w-[1400px] mx-auto px-8 lg:px-12 w-full">
-          <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.2em] text-white/70 mb-6">
-            <Link to="/" className="hover:text-white transition-colors">HOME</Link>
-            <ChevronRight size={12} />
-            <span className="text-white">{lang === 'EN' ? 'APPLY NOW' : 'MOHON SEKARANG'}</span>
-          </nav>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-serif font-bold text-white mb-4"
-          >
-            {lang === 'EN' ? 'Start Your Journey' : 'Mulakan Perjalanan Anda'}
-          </motion.h1>
-          <p className="text-xl text-white/90 font-light max-w-2xl">
-            {lang === 'EN' 
-              ? 'Join our community of innovators and researchers at UTeM.' 
-              : 'Sertai komuniti inovator dan penyelidik kami di UTeM.'}
-          </p>
-        </div>
-      </section>
+const localItems = [
+  'A recent copy of passport-sized photograph',
+  'A copy of an Identity Card',
+  'A copy of SPM/MCE/Diploma/Degree and other Professional qualifications',
+  'A copy of academic transcript',
+  'The processing fee of RM50.00 in the form of a Postal Order/Money Order/Banker\'s Draft payable to the "Bendahari Universiti Teknikal Melaka". Payment of processing fees can also be made online using debit or credit card',
+  'A Letter of Guarantee from your sponsor (for those under scholarships/sponsorships)',
+  'A Preliminary Research Proposal with the maximum of 5 pages (applicable to application for Master\'s By Research and all Doctorate programmes)',
+  'A permission letter from your employer to pursue your studies on a full time basis (only applicable for those who are employed). Otherwise, you are required to opt for a part-time programme',
+];
 
-      {/* How to Apply */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
-              {lang === 'EN' ? 'How to Apply' : 'Cara Memohon'}
-            </h2>
-            <div className="h-1 w-20 bg-[#A51C30] mx-auto"></div>
-          </div>
+const internationalItems = [
+  'A recent copy of passport-sized photograph',
+  'A copy of passport',
+  'A copy of an academic transcript',
+  'A copy of Degree and Professional qualifications',
+  'The processing fee of RM100.00 in the form of an International Banker\'s Cheque payable to the "Bendahari Universiti Teknikal Malaysia Melaka". Payment of processing fees can also be made online using debit or credit card',
+  'A letter of financial support. A self-financing international applicant must provide an acceptable letter of financial guarantee from his/her banker or relevant financial institution.',
+  'A Preliminary Research Proposal with the maximum of 5 pages (applicable to application for Master\'s By Research and all Doctorate programmes)',
+  'A letter of certification from the respective Ministry of Education verifying nationality and academic qualifications of an applicant. For an international student applying within Malaysia, the certification letter can be obtained from the Embassy/Consulate/High Commission of the applicant\'s home country situated in Malaysia',
+  'Academic transcripts and supporting documents must be certified as true copies by a senior public official from the applicant\'s country or from Malaysia',
+];
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {steps.map((step, idx) => (
-              <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative group">
-                <div className="text-4xl font-serif font-black text-gray-100 absolute top-4 right-6 group-hover:text-[#A51C30]/10 transition-colors">
-                  0{idx + 1}
-                </div>
-                <div className="w-12 h-12 bg-[#A51C30]/5 rounded-xl flex items-center justify-center text-[#A51C30] mb-6">
-                  <CheckCircle2 size={24} />
-                </div>
-                <h3 className="text-xl font-serif font-bold text-gray-900 mb-4">{step.title[lang]}</h3>
-                <p className="text-gray-500 text-sm font-light leading-relaxed">{step.desc[lang]}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+const SectionBlock: React.FC<{
+  title: string;
+  intro: React.ReactNode[];
+  items: string[];
+}> = ({ title, intro, items }) => (
+  <section className="space-y-6">
+    <div className="bg-[#ffd3a8] px-5 py-3 text-center">
+      <h2 className="text-lg font-bold uppercase tracking-[0.03em] text-gray-900 md:text-2xl">{title}</h2>
+    </div>
 
-      {/* Requirements & Portal */}
-      <section className="py-24 bg-white">
-        <div className="max-w-[1400px] mx-auto px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <h2 className="text-3xl font-serif font-bold text-gray-900">
-                {lang === 'EN' ? 'General Requirements' : 'Syarat Umum'}
-              </h2>
-              <ul className="space-y-4">
-                {[
-                  { EN: 'A recognized Bachelor\'s degree for Master\'s application.', BM: 'Ijazah Sarjana Muda yang diiktiraf untuk permohonan Sarjana.' },
-                  { EN: 'A recognized Master\'s degree for PhD application.', BM: 'Ijazah Sarjana yang diiktiraf untuk permohonan PhD.' },
-                  { EN: 'Minimum CGPA requirements as specified by faculty.', BM: 'Syarat PNGK minimum seperti yang ditetapkan oleh fakulti.' },
-                  { EN: 'English proficiency (IELTS/TOEFL) for international students.', BM: 'Tahap penguasaan bahasa Inggeris (IELTS/TOEFL) untuk pelajar antarabangsa.' }
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-start space-x-4">
-                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#A51C30] shrink-0" />
-                    <span className="text-gray-600 font-light">{item[lang]}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-6">
-                <a 
-                  href="https://portal.utem.edu.my/admission/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-[#A51C30] text-white px-10 py-5 rounded-full font-bold text-xs uppercase tracking-[0.2em] shadow-xl hover:bg-[#800000] transition-all inline-flex items-center space-x-3 group"
-                >
-                  <span>{lang === 'EN' ? 'Access Application Portal' : 'Akses Portal Permohonan'}</span>
-                  <ArrowRight size={16} className="transform group-hover:translate-x-2 transition-transform" />
-                </a>
-              </div>
-            </div>
-            <div className="bg-gray-50 p-12 rounded-3xl border border-gray-100">
-              <div className="flex items-center space-x-4 mb-8">
-                <div className="w-12 h-12 bg-[#A51C30] rounded-2xl flex items-center justify-center text-white">
-                  <HelpCircle size={24} />
-                </div>
-                <h3 className="text-2xl font-serif font-bold text-gray-900">{lang === 'EN' ? 'Need Help?' : 'Perlukan Bantuan?'}</h3>
-              </div>
-              <p className="text-gray-500 mb-8 font-light">
-                {lang === 'EN' 
-                  ? 'Our admission team is here to guide you through every step of your application.' 
-                  : 'Pasukan kemasukan kami sedia membimbing anda melalui setiap langkah permohonan anda.'}
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4 text-gray-600">
-                  <Mail size={18} className="text-[#A51C30]" />
-                  <span className="text-sm font-medium">sps@utem.edu.my</span>
-                </div>
-                <div className="flex items-center space-x-4 text-gray-600">
-                  <Phone size={18} className="text-[#A51C30]" />
-                  <span className="text-sm font-medium">+606 270 1000</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="space-y-4 px-1 text-[15px] leading-8 text-gray-800 md:text-base">
+      {intro.map((paragraph, index) => (
+        <p key={index}>{paragraph}</p>
+      ))}
 
-      {/* Back to Home */}
-      <div className="py-12 border-t border-gray-100 text-center">
-        <Link to="/" className="text-[10px] font-bold text-gray-400 hover:text-[#A51C30] uppercase tracking-widest transition-colors">
-          {lang === 'EN' ? 'Back to Home' : 'Kembali ke Utama'}
-        </Link>
+      <div className="space-y-2">
+        <p>An application form should include the following :-</p>
+        <ol className="space-y-2 pl-5">
+          {items.map((item, index) => (
+            <li key={index} className="list-none">
+              <span className="font-medium">{String.fromCharCode(97 + index)}) </span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ol>
       </div>
+    </div>
+  </section>
+);
+
+const ApplyNow: React.FC<ApplyNowProps> = ({ lang }) => {
+  return (
+    <div className="min-h-screen bg-white pb-20 pt-24">
+      <section className="border-b border-black/5 bg-[#fbf8f3] px-6 py-16 sm:px-8 lg:px-12">
+        <div className="mx-auto max-w-[1180px]">
+          <nav className="mb-8 flex flex-wrap items-center gap-2 text-[10px] font-bold uppercase tracking-[0.32em] text-gray-400">
+            <Link to="/" className="transition-colors hover:text-[#A51C30]">
+              Home
+            </Link>
+            <ChevronRight size={12} className="text-gray-300" />
+            <Link to="/programmes" className="transition-colors hover:text-[#A51C30]">
+              Programmes
+            </Link>
+            <ChevronRight size={12} className="text-gray-300" />
+            <span className="text-[#A51C30]">{lang === 'EN' ? 'How to Apply' : 'Cara Memohon'}</span>
+          </nav>
+
+          <div className="max-w-4xl">
+            <h1 className="font-serif text-4xl tracking-tight text-gray-950 md:text-6xl">
+              {lang === 'EN' ? 'How to Apply' : 'Cara Memohon'}
+            </h1>
+            <p className="mt-5 max-w-3xl text-base leading-8 text-gray-600 md:text-lg">
+              {lang === 'EN'
+                ? 'Application guidance for local and international candidates applying to postgraduate programmes at UTeM.'
+                : 'Panduan permohonan untuk calon tempatan dan antarabangsa yang memohon program pascasiswazah di UTeM.'}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-10 sm:px-6 lg:px-10">
+        <div className="mx-auto max-w-[1180px] rounded-[28px] border border-gray-200 bg-white p-5 shadow-[0_18px_45px_rgba(15,23,42,0.06)] sm:p-8 md:p-10">
+          <div className="space-y-12">
+            <SectionBlock
+              title="LOCAL CANDIDATES (MALAYSIAN CITIZEN)"
+              intro={[
+                <>
+                  1. Application must be submitted online via{' '}
+                  <a href={portalUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-[#A51C30] underline decoration-[#A51C30]/40 underline-offset-4 hover:text-[#8a1026]">
+                    {portalUrl}
+                  </a>
+                </>,
+                <>
+                  2. For programmes by coursework, a completed application form should be submitted before the advertised closing date. However, applications for research programmes are open throughout the year.
+                </>,
+                <>
+                  3. A completed application should include the following :-
+                </>,
+              ]}
+              items={localItems}
+            />
+
+            <SectionBlock
+              title="INTERNATIONAL CANDIDATES"
+              intro={[
+                <>1. All international students are required to register as Full-Time students at UTeM and should have the financial capability to meet the course fees and living expenses for the full duration of the programme.</>,
+                <>2. The medium of instruction and research for international students is English.</>,
+                <>
+                  3. Application must be submitted online via{' '}
+                  <a href={portalUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-[#A51C30] underline decoration-[#A51C30]/40 underline-offset-4 hover:text-[#8a1026]">
+                    {portalUrl}
+                  </a>
+                </>,
+                <>4. A completed form should include the following :-</>,
+              ]}
+              items={internationalItems}
+            />
+          </div>
+
+          <div className="mt-12 flex flex-col items-start gap-4 border-t border-gray-100 pt-8 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm leading-7 text-gray-500">
+              {lang === 'EN'
+                ? 'Applicants may proceed directly to the official admission portal for submission.'
+                : 'Pemohon boleh terus ke portal kemasukan rasmi untuk penghantaran permohonan.'}
+            </p>
+            <a
+              href={portalUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[#A51C30] px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-[#8a1026]"
+            >
+              {lang === 'EN' ? 'Open Admission Portal' : 'Buka Portal Kemasukan'}
+              <ExternalLink size={15} />
+            </a>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronRight, User, Users, GraduationCap, Briefcase, Mail, Globe, Camera, Cpu, BookOpen, Microscope, Layout, Building2, ChevronDown } from 'lucide-react';
@@ -36,7 +36,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "PROF. MADYA. IR. TS. DR. JEEFFERIE BIN RAZAK",
           title: "UPgrade Advisor",
-          image: "/images/UPgradeAssociation_pic/Dr.Jef.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Dr.Jef.jpeg",
           responsibilities: [
             "Extract dynamic role in advising the student association.",
             "Perceive comprehensive aspiration towards student association and intimate with every assistance.",
@@ -54,7 +54,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "NASRI BIN SEMIN",
           title: "UPgrade President 2018/2019",
-          image: "/images/UPgradeAssociation_pic/Nasri.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Nasri.jpeg",
           responsibilities: [
             "Assure the committee members communicates with postgraduate students clearly and effectively function as a source of information for the association.",
             "Inaugurate the smooth running of the student association.",
@@ -73,7 +73,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "NURBATRISYIA BINTI NORHAZLIN",
           title: "UPgrade Vice President",
-          image: "/images/UPgradeAssociation_pic/Nurbatrisyia.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Nurbatrisyia.jpeg",
           responsibilities: [
             "Inaugurate a good interpersonal network that helps committee members work together.",
             "Determining and defining the structures and procedures of the student association, assisting committee members, defining issues and summarising progress.",
@@ -92,7 +92,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "MUHAMMAD IRFAN BIN AZMAN",
           title: "UPgrade Secretary",
-          image: "/images/UPgradeAssociation_pic/Irfan.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Irfan.jpeg",
           responsibilities: [
             "Organises the agenda for relevant meetings.",
             "All decisions are properly understood and recorded (minutes).",
@@ -114,7 +114,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "NUR AFIQAH AINA BINTI ZAIHAM",
           title: "UPgrade Treasurer",
-          image: "/images/UPgradeAssociation_pic/Afiqah_Aina.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Afiqah_Aina.jpeg",
           responsibilities: [
             "Strategized student association budget.",
             "Organizing fundraising events and seek sponsorship, if required.",
@@ -135,7 +135,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "MUHAMAD AFIQ BIN SHARUM",
           title: "Exco Technical",
-          image: "/images/UPgradeAssociation_pic/Afiq.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Afiq.jpeg",
           responsibilities: [
             "Ensure all technical equipment is in good working condition and ready for use.",
             "Perform routine maintenance on the equipment being used.",
@@ -147,7 +147,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "FAWZAN HANAFI BIN MOHD FAZDHLI",
           title: "Exco Technical",
-          image: "/images/UPgradeAssociation_pic/Fawzan.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Fawzan.jpeg",
           responsibilities: [
             "Ensure all technical equipment is in good working condition and ready for use.",
             "Perform routine maintenance on the equipment being used.",
@@ -166,7 +166,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "MUHAMMAD FAHRUR ROZI",
           title: "Exco International",
-          image: "/images/UPgradeAssociation_pic/Fahrur.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Fahrur.jpeg",
           responsibilities: [
             "Organize student exchange programs involving students from various countries to broaden cultural and academic horizons.",
             "Plan and coordinate international delegations visiting educational institutions abroad or hosting delegations from other countries.",
@@ -179,7 +179,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "NIK NURDINI BINTI WOLSELEY",
           title: "Exco International",
-          image: "/images/UPgradeAssociation_pic/Nik Nurdini.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Nik Nurdini.jpeg",
           responsibilities: [
             "Organize student exchange programs involving students from various countries to broaden cultural and academic horizons.",
             "Plan and coordinate international delegations visiting educational institutions abroad or hosting delegations from other countries.",
@@ -199,7 +199,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "MUHAMMAD AMIN BIN PANGIRAN A.",
           title: "Exco Media",
-          image: "/images/UPgradeAssociation_pic/Amin.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Amin.jpeg",
           responsibilities: [
             "Create and manage content for various media platforms such as social media, websites, and newsletters.",
             "Manage the official social media accounts of the student union, such as Instagram, Facebook, Twitter, or TikTok, to ensure relevant, engaging, and up-to-date content.",
@@ -209,7 +209,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
         {
           name: "NUR AYUNI ASHYIRA BINTI MOHAMMAD Y.",
           title: "Exco Media",
-          image: "/images/UPgradeAssociation_pic/Ayuni.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Ayuni.jpeg",
           responsibilities: [
             "Create and manage content for various media platforms such as social media, websites, and newsletters.",
             "Manage the official social media accounts of the student union, such as Instagram, Facebook, Twitter, or TikTok, to ensure relevant, engaging, and up-to-date content.",
@@ -227,7 +227,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "HASHEMI BIN HASHIM",
           title: "UPgrade FTKIP Faculty Exco",
           faculty: "FTKIP",
-          image: "/images/UPgradeAssociation_pic/Hashemi.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Hashemi.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of FTKIP.",
             "Understands and provides direction to new and existing postgraduate students of FTKIP on guidelines.",
@@ -240,7 +240,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "WAN SOFIYA BINTI WAN AHMAD KAMIL",
           title: "UPgrade FTKIP Faculty Exco",
           faculty: "FTKIP",
-          image: "/images/UPgradeAssociation_pic/Sofiya.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Sofiya.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of FTKIP.",
             "Understands and provides direction to new and existing postgraduate students of FTKIP on guidelines.",
@@ -260,7 +260,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "SYED ABRAR BIN SYED AHMAD Z.",
           title: "UPgrade FTKE Faculty Exco",
           faculty: "FTKE",
-          image: "/images/UPgradeAssociation_pic/Syed.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Syed.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of FTKE.",
             "Understands and provides direction to new and existing postgraduate students of FTKE on guidelines.",
@@ -273,7 +273,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "NUR NAJWA BINTI MOHD AZRI",
           title: "UPgrade FTKE Faculty Exco",
           faculty: "FTKE",
-          image: "/images/UPgradeAssociation_pic/Najwa.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Najwa.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of FTKE.",
             "Understands and provides direction to new and existing postgraduate students of FTKE on guidelines.",
@@ -293,7 +293,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "FATIAH BINTI BADRUDIN",
           title: "UPgrade FTKEK Faculty Exco",
           faculty: "FKEKK",
-          image: "/images/UPgradeAssociation_pic/Fathiah.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Fathiah.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of FTKEK.",
             "Understands and provides direction to new and existing postgraduate students of FTKEK on guidelines.",
@@ -313,7 +313,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "NABIL ASHRAF BIN ALI",
           title: "UPgrade FTKM Faculty Exco",
           faculty: "FKM",
-          image: "/images/UPgradeAssociation_pic/Nabil.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Nabil.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of FTKM.",
             "Understands and provides direction to new and existing postgraduate students of FTKM on guidelines.",
@@ -333,7 +333,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "NORSHAHIRA BINTI SHAHARIN",
           title: "UPgrade FPTT Faculty Exco",
           faculty: "FPTT",
-          image: "/images/UPgradeAssociation_pic/Norshahira.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/Norshahira.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of FPTT.",
             "Understands and provides direction to new and existing postgraduate students of FPTT on guidelines.",
@@ -353,7 +353,7 @@ const UPgradeProfession: React.FC<UPgradeProfessionProps> = ({ lang }) => {
           name: "NUR NADIA BINTI ZAINUL ARIFIN",
           title: "UPgrade IPTK Faculty Exco",
           faculty: "IPTK",
-          image: "/images/UPgradeAssociation_pic/NurNadia.jpeg",
+          image: "/images/pages/UPgradeAssociation_pic/NurNadia.jpeg",
           responsibilities: [
             "Organises and plans a program of events and activities throughout the year for the postgraduate students of IPTK.",
             "Understands and provides direction to new and existing postgraduate students of IPTK on guidelines.",

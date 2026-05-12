@@ -1,5 +1,6 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Pause, Play } from 'lucide-react';
 import { Language } from '../types';
 /*
 import SPSLogo from '';
@@ -9,6 +10,8 @@ interface HeroProps { lang: Language; }
 
 const Hero: React.FC<HeroProps> = ({ lang }) => {
   const isAutoScrolling = useRef(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const scrollToNextSection = () => {
     if (isAutoScrolling.current) return;
@@ -46,6 +49,23 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
     return () => window.removeEventListener('wheel', handleGlobalWheel);
   }, []);
 
+  const toggleVideoPlayback = async () => {
+    if (!videoRef.current) return;
+
+    if (videoRef.current.paused) {
+      try {
+        await videoRef.current.play();
+        setIsPlaying(true);
+      } catch {
+        setIsPlaying(false);
+      }
+      return;
+    }
+
+    videoRef.current.pause();
+    setIsPlaying(false);
+  };
+
   return (
       <section
         className="fixed inset-x-0 top-0 z-0 h-screen w-full overflow-hidden bg-[#0a0a0a] flex items-center justify-center"
@@ -54,8 +74,9 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
       {/* Cinematic Video Background */}
       <div className="absolute inset-0">
         <video
+          ref={videoRef}
           className="h-full w-full object-cover transform-gpu"
-          src="/images/homepages/SPS_mainVideo2.mp4"
+          src="/images/pages/homepages/SPS_mainVideo2.mp4"
           autoPlay
           muted
           loop
@@ -70,11 +91,21 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, rgba(0, 0, 0, 0.56) 0%, rgba(0, 0, 0, 0.34) 35%, rgba(0, 0, 0, 0.18) 70%, rgba(0, 0, 0, 0.08) 100%)'
+            'linear-gradient(to bottom, rgba(2, 6, 23, 0.78) 0%, rgba(3, 7, 18, 0.5) 34%, rgba(0, 0, 0, 0.24) 70%, rgba(0, 0, 0, 0.1) 100%)'
         }}
         aria-hidden="true"
       />
   
+      <div className="absolute bottom-20 right-5 z-40 sm:bottom-24 sm:right-8 lg:right-12">
+        <button
+          type="button"
+          onClick={toggleVideoPlayback}
+          aria-label={isPlaying ? 'Pause hero video' : 'Play hero video'}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/35 text-white shadow-lg backdrop-blur-md transition hover:border-[#A51C30] hover:bg-[#A51C30] sm:h-11 sm:w-11"
+        >
+          {isPlaying ? <Pause size={16} strokeWidth={2.2} /> : <Play size={16} strokeWidth={2.2} className="ml-0.5" />}
+        </button>
+      </div>
       
 
       {/* Cinematic bottom accent line */}

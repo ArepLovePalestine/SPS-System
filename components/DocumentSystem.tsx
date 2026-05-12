@@ -35,10 +35,21 @@ interface DocumentSystemProps {
   initialCategory?: string;
 }
 
-const pdfModules = import.meta.glob('../Document file/**/*.pdf', {
+const pdfModules = import.meta.glob('/src/assets/Document file/**/*.pdf', {
   eager: true,
+  query: '?url',
   import: 'default'
 }) as Record<string, string>;
+
+const docxModules = import.meta.glob('/src/assets/Document file/**/*.{doc,docx}', {
+  eager: true,
+  query: '?url',
+  import: 'default'
+}) as Record<string, string>;
+
+console.log('DOCX keys:', Object.keys(docxModules));
+
+console.log('PDF keys:', Object.keys(pdfModules));
 
 const CATEGORY_META = {
   Academic: {
@@ -87,13 +98,18 @@ const RAW_DOCUMENTS = [
   { id: 'iso-03', folder: 'ISO Form & Template', filename: 'Borang Penghantaran Soalan Final Exam.pdf', category: 'ISO', bytes: 110343 },
   { id: 'iso-04', folder: 'ISO Form & Template', filename: 'Template Jadual Peperiksaan Akhir Pasca Siswazah.pdf', category: 'ISO', bytes: 96514 },
   { id: 'iso-05', folder: 'ISO Form & Template', filename: 'Template Penawaran Mata Pelajaran.pdf', category: 'ISO', bytes: 40123 },
+  { id: 'iso-06', folder: 'ISO Form & Template', filename: 'Laporan Pemeriksa Tesis - MSc.doc', category: 'ISO', bytes: 140 },
+  {id : 'iso-07', folder: 'ISO Form & Template', filename: 'Laporan Pemeriksa Tesis - PhD.doc', category: 'ISO', bytes: 178 },
   { id: 'the-01', folder: 'Thesis Forms file', filename: 'Borang Pembetulan Tesis.pdf', category: 'Thesis', bytes: 417643 },
   { id: 'the-02', folder: 'Thesis Forms file', filename: 'Borang Pembetulan Tesis Resubmit o Reviva.pdf', category: 'Thesis', bytes: 419451 },
   { id: 'the-03', folder: 'Thesis Forms file', filename: 'Checklist For Hardbound Thesis Submission New.pdf', category: 'Thesis', bytes: 538555 },
   { id: 'the-04', folder: 'Thesis Forms file', filename: 'DECLARATION OF MASTER AND DOCTORAL THESIS.pdf', category: 'Thesis', bytes: 144370 },
   { id: 'the-05', folder: 'Thesis Forms file', filename: 'FINAL THESIS SUBMISSION FORM  julai.pdf', category: 'Thesis', bytes: 181322 },
   { id: 'the-06', folder: 'Thesis Forms file', filename: 'Guidelines for Thesis Dissertation  Report.pdf', category: 'Thesis', bytes: 1521521 },
-  { id: 'the-07', folder: 'Thesis Forms file', filename: 'Laporan Kemajuan Penyelidikan.pdf', category: 'Thesis', bytes: 348342 }
+  { id: 'the-07', folder: 'Thesis Forms file', filename: 'Laporan Kemajuan Penyelidikan.pdf', category: 'Thesis', bytes: 348342 },
+  { id: 'the-08', folder: 'Thesis Forms file', filename: 'Borang Permohonan Etika Penyelidikan UTeM Kemaskini - Pelajar 29092021_revised.doc', category: 'Thesis', bytes: 123456 },
+  { id: 'research-01', folder: 'Research Proposal file', filename: 'Research Proposal Defense Template.docx', category: 'Research Proposal', bytes: 256789 },
+  { id : 'research-02', folder: 'Research Proposal file', filename: 'Research Proposal Template.docx', category: 'Research Proposal', bytes: 198765 },
 ] as const;
 
 const formatFileSize = (bytes: number) => {
@@ -109,8 +125,9 @@ const extractYear = (filename: string) => {
 const cleanTitle = (filename: string) => filename.replace(/\.pdf$/i, '').replace(/\s+/g, ' ').trim();
 
 const resolvePdfUrl = (folder: string, filename: string) => {
-  const key = `../Document file/${folder}/${filename}`;
-  return pdfModules[key] || '#';
+  const key = `/src/assets/Document file/${folder}/${filename}`;
+  console.log('Looking for:', key, '| Found:', !!(pdfModules[key] || docxModules[key]));
+  return pdfModules[key] || docxModules[key] || '#';
 };
 
 const REAL_DOCUMENTS: Document[] = RAW_DOCUMENTS.map((doc) => ({
@@ -180,7 +197,10 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
     setSelectedDoc(doc);
   };
 
-  const hasPreview = selectedDoc?.fileUrl && selectedDoc.fileUrl !== '#';
+  const hasDownload = selectedDoc?.fileUrl && selectedDoc.fileUrl !== '#';
+  const hasPreview = hasDownload && 
+    !selectedDoc?.fileUrl.endsWith('.doc') && 
+    !selectedDoc?.fileUrl.endsWith('.docx');
 
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
@@ -413,19 +433,24 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button 
-                    onClick={() => hasPreview && setIsPreviewOpen(true)}
-                    disabled={!hasPreview}
-                    className="flex-1 flex items-center justify-center space-x-2 py-4 bg-gray-900 text-white rounded-xl font-bold tracking-widest uppercase text-xs hover:bg-gray-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    <Eye size={16} />
-                    <span>{lang === 'EN' ? 'Preview' : 'Pratonton'}</span>
-                  </button>
+                  {/* Preview button — sorok kalau doc/docx */}
+                  {!selectedDoc.fileUrl.endsWith('.doc') && !selectedDoc.fileUrl.endsWith('.docx') && (
+                    <button 
+                      onClick={() => hasPreview && setIsPreviewOpen(true)}
+                      disabled={!hasPreview}
+                      className="flex-1 flex items-center justify-center space-x-2 py-4 bg-gray-900 text-white rounded-xl font-bold tracking-widest uppercase text-xs hover:bg-gray-800 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
+                    >
+                      <Eye size={16} />
+                      <span>{lang === 'EN' ? 'Preview' : 'Pratonton'}</span>
+                    </button>
+                  )}
+                  
+                  {/* Download button — sentiasa ada */}
                   <a 
                     href={selectedDoc.fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex-1 flex items-center justify-center space-x-2 py-4 bg-[#A51C30] text-white rounded-xl font-bold tracking-widest uppercase text-xs transition-all shadow-lg shadow-[#A51C30]/20 ${hasPreview ? 'hover:bg-[#8a1728]' : 'pointer-events-none opacity-40'}`}
+                    className="flex-1 flex items-center justify-center space-x-2 py-4 bg-[#A51C30] text-white rounded-xl font-bold tracking-widest uppercase text-xs hover:bg-[#8a1728] transition-all shadow-lg shadow-[#A51C30]/20"
                   >
                     <Download size={16} />
                     <span>{lang === 'EN' ? 'Download' : 'Muat Turun'}</span>
@@ -467,7 +492,11 @@ const DocumentSystem: React.FC<DocumentSystemProps> = ({ lang, title, subtitle, 
               <div className="flex-grow bg-gray-200 flex items-center justify-center">
                 {selectedDoc ? (
                   <iframe
-                    src={selectedDoc.fileUrl}
+                    src={
+                      selectedDoc.fileUrl.endsWith('.docx') || selectedDoc.fileUrl.endsWith('.doc')
+                        ? `https://docs.google.com/viewer?url=${encodeURIComponent(window.location.origin + selectedDoc.fileUrl)}&embedded=true`
+                        : selectedDoc.fileUrl
+                    }
                     className="w-full h-full border-none bg-white"
                     title={selectedDoc.title[lang]}
                   />

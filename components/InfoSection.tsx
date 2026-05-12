@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, type Variants } from 'motion/react';
@@ -105,8 +104,8 @@ const InfoSection: React.FC<InfoSectionProps> = ({ lang }) => {
           <defs>
             <linearGradient id="infoMaroonWave" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stopColor="#550000" stopOpacity="0.95" />
-              <stop offset="55%" stopColor="#7F1425" stopOpacity="0.58" />
-              <stop offset="100%" stopColor="#A51C30" stopOpacity="0" />
+              <stop offset="55%" stopColor="#141f7f" stopOpacity="0.58" />
+              <stop offset="100%" stopColor="#5c1ca5" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="infoMaroonWaveDeep" x1="0" x2="0" y1="0" y2="1">
               <stop offset="0%" stopColor="#670E10" stopOpacity="0.9" />
@@ -252,4 +251,3 @@ const InfoSection: React.FC<InfoSectionProps> = ({ lang }) => {
 };
 
 export default InfoSection;
-

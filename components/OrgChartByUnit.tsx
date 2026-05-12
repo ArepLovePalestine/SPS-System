@@ -22,7 +22,7 @@ const OrgChartByUnit: React.FC<OrgChartByUnitProps> = ({ lang }) => {
       id: 'admin-finance',
       title: { EN: 'Administration & Finance Unit', BM: 'Unit Pentadbiran & Kewangan' },
       icon: Layout,
-      image: '/images/about-org-chart-unit/org-by-unit-pic-1.jpeg',
+      image: '/images/pages/about-org-chart-unit/org-by-unit-pic-1.jpeg',
       staff: {
         EN: ['Deputy Registrar', 'Senior Administrative Assistant', 'Assistant Engineer', 'General Office Assistant'],
         BM: ['Timbalan Pendaftar', 'Pembantu Tadbir Kanan', 'Penolong Jurutera', 'Pembantu Pejabat']
@@ -32,7 +32,7 @@ const OrgChartByUnit: React.FC<OrgChartByUnitProps> = ({ lang }) => {
       id: 'academic',
       title: { EN: 'Academic Unit', BM: 'Unit Akademik' },
       icon: BookOpen,
-      image: '/images/about-org-chart-unit/org-by-unit-pic-2.jpeg',
+      image: '/images/pages/about-org-chart-unit/org-by-unit-pic-2.jpeg',
       staff: {
         EN: ['Senior Assistant Registrar', 'Senior Administrative Assistant', 'Senior Administrative Assistant', '-'],
         BM: ['Penolong Pendaftar Kanan', 'Pembantu Tadbir Kanan', 'Pembantu Tadbir Kanan', '-']
@@ -42,7 +42,7 @@ const OrgChartByUnit: React.FC<OrgChartByUnitProps> = ({ lang }) => {
       id: 'research',
       title: { EN: 'Examination and Scholarship Unit', BM: 'Unit Peperiksaan dan Biasiswa' },
       icon: Microscope,
-      image: '/images/about-org-chart-unit/org-by-unit-pic-3.jpeg',
+      image: '/images/pages/about-org-chart-unit/org-by-unit-pic-3.jpeg',
       staff: {
         EN: ['Assistant Registrar', 'Assistant Administrative Officer', 'Administrative Assistant'],
         BM: ['Penolong Pendaftar', 'Penolong Pegawai Tadbir', 'Pembantu Tadbir']

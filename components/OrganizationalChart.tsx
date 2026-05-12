@@ -1,4 +1,4 @@
-
+﻿
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Download, Users, ChevronRight, FileText, X } from 'lucide-react';
@@ -10,7 +10,7 @@ interface OrganizationalChartProps {
 
 const OrganizationalChart: React.FC<OrganizationalChartProps> = ({ lang }) => {
   const [isEnlargedOpen, setIsEnlargedOpen] = useState(false);
-  const chartImageSrc = '/images/about-org-chart/Organization_Charttt.jpg';
+  const chartImageSrc = '/images/pages/about-org-chart/Organization_Charttt.jpg';
   const content = {
     about: { EN: 'About Us', BM: 'Tentang Kami' },
     title: { EN: 'Organizational Chart', BM: 'Carta Organisasi' },

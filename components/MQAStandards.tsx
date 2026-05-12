@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -15,6 +14,13 @@ import {
 import { Language, MQADocument } from '../types';
 import { Link } from 'react-router-dom';
 
+// ─── Import PDF files dari src/assets/Document file/MQA ───────────────────────
+import pdfMQF        from '../src/assets/Document file/MQA/2018 MQF 2nd Edition 02042018.pdf';
+import pdfEngineering from '../src/assets/Document file/MQA/PS - Engineering and Engineering Technology_BI - FB.pdf';
+import pdfBusiness   from '../src/assets/Document file/MQA/PS Business Studies 2nd Ed 16.8.2021 1.pdf';
+import pdfComputing  from '../src/assets/Document file/MQA/PS Computing. upload website 13.10.17.pdf';
+import pdfMDD        from '../src/assets/Document file/MQA/Final MDD 2021 - upload v3.pdf';
+
 interface MQAStandardsProps {
   lang: Language;
 }
@@ -30,9 +36,9 @@ const documents: MQADocument[] = [
     year: '2018',
     category: 'MQF',
     tag: 'Popular',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/mqf/2019/MQF%20Ed%202%2002102019.pdf',
-    fileSize: '1.02 MB',
-    publishDate: '02 October 2019'
+    fileUrl: pdfMQF,
+    fileSize: '1,042 KB',
+    publishDate: '02 April 2018'
   },
   {
     id: 'ps-computing',
@@ -40,12 +46,13 @@ const documents: MQADocument[] = [
       EN: 'Programme Standards: Computing', 
       BM: 'Standard Program: Pengkomputeran' 
     },
-    edition: '',
-    year: '2015',
+    edition: '2nd Edition',
+    year: '2017',
     category: 'Computing',
     tag: 'New',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2022/PS%20Computing%202nd%20Edition.pdf',
-    publishDate: '2022'
+    fileUrl: pdfComputing,
+    fileSize: '1,745 KB',
+    publishDate: '13 October 2017'
   },
   {
     id: 'ps-engineering',
@@ -54,10 +61,11 @@ const documents: MQADocument[] = [
       BM: 'Standard Program: Kejuruteraan dan Teknologi Kejuruteraan' 
     },
     edition: '',
-    year: '2011',
+    year: '2019',
     category: 'Engineering',
     tag: 'Updated',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2019/PS%20Engineering%20&%20Engineering%20Technology.pdf',
+    fileUrl: pdfEngineering,
+    fileSize: '620 KB',
     publishDate: '2019'
   },
   {
@@ -69,8 +77,9 @@ const documents: MQADocument[] = [
     edition: '2nd Edition',
     year: '2021',
     category: 'Business',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/ps/2021/PS%20Business%20Studies%202nd%20Edition.pdf',
-    publishDate: '2021'
+    fileUrl: pdfBusiness,
+    fileSize: '1,548 KB',
+    publishDate: '16 August 2021'
   },
   {
     id: 'copa-research',
@@ -79,11 +88,12 @@ const documents: MQADocument[] = [
       BM: 'Kod Amalan Akreditasi Program: Ijazah Penyelidikan' 
     },
     edition: '1st Edition',
-    year: '2020',
+    year: '2021',
     category: 'MQF',
     tag: 'Popular',
-    fileUrl: 'https://www.mqa.gov.my/pv4/document/copa/2020/COPA%20Research%20Degree.pdf',
-    publishDate: '2020'
+    fileUrl: pdfMDD,
+    fileSize: '775 KB',
+    publishDate: '2021'
   }
 ];
 
@@ -127,7 +137,7 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-serif font-bold text-gray-900"
+              className="text-4xl md:text-5xl font-serif text-gray-900"
             >
               {lang === 'EN' ? 'MQA Standards and Programme Standards' : 'Standard MQA dan Standard Program'}
             </motion.h1>
@@ -239,10 +249,10 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
                       <Info size={14} />
                       <span>{lang === 'EN' ? 'Details' : 'Butiran'}</span>
                     </button>
+                    {/* Download — guna anchor dengan download attribute untuk local file */}
                     <a 
                       href={doc.fileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      download
                       className="flex-grow md:flex-none flex items-center justify-center space-x-2 bg-[#A51C30] hover:bg-[#800000] text-white px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest transition-all shadow-lg shadow-maroon-900/10"
                     >
                       <Download size={14} />
@@ -264,7 +274,7 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
         </div>
       </section>
 
-      {/* Preview Modal */}
+      {/* Details Modal */}
       <AnimatePresence>
         {detailsDoc && (
           <div className="fixed inset-0 z-[210] flex items-center justify-center p-4 md:p-8">
@@ -330,6 +340,7 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
           </div>
         )}
 
+        {/* Preview Modal */}
         {previewDoc && (
           <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-8">
             <motion.div 
@@ -364,8 +375,7 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
                 <div className="flex items-center space-x-3">
                   <a 
                     href={previewDoc.fileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download
                     className="flex items-center space-x-2 bg-[#A51C30] text-white px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-[#800000] transition-colors shadow-lg shadow-maroon-900/10"
                   >
                     <Download size={14} />
@@ -380,10 +390,10 @@ const MQAStandards: React.FC<MQAStandardsProps> = ({ lang }) => {
                 </div>
               </div>
 
-              {/* Modal Content (Iframe Preview) */}
+              {/* PDF Preview via iframe */}
               <div className="flex-grow bg-gray-100 relative">
                 <iframe 
-                  src={`${previewDoc.fileUrl}#toolbar=0`} 
+                  src={previewDoc.fileUrl}
                   className="w-full h-full border-none"
                   title="PDF Preview"
                 />

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useIsPresent } from 'motion/react';
+import questionPaperSubmissionPdf from '../src/assets/Document file/ISO Form & Template/Borang Penghantaran Soalan Final Exam.pdf';
 import { 
   ChevronRight, 
   FileText, 
@@ -326,10 +327,16 @@ const ExaminationInfo: React.FC<ExaminationInfoProps> = ({ lang }) => {
                               <Eye size={18} />
                               <span>Preview Document</span>
                             </button>
-                            <button className="text-[11px] font-bold text-gray-400 uppercase tracking-widest hover:text-gray-900 flex items-center space-x-3 group/dl transition-colors duration-150">
+                            <a
+                              href={questionPaperSubmissionPdf}
+                              target="_blank"
+                              rel="noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="text-[11px] font-bold text-gray-400 uppercase tracking-widest hover:text-gray-900 flex items-center space-x-3 group/dl transition-colors duration-150"
+                            >
                               <Download size={18} className="group-hover/dl:translate-y-0.5 transition-transform duration-150" />
                               <span>Download PDF</span>
-                            </button>
+                            </a>
                           </>
                         ) : (
                           <div className="flex items-center space-x-7">
@@ -397,10 +404,15 @@ const ExaminationInfo: React.FC<ExaminationInfoProps> = ({ lang }) => {
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
-                   <button className="hidden md:flex items-center space-x-2 px-6 py-3 bg-gray-50 text-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-100 transition-all">
+                   <a
+                    href={questionPaperSubmissionPdf}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="hidden md:flex items-center space-x-2 px-6 py-3 bg-gray-50 text-gray-700 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-gray-100 transition-all"
+                   >
                     <Download size={14} />
                     <span>Download PDF</span>
-                  </button>
+                  </a>
                   <button 
                     onClick={() => setShowPreview(false)}
                     className="p-3 bg-gray-100 rounded-full text-gray-500 hover:bg-[#A51C30] hover:text-white transition-all"
@@ -410,12 +422,12 @@ const ExaminationInfo: React.FC<ExaminationInfoProps> = ({ lang }) => {
                 </div>
               </div>
               
-              <div className="flex-grow bg-gray-800 p-8 overflow-y-auto flex justify-center custom-scrollbar">
-                <div className="w-full max-w-4xl bg-white shadow-2xl overflow-hidden">
-                  <img
-                    src={questionPaperSubmissionImage}
-                    alt="Question Paper Submission Form"
-                    className="w-full h-auto object-contain"
+              <div className="flex-grow bg-gray-800 p-4 md:p-8 overflow-hidden flex justify-center custom-scrollbar">
+                <div className="w-full max-w-5xl bg-white shadow-2xl overflow-hidden rounded-2xl">
+                  <iframe
+                    src={`${questionPaperSubmissionPdf}#toolbar=1&navpanes=1&scrollbar=1&view=FitH`}
+                    title="Question Paper Submission Form PDF"
+                    className="h-full min-h-[60vh] w-full"
                   />
                 </div>
               </div>
@@ -423,10 +435,14 @@ const ExaminationInfo: React.FC<ExaminationInfoProps> = ({ lang }) => {
               <div className="p-8 bg-gray-50 border-t border-gray-100 flex justify-between items-center">
                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Document Ref: UTM-SPS-2024-PDF-FRM</span>
                 <div className="flex items-center space-x-4">
-                  <span className="text-[10px] text-gray-400 font-light">Page 1 of 4</span>
-                  <button className="p-2 hover:bg-gray-200 rounded transition-colors text-gray-400 hover:text-gray-900">
-                    <ChevronRight size={16} />
-                  </button>
+                  <a
+                    href={questionPaperSubmissionPdf}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[10px] font-bold text-[#A51C30] uppercase tracking-[0.28em] hover:text-[#800000] transition-colors"
+                  >
+                    Open full PDF
+                  </a>
                 </div>
               </div>
             </motion.div>

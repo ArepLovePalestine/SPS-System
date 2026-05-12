@@ -30,7 +30,11 @@ type ResourceCategory =
   | 'Room Reservation'
   | 'Facilities'
   | 'Information for Students'
-  | 'Information for Academics';
+  | 'Information for Academics'
+  | 'Convocation'
+  | 'Registration Info'
+  | 'Upgrade Gallery'
+  | 'UTeM Scholarship';
 
 interface ResourceItem {
   title: string;
@@ -49,220 +53,273 @@ interface ResourceGroup {
   items: ResourceItem[];
 }
 
-const documentModules = import.meta.glob('../Document file/**/*.pdf', {
+const pdfModules = import.meta.glob('../src/assets/Document file/All resources/**/*.pdf', {
   eager: true,
   import: 'default',
 }) as Record<string, string>;
 
-const academicForms = [
-  'Add Subject Form Penambahan Matapelajaran 2024.pdf',
-  'Additional or Change Of Supervisor Perubahan atau Pertukaran Penyelia 2024 (1).pdf',
-  'Additional or Change Of Supervisor Perubahan atau Pertukaran Penyelia 2024.pdf',
-  'BORANG PERMOHONAN PENUKARAN PERINGKAT PENGAJIAN SARJANA PENYELIDIKAN KE PERINGKAT DOKTOR FALSAFAH PhD 2024(!).pdf',
-  'BORANG PERMOHONAN PENUKARAN PERINGKAT PENGAJIAN SARJANA PENYELIDIKAN KE PERINGKAT DOKTOR FALSAFAH PhD 2024.pdf',
-  'Candidate Particulars  Borang Maklumat Pelajar Siswazah 2024.pdf',
-  'Change Of Programme Pertukaran Program 2024.pdf',
-  'Deferment Of Study Tangguh Pengajian 2024.pdf',
-  'Extension Of Candidature Perlanjutan Tempoh Pengajian 2024.pdf',
-  'Letter Application Form Borang Permohonan Surat 2024.pdf',
-  'Personal Particular Form International Student 2024.pdf',
-  'Pertukaran Mod Pendaftaran.pdf',
-  'Referee Form Borang Penyokong 2024.pdf',
-  'Transfer or Exemption Of Credits Pemindahanm atau Pengecualian Kredit 2024.pdf',
-  'Withdrawal From Studies Form Borang Tarik Diri Pengajian new 2.pdf',
-  'Withdrawal From Subject Form  Borang Tarik Diri Matapelajaran 2024.pdf',
-];
+const docModules = import.meta.glob('../src/assets/Document file/All resources/**/*.{doc,docx}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, string>;
 
-const financialForms = [
-  'Borang Permohonan Penangguhan Yuran Pengajian.pdf',
-  'borang TUNTUTAN khairat Kematian.pdf',
-  'Fee Reduction Form for staff Borang Pengurangan Yuran Pengajian untuk Staff 2024.pdf',
-  'Payment Form Borang Pembayaran 2024.pdf',
-];
+const allDocuments = { ...pdfModules, ...docModules };
 
-const thesisForms = [
-  'Borang Pembetulan Tesis 2024.pdf',
-  'Borang Pembetulan Tesis Resubmit o Reviva 2024.pdf',
-  'Checklist For Hardbound Thesis Submission New 2024.pdf',
-  'DECLARATION OF MASTER AND DOCTORAL THESIS 2024.pdf',
-  'FINAL THESIS SUBMISSION FORM  julai 2024.pdf',
-  'Guidelines for Thesis Dissertation  Report.pdf',
-  'Laporan Kemajuan Penyelidikan 2024.pdf',
-];
+const toTitle = (filename: string) => {
+  return filename
+    .replace(/\.(pdf|doc|docx)$/i, '')
+    .replace(/[\-_]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
 
-const isoForms = [
-  'Borang Bayaran Saguhati Penceramah Fasilitator Sambilan 2024.pdf',
-  'Borang Jawapan Pemeriksa 2024.pdf',
-  'Borang Penghantaran Soalan Final Exam 2024.pdf',
-  'Template Jadual Peperiksaan Akhir Pasca Siswazah.pdf',
-  'Template Penawaran Mata Pelajaran 2024.pdf',
-];
+const getAcademicFormsItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Academic Matters/Academic Forms file') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Academic Matters', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
 
-const roomReservationFiles = [
-  'Borang tempahan ruang Auditorium.pdf',
-  'Tatacara Pemohonan Tempahan Bilik Kuliah,Auditorium,Bilik Mesyuarat Utama Dan Bilik Jamuan PPS(Penguguna Biasa - StafPelajar).pdf',
-  'Tatacara Pemohonan Tempahan Bilik Kuliah,Auditorium,Bilik Mesyuarat Utama Dan Bilik Jamuan PPS.pdf',
-];
+const getThesisFormsItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Academic Matters/Thesis Forms file') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Academic Matters', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
 
-const toTitle = (filename: string) => filename.replace(/\.pdf$/i, '').replace(/\s+/g, ' ').trim();
-const fileHref = (folder: string, filename: string) => {
-  const sourcePath = `../${folder}/${filename}`;
-  return documentModules[sourcePath] || `/${folder}/${filename}`;
+const getFinancialFormsItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Academic Matters/Financial Forms file') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Academic Matters', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getISOFormsItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Academic Matters/ISO Form') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'ISO Document', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getResearchProposalItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Research Proposal file') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Research Proposal Template', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getAcademicCalendarItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Programme Structure/Academic Calender') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Programme Structure', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getReservationItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Reservation Files/') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Room Reservation', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getFacilitiesItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Facilities/') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        const pathParts = key.replace(/\\/g, '/').split('/');
+        const facilitiesIndex = pathParts.findIndex(p => p === 'Facilities');
+        if (facilitiesIndex !== -1 && facilitiesIndex + 1 < pathParts.length) {
+          const roomName = pathParts[facilitiesIndex + 1];
+          items.push({ title: `${toTitle(roomName)} - ${toTitle(filename)}`, href: allDocuments[key], category: 'Facilities', type: 'PDF', action: 'Download', external: true });
+        }
+      }
+    }
+  }
+  return items;
+};
+
+const getStudentInfoItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Information For Students/')) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.') && !processedKeys.has(key)) {
+        processedKeys.add(key);
+        const pathParts = key.replace(/\\/g, '/').split('/');
+        const studentIndex = pathParts.findIndex(p => p === 'Information For Students');
+        let title = toTitle(filename);
+        if (studentIndex !== -1 && studentIndex + 1 < pathParts.length) {
+          const subfolder = pathParts[studentIndex + 1];
+          if (subfolder && !subfolder.includes(filename)) {
+            title = `${toTitle(subfolder)} - ${toTitle(filename)}`;
+          }
+        }
+        items.push({ title, href: allDocuments[key], category: 'Information for Students', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getAcademicsInfoItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Information For Academics/')) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.') && !processedKeys.has(key)) {
+        processedKeys.add(key);
+        const pathParts = key.replace(/\\/g, '/').split('/');
+        const academicIndex = pathParts.findIndex(p => p === 'Information For Academics');
+        let title = toTitle(filename);
+        if (academicIndex !== -1 && academicIndex + 1 < pathParts.length) {
+          const subfolder = pathParts[academicIndex + 1];
+          if (subfolder && !subfolder.includes(filename)) {
+            title = `${toTitle(subfolder)} - ${toTitle(filename)}`;
+          }
+        }
+        items.push({ title, href: allDocuments[key], category: 'Information for Academics', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+// ✅ Fungsi baru — letak LUAR dari fungsi lain
+const getConvocationItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Convocation/') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Convocation', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getRegistrationInfoItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Registration Info/') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Registration Info', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getUpgradeGalleryItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('Upgrade Gallery/') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'Upgrade Gallery', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
+};
+
+const getUTemScholarshipItems = (): ResourceItem[] => {
+  const items: ResourceItem[] = [];
+  const processedKeys = new Set<string>();
+  for (const key in allDocuments) {
+    if (key.includes('UTeM Scholarship/') && !processedKeys.has(key)) {
+      const filename = key.split('/').pop() || '';
+      if (filename && !filename.startsWith('.')) {
+        processedKeys.add(key);
+        items.push({ title: toTitle(filename), href: allDocuments[key], category: 'UTeM Scholarship', type: 'PDF', action: 'Download', external: true });
+      }
+    }
+  }
+  return items;
 };
 
 const groups: ResourceGroup[] = [
-  {
-    category: 'ISO Document',
-    description: 'Quality management documents, ISO templates, examination forms, and examiner report templates.',
-    icon: ShieldCheck,
-    items: [
-      {
-        title: 'ISO Documents',
-        href: '/about/iso-documents',
-        category: 'ISO Document',
-        type: 'LINK',
-        action: 'Open',
-        description: 'Browse the dedicated ISO document page.',
-      },
-      {
-        title: 'ISO Forms & Templates',
-        href: '/resources/iso-forms',
-        category: 'ISO Document',
-        type: 'LINK',
-        action: 'Open',
-        description: 'View the searchable ISO forms collection.',
-      },
-      ...isoForms.map((filename): ResourceItem => ({
-        title: toTitle(filename),
-        href: fileHref('Document file/ISO Form & Template', filename),
-        category: 'ISO Document',
-        type: 'PDF',
-        action: 'Download',
-      })),
-    ],
-  },
-  {
-    category: 'Research Proposal Template',
-    description: 'Templates used for preparing and defending postgraduate research proposals.',
-    icon: BookOpen,
-    items: [
-      {
-        title: 'Research Proposal Templates',
-        href: '/resources/research-proposal',
-        category: 'Research Proposal Template',
-        type: 'LINK',
-        action: 'Open',
-        description: 'Open the dedicated research proposal templates page.',
-      },
-    ],
-  },
-  {
-    category: 'Programme Structure',
-    description: 'Programme pages, faculty pathways, postgraduate brochures, fees, and academic structure references.',
-    icon: GraduationCap,
-    items: [
-      { title: 'Programme Dashboard', href: '/programmes', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      { title: 'Postgraduate Programmes', href: '/programmes/postgraduate', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      { title: 'Master Taught Programmes', href: '/programmes/master-taught', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      { title: 'Master Research Programmes', href: '/programmes/master-research', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      { title: 'Master Mixed Mode Programmes', href: '/programmes/master-mixed', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      { title: 'Doctoral Programmes', href: '/programmes/doctoral', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      { title: 'Faculty Brochure', href: '/student/brochure-faculty', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      { title: 'SGS Brochure', href: '/student/brochure-sgs', category: 'Programme Structure', type: 'LINK', action: 'Open' },
-      {
-        title: 'Programme Fees',
-        href: '/programmes/fees',
-        category: 'Programme Structure',
-        type: 'LINK',
-        action: 'Open',
-      },
-    ],
-  },
-  {
-    category: 'Academic Matters',
-    description: 'Academic forms, thesis documents, financial forms, academic calendar, regulations, and examination resources.',
-    icon: FileText,
-    items: [
-      { title: 'Academic Forms', href: '/resources/academic-forms', category: 'Academic Matters', type: 'LINK', action: 'Open' },
-      { title: 'Thesis Forms & Templates', href: '/resources/thesis-forms', category: 'Academic Matters', type: 'LINK', action: 'Open' },
-      { title: 'Financial Forms', href: '/resources/financial-forms', category: 'Academic Matters', type: 'LINK', action: 'Open' },
-      { title: 'Academic Calendar', href: '/calendar', category: 'Academic Matters', type: 'LINK', action: 'Open' },
-      { title: 'Academic Regulations', href: '/regulations', category: 'Academic Matters', type: 'LINK', action: 'Open' },
-      { title: 'Final Examination Information', href: '/student/examination-info', category: 'Academic Matters', type: 'LINK', action: 'Open' },
-      ...academicForms.map((filename): ResourceItem => ({
-        title: toTitle(filename),
-        href: fileHref('Document file/Academic Forms file', filename),
-        category: 'Academic Matters',
-        type: 'PDF',
-        action: 'Download',
-      })),
-      ...thesisForms.map((filename): ResourceItem => ({
-        title: toTitle(filename),
-        href: fileHref('Document file/Thesis Forms file', filename),
-        category: 'Academic Matters',
-        type: 'PDF',
-        action: 'Download',
-      })),
-      ...financialForms.map((filename): ResourceItem => ({
-        title: toTitle(filename),
-        href: fileHref('Document file/Financial Forms file', filename),
-        category: 'Academic Matters',
-        type: 'PDF',
-        action: 'Download',
-      })),
-    ],
-  },
-  {
-    category: 'Room Reservation',
-    description: 'Forms and procedures for room, auditorium, and meeting space reservations at SPS.',
-    icon: Library,
-    items: [
-      { title: 'Room Reservation', href: '/facilities/reservation', category: 'Room Reservation', type: 'LINK', action: 'Open' },
-      ...roomReservationFiles.map((filename): ResourceItem => ({
-        title: toTitle(filename),
-        href: fileHref('Document file/Reservation Files', filename),
-        category: 'Room Reservation',
-        type: 'PDF',
-        action: 'Download',
-      })),
-    ],
-  },
-  {
-    category: 'Facilities',
-    description: 'Facilities information, rental references, payment guidance, and university facility links.',
-    icon: Building2,
-    items: [
-      { title: 'Facilities', href: '/facilities', category: 'Facilities', type: 'LINK', action: 'Open' },
-      { title: 'Room Reservation', href: '/facilities/reservation', category: 'Facilities', type: 'LINK', action: 'Open' },
-      { title: 'Payment Hub - Application Procedure', href: '/images/resources/Payment Hub - Application Procedure.pdf', category: 'Facilities', type: 'PDF', action: 'View' },
-      { title: 'UTeM Facilities', href: 'https://www.utem.edu.my/en/facilities.html', category: 'Facilities', type: 'LINK', action: 'Open', external: true },
-    ],
-  },
-  {
-    category: 'Information for Students',
-    description: 'Student-facing resources, convocation information, research support, gallery, and application access.',
-    icon: Users,
-    items: [
-      { title: 'Student Information', href: '/student/student-info', category: 'Information for Students', type: 'LINK', action: 'Open' },
-      { title: 'UTeM Convocation', href: '/student/student-info/utem-convocation', category: 'Information for Students', type: 'LINK', action: 'Open' },
-      { title: 'Student Research Hub', href: '/student/future/research', category: 'Information for Students', type: 'LINK', action: 'Open' },
-      { title: 'Academic Awards', href: '/student/academic-awards', category: 'Information for Students', type: 'LINK', action: 'Open' },
-      { title: 'Picture Gallery', href: '/gallery', category: 'Information for Students', type: 'LINK', action: 'Open' },
-      { title: 'Apply Now', href: '/apply-now', category: 'Information for Students', type: 'LINK', action: 'Open' },
-    ],
-  },
-  {
-    category: 'Information for Academics',
-    description: 'Administrative directories, staff references, quality documents, and academic support pages.',
-    icon: Library,
-    items: [
-      { title: 'Person in Charge', href: '/about/staff', category: 'Information for Academics', type: 'LINK', action: 'Open' },
-      { title: 'Staff Directory', href: '/about/directory', category: 'Information for Academics', type: 'LINK', action: 'Open' },
-      { title: 'Organizational Chart', href: '/about/org-chart', category: 'Information for Academics', type: 'LINK', action: 'Open' },
-      { title: 'Organization Chart by Unit', href: '/about/org-chart-unit', category: 'Information for Academics', type: 'LINK', action: 'Open' },
-      { title: 'MQA Standards and Program Standards', href: '/accreditation/mqa-standards', category: 'Information for Academics', type: 'LINK', action: 'Open' },
-    ],
-  },
+  { category: 'ISO Document', description: 'ISO related documents and templates.', icon: ShieldCheck, items: getISOFormsItems() },
+  { category: 'Research Proposal Template', description: 'Templates for research proposal preparation.', icon: BookOpen, items: getResearchProposalItems() },
+  { category: 'Programme Structure', description: 'Programme structure and academic calendar.', icon: GraduationCap, items: getAcademicCalendarItems() },
+  { category: 'Academic Matters', description: 'Academic forms, thesis, and financial documents.', icon: FileText, items: [...getAcademicFormsItems(), ...getThesisFormsItems(), ...getFinancialFormsItems()] },
+  { category: 'Room Reservation', description: 'Room booking and reservation documents.', icon: Library, items: getReservationItems() },
+  { category: 'Facilities', description: 'Facilities and rooms available.', icon: Building2, items: getFacilitiesItems() },
+  { category: 'Information for Students', description: 'Guides and student-related information.', icon: Users, items: getStudentInfoItems() },
+  { category: 'Information for Academics', description: 'Academic staff and policy references.', icon: Library, items: getAcademicsInfoItems() },
+  { category: 'Convocation', description: 'Convocation related documents and information.', icon: GraduationCap, items: getConvocationItems() },
+  { category: 'Registration Info', description: 'Registration information and guidelines.', icon: FileText, items: getRegistrationInfoItems() },
+  { category: 'Upgrade Gallery', description: 'Upgrade gallery documents and references.', icon: Library, items: getUpgradeGalleryItems() },
+  { category: 'UTeM Scholarship', description: 'UTeM scholarship information and application forms.', icon: BookOpen, items: getUTemScholarshipItems() },
 ];
 
 const categories = groups.map((group) => group.category);
@@ -274,17 +331,13 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
   const allItems = useMemo(() => groups.flatMap((group) => group.items), []);
   const filteredGroups = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
-
     return groups
       .filter((group) => selectedCategory === 'All' || group.category === selectedCategory)
       .map((group) => ({
         ...group,
         items: group.items.filter((item) => {
           if (!query) return true;
-          return [item.title, item.category, item.type, item.description || '']
-            .join(' ')
-            .toLowerCase()
-            .includes(query);
+          return [item.title, item.category, item.type, item.description || ''].join(' ').toLowerCase().includes(query);
         }),
       }))
       .filter((group) => group.items.length > 0);
@@ -297,18 +350,13 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
       <section className="border-b border-gray-100 bg-white py-16">
         <div className="mx-auto max-w-[1200px] px-8 lg:px-12">
           <nav className="mb-8 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] text-gray-400">
-            <Link to="/" className="transition-colors hover:text-[#A51C30]">
-              HOME
-            </Link>
+            <Link to="/" className="transition-colors hover:text-[#A51C30]">HOME</Link>
             <ChevronRight size={11} />
             <span className="text-[#A51C30]">{lang === 'EN' ? 'RESOURCES' : 'SUMBER'}</span>
           </nav>
 
           <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end">
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
-              <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.35em] text-[#A51C30]">
-                School of Graduate Studies
-              </p>
               <h1 className="mb-5 font-serif text-5xl font-bold tracking-tight text-gray-900 md:text-6xl">
                 {lang === 'EN' ? 'Resources' : 'Sumber'}
               </h1>
@@ -321,9 +369,7 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
 
             <div className="rounded-2xl border border-gray-100 bg-gray-50 p-6">
               <div className="flex items-center justify-between border-b border-gray-200 pb-4">
-                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">
-                  Resource Index
-                </span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-gray-400">Resource Index</span>
                 <span className="font-serif text-3xl font-bold text-[#A51C30]">{allItems.length}</span>
               </div>
               <p className="pt-4 text-sm font-light leading-relaxed text-gray-500">
@@ -348,7 +394,6 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
               className="w-full rounded-xl border border-gray-200 bg-white py-4 pl-12 pr-4 text-sm text-gray-700 outline-none transition focus:border-[#A51C30] focus:ring-4 focus:ring-[#A51C30]/10"
             />
           </div>
-
           <div className="relative min-w-full lg:min-w-[280px]">
             <select
               value={selectedCategory}
@@ -357,9 +402,7 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
             >
               <option value="All">{lang === 'EN' ? 'All Categories' : 'Semua Kategori'}</option>
               {categories.map((category) => (
-                <option key={category} value={category}>
-                  {category}
-                </option>
+                <option key={category} value={category}>{category}</option>
               ))}
             </select>
             <ChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-400" size={17} />
@@ -390,7 +433,6 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
           <div className="space-y-8">
             {filteredGroups.map((group, groupIndex) => {
               const Icon = group.icon;
-
               return (
                 <motion.section
                   key={group.category}
@@ -448,21 +490,11 @@ const Resources: React.FC<ResourcesProps> = ({ lang }) => {
                       );
 
                       return isInternalRoute ? (
-                        <Link
-                          key={`${item.category}-${item.title}`}
-                          to={item.href}
-                          className="group flex items-center gap-4 p-5 transition hover:bg-gray-50 md:p-6"
-                        >
+                        <Link key={`${item.category}-${item.title}`} to={item.href} className="group flex items-center gap-4 p-5 transition hover:bg-gray-50 md:p-6">
                           {content}
                         </Link>
                       ) : (
-                        <a
-                          key={`${item.category}-${item.title}`}
-                          href={item.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-center gap-4 p-5 transition hover:bg-gray-50 md:p-6"
-                        >
+                        <a key={`${item.category}-${item.title}`} href={item.href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-5 transition hover:bg-gray-50 md:p-6">
                           {content}
                         </a>
                       );

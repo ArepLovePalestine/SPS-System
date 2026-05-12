@@ -4,7 +4,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Search, Globe, Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { NAV_ITEMS } from '../constants';
 import { Language, NavItem } from '../types';
-const SPSLogo = '/images/homepages/SPS logo.png';
+const SPSLogo = '/images/pages/homepages/SPS logo.png';
+const SPSLogoNavbar = '/images/pages/homepages/SPS logo navbar.png';
 
 interface HeaderProps {
   lang: Language;
@@ -67,8 +68,8 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
         <div className="grid grid-cols-2 gap-x-16 divide-x divide-gray-100">
           <div className="space-y-8">
             <div className="pl-2">
-              <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Staff Information</h4>
-              <ul className="space-y-2">
+              <h4 className="mb-5 text-[13px] font-bold uppercase tracking-[0.7px] text-[#A51C30]">Staff Information</h4>
+              <ul className="space-y-1">
                 {staffInfo?.children?.map((link, idx) => (
                   <MenuLink key={idx} href={link.href} label={link.label[lang]} onNavigate={onNavigate} />
                 ))}
@@ -77,8 +78,8 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
           </div>
           <div className="space-y-12 pl-16">
             <div>
-              <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Documents & Resources</h4>
-              <ul className="space-y-2">
+              <h4 className="mb-5 text-[13px] font-bold uppercase tracking-[0.7px] text-[#A51C30]">Documents & Resources</h4>
+              <ul className="space-y-1">
                 <MenuLink href={isoDocuments?.href || '#'} label={isoDocuments?.label[lang] || ''} onNavigate={onNavigate} />
                 <MenuLink href={electronicArchives?.href || '#'} label={electronicArchives?.label[lang] || ''} onNavigate={onNavigate} />
                 <MenuLink href={facilities?.href || '#'} label={facilities?.label[lang] || ''} onNavigate={onNavigate} />
@@ -86,9 +87,8 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
               </ul>
             </div>
             <div>
-              <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Partnerships</h4>
-              <ul className="space-y-2">
-                <MenuLink href={mouAndMqa?.href || '#'} label={mouAndMqa?.label[lang] || ''} onNavigate={onNavigate} />
+              <h4 className="mb-5 text-[13px] font-bold uppercase tracking-[0.7px] text-[#A51C30]">Partnerships</h4>
+              <ul className="space-y-1">
                 <MenuLink href={tuahTenaga?.href || '#'} label={tuahTenaga?.label[lang] || ''} onNavigate={onNavigate} />
               </ul>
             </div>
@@ -105,7 +105,7 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
       const upgrade = children.find(c => c.label.EN === 'UPGRADE Association');
       
       return (
-        <div className="grid grid-cols-5 gap-x-10">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-10">
           <div className="pl-2">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">{future?.label[lang] || 'Future Students'}</h4>
             <ul className="space-y-2">
@@ -114,16 +114,15 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
               ))}
             </ul>
           </div>
-          <div className="pl-6">
+          <div className="pl-6 lg:col-span-1">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">{studentInfo?.label[lang] || 'Student Info'}</h4>
             <ul className="space-y-2">
-              <MenuLink href={studentInfo?.href || '#'} label={studentInfo?.label[lang] || ''} onNavigate={onNavigate} />
               {studentInfo?.children?.map((link, idx) => (
                 <MenuLink key={idx} href={link.href} label={link.label[lang]} onNavigate={onNavigate} />
               ))}
             </ul>
           </div>
-          <div className="pl-6">
+          <div className="pl-6 lg:col-span-1">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Current</h4>
             <ul className="space-y-2">
               {current?.children?.map((link, idx) => (
@@ -131,7 +130,7 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
               ))}
             </ul>
           </div>
-          <div className="pl-6">
+          <div className="pl-6 lg:col-span-1">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Resources</h4>
             <ul className="space-y-2">
               {forms?.children?.map((link, idx) => (
@@ -139,7 +138,7 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
               ))}
             </ul>
           </div>
-          <div className="pl-6">
+          <div className="pl-6 lg:col-span-1">
             <h4 className="text-[14px] font-bold uppercase tracking-[0.8px] text-[#A51C30] mb-6">Graduate</h4>
             <ul className="space-y-2">
               {upgrade?.children?.map((link, idx) => (
@@ -258,14 +257,19 @@ const MegaMenuPanel: React.FC<{ item: NavItem; lang: Language; isOpen: boolean; 
         ${isOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}
       style={{ transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)' }}
     >
-      <div className="px-[60px] py-[48px]">
+      <div className="px-[52px] py-[40px]">
         {renderColumns()}
       </div>
-      <div className="bg-gray-50/50 py-4 px-[60px] border-t border-gray-100 flex justify-between items-center">
+      <div className="bg-gray-50/50 py-3.5 px-[52px] border-t border-gray-100 flex justify-between items-center">
         <span className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">School of Graduate Studies | UTeM</span>
-        <button className="text-[11px] font-bold text-[#A51C30] uppercase tracking-widest hover:underline flex items-center group">
-          SPS Help Centre <ChevronRight size={12} className="ml-1 transform group-hover:translate-x-1 transition-transform" />
-        </button>
+        <a
+          href="https://help.utem.edu.my/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[11px] font-bold text-[#A51C30] uppercase tracking-widest hover:underline flex items-center group"
+        >
+          Customer Feedback <ChevronRight size={12} className="ml-1 transform group-hover:translate-x-1 transition-transform" />
+        </a>
       </div>
     </div>
   );
@@ -275,7 +279,7 @@ const MenuLink: React.FC<{ href: string; label: string; onNavigate?: () => void 
   const location = useLocation();
   const isInternal = href.startsWith('/');
   const isActive = isExactInternalPath(location.pathname, href);
-  const className = `group flex items-center justify-between py-2 px-3 -mx-3 rounded-md text-[15px] font-bold border-l-[3px] transition-all duration-200 ${
+  const className = `group flex items-center justify-between py-1.5 px-2.5 -mx-2.5 rounded-md text-[14px] font-semibold border-l-[3px] transition-all duration-200 ${
     isActive
       ? 'text-[#A51C30] bg-[#f7fafc] border-[#A51C30]'
       : 'text-gray-600 hover:text-[#A51C30] hover:bg-[#f7fafc] border-transparent hover:border-[#A51C30]'
@@ -422,90 +426,125 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
       <header 
         className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
           isScrolled || activeMegaMenu || !isHome
-            ? 'bg-white border-b border-gray-100 shadow-sm py-0' 
-            : 'bg-transparent py-4'
+            ? 'bg-white border-b-2 border-[#1a3a6b] shadow-md py-0' 
+            : 'bg-transparent border-b border-white/30 py-4'
         }`}
         onMouseLeave={() => setActiveMegaMenu(null)}
       >
         <div className="absolute left-0 top-0 h-[5px] w-full bg-[#A51C30]" />
-        <div className="mx-auto grid h-20 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 px-3 sm:h-24 sm:gap-x-4 sm:px-5 lg:grid-cols-[minmax(250px,300px)_minmax(0,1fr)_auto] lg:gap-x-6 lg:px-7 xl:max-w-[1520px] xl:grid-cols-[minmax(280px,330px)_minmax(0,1fr)_auto] xl:gap-x-8 xl:px-8">
+        <div className="mx-auto grid h-28 max-w-[1440px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-2 px-3 sm:h-32 sm:gap-x-4 sm:px-5 lg:grid-cols-[minmax(250px,300px)_minmax(0,1fr)_auto] lg:gap-x-6 lg:px-7 xl:max-w-[1520px] xl:grid-cols-[minmax(280px,330px)_minmax(0,1fr)_auto] xl:gap-x-8 xl:px-8">
           
           {/* Logo Section */}
           <Link to="/" className="group z-[60] min-w-0 cursor-pointer flex-shrink">
             <div className="flex w-[160px] max-w-full flex-nowrap items-center justify-start pl-1 sm:w-[240px] sm:pl-4 lg:w-full lg:max-w-[300px] xl:max-w-[330px]">
               <img
-                src={SPSLogo}
+                src={isScrolled || activeMegaMenu || !isHome ? SPSLogoNavbar : SPSLogo}
                 alt="School of Graduate Studies logo"
-                className="h-10 w-auto max-w-full object-contain drop-shadow-sm sm:h-14 lg:h-[72px] xl:h-20"
+                className="h-20 w-auto max-w-full object-contain drop-shadow-sm sm:h-24 lg:h-28 xl:h-32"
                 loading="lazy"
               />
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav
-            className="relative hidden h-full min-w-0 items-center justify-center gap-1.5 overflow-visible px-2 lg:flex lg:justify-self-stretch xl:gap-2 xl:px-4"
-          >
-            {NAV_ITEMS.map((item, idx) => {
-              const isActive = isNavItemActive(item, location.pathname);
-              const shouldUseLightHeader = isScrolled || activeMegaMenu || !isHome;
+          {/* Desktop Navigation - Apple Style */}
+<div className="hidden lg:flex justify-center items-center">
+  <nav
+    className={`
+      relative flex items-center gap-1 px-6 py-3 rounded-full
+      border transition-all duration-500 backdrop-blur-xl
+      shadow-[0_8px_32px_rgba(0,0,0,0.18)]
+      ${
+        isScrolled || activeMegaMenu || !isHome
+          ? 'bg-white/75 border-white/30'
+          : 'bg-black/20 border-white/10'
+      }
+    `}
+    style={{
+      WebkitBackdropFilter: 'blur(20px)',
+      backdropFilter: 'blur(20px)',
+    }}
+  >
+    {NAV_ITEMS.map((item, idx) => {
+      const isActive = isNavItemActive(item, location.pathname);
 
-              return (
-                <div 
-                  key={idx} 
-                  className="group/nav flex h-full flex-shrink-0 items-center"
-                  onMouseEnter={() => setActiveMegaMenu(item.label.EN)}
-                >
-                  <Link 
-                    to={item.href}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={`relative flex h-full items-center justify-center px-2.5 py-2 text-[13px] font-bold uppercase transition-all duration-300 lg:px-3 lg:text-[13px] lg:tracking-[0.04em] xl:px-4 xl:text-[14px] xl:tracking-[0.06em] ${
-                      item.label.EN === 'FINANCIAL ASSISTANT' ? 'min-w-[112px] whitespace-normal text-center leading-tight xl:min-w-[124px]' : 'whitespace-nowrap'
-                    } ${
-                      isActive
-                        ? 'text-[#A51C30]'
-                        : shouldUseLightHeader
-                          ? 'text-gray-700 hover:text-[#A51C30]' 
-                          : 'text-white hover:text-white/80'
-                    }`}
-                  >
-                    {/* Responsive label shortening for long items */}
-                    <span className="relative inline-flex h-full items-center justify-center">
-                      {item.label.EN === 'FINANCIAL ASSISTANT' ? (
-                        <span className="block leading-tight">
-                          <span className="block">Financial</span>
-                          <span className="block">Assistant</span>
-                        </span>
-                      ) : item.label.EN === 'ABOUT US' ? (
-                        <>
-                          <span className="hidden xl:inline">{item.label[lang]}</span>
-                          <span className="inline xl:hidden">About</span>
-                        </>
-                      ) : (
-                        item.label[lang]
-                      )}
-                      <span className={`absolute -bottom-2 left-1/2 h-[2px] w-full min-w-12 -translate-x-1/2 bg-[#A51C30] transform transition-transform duration-300 ${activeMegaMenu === item.label.EN || isActive ? 'scale-x-100' : 'scale-x-0'}`} />
-                    </span>
-                    {item.children && <ChevronDown size={12} className={`ml-2 opacity-40 transition-transform duration-300 ${activeMegaMenu === item.label.EN ? 'rotate-180' : ''}`} />}
-                  </Link>
-                </div>
-              );
-            })}
-          </nav>
+      return (
+        <div
+          key={idx}
+          className="group/nav relative flex items-center"
+          onMouseEnter={() => setActiveMegaMenu(item.label.EN)}
+        >
+          <Link
+            to={item.href}
+            aria-current={isActive ? 'page' : undefined}
+            className={`
+              relative flex items-center justify-center
+              px-5 py-3 rounded-full
+              text-[13px] font-semibold uppercase
+              tracking-[0.08em]
+              transition-all duration-300
+              overflow-hidden
+              ${
+                isActive
+  ? `
+    text-[#A51C30]
+  `
+                  : `
+                    ${
+                      isScrolled || activeMegaMenu || !isHome
+                        ? 'text-gray-700 hover:text-[#A51C30]'
+                        : 'text-white hover:text-white'
+                    }
+                    hover:text-[#A51C30]
+                  `
+              }
+            `}
+          >
+            {/* Active Glow */}
+            {isActive && (
+              <span className="absolute inset-0 rounded-full bg-gradient-to-r from-white/80 to-white/60 backdrop-blur-md" />
+            )}
+
+            {/* Text */}
+            <span className="relative z-10 flex items-center">
+              {item.label.EN === 'FINANCIAL ASSISTANT' ? (
+                <span className="leading-tight text-center">
+                  Financial Assistant
+                </span>
+              ) : (
+                item.label[lang]
+              )}
+
+              {item.children && (
+                <ChevronDown
+                  size={13}
+                  className={`
+                    ml-2 transition-transform duration-300
+                    ${activeMegaMenu === item.label.EN ? 'rotate-180' : ''}
+                  `}
+                />
+              )}
+            </span>
+          </Link>
+        </div>
+      );
+    })}
+  </nav>
+</div>
 
           {/* Action Bar */}
           <div className="z-[60] col-start-2 flex min-w-0 items-center justify-end gap-1.5 sm:gap-3 lg:col-start-3 lg:min-w-[160px] lg:gap-4 lg:justify-self-end xl:min-w-[176px] xl:gap-5">
-            <button 
-              onClick={onToggleLanguage}
-              className={`hidden min-w-[74px] items-center justify-center gap-2 px-2.5 py-2 sm:flex sm:px-3 lg:min-w-[88px] lg:px-4 border-l border-r transition-all duration-500 text-[10px] font-bold tracking-widest uppercase ${
-                isScrolled || activeMegaMenu || !isHome
-                  ? 'border-gray-100 text-gray-700 hover:text-[#A51C30]' 
-                  : 'border-white/10 text-white hover:border-white'
-              }`}
-            >
-              <Globe size={14} strokeWidth={2.5} />
-              <span>{lang}</span>
-            </button>
+              <button 
+                onClick={onToggleLanguage}
+                className={`flex min-w-[58px] items-center justify-center gap-1.5 px-2 py-2 text-[10px] font-bold uppercase tracking-[0.18em] transition-all duration-500 sm:min-w-[74px] sm:gap-2 sm:px-3 sm:tracking-widest lg:min-w-[88px] lg:px-4 border-l border-r ${
+                  isScrolled || activeMegaMenu || !isHome
+                    ? 'border-gray-100 text-gray-700 hover:text-[#A51C30]' 
+                    : 'border-white/10 text-white hover:border-white'
+                }`}
+              >
+                <Globe size={14} strokeWidth={2.5} />
+                <span>{lang}</span>
+              </button>
 
             <button
               type="button"
@@ -571,6 +610,29 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
               <X className="w-5 h-5" />
             </button>
           </div>
+
+          <div className="mb-5 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={onToggleLanguage}
+              className="flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-700 transition-colors hover:border-[#A51C30] hover:text-[#A51C30]"
+            >
+              <Globe size={14} strokeWidth={2.5} />
+              <span>{lang}</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                navigate('/search');
+              }}
+              className="flex items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-gray-700 transition-colors hover:border-[#A51C30] hover:text-[#A51C30]"
+            >
+              <Search size={14} strokeWidth={2.5} />
+              <span>{lang === 'EN' ? 'Search' : 'Carian'}</span>
+            </button>
+          </div>
+
           <div className="flex flex-col space-y-3 pb-10">
             {NAV_ITEMS.map((item, idx) => {
               const isActive = isNavItemActive(item, location.pathname);
@@ -650,6 +712,23 @@ const Header: React.FC<HeaderProps> = ({ lang, onToggleLanguage }) => {
                 </div>
               );
             })}
+          </div>
+
+          <div className="mb-8 border-t border-gray-100 pt-5">
+            <div className="flex items-center justify-between rounded-2xl bg-gray-50 px-4 py-4">
+              <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-gray-400">
+                School of Graduate Studies | UTeM
+              </span>
+              <a
+                href="https://help.utem.edu.my/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center text-[11px] font-bold uppercase tracking-[0.14em] text-[#A51C30] transition hover:underline"
+              >
+                Customer Feedback
+                <ChevronRight size={12} className="ml-1" />
+              </a>
+            </div>
           </div>
         </div>
       </header>

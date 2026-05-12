@@ -113,7 +113,7 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
                   <div className="absolute -right-20 -top-20 w-80 h-80 bg-gradient-to-bl from-[#A51C30]/5 to-transparent rounded-full blur-3xl" />
                   {/* Decorative Waves */}
                   <svg className="absolute bottom-0 left-0 w-full h-24 opacity-10" viewBox="0 0 1440 320">
-                    <path fill="#A51C30" fillOpacity="1" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,186.7C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+                    <path fill="#a51c30" fillOpacity="1" d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,186.7C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                   </svg>
                 </div>
 
@@ -139,7 +139,7 @@ const BestEmployee: React.FC<BestEmployeeProps> = ({ lang }) => {
                     <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 z-20">
                       <div className="bg-white p-2 rounded-lg shadow-md border border-gray-50">
                         <img
-                          src="/images/homepages/SPS logo.png"
+                          src="/images/pages/homepages/SPS logo2.png"
                           alt="SPS logo"
                           className="h-10 w-auto object-contain"
                         />

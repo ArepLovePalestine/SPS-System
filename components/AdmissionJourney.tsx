@@ -15,7 +15,7 @@ const AdmissionJourney: React.FC<AdmissionJourneyProps> = ({ lang }) => {
       <div
         className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-35"
         style={{
-          backgroundImage: "url('/images/homepages/Bg-maroon.jpeg')"
+          backgroundImage: "url('/images/pages/homepages/Bg-maroon.jpeg')"
         }}
         aria-hidden="true"
       />

@@ -39,7 +39,7 @@ const AboutUPgrade: React.FC<AboutUPgradeProps> = ({ lang }) => {
       setOpenAccordions([...openAccordions, id]);
     }
   };
-
+/*tabs*/
   const tabs = [
     { id: 'vision', label: { EN: 'Vision & Mission', BM: 'Visi & Misi' } },
     { id: 'objective', label: { EN: 'Objective', BM: 'Objektif' } },
@@ -116,6 +116,7 @@ const AboutUPgrade: React.FC<AboutUPgradeProps> = ({ lang }) => {
         viewBtn: "Lihat Saiz Penuh",
         downloadBtn: "Muat Turun Sijil"
       },
+      
       orgChart: {
         title: "Carta Organisasi",
         caption: "Struktur Organisasi UPgrade 2024",

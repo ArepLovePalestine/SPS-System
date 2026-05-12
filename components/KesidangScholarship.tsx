@@ -13,22 +13,22 @@ type TabId = 'biasiswa' | 'scholarship';
 
 const TAB_IMAGES: Record<TabId, string[]> = {
   biasiswa: [
-    '/images/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-1.jpg',
-    '/images/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-2.jpg',
-    '/images/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-3.jpg',
-    '/images/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-4.jpg',
-    '/images/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-5.jpg',
-    '/images/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-6.jpg',
-    '/images/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-7.jpg'
+    '/images/pages/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-1.jpg',
+    '/images/pages/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-2.jpg',
+    '/images/pages/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-3.jpg',
+    '/images/pages/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-4.jpg',
+    '/images/pages/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-5.jpg',
+    '/images/pages/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-6.jpg',
+    '/images/pages/KesidangPic/Biasiswa/POSTER_BIASISWA_KESIDANG__BM-7.jpg'
   ],
   scholarship: [
-    '/images/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-1.jpg',
-    '/images/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-2.jpg',
-    '/images/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-3.jpg',
-    '/images/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-4.jpg',
-    '/images/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-5.jpg',
-    '/images/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-6.jpg',
-    '/images/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-7.jpg'
+    '/images/pages/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-1.jpg',
+    '/images/pages/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-2.jpg',
+    '/images/pages/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-3.jpg',
+    '/images/pages/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-4.jpg',
+    '/images/pages/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-5.jpg',
+    '/images/pages/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-6.jpg',
+    '/images/pages/KesidangPic/Scholarship/POSTER_KESIDANG_SCHOLARSHIP_BI-7.jpg'
   ]
 };
 

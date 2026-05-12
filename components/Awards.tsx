@@ -72,16 +72,13 @@ const Awards: React.FC<AwardsProps> = ({ lang }) => {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center space-x-3 mb-6">
-              <div className="w-12 h-12 bg-[#A51C30] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-red-900/20">
-                <Trophy size={24} />
-              </div>
               <nav className="flex items-center space-x-2 text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400">
                 <span>{lang === 'EN' ? 'About Us' : 'Tentang Kami'}</span>
                 <ChevronRight size={10} />
                 <span className="text-[#A51C30]">{content.title[lang]}</span>
               </nav>
             </div>
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-gray-900 mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl font-serif text-gray-900 mb-6 tracking-tight">
               {content.title[lang]}
             </h1>
             <p className="text-lg md:text-xl text-gray-500 font-light max-w-2xl leading-relaxed">

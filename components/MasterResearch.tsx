@@ -196,11 +196,6 @@ const MasterResearch: React.FC<MasterResearchProps> = ({ lang }) => {
               ))}
             </div>
             
-            <div className="mt-12 pt-8 border-t border-gray-50">
-              <button className="w-full bg-[#1a1a1a] text-white py-4 rounded-xl font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-[#A51C30] transition-colors duration-300">
-                Download Research Guide
-              </button>
-            </div>
           </div>
         </aside>
       </div>
